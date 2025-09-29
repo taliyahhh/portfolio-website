@@ -1,6 +1,7 @@
 body{
     margin:0;
     background-color:#FFFBF4;
+    font-family: "Inter", sans-serif;
 }
 .navigation{
     display: flex;
@@ -34,7 +35,6 @@ body{
 .content{
     min-height:95%;
 }
-
 
 
 .footer{

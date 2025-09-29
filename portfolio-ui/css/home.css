@@ -1,1 +1,59 @@
+.landing{
+    margin:30px 50px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow:row nowrap;
+    gap: 1%;
+}
+.homeImage{
+    flex:1;
+}
+.homeImage img{
+    width:100%;
+    border-radius:20px;
+}
+.homeText{
+    flex:2;
+}
+.nameTitle{
+    font-size:8vw;
+}
+.myDescription{
+    font-size:3vw;
+    margin-top:5px;
+}
 
+.landing button{
+    background-color: #86936F;
+    border-radius:5px;
+    width: 15vw;
+    height:4vw;
+    font-size: 2vw;
+}
+.logoCarousel {
+    overflow: hidden;          /* hide overflow */
+    white-space: nowrap;       /* keep images in one line */
+    box-sizing: border-box;
+    padding: 20px 0;
+  }
+  
+  .logos {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+  }
+  
+  .logos img {
+    width: 7vw;              /* adjust size */
+    margin: 0 4vw;            /* spacing between logos */
+    vertical-align: middle;
+  }
+  
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%); /* move half the width for seamless loop */
+    }
+  }
