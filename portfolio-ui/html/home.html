@@ -28,6 +28,7 @@
                 </a>
             </div>
         </div>
+        <!-- content -->
         <div class = "content">
             <div class = "landing">
                 <section class = "homeText">
@@ -37,7 +38,9 @@
                     <p class = "myDescription">
                         creating digital + physical products.
                     </p>
-                    <button>About Me</button>
+                    <a href = "#aboutme">
+                        <button>About Me</button>
+                    </a>
                 </section>
                 <section class = "homeImage">
                     <img src = "../images/pfp.jpg">
@@ -65,10 +68,50 @@
                 <hr>
               </div>
             <div>
+            <div class = "aboutme" id = "aboutme">
+                <section class = "aboutImage">
+                    <img src = "../images/pfp.jpg" class = "pfp">
+                </section>
+                <section class = "aboutMenu">
+                    <span class = "aboutTitle">About Me</span>
+                    <hr>
+                    <section class = aboutSection>
+                        <span class = "aboutSubtitle">who am i?</span>
+                        <span class = "whoMore aboutMore">+</span>
+                    </section>
+                    <span class = "about1 aboutHidden">blahblahblah</span>
+                    <hr>
+                    <section class = aboutSection>
+                        <span class = "aboutSubtitle">education</span>
+                        <span class = "educationMore aboutMore">+</span>
+                    </section>
+                    <span class = "about2 aboutHidden">blahblahblah</span>
+                    <hr>
+                    <section class = aboutSection>
+                        <span class = "aboutSubtitle">leadership/extracurriculars</span>
+                        <span class = "leadershipMore aboutMore">+</span>
+                    </section>
+                    <span class = "about3 aboutHidden">blahblahblah</span>
 
-            </div>
-            
+                    <hr>
+                    <section class = aboutSection>
+                        <span class = "aboutSubtitle">career aspirations</span>
+                        <span class = "careerMore aboutMore">+</span>
+                    </section>
+                    <span class = "about4 aboutHidden">blahblahblah</span>
+
+                    <hr>
+                    <section class = aboutSection>
+                        <span class = "aboutSubtitle">what i offer</span>
+                        <span class = "offerMore aboutMore">+</span>
+                    </section>
+                    <span class = "about5 aboutHidden">blahblahblah</span>
+
+                    <hr>
+                </section>
+            </div>            
         </div>
+          
 
         <!-- footer -->
         <div class = "footer">
@@ -83,4 +126,60 @@
         </div>
 
     </body>
+    <script>
+        // about 1
+        const toggle1 = document.querySelector('.whoMore');
+        const content1 = document.querySelector('.about1');
+
+        toggle1.addEventListener('click', () => {
+        const isOpen = content1.style.display === 'block';
+        
+        content1.style.display = isOpen ? 'none' : 'block';
+        toggle1.textContent = isOpen ? '+' : '-';
+        });
+
+        // about 2
+        const toggle2 = document.querySelector('.educationMore');
+        const content2 = document.querySelector('.about2');
+
+        toggle2.addEventListener('click', () => {
+        const isOpen = content2.style.display === 'block';
+        
+        content2.style.display = isOpen ? 'none' : 'block';
+        toggle2.textContent = isOpen ? '+' : '-';
+        });
+
+        // about 3 
+        const toggle3 = document.querySelector('.leadershipMore');
+        const content3 = document.querySelector('.about3');
+
+        toggle3.addEventListener('click', () => {
+        const isOpen = content3.style.display === 'block';
+        
+        content3.style.display = isOpen ? 'none' : 'block';
+        toggle3.textContent = isOpen ? '+' : '-';
+        });
+
+        // about 4
+        const toggle4 = document.querySelector('.careerMore');
+        const content4 = document.querySelector('.about4');
+
+        toggle4.addEventListener('click', () => {
+        const isOpen = content4.style.display === 'block';
+        
+        content4.style.display = isOpen ? 'none' : 'block';
+        toggle4.textContent = isOpen ? '+' : '-';
+        });
+
+        // about 5
+        const toggle5 = document.querySelector('.offerMore');
+        const content5 = document.querySelector('.about5');
+
+        toggle5.addEventListener('click', () => {
+        const isOpen = content5.style.display === 'block';
+        
+        content5.style.display = isOpen ? 'none' : 'block';
+        toggle5.textContent = isOpen ? '+' : '-';
+        });
+    </script>
 </html>

@@ -57,3 +57,46 @@
       transform: translateX(-50%); /* move half the width for seamless loop */
     }
   }
+
+
+.aboutme{
+  margin: 30px 50px 50px 50px;
+  display:flex;
+  flex-flow: row nowrap;
+  gap: 2%;
+  align-items: center;
+}
+.aboutTitle{
+  font-size:5vw;
+  display:block;
+  text-align:center;
+}
+.aboutImage{
+  flex:2;
+}
+.aboutImage img{
+  width:100%;
+  border-radius:20px;
+}
+.aboutMenu{
+  flex:3;
+}
+.aboutMore{
+  font-size:2vw;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.aboutSubtitle{
+  font-size:2vw;
+}
+.aboutSection{
+  margin:1vw 1.5vw;
+  display:flex;
+  justify-content: space-between;
+}
+.aboutHidden{
+  display: none;
+  margin-left:2vw;
+  font-size:1.5vi;
+  color: #707969;
+}
