@@ -3,6 +3,7 @@
         <title>Documentation</title>
         <link rel = "stylesheet" href = "../css/index.css">
         <link rel = "stylesheet" href = "../css/home.css">
+        <link rel = "stylesheet" href = "../css/documentation.css">
         <link rel="icon" type="image/png" href="../images/favicon.png">
          <!-- font -->
          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +27,60 @@
                 </a>
             </div>
         </div>
+        <div class = "content">
+            <div class = "resumeDoc">
+                <section class = "resumeText">
+                    <span class = "resumeTitle" id = "resumetitle"></span>
+                    <p class = "resumeSubtitle" id = "resumesubtitle"></p>
+                    <!-- there's no link yet -->
+                    <a><button class = "viewResume" id = "viewresume"></button></a> 
+                    <a><button class = "downloadResume" id = "downloadresume"></button></a> 
+                </section>
+                <section class = "resumeImage">
+                    <img src = "../images/pfp.jpg" class = "pfp">
+                </section>
+            </div>
+            <span class = "featured" id = "featured"></span>
+            <div class = "featuredDoc">
+                <section class = "mainDoc">
+                    <img src = "../images/pfp.jpg">
+                    <span class = "mainTitle featuredTitle" id = "maintitle"></span><br>
+                    <span class = "mainSubtitle featuredSubtitle" id = "mainsubtitle"></span><br>
+                    <span class = "mainDate featuredDate" id = "maindate"></span>
+                </section>
+                <section class = "sideDocs">
+                    <section class = "sideDoc1">
+                        <img src = "../images/pfp.jpg">
+                        <span class = "sideTitle featuredTitle" id = "sidetitle1"></span><br>
+                        <span class = "sideSubtitle featuredSubtitle" id = "sidesubtitle1"></span><br>
+                        <span class = "sideDate featuredDate" id = "sidedate1"></span>
+                    </section>
+                    <section class = "sideDoc2">
+                        <img src = "../images/pfp.jpg">
+                        <span class = "sideTitle featuredTitle" id = "sidetitle2"></span><br>
+                        <span class = "sideSubtitle featuredSubtitle" id = "sidesubtitle2"></span><br>
+                        <span class = "sideDate featuredDate" id = "sidedate2"></span>
+                    </section>
+                </section>
+            </div>
+        </div>
 
     </body>
+    <script>
+        const sheetUrl = "https://opensheet.vercel.app/1OLr_0lioqGd72fBUxPczp4IyGXezEiPykxD5GCdyo3Q/taliyahharvey.com";
+    
+        fetch(sheetUrl)
+        .then(res => res.json())
+        .then(rows => {
+            rows.forEach(row => {
+            const section = row.section.toLowerCase();
+            const el = document.getElementById(section);
+            if (el) {
+                let content = row.content.replace(/\n/g, "<br>");
+                el.innerHTML = content;
+            }
+            });
+        })
+        .catch(err => console.error("Sheet fetch error:", err));
+    </script>
 </html>

@@ -1,10 +1,12 @@
 .landing{
-    margin:30px 50px;
     display:flex;
     justify-content: space-between;
     align-items: center;
     flex-flow:row nowrap;
     gap: 1%;
+}
+.content{
+  margin:30px 50px;
 }
 .homeImage{
     flex:1;
@@ -60,7 +62,7 @@
 
 
 .aboutme{
-  margin: 30px 50px 50px 50px;
+  margin-bottom: 50px;
   display:flex;
   flex-flow: row nowrap;
   gap: 2%;

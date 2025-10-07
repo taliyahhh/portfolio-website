@@ -1,0 +1,101 @@
+.resumeDoc{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 30px;
+}
+
+.resumeTitle{
+    font-size: 4vw;
+}
+
+.resumeText{
+    flex: 4;
+}
+
+.resumeImage{
+    flex: 3;
+}
+
+.resumeImage img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.viewResume{
+    background-color: #86936F;
+    border-radius:5px;
+    width: 15vw;
+    height:4vw;
+    font-size: 2vw;
+}
+.downloadResume{
+    background-color: E6E6E6;
+    border-radius:5px;
+    width: 15vw;
+    height:4vw;
+    font-size: 2vw;
+}
+
+.featuredDoc{
+    display:flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    gap: 2rem;
+}
+
+.mainDoc{
+    flex:3;
+}
+
+.mainDoc img{
+    height: 115vh;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.sideDocs{
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    overflow: hidden;
+    gap: 1.5rem;
+}
+.sideDocs > section{
+    flex-direction: column;
+}
+
+.sideDocs img{
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.featured{
+    font-size: 4vw;
+    line-height: 2.5;
+}
+
+.featuredTitle{
+    font-size: 2vw;
+}
+
+.featuredSubtitle{
+    color: grey;
+    font-size: 1.7vw;
+}
+.featuredDate{
+    font-size: 1.4vw;
+}
+
+.featuredSubtitle,
+.featuredDate {
+    line-height: 1.4;
+}
