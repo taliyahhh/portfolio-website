@@ -17,14 +17,11 @@
                 <img src = "../images/pfp.jpg" class = "pfp">
             </a>
             <div class = "newPage">
-                <a href = "../html/projects.html" class = "projects navChoice">
-                    projects
+                <a href = "../html/projects.html" class = "projects navChoice" id = "navchoice1">
                 </a>
-                <a href = "../html/documentation.html" class = "documentation navChoice">
-                    documentation
+                <a href = "../html/documentation.html" class = "documentation navChoice" id = "navchoice2">
                 </a>
-                <a href = "../html/contact.html" class = "contact navChoice">
-                    contact
+                <a href = "../html/contact.html" class = "contact navChoice" id = "navchoice3">
                 </a>
             </div>
         </div>
@@ -32,14 +29,10 @@
         <div class = "content">
             <div class = "landing">
                 <section class = "homeText">
-                    <span class = "nameTitle">
-                        Taliyah Harvey
-                    </span>
-                    <p class = "myDescription">
-                        creating digital + physical products.
-                    </p>
+                    <span class = "nameTitle" id = "nametitle"></span>
+                    <p class = "myDescription" id = "mydescription"></p>
                     <a href = "#aboutme">
-                        <button>About Me</button>
+                        <button id = "aboutme"></button>
                     </a>
                 </section>
                 <section class = "homeImage">
@@ -73,39 +66,39 @@
                     <img src = "../images/pfp.jpg" class = "pfp">
                 </section>
                 <section class = "aboutMenu">
-                    <span class = "aboutTitle">About Me</span>
+                    <span class = "aboutTitle" id = "abouttitle"></span>
                     <hr>
                     <section class = aboutSection>
-                        <span class = "aboutSubtitle">who am i?</span>
+                        <span class = "aboutSubtitle" id = "aboutsubtitle1"></span>
                         <span class = "whoMore aboutMore">+</span>
                     </section>
-                    <span class = "about1 aboutHidden">blahblahblah</span>
+                    <span class = "about1 aboutHidden" id = "about1"></span>
                     <hr>
                     <section class = aboutSection>
-                        <span class = "aboutSubtitle">education</span>
+                        <span class = "aboutSubtitle" id = "aboutsubtitle2"></span>
                         <span class = "educationMore aboutMore">+</span>
                     </section>
-                    <span class = "about2 aboutHidden">blahblahblah</span>
+                    <span class = "about2 aboutHidden" id = "about2"></span>
                     <hr>
                     <section class = aboutSection>
-                        <span class = "aboutSubtitle">leadership/extracurriculars</span>
+                        <span class = "aboutSubtitle" id = "aboutsubtitle3"></span>
                         <span class = "leadershipMore aboutMore">+</span>
                     </section>
-                    <span class = "about3 aboutHidden">blahblahblah</span>
+                    <span class = "about3 aboutHidden" id = "about3"></span>
 
                     <hr>
                     <section class = aboutSection>
-                        <span class = "aboutSubtitle">career aspirations</span>
+                        <span class = "aboutSubtitle" id = "aboutsubtitle4"></span>
                         <span class = "careerMore aboutMore">+</span>
                     </section>
-                    <span class = "about4 aboutHidden">blahblahblah</span>
+                    <span class = "about4 aboutHidden" id = "about4"></span>
 
                     <hr>
                     <section class = aboutSection>
-                        <span class = "aboutSubtitle">what i offer</span>
+                        <span class = "aboutSubtitle" id = "aboutsubtitle5"></span>
                         <span class = "offerMore aboutMore">+</span>
                     </section>
-                    <span class = "about5 aboutHidden">blahblahblah</span>
+                    <span class = "about5 aboutHidden" id = "about5"></span>
 
                     <hr>
                 </section>
@@ -124,7 +117,23 @@
                 Contact
             </section>
         </div>
-
+        <script>
+            const sheetUrl = "https://opensheet.vercel.app/1OLr_0lioqGd72fBUxPczp4IyGXezEiPykxD5GCdyo3Q/taliyahharvey.com";
+        
+            fetch(sheetUrl)
+            .then(res => res.json())
+            .then(rows => {
+                rows.forEach(row => {
+                const section = row.section.toLowerCase();
+                const el = document.getElementById(section);
+                if (el) {
+                    let content = row.content.replace(/\n/g, "<br>");
+                    el.innerHTML = content;
+                }
+                });
+            })
+            .catch(err => console.error("Sheet fetch error:", err));
+        </script>
     </body>
     <script>
         // about 1
