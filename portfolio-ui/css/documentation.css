@@ -11,6 +11,10 @@
     font-size: 4vw;
 }
 
+.resumeSubtitle{
+    font-size: 14pt;
+}
+
 .resumeText{
     flex: 4;
 }

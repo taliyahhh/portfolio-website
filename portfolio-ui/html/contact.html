@@ -27,6 +27,58 @@
                 </a>
             </div>
         </div>
+        <div class = "content">
+            <section class = "contact">
+                <section class = "contactImage">
+                    <img src = "../images/pfp.jpg">
+                </section>
+                <section class = "contentText">
+                    <span class = "contactTitle" id = "contacttitle"></span>
+                    <p class = "contactSubtitle" id = "contactsubtitle"></p>
+                    <form class = "contactForm" id = "contactform">
+                        <!-- user info -->
+                        <label for = "name" id = "username"></label>
+                        <input type = "text" class = "userName"/><br><br>
+                        <label for = "email" id = "useremail"></label>
+                        <input type = "email" class = "userEmail"/><br><br>
 
+
+                        <!-- text area for user -->
+                        <label for = "userMessage" id = "messagelabel"></label>
+                        <textarea name = "userMessage" id = "usermessage"></textarea>
+                    </form>
+                    <button class = "contactButton" id = "contactbutton"></button>
+                    <span class = "contactTiny" id = "contacttiny"></span>
+                </section>
+            </section>
+        </div>
+          <!-- footer -->
+          <div class = "footer">
+            <section class = "leftFooter">
+                taliyahharvey.com
+            </section>
+            <section class = "rightFooter">
+                Projects
+                Documentation
+                Contact
+            </section>
+        </div>
+        <script>
+            const sheetUrl = "https://opensheet.vercel.app/1OLr_0lioqGd72fBUxPczp4IyGXezEiPykxD5GCdyo3Q/taliyahharvey.com";
+        
+            fetch(sheetUrl)
+            .then(res => res.json())
+            .then(rows => {
+                rows.forEach(row => {
+                const section = row.section.toLowerCase();
+                const el = document.getElementById(section);
+                if (el) {
+                    let content = row.content.replace(/\n/g, "<br>");
+                    el.innerHTML = content;
+                }
+                });
+            })
+            .catch(err => console.error("Sheet fetch error:", err));
+        </script>
     </body>
 </html>

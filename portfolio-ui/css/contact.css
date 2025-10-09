@@ -1,0 +1,51 @@
+.contact{
+    display:flex;
+    justify-content: space-around;
+    flex-flow: row nowrap;
+    gap: 3rem;
+    align-items: center;
+}
+
+.contactImage{
+    width: 30rem;
+
+}
+
+.contact input {
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+}
+
+.contact textarea{
+    border-radius: 5px;
+    width:100%;
+    height: 100px;
+}
+
+.contact label{
+    font-size: 13px;
+}
+
+.contactImage img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.contactTitle{
+    font-size: 2rem;
+}
+
+.contactSubtitle{
+    font-size: 15px;
+    color: #707969;
+
+}
+
+.contactButton{
+    background-color: #86936F;
+    border-radius:5px;
+    width: 100%;
+    height:4vw;
+    font-size: 2vw;
+}
