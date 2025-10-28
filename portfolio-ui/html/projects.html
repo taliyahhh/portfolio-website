@@ -15,6 +15,13 @@
             <a href = "../html/home.html" class = "logo">
                 <img src = "../images/pfp.jpg" class = "pfp">
             </a>
+             <!-- mobile menu button button -->
+             <button id="menuToggle" class="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+                <!-- hamburger icon -->
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+                </button>
             <div class = "newPage">
                 <a href = "../html/projects.html" class = "projects navChoice">
                     projects
@@ -27,6 +34,82 @@
                 </a>
             </div>
         </div>
-
+        <div class = "content">
+            <section class = "portfolioCollage">
+                    <div class = "work work1" id = "portfolio">
+                        <a href = "../html/projects/portfolio.html">
+                            <img class = "portfolioImg" src = "../images/pfp.jpg">
+                        </a>
+                            <section class = "portfolioText">
+                                <a href = "../html/projects/portfolio.html">
+                                    <p class = "portfolioTitle">Personal Portfolio</p>
+                                </a>
+                                <p class = "portfolioDesc">greetings fine shyt</p>
+                            </section>
+                    </div>
+                    <div class = "work work2" id = "branchout">
+                        <a href = "../html/projects/branchout.html">
+                            <img class = "portfolioImg" src = "../images/pfp.jpg">
+                        </a>
+                        <section class = "portfolioText">
+                            <a href = "../html/projects/branchout.html">
+                                <p class = "portfolioTitle">Branch Out</p>
+                            </a>
+                            <p class = "portfolioDesc">greetings fine shyt</p>
+                        </section>
+                    </div>
+                    <div class = "work work3" id = "shoe">
+                        <a href = "../html/projects/shoe.html">
+                            <img class = "portfolioImg" src = "../images/pfp.jpg">
+                        </a>
+                        <section class = "portfolioText">
+                            <a href =  "../html/projects/shoe.html">
+                                <p class = "portfolioTitle">Convertible Shoe Prototype</p>
+                            </a>
+                            <p class = "portfolioDesc">mid fidelity prototype from product design class</p>
+                        </section>
+                    </div>
+            </section>
+        </div>
+        <div class = "footer">
+            <section class = "leftFooter">
+                taliyahharvey.com
+            </section>
+            <section class = "rightFooter">
+                Projects
+                Documentation
+                Contact
+            </section>
+        </div>
+        <script>
+            const navRoot = document.querySelector('.navigation');
+            const toggleBtn = document.getElementById('menuToggle');
+            const navMenu  = document.getElementById('navMenu');
+          
+            function closeMenu(){
+              navRoot.classList.remove('open');
+              toggleBtn.setAttribute('aria-expanded','false');
+            }
+          
+            toggleBtn.addEventListener('click', () => {
+              const isOpen = navRoot.classList.toggle('open');
+              toggleBtn.setAttribute('aria-expanded', String(isOpen));
+            });
+          
+            // Close when a nav link is clicked
+            navMenu.querySelectorAll('a').forEach(a => {
+              a.addEventListener('click', closeMenu);
+            });
+          
+            // Close when clicking outside the nav
+            document.addEventListener('click', (e) => {
+              if (!navRoot.contains(e.target)) closeMenu();
+            });
+          
+            // Close on Escape
+            document.addEventListener('keydown', (e) => {
+              if (e.key === 'Escape') closeMenu();
+            });
+          </script>
     </body>
 </html>

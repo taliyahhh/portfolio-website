@@ -1,7 +1,7 @@
 .resumeDoc{
     display: flex;
     justify-content: space-between;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-items: center;
     gap: 2rem;
     margin-bottom: 30px;
@@ -24,7 +24,7 @@
 }
 
 .resumeImage img{
-    width: 100%;
+    width: 300px;
     border-radius: 10px;
 }
 
@@ -46,9 +46,10 @@
 .featuredDoc{
     display:flex;
     justify-content: space-between;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-items: stretch;
     gap: 2rem;
+    margin-top: 30px;
 }
 
 .mainDoc{
@@ -56,9 +57,8 @@
 }
 
 .mainDoc img{
-    height: 115vh;
     object-fit: cover;
-    width: 100%;
+    width: 300px;
     border-radius: 10px;
     margin-bottom: 10px;
 }
@@ -67,7 +67,7 @@
     flex: 2;
     display: flex;
     justify-content: space-between;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     overflow: hidden;
     gap: 1.5rem;
 }
@@ -76,9 +76,7 @@
 }
 
 .sideDocs img{
-    width: 100%;
-    height: 40vh;
-    object-fit: cover;
+    width: 300px;
     border-radius: 20px;
     margin-bottom: 10px;
 }

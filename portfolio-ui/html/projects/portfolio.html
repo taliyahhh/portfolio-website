@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>Portfolio (Coded by Me)</title>
+        <link rel = "stylesheet" href = "../../css/index.css">
+        <link rel = "stylesheet" href = "../../css/home.css">
+        <link rel = "stylesheet" href = "../../css/projects.css">
+        <link rel="icon" type="image/png" href="../../images/favicon.png">
+         <!-- font -->
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- navigation -->
+        <div class = "navigation">
+            <a href = "../../html/home.html" class = "logo">
+                <img src = "../../images/pfp.jpg" class = "pfp">
+            </a>
+             <!-- mobile menu button button -->
+             <button id="menuToggle" class="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+                <!-- hamburger icon -->
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+                </button>
+            <div class = "newPage">
+                <a href = "../../html/projects.html" class = "projects navChoice">
+                    projects
+                </a>
+                <a href = "../../html/documentation.html" class = "documentation navChoice">
+                    documentation
+                </a>
+                <a href = "../../html/contact.html" class = "contact navChoice">
+                    contact
+                </a>
+            </div>
+        </div>
+        <div class = "content">
+
+        </div>
+        <div class = "footer">
+            <section class = "leftFooter">
+                taliyahharvey.com
+            </section>
+            <section class = "rightFooter">
+                Projects
+                Documentation
+                Contact
+            </section>
+        </div>
+        <script>
+            const navRoot = document.querySelector('.navigation');
+            const toggleBtn = document.getElementById('menuToggle');
+            const navMenu  = document.getElementById('navMenu');
+          
+            function closeMenu(){
+              navRoot.classList.remove('open');
+              toggleBtn.setAttribute('aria-expanded','false');
+            }
+          
+            toggleBtn.addEventListener('click', () => {
+              const isOpen = navRoot.classList.toggle('open');
+              toggleBtn.setAttribute('aria-expanded', String(isOpen));
+            });
+          
+            // Close when a nav link is clicked
+            navMenu.querySelectorAll('a').forEach(a => {
+              a.addEventListener('click', closeMenu);
+            });
+          
+            // Close when clicking outside the nav
+            document.addEventListener('click', (e) => {
+              if (!navRoot.contains(e.target)) closeMenu();
+            });
+          
+            // Close on Escape
+            document.addEventListener('keydown', (e) => {
+              if (e.key === 'Escape') closeMenu();
+            });
+          </script>
+    </body>
+</html>

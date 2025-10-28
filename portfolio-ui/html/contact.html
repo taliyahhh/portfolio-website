@@ -15,6 +15,13 @@
             <a href = "../html/home.html" class = "logo">
                     <img src = "../images/pfp.jpg" class = "pfp">
             </a>
+             <!-- mobile menu button button -->
+             <button id="menuToggle" class="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+                <!-- hamburger icon -->
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+                </button>
             <div class = "newPage">
                 <a href = "../html/projects.html" class = "projects navChoice">
                     projects
@@ -80,5 +87,35 @@
             })
             .catch(err => console.error("Sheet fetch error:", err));
         </script>
+        <script>
+            const navRoot = document.querySelector('.navigation');
+            const toggleBtn = document.getElementById('menuToggle');
+            const navMenu  = document.getElementById('navMenu');
+          
+            function closeMenu(){
+              navRoot.classList.remove('open');
+              toggleBtn.setAttribute('aria-expanded','false');
+            }
+          
+            toggleBtn.addEventListener('click', () => {
+              const isOpen = navRoot.classList.toggle('open');
+              toggleBtn.setAttribute('aria-expanded', String(isOpen));
+            });
+          
+            // Close when a nav link is clicked
+            navMenu.querySelectorAll('a').forEach(a => {
+              a.addEventListener('click', closeMenu);
+            });
+          
+            // Close when clicking outside the nav
+            document.addEventListener('click', (e) => {
+              if (!navRoot.contains(e.target)) closeMenu();
+            });
+          
+            // Close on Escape
+            document.addEventListener('keydown', (e) => {
+              if (e.key === 'Escape') closeMenu();
+            });
+          </script>
     </body>
 </html>
