@@ -42,13 +42,13 @@ kbd{font:600 12px ui-monospace,Menlo,monospace;border:1px solid var(--line);bord
 <main>
   <a class="mark" href="/"><b>tj</b> Taliyah Harvey</a>
   <h1 class="code" aria-label="404">4<i></i>4</h1>
-  <p class="lede"><strong>This stop isn't on the map.</strong> While you wait for the next train, see how far you can run.</p>
+  <p class="lede"><strong>This page ran off somewhere.</strong> While you're here, see how far you can get.</p>
   <div class="stage">
     <canvas id="runner" tabindex="0" aria-label="Runner game. Press space, up arrow, or tap to jump."></canvas>
   </div>
   <div class="row">
     <span class="keys"><kbd>Space</kbd> or <kbd>↑</kbd> to jump, hold for higher. Tap on phones.</span>
-    <a class="home" href="/"><i></i>Back to home station</a>
+    <a class="home" href="/"><i></i>Back home</a>
   </div>
 </main>
 
@@ -358,11 +358,11 @@ kbd{font:600 12px ui-monospace,Menlo,monospace;border:1px solid var(--line);bord
     var pal = palette();
     for (var j = 0; j < clouds.length; j++) drawCloud(Math.round(clouds[j].x), clouds[j].y);
 
-    // the track: a yellow line with rail ties, like the TJ Line on the homepage
+    // the ground: a yellow line with little dashes that scroll by
     ctx.fillStyle = T.line;
-    for (var t = -tieShift; t < W; t += 24) ctx.fillRect(Math.round(t), GROUND + 2, 10, 14);
+    for (var t = -tieShift; t < W; t += 24) ctx.fillRect(Math.round(t), GROUND + 10, 8, 3);
     ctx.fillStyle = T.yellow;
-    ctx.fillRect(0, GROUND, W, 5);
+    ctx.fillRect(0, GROUND, W, 4);
 
     for (var i = 0; i < obstacles.length; i++) {
       var ob = obstacles[i];
