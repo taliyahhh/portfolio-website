@@ -99,7 +99,8 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .legend li{display:flex;align-items:center;gap:8px}
 .legend i{width:26px;height:8px;border-radius:8px}
 .sysgrid{display:grid;gap:24px;grid-template-columns:minmax(0,1fr)}
-@media(min-width:1000px){.sysgrid{grid-template-columns:minmax(0,1fr) 340px}}
+.below{display:grid;gap:24px;grid-template-columns:minmax(0,1fr);align-items:start}
+@media(min-width:900px){.below{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 .sys{width:100%;height:auto;background:var(--bg);border-radius:18px;border:1px solid var(--rule)}
 .sys .l{fill:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
 .sys .s{cursor:pointer}
@@ -108,7 +109,12 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .sys .s:focus{outline:none}
 .sys .s:focus-visible rect,.sys .s:focus-visible circle{stroke:var(--blue)}
 .sys text{fill:var(--ink);font-family:var(--font);font-size:17px;font-weight:700;letter-spacing:-.01em}
-.sys text.end{font-size:13px;font-weight:600;fill:var(--muted)}
+.sys .hub{font-size:20px;font-weight:900}
+.sys .small{font-size:13px;font-weight:600;fill:var(--muted)}
+.sys .hubst,.sys .nextst{fill:var(--dot);stroke:var(--ink);stroke-width:6}
+.sys .nextst{stroke-width:5;stroke-dasharray:6 4}
+.sys .here{fill:var(--ink)}
+.sys .heretx{fill:var(--bg);font-size:12px;font-weight:800}
 @media(max-width:700px){.sys text{display:none}}
 .card{background:var(--bg);border:1px solid var(--rule);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:14px}
 .card h3{font-size:28px;font-weight:900}
@@ -118,7 +124,7 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .chip i{width:14px;height:14px;border-radius:50%}
 .card .status{font-size:13px;font-weight:700;color:var(--muted)}
 .card a.more{font-weight:700;margin-top:auto}
-.plist{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
+.plist{list-style:none;margin:0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr))}
 .plist button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;min-height:56px;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--rule);font-weight:700}
 .plist button:hover,.plist button[aria-pressed=true]{border-color:var(--ink)}
 .plist button:focus-visible{outline:3px solid var(--blue)}
@@ -216,31 +222,34 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       <div class="maphead">
         <div>
           <div class="kicker"><i></i>Projects</div>
-          <h2>The system map</h2>
+          <h2>Three lines, one interchange.</h2>
         </div>
-        <p>Drawn like a transit map: every line is a kind of work, and projects that mix skills sit where lines meet. Tap a stop to see more.</p>
+        <p>Arts, Technology and the Business of Innovation, drawn as a map. Every project rides the lines it draws on, and they all pass through the same place. Tap a stop to see more.</p>
       </div>
       <ul class="legend">
-        <li><i style="background:var(--yellow)"></i>Product and UX</li>
-        <li><i style="background:var(--blue)"></i>Web and code</li>
-        <li><i style="background:var(--green)"></i>Physical computing</li>
-        <li><i style="background:var(--orange)"></i>Ventures</li>
+        <li><i style="background:var(--yellow)"></i>Design</li>
+        <li><i style="background:var(--blue)"></i>Technology</li>
+        <li><i style="background:var(--orange)"></i>Business</li>
       </ul>
       <div class="sysgrid" style="margin-top:20px">
-        <svg class="sys" id="sys" viewBox="0 0 900 440" role="group" aria-label="Project system map">
-          <path class="l" stroke="var(--green)" d="M40 70 H860"/>
-          <path class="l" stroke="var(--yellow)" d="M40 100 H300 L384 184 H860"/>
-          <path class="l" stroke="var(--blue)" d="M40 330 H280 L412 198 H600 L702 300 H860"/>
-          <path class="l" stroke="var(--orange)" d="M300 395 H860"/>
-          <text class="end" x="860" y="54" text-anchor="end">Physical computing</text>
-          <text class="end" x="860" y="166" text-anchor="end">Product and UX</text>
-          <text class="end" x="860" y="350" text-anchor="end">Web and code</text>
-          <text class="end" x="860" y="423" text-anchor="end">Ventures</text>
+        <svg class="sys" id="sys" viewBox="0 0 1104 520" role="group" aria-label="Project map: design, technology and business lines meeting at human-centered products">
+          <path class="l" stroke="var(--yellow)" d="M30 80 H280 L440 240 H660 L740 160 H1074"/>
+          <path class="l" stroke="var(--orange)" d="M30 260 H660 L760 360 H1074"/>
+          <path class="l" stroke="var(--blue)" d="M30 460 H260 L440 280 H660 L760 180 H1074"/>
+          <rect class="hubst" x="530" y="220" width="44" height="80" rx="22"/>
+          <text class="small" x="552" y="166" text-anchor="middle">Where it all meets</text>
+          <text class="hub" x="552" y="190" text-anchor="middle">Human-centered products</text>
+          <rect class="here" x="500" y="316" width="104" height="26" rx="13"/>
+          <text class="heretx" x="552" y="334" text-anchor="middle">You are here</text>
+          <rect class="nextst" x="1046" y="347" width="28" height="26" rx="13"/>
+          <text x="1060" y="408" text-anchor="end">Next venture</text>
           <g id="stations"></g>
         </svg>
-        <article class="card" id="card" aria-live="polite"></article>
+        <div class="below">
+          <article class="card" id="card" aria-live="polite"></article>
+          <ul class="plist" id="plist"></ul>
+        </div>
       </div>
-      <ul class="plist" id="plist"></ul>
     </div>
   </section>
 
@@ -272,33 +281,29 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 {
   // ===== Projects: edit this list to add, remove or change projects =====
   // lines: which colored lines the project sits on (first one = main line)
-  // x, y: where the station sits on the map (viewBox is 900 x 440)
+  // x, y: where the station sits on the map (viewBox is 1104 x 520)
   const LINES = {
-    product: { name: 'Product and UX', color: 'var(--yellow)' },
-    code: { name: 'Web and code', color: 'var(--blue)' },
-    physical: { name: 'Physical computing', color: 'var(--green)' },
-    venture: { name: 'Ventures', color: 'var(--orange)' }
+    design: { name: 'Design', color: 'var(--yellow)' },
+    tech: { name: 'Technology', color: 'var(--blue)' },
+    business: { name: 'Business', color: 'var(--orange)' }
   };
   const PROJECTS = [
-    { id: 'bart', name: "Karl's Friend Bart", lines: ['product', 'code'], x: 470, y: 191, label: 'T',
+    { id: 'bart', name: "Karl's Friend Bart", lines: ['design', 'tech'], x: 840, y: 170, label: 'T',
       text: 'An interactive take on the BART system map that keeps the official look and makes it easier to read one route at a time, with live departures, alerts and an evening dark mode.',
       status: 'Shipped', link: 'https://github.com/taliyahhh/bart-revamp', linkText: 'View the code' },
-    { id: 'hindsight', name: 'In Hindsight', lines: ['product', 'code'], x: 560, y: 191, label: 'B',
+    { id: 'hindsight', name: 'In Hindsight', lines: ['design', 'tech'], x: 990, y: 170, label: 'B',
       text: 'A web app that turns your TikTok archive (favorites, saved, reposts) into something you can actually explore, instead of endless folders.',
       status: 'In progress' },
-    { id: 'shoe', name: 'Convertible Shoe', lines: ['product', 'physical'], x: 170, y: 85, label: 'B',
+    { id: 'shoe', name: 'Convertible Shoe', lines: ['design'], x: 190, y: 80, label: 'T',
       text: 'A mid-fidelity prototype of a convertible shoe, built for a product design class.',
       status: 'Prototype' },
-    { id: 'headphones', name: 'Now Playing Headphones', lines: ['physical'], x: 640, y: 70, label: 'B',
+    { id: 'headphones', name: 'Now Playing Headphones', lines: ['tech'], x: 220, y: 460, label: 'B',
       text: 'Headphones that show the album cover of whatever song is playing, built on a Particle Photon 2.',
       status: 'In progress' },
-    { id: 'branchout', name: 'Branch Out', lines: ['code'], x: 160, y: 330, label: 'T',
+    { id: 'branchout', name: 'Branch Out', lines: ['tech'], x: 100, y: 460, label: 'T',
       text: 'Built at Salesforce: a site that helps college students find open source projects to contribute to.',
       status: 'Shipped' },
-    { id: 'site', name: 'This Site', lines: ['code'], x: 780, y: 300, label: 'T',
-      text: 'My portfolio, hand-coded and hosted on GitHub Pages, designed like a transit map.',
-      status: 'You are here' },
-    { id: 'biteback', name: 'Bite Back', lines: ['venture'], x: 520, y: 395, label: 'T',
+    { id: 'biteback', name: 'Bite Back', lines: ['business'], x: 190, y: 260, label: 'T',
       text: 'A small-plates dinner built around invasive species, mixing good food with education and community. A team venture.',
       status: 'In progress' }
   ];
