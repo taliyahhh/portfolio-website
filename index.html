@@ -1,12 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Taliyah Harvey</title>
-        <meta http-equiv="refresh" content="0; url=portfolio-ui/html/home.html">
-        <link rel="icon" type="image/png" href="portfolio-ui/images/favicon.png">
-    </head>
-    <body>
-        <a href="portfolio-ui/html/home.html">Go to the homepage</a>
-    </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taliyah Harvey</title>
+<meta name="description" content="Taliyah Harvey builds human-centered products. Portfolio, projects and contact.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
+<style>
+/*
+  VOICE: confident, warm, a little playful. Reads like a transit map, not a resume.
+  IDEA: the site is the "TJ Line", a BART-style route. Sections are stations.
+  PICTURE: hero route from the Bay Area to USC that ends at a photo terminal; projects as a system map.
+  COLOUR and TYPE: white and black with line yellow; BART line colors only on the system map. Inter, heavy and tight.
+  LAYOUT: fixed route rail on the left (desktop), hero, logo banner, about, system map, last stop.
+*/
+:root{
+  color-scheme:light dark;
+  --bg:light-dark(#ffffff,#0e0e0e);
+  --ink:light-dark(#111111,#f4f4f2);
+  --muted:light-dark(#5e5e5e,#a6a6a2);
+  --rule:light-dark(#e3e3e0,#2a2a2a);
+  --panel:light-dark(#f6f6f4,#171717);
+  --dot:light-dark(#ffffff,#0e0e0e);
+  --yellow:#ffd200;
+  --blue:#0099d8; --green:#4db848; --orange:#f9a11b; --red:#ed1c24;
+  --font:"Inter","Helvetica Neue",Arial,sans-serif;
+}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font);overflow-x:clip}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:max(5vw,18px)}
+h1,h2,h3{margin:0;line-height:1.05;letter-spacing:-.03em;text-wrap:balance}
+h2{font-size:clamp(32px,5vw,48px);font-weight:900}
+.kicker{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px;margin-bottom:14px}
+.kicker i{width:14px;height:14px;border-radius:50%;border:3px solid var(--ink);background:var(--dot)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;font-size:22px;letter-spacing:-.04em}
+.mark b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--yellow);color:#111;font-size:17px}
+.top nav{display:flex;gap:6px;flex-wrap:wrap}
+.top nav a{text-decoration:none;font-weight:600;font-size:15px;padding:10px 12px;border-radius:99px}
+.top nav a:hover{background:var(--panel)}
+@media(max-width:600px){.mark span{display:none}.top nav a{padding:10px 8px;font-size:14px}}
+
+/* side rail */
+.rail{display:none}
+@media(min-width:1100px){
+  body{padding-left:72px}
+  .rail{display:block;position:fixed;left:30px;top:120px;bottom:60px;width:12px;z-index:10}
+  .rail::before{content:"";position:absolute;left:2px;top:0;bottom:0;width:8px;border-radius:8px;background:var(--yellow)}
+  .rail a{position:absolute;left:-3px;width:18px;height:18px;border-radius:50%;background:var(--dot);border:3.5px solid var(--ink);transform:translateY(-50%)}
+  .rail a span{position:absolute;left:26px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:700;white-space:nowrap;opacity:0;transition:opacity .2s;background:var(--bg);padding:2px 6px;border-radius:4px}
+  .rail a:hover span,.rail a.on span{opacity:1}
+  .rail a.on{background:var(--ink)}
+  .rail .train{position:absolute;left:-4px;width:20px;height:34px;border-radius:7px;background:var(--ink);transform:translateY(-50%);pointer-events:none;transition:top .15s linear}
+  .rail .train::after{content:"";position:absolute;left:4px;right:4px;top:5px;height:9px;border-radius:3px;background:var(--yellow)}
+}
+
+/* hero */
+.hero{padding-block:clamp(36px,6vw,84px) clamp(28px,4vw,56px)}
+.hero .wrap{display:grid;gap:clamp(24px,4vw,56px);align-items:center;grid-template-columns:minmax(0,1fr)}
+@media(min-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}}
+.hero h1{font-size:clamp(48px,8.5vw,104px);font-weight:900;letter-spacing:-.05em;line-height:.92}
+.hero h1 span{display:block}
+.hero p.lede{font-size:clamp(18px,2vw,21px);max-width:30ch;margin:22px 0 28px;color:var(--muted)}
+.hero p.lede strong{color:var(--ink);font-weight:700}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:99px;font-weight:700;text-decoration:none;border:2.5px solid var(--ink)}
+.btn.fill{background:var(--ink);color:var(--bg)}
+.btn.fill i{width:12px;height:12px;border-radius:50%;background:var(--yellow)}
+.btn:hover{transform:translateY(-1px)}
+.route{width:100%;height:auto;overflow:visible}
+.route .ln{fill:none;stroke:var(--yellow);stroke-width:16;stroke-linecap:round;stroke-linejoin:round}
+.route .st{fill:var(--dot);stroke:var(--ink);stroke-width:5}
+.route text{fill:var(--ink);font-family:var(--font)}
+.route .big{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.route .sm{font-size:17px;fill:var(--muted);font-weight:500}
+.route .ring{fill:none;stroke:var(--ink);stroke-width:6}
+.route .car{fill:var(--ink)}
+.route .win{fill:var(--yellow)}
+
+/* banner */
+.banner{border-block:1px solid var(--rule);overflow:hidden;padding-block:26px}
+.banner p{margin:0 0 16px;text-align:center;font-size:13px;font-weight:700;color:var(--muted)}
+.logos{display:flex;gap:64px;align-items:center;width:max-content;animation:slide 38s linear infinite}
+.logos img{height:58px;width:auto;object-fit:contain;padding:6px 10px;border-radius:10px;background:light-dark(transparent,#f4f4f2);filter:grayscale(1);opacity:.75;transition:filter .2s,opacity .2s}
+.logos img:hover{filter:none;opacity:1}
+.logos .wide{height:46px}
+@keyframes slide{to{transform:translateX(-50%)}}
+.banner:hover .logos{animation-play-state:paused}
+
+/* about */
+section.band{padding-block:clamp(56px,8vw,104px)}
+.about{display:grid;gap:clamp(28px,5vw,72px);grid-template-columns:minmax(0,1fr)}
+@media(min-width:900px){.about{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.about p{font-size:clamp(18px,1.8vw,20px);max-width:58ch;margin:18px 0 0}
+.stops{list-style:none;margin:0;padding:0;position:relative}
+.stops::before{content:"";position:absolute;left:11px;top:14px;bottom:14px;width:8px;border-radius:8px;background:var(--yellow)}
+.stops li{position:relative;padding:12px 0 12px 48px;border-bottom:1px solid var(--rule)}
+.stops li:last-child{border-bottom:0}
+.stops li::before{content:"";position:absolute;left:4px;top:50%;width:22px;height:22px;transform:translateY(-50%);border-radius:50%;background:var(--dot);border:4px solid var(--ink)}
+.stops b{display:block;font-size:18px}
+.stops span{color:var(--muted)}
+
+/* system map */
+.mapband{background:var(--panel)}
+.maphead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px;margin-bottom:28px}
+.maphead p{margin:0;max-width:46ch;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;font-weight:600;margin:0;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend i{width:26px;height:8px;border-radius:8px}
+.sysgrid{display:grid;gap:24px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:1000px){.sysgrid{grid-template-columns:minmax(0,1fr) 340px}}
+.sys{width:100%;height:auto;background:var(--bg);border-radius:18px;border:1px solid var(--rule)}
+.sys .l{fill:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
+.sys .s{cursor:pointer}
+.sys .s rect,.sys .s circle{fill:var(--dot);stroke:var(--ink);stroke-width:4;transition:fill .15s}
+.sys .s:hover rect,.sys .s:hover circle,.sys .s.on rect,.sys .s.on circle{fill:var(--yellow)}
+.sys .s:focus{outline:none}
+.sys .s:focus-visible rect,.sys .s:focus-visible circle{stroke:var(--blue)}
+.sys text{fill:var(--ink);font-family:var(--font);font-size:17px;font-weight:700;letter-spacing:-.01em}
+.sys text.end{font-size:13px;font-weight:600;fill:var(--muted)}
+@media(max-width:700px){.sys text{display:none}}
+.card{background:var(--bg);border:1px solid var(--rule);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.card h3{font-size:28px;font-weight:900}
+.card p{margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:4px 10px 4px 6px;border-radius:99px;background:var(--panel)}
+.chip i{width:14px;height:14px;border-radius:50%}
+.card .status{font-size:13px;font-weight:700;color:var(--muted)}
+.card a.more{font-weight:700;margin-top:auto}
+.plist{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
+.plist button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;min-height:56px;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--rule);font-weight:700}
+.plist button:hover,.plist button[aria-pressed=true]{border-color:var(--ink)}
+.plist button:focus-visible{outline:3px solid var(--blue)}
+.plist .bars{display:flex;gap:3px}
+.plist .bars i{width:6px;height:22px;border-radius:4px}
+
+/* last stop */
+.last{display:grid;gap:28px;grid-template-columns:minmax(0,1fr);align-items:center}
+@media(min-width:900px){.last{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}}
+.last h2{font-size:clamp(40px,7vw,80px);letter-spacing:-.05em}
+.last p{font-size:19px;color:var(--muted);max-width:40ch;margin:18px 0 0}
+.links{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.links a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 4px;border-bottom:1px solid var(--rule);text-decoration:none;font-size:22px;font-weight:800;letter-spacing:-.02em}
+.links a:hover{padding-left:12px}
+.links a span{font-size:15px;font-weight:500;color:var(--muted)}
+footer{border-top:1px solid var(--rule)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:26px;font-size:14px;color:var(--muted)}
+
+@media(prefers-reduced-motion:reduce){.logos{animation:none;flex-wrap:wrap;width:auto;justify-content:center;gap:28px 48px}.logos .dup{display:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#home" aria-label="Taliyah Harvey, home"><b>tj</b> <span>Taliyah Harvey</span></a>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="rail" aria-hidden="true">
+  <a href="#home" tabindex="-1"><span>Home</span></a>
+  <a href="#about" tabindex="-1"><span>About</span></a>
+  <a href="#projects" tabindex="-1"><span>Projects</span></a>
+  <a href="#contact" tabindex="-1"><span>Last stop</span></a>
+  <div class="train"></div>
+</div>
+
+<main>
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div>
+        <div class="kicker"><i></i>Now boarding: the TJ Line</div>
+        <h1><span>Taliyah</span><span>Harvey</span></h1>
+        <p class="lede">I build <strong>human-centered products</strong> that actually make a difference for people, mixing design, technology and business.</p>
+        <div class="btns">
+          <a class="btn fill" href="#projects"><i></i>See the projects</a>
+          <a class="btn" href="#contact">Say hi</a>
+        </div>
+      </div>
+
+      <svg class="route" viewBox="0 0 540 500" role="img" aria-label="Route map: from the Bay Area, to USC, to the next stop, a photo of Taliyah.">
+        <defs>
+          <clipPath id="face"><circle cx="420" cy="380" r="76"/></clipPath>
+        </defs>
+        <path id="tj-line" class="ln" d="M20 80 H190 L300 190 V270 L366 336"/>
+        <circle class="st" cx="100" cy="80" r="16"/>
+        <text class="big" x="100" y="44" text-anchor="middle">Bay Area</text>
+        <text class="sm" x="100" y="126" text-anchor="middle">where I'm from</text>
+        <circle class="st" cx="300" cy="230" r="16"/>
+        <text class="big" x="330" y="226">USC</text>
+        <text class="sm" x="330" y="252">Arts, Technology and the</text>
+        <text class="sm" x="330" y="273">Business of Innovation</text>
+        <image href="assets/taliyah.jpg" x="344" y="304" width="152" height="152" clip-path="url(#face)" preserveAspectRatio="xMidYMid slice"/>
+        <circle class="ring" cx="420" cy="380" r="76"/>
+        <text class="big" x="326" y="432" text-anchor="end">Next stop</text>
+        <text class="sm" x="326" y="458" text-anchor="end">what we</text>
+        <text class="sm" x="326" y="479" text-anchor="end">build together</text>
+        <g id="hero-train">
+          <rect class="car" x="-17" y="-8" width="34" height="16" rx="6"/>
+          <rect class="win" x="-11" y="-4" width="22" height="6" rx="2"/>
+          <animateMotion dur="7s" repeatCount="indefinite" rotate="auto" keyPoints="0;1;1" keyTimes="0;0.8;1" calcMode="linear"><mpath href="#tj-line"/></animateMotion>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Banner: the places and people along the way. Same logos as before. -->
+  <div class="banner" aria-label="Organizations">
+    <p>Places I've worked, led and belonged</p>
+    <div class="logos">
+      <img src="assets/logos/salesforce.png" alt="Salesforce">
+      <img src="assets/logos/aka.png" alt="Alpha Kappa Alpha">
+      <img src="assets/logos/mlt.png" alt="MLT">
+      <img src="assets/logos/bbsa.png" alt="BBSA" class="wide">
+      <img src="assets/logos/ya4c.webp" alt="Youth Advocates for Change">
+      <img src="assets/logos/astera-labs.png" alt="Astera Labs" class="wide">
+      <img src="assets/logos/girl-gains.webp" alt="Girl Gains Lifting Club">
+      <img class="dup" src="assets/logos/salesforce.png" alt="">
+      <img class="dup" src="assets/logos/aka.png" alt="">
+      <img class="dup" src="assets/logos/mlt.png" alt="">
+      <img class="dup wide" src="assets/logos/bbsa.png" alt="">
+      <img class="dup" src="assets/logos/ya4c.webp" alt="">
+      <img class="dup wide" src="assets/logos/astera-labs.png" alt="">
+      <img class="dup" src="assets/logos/girl-gains.webp" alt="">
+    </div>
+  </div>
+
+  <section class="band" id="about">
+    <div class="wrap about">
+      <div>
+        <div class="kicker"><i></i>About</div>
+        <h2>Builder first, with a soft spot for people.</h2>
+        <p>I have a software background, but what I love most is making things people actually use and feel. I'm finishing a bachelor's and master's at USC in Arts, Technology and the Business of Innovation, where I get to design, prototype, code and pitch in the same week.</p>
+      </div>
+      <ol class="stops">
+        <li><b>Bay Area</b><span>Where it started</span></li>
+        <li><b>USC</b><span>Bachelor's and master's, Arts, Technology and the Business of Innovation</span></li>
+        <li><b>Salesforce</b><span>Built Branch Out, connecting college students to open source</span></li>
+        <li><b>Astera Labs</b><span>Industry experience in hardware tech</span></li>
+        <li><b>Community</b><span>Alpha Kappa Alpha, BBSA and nonprofit work</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band mapband" id="projects">
+    <div class="wrap">
+      <div class="maphead">
+        <div>
+          <div class="kicker"><i></i>Projects</div>
+          <h2>The system map</h2>
+        </div>
+        <p>Every line is a kind of work. Projects that mix skills sit at transfer stations. Tap a station to see where it goes.</p>
+      </div>
+      <ul class="legend">
+        <li><i style="background:var(--yellow)"></i>Product and UX</li>
+        <li><i style="background:var(--blue)"></i>Web and code</li>
+        <li><i style="background:var(--green)"></i>Physical computing</li>
+        <li><i style="background:var(--orange)"></i>Ventures</li>
+      </ul>
+      <div class="sysgrid" style="margin-top:20px">
+        <svg class="sys" id="sys" viewBox="0 0 900 440" role="group" aria-label="Project system map">
+          <path class="l" stroke="var(--green)" d="M40 70 H860"/>
+          <path class="l" stroke="var(--yellow)" d="M40 100 H300 L384 184 H860"/>
+          <path class="l" stroke="var(--blue)" d="M40 330 H280 L412 198 H600 L702 300 H860"/>
+          <path class="l" stroke="var(--orange)" d="M300 395 H860"/>
+          <text class="end" x="860" y="54" text-anchor="end">Physical computing</text>
+          <text class="end" x="860" y="166" text-anchor="end">Product and UX</text>
+          <text class="end" x="860" y="350" text-anchor="end">Web and code</text>
+          <text class="end" x="860" y="423" text-anchor="end">Ventures</text>
+          <g id="stations"></g>
+        </svg>
+        <article class="card" id="card" aria-live="polite"></article>
+      </div>
+      <ul class="plist" id="plist"></ul>
+    </div>
+  </section>
+
+  <section class="band" id="contact">
+    <div class="wrap last">
+      <div>
+        <div class="kicker"><i></i>Last stop</div>
+        <h2>This train ends here. Let's start a new line.</h2>
+        <p>Open to product, design and innovation roles, collaborations and good conversations.</p>
+      </div>
+      <ul class="links">
+        <!-- TODO: add your email and LinkedIn links -->
+        <li><a href="#" id="email-link">Email <span>add your address</span></a></li>
+        <li><a href="#" id="linkedin-link">LinkedIn <span>add your profile</span></a></li>
+        <li><a href="https://github.com/taliyahhh">GitHub <span>@taliyahhh</span></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>taliyahharvey.com</span>
+    <span>Hand-coded, inspired by the BART system map · <a href="404.html">Missed your stop?</a></span>
+  </div>
+</footer>
+
+<script>
+{
+  // ===== Projects: edit this list to add, remove or change projects =====
+  // lines: which colored lines the project sits on (first one = main line)
+  // x, y: where the station sits on the map (viewBox is 900 x 440)
+  const LINES = {
+    product: { name: 'Product and UX', color: 'var(--yellow)' },
+    code: { name: 'Web and code', color: 'var(--blue)' },
+    physical: { name: 'Physical computing', color: 'var(--green)' },
+    venture: { name: 'Ventures', color: 'var(--orange)' }
+  };
+  const PROJECTS = [
+    { id: 'bart', name: "Karl's Friend Bart", lines: ['product', 'code'], x: 470, y: 191, label: 'T',
+      text: 'An interactive take on the BART system map that keeps the official look and makes it easier to read one route at a time, with live departures, alerts and an evening dark mode.',
+      status: 'Shipped', link: 'https://github.com/taliyahhh/bart-revamp', linkText: 'View the code' },
+    { id: 'hindsight', name: 'In Hindsight', lines: ['product', 'code'], x: 560, y: 191, label: 'B',
+      text: 'A web app that turns your TikTok archive (favorites, saved, reposts) into something you can actually explore, instead of endless folders.',
+      status: 'In progress' },
+    { id: 'shoe', name: 'Convertible Shoe', lines: ['product', 'physical'], x: 170, y: 85, label: 'B',
+      text: 'A mid-fidelity prototype of a convertible shoe, built for a product design class.',
+      status: 'Prototype' },
+    { id: 'headphones', name: 'Now Playing Headphones', lines: ['physical'], x: 640, y: 70, label: 'B',
+      text: 'Headphones that show the album cover of whatever song is playing, built on a Particle Photon 2.',
+      status: 'In progress' },
+    { id: 'branchout', name: 'Branch Out', lines: ['code'], x: 160, y: 330, label: 'T',
+      text: 'Built at Salesforce: a site that helps college students find open source projects to contribute to.',
+      status: 'Shipped' },
+    { id: 'site', name: 'This Site', lines: ['code'], x: 780, y: 300, label: 'T',
+      text: 'My portfolio, hand-coded and hosted on GitHub Pages, designed like a transit map.',
+      status: 'You are here' },
+    { id: 'biteback', name: 'Bite Back', lines: ['venture'], x: 520, y: 395, label: 'T',
+      text: 'A small-plates dinner built around invasive species, mixing good food with education and community. A team venture.',
+      status: 'In progress' }
+  ];
+  // =======================================================================
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const g = document.getElementById('stations');
+  const card = document.getElementById('card');
+  const plist = document.getElementById('plist');
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  PROJECTS.forEach(p => {
+    const s = document.createElementNS(NS, 'g');
+    s.setAttribute('class', 's');
+    s.setAttribute('tabindex', '0');
+    s.setAttribute('role', 'button');
+    s.setAttribute('aria-label', p.name);
+    s.dataset.id = p.id;
+    const transfer = p.lines.length > 1;
+    s.innerHTML = transfer
+      ? `<rect x="${p.x - 14}" y="${p.y - 22}" width="28" height="44" rx="14"/>`
+      : `<circle cx="${p.x}" cy="${p.y}" r="14"/>`;
+    const t = document.createElementNS(NS, 'text');
+    t.textContent = p.name;
+    t.setAttribute('x', p.x);
+    t.setAttribute('text-anchor', 'middle');
+    t.setAttribute('y', p.label === 'T' ? p.y - (transfer ? 34 : 26) : p.y + (transfer ? 46 : 38));
+    s.appendChild(t);
+    g.appendChild(s);
+    s.addEventListener('click', () => pick(p.id));
+    s.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p.id); } });
+  });
+
+  plist.innerHTML = PROJECTS.map(p => `<li><button type="button" data-id="${p.id}" aria-pressed="false"><span class="bars">${p.lines.map(l => `<i style="background:${LINES[l].color}"></i>`).join('')}</span>${esc(p.name)}</button></li>`).join('');
+  plist.addEventListener('click', e => { const b = e.target.closest('button'); if (b) pick(b.dataset.id); });
+
+  function pick(id) {
+    const p = PROJECTS.find(x => x.id === id);
+    if (!p) return;
+    g.querySelectorAll('.s').forEach(s => s.classList.toggle('on', s.dataset.id === id));
+    plist.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === id)));
+    card.innerHTML = `
+      <div class="chips">${p.lines.map(l => `<span class="chip"><i style="background:${LINES[l].color}"></i>${LINES[l].name}</span>`).join('')}</div>
+      <h3>${esc(p.name)}</h3>
+      <p>${esc(p.text)}</p>
+      <span class="status">${esc(p.status)}${p.lines.length > 1 ? ' · Transfer station' : ''}</span>
+      ${p.link ? `<a class="more" href="${esc(p.link)}">${esc(p.linkText || 'Learn more')}</a>` : ''}`;
+  }
+  pick('bart');
+
+  // ===== Side rail: stations light up and the train follows your scroll =====
+  const rail = document.querySelector('.rail');
+  const stops = [...rail.querySelectorAll('a')];
+  const train = rail.querySelector('.train');
+  const secs = stops.map(a => document.querySelector(a.getAttribute('href')));
+  function placeRail() {
+    const h = rail.clientHeight;
+    stops.forEach((a, i) => { a.style.top = (i / (stops.length - 1)) * h + 'px'; });
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const prog = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    train.style.top = prog * h + 'px';
+    let cur = 0;
+    secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < innerHeight * 0.45) cur = i; });
+    if (prog > 0.98) cur = stops.length - 1;
+    stops.forEach((a, i) => a.classList.toggle('on', i === cur));
+  }
+  addEventListener('scroll', placeRail, { passive: true });
+  addEventListener('resize', placeRail);
+  placeRail();
+
+  // Respect reduced motion for the hero train
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const svg = document.querySelector('.route');
+    if (svg.pauseAnimations) svg.pauseAnimations();
+    document.getElementById('hero-train').style.display = 'none';
+  }
+}
+</script>
+</body>
 </html>

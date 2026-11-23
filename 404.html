@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 · Taliyah Harvey</title>
+<!-- GitHub Pages serves this file for any page that doesn't exist, so links must start with / -->
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Silkscreen&display=swap">
+<style>
+:root{
+  color-scheme:light dark;
+  --bg:light-dark(#ffffff,#0e0e0e); --fg:light-dark(#111111,#f4f4f2); --muted:light-dark(#5e5e5e,#a6a6a2);
+  --line:light-dark(#e3e3e0,#2a2a2a); --paper:light-dark(#ffffff,#171717); --cloud:light-dark(#ececea,#222222);
+  --cone:#f9a11b; --yellow:#ffd200;
+  --font-display:'Silkscreen','Courier New',monospace;
+}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 "Inter","Helvetica Neue",Arial,sans-serif;min-height:100vh;display:grid;place-items:center;padding:40px max(5vw,16px)}
+a{color:inherit}
+main{width:100%;max-width:760px;display:grid;gap:26px}
+.mark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;font-size:20px;letter-spacing:-.04em}
+.mark b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--yellow);color:#111;font-size:16px}
+.code{display:flex;align-items:center;gap:.08em;margin:0;font-weight:900;font-size:clamp(96px,22vw,180px);letter-spacing:-.06em;line-height:.85}
+.code i{display:inline-block;width:.72em;height:.72em;border-radius:50%;border:.13em solid var(--fg);background:var(--bg);box-shadow:0 0 0 .07em var(--yellow)}
+.lede{margin:0;font-size:clamp(18px,2.2vw,21px);color:var(--muted);max-width:44ch}
+.lede strong{color:var(--fg)}
+.stage{border:2.5px solid var(--fg);border-radius:14px;background:var(--paper);overflow:hidden}
+canvas{display:block;width:100%;aspect-ratio:600/170;touch-action:manipulation;cursor:pointer;outline:none}
+canvas:focus-visible{box-shadow:inset 0 0 0 3px #0099d8}
+.row{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+.keys{font-size:14px;color:var(--muted)}
+kbd{font:600 12px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 6px;color:var(--fg)}
+.home{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:99px;background:var(--fg);color:var(--bg);font-weight:700;text-decoration:none}
+.home i{width:12px;height:12px;border-radius:50%;background:var(--yellow)}
+</style>
+</head>
+<body>
+<main>
+  <a class="mark" href="/"><b>tj</b> Taliyah Harvey</a>
+  <h1 class="code" aria-label="404">4<i></i>4</h1>
+  <p class="lede"><strong>This stop isn't on the map.</strong> While you wait for the next train, see how far you can run.</p>
+  <div class="stage">
+    <canvas id="runner" tabindex="0" aria-label="Runner game. Press space, up arrow, or tap to jump."></canvas>
+  </div>
+  <div class="row">
+    <span class="keys"><kbd>Space</kbd> or <kbd>↑</kbd> to jump, hold for higher. Tap on phones.</span>
+    <a class="home" href="/"><i></i>Back to home station</a>
+  </div>
+</main>
+
+<script>
+(function () {
+  // ============ CONFIG: edit these to make the runner look like you ============
+  var CONFIG = {
+    colors: {
+      hair:  '#3b2a20',
+      skin:  '#e8b48f',
+      dress: '#d6528c',
+      shoes: '#15181b'
+    },
+    storageKey: 'runner404-hi'
+  };
+
+  // Pixel maps. Each character is one pixel:
+  //  . empty   h hair   c curl highlight (made from hair color)   s skin
+  //  e eye     t dress  k shoes
+  var RUN1 = [
+    '....hh.hh.h.....',
+    '..hhhchhhchh....',
+    '.hhchhhhhhhhh...',
+    'hhhhchhhhssshh..',
+    '.hchhhhhsssssh..',
+    'hhhhchhssssess..',
+    '.hchhhhssssss...',
+    'hhhhchhsssss....',
+    '.hchhhh.ssss....',
+    'hhch.h..ss......',
+    '.h.h.tttttt.....',
+    'h...tttttttt....',
+    '.h.sttttttttts..',
+    '....ttttttt.....',
+    '...ttttttttt....',
+    '..ttttttttttt...',
+    '.....s....s.....',
+    '....s......s....',
+    '...s........s...',
+    '..kk........kk..'
+  ];
+  var RUN2 = [
+    '....hh.hh.h.....',
+    '..hhhchhhchh....',
+    '.hhchhhhhhhhh...',
+    'hhhhchhhhssshh..',
+    '.hchhhhhsssssh..',
+    'hhhhchhssssess..',
+    '.hchhhhssssss...',
+    'hhhhchhsssss....',
+    '.hchhhh.ssss....',
+    'hhch.h..ss......',
+    '.h.h.tttttt.....',
+    'h...tttttttt....',
+    '.h..tttttttt....',
+    '...sttttttts....',
+    '...ttttttttt....',
+    '..ttttttttttt...',
+    '......ss........',
+    '......s.s.......',
+    '......s..s......',
+    '.....kk..kk.....'
+  ];
+  var JUMP = [
+    '....hh.hh.h.....',
+    '..hhhchhhchh....',
+    '.hhchhhhhhhhh...',
+    'hhhhchhhhssshh..',
+    '.hchhhhhsssssh..',
+    'hhhhchhssssess..',
+    '.hchhhhssssss...',
+    'hhhhchhsssss....',
+    '.hchhhh.ssss.s..',
+    'hhch.h..ss...s..',
+    '.h.h.ttttttttt..',
+    'h...tttttttt....',
+    '.h.stttttttt....',
+    '....ttttttt.....',
+    '...ttttttttt....',
+    '..ttttttttttt...',
+    '....ss...ss.....',
+    '....ss...ss.....',
+    '....kk...kk.....',
+    '................'
+  ];
+  var CRASH = [
+    '....hh.hh.h.....',
+    '..hhhchhhchh....',
+    '.hhchhhhhhhhh...',
+    'hhhhchhhhssshh..',
+    '.hchhhhhsssssh..',
+    'hhhhchhssseses..',
+    '.hchhhhssssss...',
+    'hhhhchhsssss....',
+    '.hchhhh.sees....',
+    'hhch.h..ss......',
+    '.h.h.tttttt.....',
+    'h...tttttttt....',
+    '.h.sttttttttts..',
+    '....ttttttt.....',
+    '...ttttttttt....',
+    '..ttttttttttt...',
+    '.....s..s.......',
+    '.....s..s.......',
+    '.....s..s.......',
+    '....kk..kk......'
+  ];
+
+  // ============ OBSTACLES: draw, add, or remove obstacles here ============
+  // Each grid row must be the same length. '.' is empty. Letters get colors below.
+  var CONE = [
+    '...oo...',
+    '...oo...',
+    '..owwo..',
+    '..oooo..',
+    '.oooooo.',
+    '.owwwwo.',
+    '.oooooo.',
+    'oooooooo',
+    'kkkkkkkk'
+  ];
+  var PAGE = [
+    'dddddd....',
+    'dffffdd...',
+    'dffffdfd..',
+    'dffffddddd',
+    'dffffffffd',
+    'dffddffffd',
+    'dfdffdfffd',
+    'dffffdfffd',
+    'dfffdffffd',
+    'dfffdffffd',
+    'dffffffffd',
+    'dfffdffffd',
+    'dddddddddd'
+  ];
+  // colors: hex code, or a theme word: 'ink', 'paper', 'accent' (orange), 'soft' (grey)
+  // often: how often it shows up. repeat / stack / lift / fromScore are optional.
+  var OBSTACLES = [
+    { name: 'cone',           pixels: CONE, colors: { o: 'accent', w: 'paper', k: 'ink' }, often: 4 },
+    { name: 'two cones',      pixels: CONE, colors: { o: 'accent', w: 'paper', k: 'ink' }, often: 2.5, repeat: 2 },
+    { name: 'broken page',    pixels: PAGE, colors: { d: 'ink', f: 'paper' },              often: 3 },
+    { name: 'stack of pages', pixels: PAGE, colors: { d: 'ink', f: 'paper' },              often: 1, stack: 2, fromScore: 150 }
+  ];
+  // ========================================================================
+
+  var W = 600, H = 170, GROUND = H - 26, S = 3;
+  var PS = 2.4; // size of one character pixel (the character grid is 16 x 20)
+  var canvas = document.getElementById('runner');
+  var ctx = canvas.getContext('2d');
+  var T = {};
+
+  function readTheme() {
+    var cs = getComputedStyle(document.documentElement);
+    function v(n, d) { var x = cs.getPropertyValue(n).trim(); return x || d; }
+    // light-dark() values come back unresolved in some browsers, so resolve them through a probe element
+    function res(n, d) {
+      var p = document.createElement('span'); p.style.color = 'var(' + n + ')'; p.style.display = 'none';
+      document.body.appendChild(p); var c = getComputedStyle(p).color; p.remove();
+      return c || v(n, d);
+    }
+    T.fg = res('--fg', '#111111');
+    T.muted = res('--muted', '#5e5e5e');
+    T.line = res('--line', '#e3e3e0');
+    T.cone = res('--cone', '#f9a11b');
+    T.paper = res('--paper', '#ffffff');
+    T.cloud = res('--cloud', '#ececea');
+    T.yellow = res('--yellow', '#ffd200');
+    T.font = v('--font-display', 'monospace');
+  }
+
+  function palette() {
+    var c = CONFIG.colors;
+    return { h: c.hair, c: lighten(c.hair, 0.2), s: c.skin, e: T.fg, t: c.dress, k: c.shoes };
+  }
+  function colorOf(v) {
+    var words = { ink: T.fg, paper: T.paper, accent: T.cone, soft: T.muted };
+    return words[v] || v;
+  }
+  function obstaclePalette(def) {
+    var p = {};
+    for (var key in def.colors) p[key] = colorOf(def.colors[key]);
+    return p;
+  }
+  function lighten(hex, a) {
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    function m(x) { return Math.round(x + (255 - x) * a); }
+    return 'rgb(' + m(r) + ',' + m(g) + ',' + m(b) + ')';
+  }
+
+  function resize() {
+    var dpr = window.devicePixelRatio || 1;
+    var cw = canvas.clientWidth || W;
+    canvas.width = Math.round(cw * dpr);
+    canvas.height = Math.round(cw * H / W * dpr);
+    var k = canvas.width / W;
+    ctx.setTransform(k, 0, 0, k, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+  }
+
+  function drawMap(map, x, y, pal, s) {
+    s = s || S;
+    for (var r = 0; r < map.length; r++) {
+      var row = map[r];
+      for (var c = 0; c < row.length; c++) {
+        var col = pal[row[c]];
+        if (!col) continue;
+        ctx.fillStyle = col;
+        ctx.fillRect(x + c * s, y + r * s, s + 0.06, s + 0.06);
+      }
+    }
+  }
+
+  // ---- state ----
+  var state = 'ready', player, obstacles, clouds, ties, speed, distance, score, hi = 0;
+  var holding = false, overAt = 0, runTimer = 0, tieShift = 0;
+  try { hi = parseInt(localStorage.getItem(CONFIG.storageKey), 10) || 0; } catch (e) {}
+
+  var PW = 16 * PS, PH = 20 * PS;
+
+  function reset() {
+    player = { x: 48, y: GROUND - PH, vy: 0, onGround: true };
+    obstacles = [];
+    clouds = [{ x: 120, y: 34 }, { x: 380, y: 54 }, { x: 560, y: 28 }];
+    speed = 360; distance = 0; score = 0; runTimer = 0;
+  }
+
+  function makeObstacle() {
+    var pool = [], total = 0;
+    for (var i = 0; i < OBSTACLES.length; i++) {
+      var d = OBSTACLES[i];
+      if ((d.fromScore || 0) <= score && (d.often || 1) > 0) { pool.push(d); total += d.often || 1; }
+    }
+    if (!pool.length) pool = [OBSTACLES[0]], total = OBSTACLES[0].often || 1;
+    var r = Math.random() * total, def = pool[0];
+    for (var j = 0; j < pool.length; j++) { r -= pool[j].often || 1; if (r <= 0) { def = pool[j]; break; } }
+    var gw = def.pixels[0].length * S, gh = def.pixels.length * S;
+    var rep = def.repeat || 1, stk = def.stack || 1;
+    return { def: def, gw: gw, gh: gh, rep: rep, stk: stk, lift: def.lift || 0,
+             w: rep * gw + (rep - 1) * 2, h: stk * gh };
+  }
+
+  function press() {
+    holding = true;
+    if (state === 'ready') { state = 'running'; jump(); return; }
+    if (state === 'over') {
+      if (performance.now() - overAt > 450) { reset(); state = 'running'; }
+      return;
+    }
+    jump();
+  }
+  function jump() { if (player.onGround) { player.vy = -620; player.onGround = false; } }
+  function release() { holding = false; }
+
+  function update(dt) {
+    speed = Math.min(780, speed + 9 * dt);
+    distance += speed * dt;
+    tieShift = (tieShift + speed * dt) % 24;
+    score = Math.floor(distance / 40);
+    runTimer += dt * speed / 360;
+
+    var g = holding && player.vy < 0 ? 1700 : 3200;
+    player.vy += g * dt;
+    player.y += player.vy * dt;
+    if (player.y >= GROUND - PH) { player.y = GROUND - PH; player.vy = 0; player.onGround = true; }
+
+    var last = obstacles[obstacles.length - 1];
+    var minGap = 230 + speed * 0.4;
+    if (!last || last.x + last.w < W - last.gap) {
+      var o = makeObstacle();
+      o.x = W + 10;
+      o.gap = minGap + Math.random() * 260;
+      obstacles.push(o);
+    }
+    for (var i = obstacles.length - 1; i >= 0; i--) {
+      obstacles[i].x -= speed * dt;
+      if (obstacles[i].x + obstacles[i].w < -10) obstacles.splice(i, 1);
+    }
+    for (var j = 0; j < clouds.length; j++) {
+      clouds[j].x -= speed * 0.12 * dt;
+      if (clouds[j].x < -60) { clouds[j].x = W + Math.random() * 120; clouds[j].y = 20 + Math.random() * 44; }
+    }
+
+    var px = player.x + 10, py = player.y + 6, pw = PW - 20, ph = PH - 8;
+    for (var n = 0; n < obstacles.length; n++) {
+      var ob = obstacles[n];
+      var ox = ob.x + 3, oy = GROUND - ob.lift - ob.h + 3, ow = ob.w - 6, oh = ob.h - 3;
+      if (px < ox + ow && px + pw > ox && py < oy + oh && py + ph > oy) {
+        state = 'over'; overAt = performance.now(); holding = false;
+        if (score > hi) { hi = score; try { localStorage.setItem(CONFIG.storageKey, String(hi)); } catch (e) {} }
+        break;
+      }
+    }
+  }
+
+  function pad(n) { return ('00000' + n).slice(-5); }
+
+  function drawCloud(x, y) {
+    ctx.fillStyle = T.cloud;
+    ctx.fillRect(x + 9, y, 24, 3);
+    ctx.fillRect(x + 3, y + 3, 39, 3);
+    ctx.fillRect(x, y + 6, 48, 6);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var pal = palette();
+    for (var j = 0; j < clouds.length; j++) drawCloud(Math.round(clouds[j].x), clouds[j].y);
+
+    // the track: a yellow line with rail ties, like the TJ Line on the homepage
+    ctx.fillStyle = T.line;
+    for (var t = -tieShift; t < W; t += 24) ctx.fillRect(Math.round(t), GROUND + 2, 10, 14);
+    ctx.fillStyle = T.yellow;
+    ctx.fillRect(0, GROUND, W, 5);
+
+    for (var i = 0; i < obstacles.length; i++) {
+      var ob = obstacles[i];
+      var opal = obstaclePalette(ob.def);
+      for (var a = 0; a < ob.rep; a++)
+        for (var b = 0; b < ob.stk; b++)
+          drawMap(ob.def.pixels, Math.round(ob.x + a * (ob.gw + 2)), GROUND - ob.lift - (b + 1) * ob.gh, opal);
+    }
+
+    var frame = RUN1;
+    if (state === 'over') frame = CRASH;
+    else if (!player.onGround) frame = JUMP;
+    else if (state === 'running') frame = Math.floor(runTimer * 10) % 2 ? RUN2 : RUN1;
+    drawMap(frame, Math.round(player.x), Math.round(player.y), pal, PS);
+
+    ctx.textBaseline = 'top';
+    ctx.font = '14px ' + T.font;
+    ctx.textAlign = 'right';
+    ctx.fillStyle = T.muted;
+    ctx.fillText('HI ' + pad(hi), W - 92, 12);
+    ctx.fillStyle = T.fg;
+    ctx.fillText(pad(score), W - 14, 12);
+
+    ctx.textAlign = 'center';
+    if (state === 'ready') {
+      ctx.fillStyle = T.fg;
+      ctx.fillText('PRESS SPACE OR TAP TO RUN', W / 2, 62);
+    } else if (state === 'over') {
+      ctx.font = '20px ' + T.font;
+      ctx.fillStyle = T.fg;
+      ctx.fillText('GAME OVER', W / 2, 50);
+      ctx.font = '12px ' + T.font;
+      ctx.fillStyle = T.muted;
+      ctx.fillText('TAP OR PRESS SPACE TO TRY AGAIN', W / 2, 80);
+    }
+  }
+
+  var lastT = 0;
+  function loop(t) {
+    var dt = Math.min(0.05, (t - lastT) / 1000 || 0);
+    lastT = t;
+    if (state === 'running') update(dt);
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  // ---- input ----
+  var JUMP_KEYS = { Space: 1, ArrowUp: 1, KeyW: 1 };
+  window.addEventListener('keydown', function (e) {
+    if (!JUMP_KEYS[e.code]) return;
+    var tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON' || tag === 'A') return;
+    e.preventDefault();
+    if (!e.repeat) press();
+  });
+  window.addEventListener('keyup', function (e) { if (JUMP_KEYS[e.code]) release(); });
+  canvas.addEventListener('pointerdown', function (e) { e.preventDefault(); canvas.focus(); press(); });
+  window.addEventListener('pointerup', release);
+  window.addEventListener('pointercancel', release);
+
+  // ---- theme + size ----
+  readTheme();
+  new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', readTheme);
+  }
+  window.addEventListener('resize', resize);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(readTheme);
+
+  reset();
+  resize();
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
