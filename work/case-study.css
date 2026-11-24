@@ -43,6 +43,8 @@ p{margin:0}
 .cs-kicker i{width:12px;height:12px;border-radius:50%;background:var(--accent)}
 .cs-hero h1{font-size:clamp(36px,5.6vw,64px);font-weight:900;max-width:18ch}
 .cs-hero .sub{font-size:clamp(18px,2vw,21px);color:var(--muted);margin-top:16px;max-width:52ch}
+.why-name{font-size:17px!important;margin-top:14px!important;padding:14px 18px;border-radius:14px;background:var(--panel);max-width:60ch}
+.why-name b{color:var(--ink)}
 .labels{display:flex;flex-wrap:wrap;gap:8px 28px;margin:26px 0 0;padding:0;list-style:none}
 .labels li{display:flex;flex-direction:column;font-size:15px;font-weight:700}
 .labels span{font-size:12px;font-weight:700;color:var(--muted)}
