@@ -110,68 +110,73 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .stops b{display:block;font-size:18px}
 .stops span{color:var(--muted)}
 
-/* system map */
-.mapband{background:var(--panel)}
-.maphead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px;margin-bottom:28px}
-.maphead p{margin:0;max-width:46ch;color:var(--muted)}
-.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;font-weight:600;margin:0;padding:0;list-style:none}
-.legend li{display:flex;align-items:center;gap:8px}
-.legend i{width:26px;height:8px;border-radius:8px}
-.sysgrid{display:grid;gap:24px;grid-template-columns:minmax(0,1fr)}
-.below{display:grid;gap:24px;grid-template-columns:minmax(0,1fr);align-items:start}
-@media(min-width:900px){.below{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
-.sys{width:100%;height:auto;background:var(--bg);border-radius:18px;border:1px solid var(--rule)}
-.sys .l{fill:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
-.sys text{fill:var(--ink);font-family:var(--font);font-size:17px;font-weight:700;letter-spacing:-.01em}
-.sys .hub{font-size:20px;font-weight:900}
-.sys .small{font-size:13px;font-weight:600;fill:var(--muted)}
-.sys .hubst,.sys .nextst{fill:var(--dot);stroke:var(--ink);stroke-width:6}
-.sys .nextst{stroke-width:5;stroke-dasharray:6 4}
-.sys .here{fill:var(--ink)}
-.sys .l{transition:opacity .4s}
-.sys .l.dim,.sys .badge.dim{opacity:.22}
-.sys .hitl{fill:none;stroke:transparent;stroke-width:34;cursor:pointer;pointer-events:stroke}
-.sys .badge{cursor:pointer;transition:opacity .4s}
-.sys .badge text{font-size:14px;font-weight:800}
-.sys .badge:focus{outline:none}.sys .badge:focus-visible rect{stroke:var(--ink);stroke-width:3}
-.sys .train{cursor:pointer;transition:opacity .4s}
-.sys .train .hit{fill:transparent}
-.sys .train .body{fill:var(--ink);stroke:var(--bg);stroke-width:2}
-.sys .train.dim{opacity:.3}
-.sys .train:focus{outline:none}.sys .train:focus-visible .body{stroke:var(--blue);stroke-width:3}
-.sys .tag{pointer-events:none;opacity:0;transition:opacity .3s}
-.sys .tag.show,.sys .tag.peek{opacity:1}
-.sys .tag rect{fill:var(--ink)}
-.sys .tag text{fill:var(--bg);font-size:14px;font-weight:800}
-.tourbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.tourbar button{all:unset;box-sizing:border-box;cursor:pointer;min-height:44px;padding:0 18px;border-radius:99px;border:2px solid var(--ink);font-weight:700;font-size:14px;display:inline-flex;align-items:center}
-.tourbar button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.tourbar span{font-size:14px;font-weight:600;color:var(--muted)}
-.tourbar .prog{flex:1 1 120px;height:4px;border-radius:4px;background:var(--rule);overflow:hidden}
-.tourbar .prog i{display:block;height:100%;width:0;background:var(--ink)}
-.how{display:flex;flex-direction:column;gap:10px;padding-top:4px}
-.howh{font-size:13px;font-weight:800}
-.hrow{display:flex;gap:12px;align-items:flex-start}
-.hrow i{flex:none;width:8px;align-self:stretch;min-height:36px;border-radius:8px}
-.hrow b{display:block;font-size:15px}
-.hrow span{display:block;font-size:15px;color:var(--muted)}
-.hbtn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:12px;padding:8px;margin:-8px;border-radius:10px}
-.hbtn:hover{background:var(--panel)}.hbtn:focus-visible{outline:3px solid var(--blue)}
-@media(max-width:700px){.sys text{display:none}.sys .badge text,.sys .tag text{display:block}}
-.card{background:var(--bg);border:1px solid var(--rule);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:14px}
-.card h3{font-size:28px;font-weight:900}
-.card p{margin:0}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:4px 10px 4px 6px;border-radius:99px;background:var(--panel)}
-.chip i{width:14px;height:14px;border-radius:50%}
-.card .status{font-size:13px;font-weight:700;color:var(--muted)}
-.card a.more{font-weight:700;margin-top:auto}
-.plist{list-style:none;margin:0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr))}
-.plist button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;min-height:56px;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--rule);font-weight:700}
-.plist button:hover,.plist button[aria-pressed=true]{border-color:var(--ink)}
-.plist button:focus-visible{outline:3px solid var(--blue)}
-.plist .bars{display:flex;gap:3px}
-.plist .bars i{width:6px;height:22px;border-radius:4px}
+/* how I think: three questions (design, technology, business) */
+.dvf{--dk:#0d0d0d;--dcard:#171717;--dcard2:#1f1f1f;--dink:#f5f5f2;--dmut:#a3a29d;--drule:#2c2c2c;--dD:#ffd200;--dT:#1aa7ff;--dB:#ff9f1c;background:var(--dk);color:var(--dink);padding-block:clamp(56px,8vw,104px);color-scheme:dark}
+.dvf .kicker{color:var(--dmut)}
+.dvf-intro{display:grid;gap:28px 56px;grid-template-columns:minmax(0,1fr);align-items:end}
+@media(min-width:900px){.dvf-intro{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
+.dvf h2{font-size:clamp(34px,4.8vw,56px);font-weight:900;letter-spacing:-.04em;line-height:1.02}
+.dvf h2 span{color:var(--dD)}
+.dvf-lede{margin:16px 0 0;font-size:clamp(17px,1.7vw,19px);color:#cfcec9;max-width:48ch}
+.dvf-pq{margin:0;padding:22px 24px;border-radius:18px;background:var(--dcard);position:relative}
+.dvf-pq::before{content:"\201C";position:absolute;top:-6px;left:18px;font-size:72px;font-weight:900;line-height:1;color:var(--dD)}
+.dvf-pq blockquote{margin:18px 0 0;font-size:clamp(19px,2vw,23px);font-weight:800;letter-spacing:-.02em;line-height:1.3}
+.dvf-pq em{font-style:normal;color:var(--dD)}
+.dvf-pq figcaption{margin-top:10px;font-size:13px;font-weight:600;color:var(--dmut)}
+.dvf-stage{display:grid;gap:20px;grid-template-columns:minmax(0,1fr);margin-top:clamp(28px,4vw,48px)}
+@media(min-width:900px){.dvf-stage{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:stretch}}
+.dvf-diagram{background:radial-gradient(ellipse at 50% 45%,#1a1a1a 0%,var(--dk) 70%);border:1px solid var(--drule);border-radius:24px;padding:clamp(10px,2vw,24px);display:flex;flex-direction:column;justify-content:center}
+.dvf svg.venn{display:block;width:100%;height:auto}
+.dvf .c{mix-blend-mode:screen;transition:opacity .4s}
+.dvf .c.dim{opacity:.14}
+.dvf .ring{fill:none;stroke-width:2;opacity:.55;transition:opacity .4s}
+.dvf .ring.dim{opacity:.1}
+.dvf .lab{font-family:var(--font);pointer-events:none}
+.dvf .lab .t{font-size:24px;font-weight:900;letter-spacing:-.02em}
+.dvf .lab .q{font-size:15px;font-weight:600;fill:var(--dmut)}
+.dvf .hit{fill:transparent;cursor:pointer}
+.dvf .dot{cursor:pointer}
+.dvf .dot .d{fill:#0d0d0d;stroke:#fff;stroke-width:3;transition:r .25s}
+.dvf .dot text{font-family:var(--font);font-size:15px;font-weight:700;fill:#fff;paint-order:stroke;stroke:rgba(13,13,13,.75);stroke-width:5px;stroke-linejoin:round}
+.dvf .dot.dim{opacity:.35}
+.dvf .dot.on .d{r:11;fill:#fff;stroke:#0d0d0d}
+.dvf .dot .ping{fill:none;stroke:#fff;stroke-width:2;opacity:0}
+.dvf .dot.on .ping{animation:dvfping 1.8s ease-out infinite}
+@keyframes dvfping{0%{r:11;opacity:.8}100%{r:30;opacity:0}}
+.dvf .dot:focus{outline:none}.dvf .dot:focus-visible .d{stroke:var(--dD);stroke-width:4}
+.dvf .me{cursor:pointer}
+.dvf .me .core{fill:#0d0d0d;stroke:var(--dD);stroke-width:3}
+.dvf .me .tj{font-family:var(--font);font-size:26px;font-weight:900;fill:var(--dD);letter-spacing:-.04em}
+.dvf .me .glow{fill:none;stroke:var(--dD);stroke-width:2;opacity:0}
+.dvf .me.on .glow{animation:dvfglow 2.2s ease-out infinite}
+@keyframes dvfglow{0%{r:36;opacity:.7}100%{r:62;opacity:0}}
+.dvf .me:focus{outline:none}.dvf .me:focus-visible .core{stroke:#fff;stroke-width:4}
+.dvf-tip{margin:6px 0 0;text-align:center;font-size:13px;font-weight:600;color:var(--dmut)}
+.dvf-card{background:var(--dcard);border:1px solid var(--drule);border-radius:24px;padding:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;justify-content:center;gap:16px;min-height:100%}
+.dvf-card > *{transition:opacity .25s,transform .25s}
+.dvf-card.swap > *{opacity:0;transform:translateY(6px)}
+.dvf-tag{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--dmut)}
+.dvf-sw{display:inline-flex}
+.dvf-sw i{width:14px;height:14px;border-radius:50%;margin-left:-5px;border:2px solid var(--dcard)}
+.dvf-sw i:first-child{margin-left:0}
+.dvf-card h3{margin:0;font-size:clamp(26px,2.8vw,34px);font-weight:900;letter-spacing:-.03em;line-height:1.06}
+.dvf-card p{margin:0;color:#d6d5d0}
+.dvf-rows{display:flex;flex-direction:column;border-top:1px solid var(--drule)}
+.dvf-row{display:grid;grid-template-columns:12px minmax(0,1fr);gap:14px;padding:12px 0;border-bottom:1px solid var(--drule)}
+.dvf-row i{width:12px;height:12px;border-radius:50%;margin-top:5px}
+.dvf-row b{display:block;font-size:13px;font-weight:800;color:var(--dmut)}
+.dvf-row span{display:block;font-size:15px}
+.dvf-row.next i{background:transparent!important;border:2px solid var(--dmut)}
+.dvf-row.next b::after{content:" \00B7  where it goes next";font-weight:700}
+button.dvf-row{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:12px minmax(0,1fr);gap:14px;padding:12px 0;border-bottom:1px solid var(--drule)}
+button.dvf-row:hover span{color:var(--dD)}
+button.dvf-row:focus-visible{outline:3px solid var(--dD)}
+.dvf-status{align-self:flex-start;font-size:12px;font-weight:800;padding:4px 10px;border-radius:99px;background:var(--dcard2)}
+.dvf-go{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 20px;border-radius:99px;background:var(--dD);color:#111;font-weight:800;text-decoration:none}
+.dvf-go:hover{filter:brightness(1.05)}
+@media(prefers-reduced-motion:reduce){.dvf .c,.dvf .ring,.dvf-card > *{transition:none}.dvf .dot.on .ping,.dvf .me.on .glow{animation:none}}
+@media(max-width:640px){.dvf .dot text{font-size:22px}.dvf .lab .t{font-size:30px}.dvf .lab .q{display:none}}
+
 
 /* last stop */
 .last{display:grid;gap:28px;grid-template-columns:minmax(0,1fr);align-items:center}
@@ -296,44 +301,51 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     </div>
   </section>
 
-  <section class="band mapband" id="projects">
+  <section class="dvf" id="how">
     <div class="wrap">
-      <div class="maphead">
-        <div>
-          <div class="kicker"><i></i>How it connects</div>
-          <h2>Three lines, one interchange.</h2>
-        </div>
-        <p>Arts, Technology and the Business of Innovation, drawn as a map. Each project is a train riding the lines it draws on. Tap a train to see how it connects, or tap a line to see everything on it.</p>
-      </div>
-      <div class="sysgrid" style="margin-top:20px">
-        <svg class="sys" id="sys" viewBox="0 0 1104 520" role="group" aria-label="Project map: design, technology and business lines meeting at human-centered products. Projects ride the lines as trains.">
-          <path class="l" id="l-design" data-line="design" stroke="var(--yellow)" d="M30 80 H280 L440 240 H660 L740 160 H1074"/>
-          <path class="l" id="l-business" data-line="business" stroke="var(--orange)" d="M30 260 H660 L760 360 H1074"/>
-          <path class="l" id="l-tech" data-line="tech" stroke="var(--blue)" d="M30 460 H260 L440 280 H660 L760 180 H1074"/>
-          <path class="hitl" id="hit-design" d="M30 80 H280 L440 240 H660 L740 160 H1074"/>
-          <path class="hitl" id="hit-business" d="M30 260 H660 L760 360 H1074"/>
-          <path class="hitl" id="hit-tech" d="M30 460 H260 L440 280 H660 L760 180 H1074"/>
-          <g class="badge" id="badge-design" data-line="design" tabindex="0" role="button" aria-label="Show the Design line"><rect x="30" y="34" width="92" height="28" rx="14" fill="var(--yellow)"/><text x="76" y="53" text-anchor="middle" fill="#111">Design</text></g>
-          <g class="badge" id="badge-business" data-line="business" tabindex="0" role="button" aria-label="Show the Business line"><rect x="30" y="214" width="104" height="28" rx="14" fill="var(--orange)"/><text x="82" y="233" text-anchor="middle" fill="#111">Business</text></g>
-          <g class="badge" id="badge-tech" data-line="tech" tabindex="0" role="button" aria-label="Show the Technology line"><rect x="30" y="414" width="124" height="28" rx="14" fill="var(--blue)"/><text x="92" y="433" text-anchor="middle" fill="#fff">Technology</text></g>
-          <rect class="hubst" x="530" y="220" width="44" height="80" rx="22"/>
-          <text class="small" x="552" y="166" text-anchor="middle">Where it all meets</text>
-          <text class="hub" x="552" y="190" text-anchor="middle">Human-centered products</text>
-          <rect class="nextst" x="1046" y="347" width="28" height="26" rx="13"/>
-          <text x="1060" y="408" text-anchor="end">Next venture</text>
-          <g id="trains"></g>
-        </svg>
-        <div class="tourbar">
-          <button type="button" id="tour-btn" aria-pressed="true">Pause tour</button>
-          <span id="tour-txt" aria-live="polite"></span>
-          <span class="prog" aria-hidden="true"><i id="tour-prog"></i></span>
-        </div>
-        <div class="below">
-          <article class="card" id="card" aria-live="polite"></article>
-          <ul class="plist" id="plist"></ul>
-        </div>
-        </div>
-      </div>
+  <div class="dvf-intro">
+    <div>
+      <div class="kicker"><i></i>How I think about products</div>
+      <h2>Every product answers three questions. <span>I work where they meet.</span></h2>
+      <p class="dvf-lede">Do people want it? Can it be built? Will it last? That's design, technology and business, the three parts of my major. Tap a project to see how it connects.</p>
+    </div>
+    <figure class="dvf-pq">
+      <blockquote>A good product designer considers both how to <em>do things right</em> and how to <em>do the right thing</em>.</blockquote>
+      <figcaption>From ISE 545 at USC</figcaption>
+    </figure>
+  </div>
+
+  <div class="dvf-stage">
+    <div class="dvf-diagram">
+      <svg class="venn" id="dvf-venn" viewBox="-10 64 780 534" role="group" aria-label="Three overlapping circles: Design, do people want it; Technology, can it be built; Business, will it last. Taliyah sits in the middle, and each project sits where its circles overlap.">
+        <defs>
+          <radialGradient id="dvf-gD" cx="40%" cy="40%" r="70%"><stop offset="0" stop-color="#ffd200" stop-opacity=".9"/><stop offset="1" stop-color="#ffd200" stop-opacity=".45"/></radialGradient>
+          <radialGradient id="dvf-gT" cx="60%" cy="40%" r="70%"><stop offset="0" stop-color="#1aa7ff" stop-opacity=".9"/><stop offset="1" stop-color="#1aa7ff" stop-opacity=".45"/></radialGradient>
+          <radialGradient id="dvf-gB" cx="50%" cy="65%" r="70%"><stop offset="0" stop-color="#ff9f1c" stop-opacity=".9"/><stop offset="1" stop-color="#ff9f1c" stop-opacity=".45"/></radialGradient>
+        </defs>
+        <circle class="c" id="dvf-c-D" cx="290" cy="245" r="165" fill="url(#dvf-gD)"/>
+        <circle class="c" id="dvf-c-T" cx="430" cy="245" r="165" fill="url(#dvf-gT)"/>
+        <circle class="c" id="dvf-c-B" cx="360" cy="365" r="165" fill="url(#dvf-gB)"/>
+        <circle class="ring" id="dvf-r-D" cx="290" cy="245" r="165" stroke="#ffd200"/>
+        <circle class="ring" id="dvf-r-T" cx="430" cy="245" r="165" stroke="#1aa7ff"/>
+        <circle class="ring" id="dvf-r-B" cx="360" cy="365" r="165" stroke="#ff9f1c"/>
+        <rect class="hit" id="dvf-hit" x="-10" y="64" width="780" height="534"/>
+        <g class="lab"><text class="t" x="108" y="196" text-anchor="end" fill="#ffd200">Design</text><text class="q" x="108" y="218" text-anchor="end">Do people</text><text class="q" x="108" y="236" text-anchor="end">want it?</text></g>
+        <g class="lab"><text class="t" x="612" y="196" fill="#1aa7ff">Technology</text><text class="q" x="612" y="218">Can it be</text><text class="q" x="612" y="236">built?</text></g>
+        <g class="lab"><text class="t" x="360" y="562" text-anchor="middle" fill="#ff9f1c">Business</text><text class="q" x="360" y="584" text-anchor="middle">Will it last?</text></g>
+        <g id="dvf-dots"></g>
+        <g class="me" id="dvf-me" tabindex="0" role="button" aria-label="Me: where I want my work to come together">
+          <circle class="glow" cx="360" cy="288" r="36"/>
+          <circle cx="360" cy="288" r="44" fill="transparent"/>
+          <circle class="core" cx="360" cy="288" r="36"/>
+          <text class="tj" x="360" y="297" text-anchor="middle">tj</text>
+        </g>
+      </svg>
+      <p class="dvf-tip">Tap a dot, an overlap, or the middle.</p>
+    </div>
+    <article class="dvf-card" id="dvf-card" aria-live="polite"></article>
+  </div>
+
     </div>
   </section>
 
@@ -362,188 +374,140 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 
 <script>
 {
-  // ===== Projects: edit this list to add, remove or change projects =====
-  // lines: which colored lines the project uses. Its train rides the first one.
-  // how:   one line per colored line, explaining how the project uses it.
-  const LINES = {
-    design: { name: 'Design', color: 'var(--yellow)', path: 'l-design',
-      text: 'How it looks, feels and works for people: research, prototyping and interface design.' },
-    tech: { name: 'Technology', color: 'var(--blue)', path: 'l-tech',
-      text: 'The code and hardware that make an idea real.' },
-    business: { name: 'Business', color: 'var(--orange)', path: 'l-business',
-      text: 'Turning ideas into ventures people can back.' }
+  // ===== Content: edit projects here =====
+  const LENS = {
+    D: { name: 'Design', q: 'Do people want it?', color: '#ffd200' },
+    T: { name: 'Technology', q: 'Can it be built?', color: '#1aa7ff' },
+    B: { name: 'Business', q: 'Will it last?', color: '#ff9f1c' }
   };
-  const PROJECTS = [
-    { id: 'bart', name: "Karl's Friend Bart", lines: ['design', 'tech'],
-      text: 'An interactive take on the BART system map that keeps the official look and makes it easier to read one route at a time.',
-      how: { design: "Keeps BART's official map look, but lets you read one route at a time, with an evening dark mode.",
-             tech: 'Pulls live departures and service alerts from BART’s real-time data.' },
-      status: 'Shipped', link: 'https://github.com/taliyahhh/bart-revamp', linkText: 'View the code' },
-    { id: 'hindsight', name: 'In Hindsight', lines: ['design', 'tech'],
+  // x, y: dot position in the diagram. anchor: which side the name sits on.
+  const P = [
+    { id: 'bart', name: "Karl's Friend Bart", lenses: ['D', 'T'], x: 340, y: 150, anchor: 'end', status: 'Shipped', link: 'Read the case study', href: 'work/karls-friend-bart.html',
+      text: 'An interactive BART map that keeps the official look and makes it easy to read one route at a time.',
+      a: { D: "Riders already know the official map, so I kept its look and made it readable one route at a time.",
+           T: 'Live departures and alerts from BART’s public API, on desktop and phone.',
+           B: 'Bring it to transit agencies and rider groups as a model for clearer maps.' } },
+    { id: 'hind', name: 'In Hindsight', lenses: ['D', 'T'], x: 380, y: 198, anchor: 'start', status: 'In progress',
       text: 'A web app that turns your TikTok archive into something you can actually explore.',
-      how: { design: 'Rethinks how you browse saved videos, beyond endless folders.',
-             tech: 'Reads your TikTok data export to rebuild your favorites, saves and reposts.' },
-      status: 'In progress' },
-    { id: 'shoe', name: 'Convertible Shoe', lines: ['design'],
-      text: 'A mid-fidelity prototype of a convertible shoe, built for a product design class.',
-      how: { design: 'From concept sketches to a physical, mid-fidelity prototype.' },
-      status: 'Prototype' },
-    { id: 'branchout', name: 'Branch Out', lines: ['tech'],
-      text: 'Built at Salesforce: a site that helps college students find open source projects to contribute to.',
-      how: { tech: 'A web app that matches college students with open source projects.' },
-      status: 'Shipped' },
-    { id: 'headphones', name: 'Now Playing Headphones', lines: ['tech'],
+      a: { D: 'Saved videos pile up in folders nobody opens. This finds new ways to browse them.',
+           T: 'Reads your TikTok data export to rebuild favorites, saves and reposts.',
+           B: 'Grow it into a free tool with an audience, then explore premium features.' } },
+    { id: 'branch', name: 'Branch Out', lenses: ['T', 'B'], x: 462, y: 352, anchor: 'start', status: 'Shipped at Salesforce',
+      text: 'A site that helps college students find open source projects to contribute to.',
+      a: { D: 'Interview more students to make the matching feel even more personal.',
+           T: 'A working web app that matches students with open source projects.',
+           B: 'Built inside Salesforce around a real community goal.' } },
+    { id: 'bite', name: 'Bite Back', lenses: ['D', 'B'], x: 258, y: 352, anchor: 'end', status: 'In progress',
+      text: 'A small-plates dinner built around invasive species, with education and community.',
+      a: { D: 'The dinner is designed as an experience, from the menu to the story told at the table.',
+           T: 'Build the sourcing and booking system that lets the dinners scale.',
+           B: 'Run as a team venture, with a grant application in the works.' } },
+    { id: 'shoe', name: 'Convertible Shoe', lenses: ['D'], x: 196, y: 230, anchor: 'middle', status: 'Prototype',
+      text: 'A mid-fidelity prototype of a convertible shoe, from a product design class.',
+      a: { D: 'Took it from sketches to a physical, mid-fidelity prototype.',
+           T: 'Engineer the conversion mechanism and materials for everyday wear.',
+           B: 'Define who it’s for and price it for a first run.' } },
+    { id: 'phones', name: 'Now Playing Headphones', lenses: ['T'], x: 524, y: 230, anchor: 'middle', status: 'In progress',
       text: 'Headphones that show the album cover of whatever song is playing.',
-      how: { tech: 'A Particle Photon 2 grabs the album art for the current song and shows it on the headphones.' },
-      status: 'In progress' },
-    { id: 'biteback', name: 'Bite Back', lines: ['business'],
-      text: 'A small-plates dinner built around invasive species, mixing good food with education and community.',
-      how: { business: 'Run as a team venture, with a grant application in the works.' },
-      status: 'In progress' }
+      a: { D: 'Test it with listeners and shape it into something people want to wear.',
+           T: 'A Particle Photon 2 pulls the album art for the current song and displays it.',
+           B: 'Explore it as a small product run for music fans.' } }
   ];
-  const TOUR_MS = 6000;      // how long each project stays in the spotlight
-  const SPEED = 46;          // train speed, in map pixels per second
-  // =======================================================================
+  const OVERLAP = {
+    DT: { title: 'Design + Technology', line: 'Usable: people want it, and it works.' },
+    BD: { title: 'Design + Business', line: 'Valuable: people want it, and it can sustain itself.' },
+    BT: { title: 'Technology + Business', line: 'Scalable: it works, and it makes sense as a business.' },
+    D: { title: 'Design', line: 'Ideas shaped around what people need.' },
+    T: { title: 'Technology', line: 'Builds that work in the real world.' },
+    B: { title: 'Business', line: 'Plans that help an idea grow and last.' }
+  };
+  const ME = {
+    title: 'Where I want my work to live',
+    text: 'The middle is me. I want a career building products that people actually want, that are built well, and that last.',
+    a: { D: 'Start with people and what they need.', T: 'Build it for real, and build it well.', B: 'Make it something that can grow and last.' }
+  };
+  // ========================================
 
   const NS = 'http://www.w3.org/2000/svg';
-  const svg = document.getElementById('sys');
-  const layer = document.getElementById('trains');
-  const card = document.getElementById('card');
-  const plist = document.getElementById('plist');
-  const tourBtn = document.getElementById('tour-btn');
-  const tourTxt = document.getElementById('tour-txt');
-  const prog = document.getElementById('tour-prog');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const el = (t, a, p) => { const n = document.createElementNS(NS, t); for (const k in a) n.setAttribute(k, a[k]); if (p) p.appendChild(n); return n; };
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const el = (tag, attrs) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); return n; };
+  const key = ls => [...ls].sort().join('');
+  const C = { D: [290, 245], T: [430, 245], B: [360, 365] }, R = 165;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sw = ls => `<span class="dvf-sw">${ls.map(l => `<i style="background:${LENS[l].color}"></i>`).join('')}</span>`;
 
-  // ---- build trains: trains on the same line are spaced evenly ----
-  const perLine = {};
-  PROJECTS.forEach(p => { (perLine[p.lines[0]] = perLine[p.lines[0]] || []).push(p); });
-  const trains = PROJECTS.map(p => {
-    const path = document.getElementById(LINES[p.lines[0]].path);
-    const mates = perLine[p.lines[0]];
-    const g = el('g', { class: 'train', tabindex: '0', role: 'button', 'aria-label': p.name + ', show details' });
-    g.appendChild(el('rect', { class: 'hit', x: -30, y: -22, width: 60, height: 44, rx: 10 }));
-    g.appendChild(el('rect', { class: 'body', x: -24, y: -10, width: 48, height: 20, rx: 8 }));
-    const w = 34 / p.lines.length;
-    p.lines.forEach((l, i) => g.appendChild(el('rect', { x: -17 + i * w, y: -5, width: w - (p.lines.length > 1 ? 2 : 0), height: 7, rx: 2, fill: LINES[l].color })));
-    const tag = el('g', { class: 'tag' });
-    const tr = el('rect', { height: 28, rx: 14, y: -50 });
-    const tt = el('text', { y: -31, 'text-anchor': 'middle' });
-    tt.textContent = p.name;
-    tag.appendChild(tr); tag.appendChild(tt);
-    layer.appendChild(g); layer.appendChild(tag);
-    g.addEventListener('click', () => feature(p.id, true));
-    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); feature(p.id, true); } });
-    g.addEventListener('mouseenter', () => tag.classList.add('peek'));
-    g.addEventListener('mouseleave', () => tag.classList.remove('peek'));
-    return { p, g, tag, tr, tt, path, len: path.getTotalLength(), pos: (mates.indexOf(p) + 0.5) / mates.length };
+  const dotsG = document.getElementById('dvf-dots'), dots = {};
+  P.forEach(p => {
+    const g = el('g', { class: 'dot', tabindex: '0', role: 'button', 'aria-label': `${p.name}: ${p.lenses.map(l => LENS[l].name).join(' and ')}` }, dotsG);
+    el('circle', { cx: p.x, cy: p.y, r: 24, fill: 'transparent' }, g);
+    el('circle', { class: 'ping', cx: p.x, cy: p.y, r: 11 }, g);
+    el('circle', { class: 'd', cx: p.x, cy: p.y, r: 8 }, g);
+    const dx = p.anchor === 'end' ? -16 : p.anchor === 'start' ? 16 : 0, dy = p.anchor === 'middle' ? 30 : 5;
+    el('text', { x: p.x + dx, y: p.y + dy, 'text-anchor': p.anchor }, g).textContent = p.name;
+    const go = () => showProject(p.id);
+    g.addEventListener('click', e => { e.stopPropagation(); go(); });
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    dots[p.id] = g;
   });
 
-  // ---- line filters: click a line or its badge ----
-  Object.keys(LINES).forEach(k => {
-    const go = () => showLine(k);
-    document.getElementById('hit-' + k).addEventListener('click', go);
-    const b = document.getElementById('badge-' + k);
-    b.addEventListener('click', go);
-    b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+  const svg = document.getElementById('dvf-venn'), card = document.getElementById('dvf-card'), me = document.getElementById('dvf-me');
+  document.getElementById('dvf-hit').addEventListener('click', e => {
+    const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    const q = pt.matrixTransform(svg.getScreenCTM().inverse());
+    const inside = Object.keys(C).filter(k => Math.hypot(q.x - C[k][0], q.y - C[k][1]) <= R);
+    if (!inside.length) return;
+    if (inside.length === 3) showMe(); else showOverlap(inside);
   });
+  me.addEventListener('click', e => { e.stopPropagation(); showMe(); });
+  me.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showMe(); } });
+  card.addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) showProject(b.dataset.id); });
 
-  plist.innerHTML = PROJECTS.map(p => `<li><button type="button" data-id="${p.id}" aria-pressed="false"><span class="bars">${p.lines.map(l => `<i style="background:${LINES[l].color}"></i>`).join('')}</span>${esc(p.name)}</button></li>`).join('');
-  plist.addEventListener('click', e => { const b = e.target.closest('button'); if (b) feature(b.dataset.id, true); });
-  card.addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) feature(b.dataset.id, true); });
-
-  // ---- state ----
-  let touring = !reduce, featuredAt = performance.now(), current = 0, mode = 'project', visible = true;
-
-  function highlight(onLines, onIds) {
-    Object.keys(LINES).forEach(k => svg.querySelectorAll('[data-line="' + k + '"]').forEach(n => n.classList.toggle('dim', !onLines.includes(k))));
-    trains.forEach(t => {
-      t.g.classList.toggle('dim', !onIds.includes(t.p.id));
-      t.g.classList.toggle('on', mode === 'project' && onIds[0] === t.p.id);
-      t.tag.classList.toggle('show', mode === 'project' && onIds[0] === t.p.id);
-    });
+  function light(set, onIds, chosen, meOn) {
+    for (const k of ['D', 'T', 'B']) {
+      document.getElementById('dvf-c-' + k).classList.toggle('dim', !set.includes(k));
+      document.getElementById('dvf-r-' + k).classList.toggle('dim', !set.includes(k));
+    }
+    for (const id in dots) { dots[id].classList.toggle('dim', !onIds.includes(id)); dots[id].classList.toggle('on', id === chosen); }
+    me.classList.toggle('on', !!meOn);
+  }
+  function render(html) {
+    if (reduce) { card.innerHTML = html; return; }
+    card.classList.add('swap');
+    setTimeout(() => { card.innerHTML = html; requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('swap'))); }, 160);
   }
 
-  function feature(id, byUser) {
-    const i = PROJECTS.findIndex(x => x.id === id);
-    if (i < 0) return;
-    const p = PROJECTS[i];
-    current = i; mode = 'project'; featuredAt = performance.now();
-    if (byUser) setTour(false);
-    highlight(p.lines, [p.id]);
-    plist.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === id)));
-    card.innerHTML = `
-      <div class="chips">${p.lines.map(l => `<span class="chip"><i style="background:${LINES[l].color}"></i>${LINES[l].name}</span>`).join('')}</div>
+  function showMe() {
+    light(['D', 'T', 'B'], P.map(p => p.id), null, true);
+    render(`
+      <span class="dvf-tag">${sw(['D', 'T', 'B'])}Design + Technology + Business</span>
+      <h3>${ME.title}</h3>
+      <p>${ME.text}</p>
+      <div class="dvf-rows">${['D', 'T', 'B'].map(l => `<div class="dvf-row"><i style="background:${LENS[l].color}"></i><div><b>${LENS[l].q}</b><span>${ME.a[l]}</span></div></div>`).join('')}</div>`);
+  }
+  function showProject(id) {
+    const p = P.find(x => x.id === id);
+    light(p.lenses, [id], id, false);
+    render(`
+      <span class="dvf-tag">${sw(p.lenses)}${p.lenses.map(l => LENS[l].name).join(' + ')}</span>
       <h3>${esc(p.name)}</h3>
       <p>${esc(p.text)}</p>
-      <div class="how"><span class="howh">How it connects</span>${p.lines.map(l => `<div class="hrow"><i style="background:${LINES[l].color}"></i><div><b>${LINES[l].name}</b><span>${esc(p.how[l] || '')}</span></div></div>`).join('')}</div>
-      <span class="status">${esc(p.status)}</span>
-      ${p.link ? `<a class="more" href="${esc(p.link)}">${esc(p.linkText || 'Learn more')}</a>` : ''}`;
-    tourTxt.textContent = (touring ? 'Now featuring ' : 'Showing ') + (i + 1) + ' of ' + PROJECTS.length;
+      <div class="dvf-rows">${['D', 'T', 'B'].map(l => {
+        const has = p.lenses.includes(l);
+        return `<div class="dvf-row ${has ? '' : 'next'}"><i style="background:${LENS[l].color}"></i><div><b>${LENS[l].q}</b><span>${esc(p.a[l])}</span></div></div>`;
+      }).join('')}</div>
+      <span class="dvf-status">${esc(p.status)}</span>
+      ${p.link ? `<a class="dvf-go" href="${p.href}">${esc(p.link)} &rarr;</a>` : ''}`);
   }
-
-  function showLine(k) {
-    const L = LINES[k];
-    const on = PROJECTS.filter(p => p.lines.includes(k));
-    mode = 'line';
-    setTour(false);
-    highlight([k], on.map(p => p.id));
-    plist.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', 'false'));
-    card.innerHTML = `
-      <div class="chips"><span class="chip"><i style="background:${L.color}"></i>${L.name} line</span></div>
-      <h3>${L.name}</h3>
-      <p>${esc(L.text)}</p>
-      <div class="how"><span class="howh">Projects on this line</span>${on.map(p => `<button type="button" class="hrow hbtn" data-id="${p.id}"><i style="background:${L.color}"></i><div><b>${esc(p.name)}</b><span>${esc(p.how[k] || '')}</span></div></button>`).join('')}</div>`;
-    tourTxt.textContent = 'Showing the ' + L.name + ' line';
+  function showOverlap(set) {
+    const o = OVERLAP[key(set)], on = P.filter(p => key(p.lenses) === key(set));
+    light(set, on.map(p => p.id), null, false);
+    render(`
+      <span class="dvf-tag">${sw(set)}${set.map(l => LENS[l].q).join(' + ')}</span>
+      <h3>${o.title}</h3>
+      <p>${o.line}</p>
+      <div class="dvf-rows">${on.map(p => `<button type="button" class="dvf-row" data-id="${p.id}"><i style="background:#fff"></i><div><b>${esc(p.status)}</b><span>${esc(p.name)}</span></div></button>`).join('')}</div>`);
   }
-
-  function setTour(on) {
-    touring = on;
-    tourBtn.textContent = on ? 'Pause tour' : 'Resume tour';
-    tourBtn.setAttribute('aria-pressed', String(on));
-    if (on) featuredAt = performance.now();
-  }
-  tourBtn.addEventListener('click', () => {
-    if (touring) { setTour(false); feature(PROJECTS[current].id, false); }
-    else { setTour(true); feature(PROJECTS[mode === 'line' ? current : (current + 1) % PROJECTS.length].id, false); }
-  });
-
-  // ---- animation ----
-  function place(t) {
-    const d = t.pos * t.len;
-    const a = t.path.getPointAtLength(d), b = t.path.getPointAtLength(Math.min(t.len, d + 2));
-    const ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
-    const base = svg.clientWidth < 600 ? 1.7 : 1;
-    const s = base * (t.g.classList.contains('on') ? 1.3 : 1);
-    t.g.setAttribute('transform', `translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(1)}) scale(${s})`);
-    const edge = Math.min(t.pos, 1 - t.pos);
-    t.g.style.opacity = edge < 0.03 ? edge / 0.03 : '';
-    if (!t.tw) { t.tw = t.tt.getComputedTextLength ? t.tt.getComputedTextLength() + 26 : 160; t.tr.setAttribute('width', t.tw); t.tr.setAttribute('x', -t.tw / 2); }
-    const x = Math.max(t.tw / 2 + 6, Math.min(1104 - t.tw / 2 - 6, a.x));
-    t.tag.setAttribute('transform', `translate(${x.toFixed(1)} ${a.y.toFixed(1)})`);
-  }
-  let last = performance.now();
-  function frame(now) {
-    const dt = Math.min(0.05, (now - last) / 1000); last = now;
-    if (visible && !document.hidden) {
-      if (!reduce) trains.forEach(t => { t.pos = (t.pos + SPEED * dt / t.len) % 1; });
-      trains.forEach(place);
-      if (touring && mode === 'project') {
-        const k = (now - featuredAt) / TOUR_MS;
-        prog.style.width = Math.min(100, k * 100) + '%';
-        if (k >= 1) feature(PROJECTS[(current + 1) % PROJECTS.length].id, false);
-      } else prog.style.width = '0%';
-    }
-    requestAnimationFrame(frame);
-  }
-  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(svg);
-
-  setTour(touring);
-  feature('bart', false);
-  if (reduce) trains.forEach(place);
-  requestAnimationFrame(frame);
+  showMe();
 }
 </script>
 </body>
