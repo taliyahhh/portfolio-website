@@ -42,7 +42,7 @@ kbd{font:600 12px ui-monospace,Menlo,monospace;border:1px solid var(--line);bord
 <main>
   <a class="mark" href="/"><b>tj</b> Taliyah Harvey</a>
   <h1 class="code" aria-label="404">4<i></i>4</h1>
-  <p class="lede"><strong>This page ran off somewhere.</strong> While you're here, see how far you can get.</p>
+  <p class="lede"><strong>This page ran off somewhere.</strong> While you're here, help mini me dodge finals, alarms and a full inbox.</p>
   <div class="stage">
     <canvas id="runner" tabindex="0" aria-label="Runner game. Press space, up arrow, or tap to jump."></canvas>
   </div>
@@ -159,39 +159,84 @@ kbd{font:600 12px ui-monospace,Menlo,monospace;border:1px solid var(--line);bord
 
   // ============ OBSTACLES: draw, add, or remove obstacles here ============
   // Each grid row must be the same length. '.' is empty. Letters get colors below.
-  var CONE = [
-    '...oo...',
-    '...oo...',
-    '..owwo..',
-    '..oooo..',
-    '.oooooo.',
-    '.owwwwo.',
-    '.oooooo.',
-    'oooooooo',
-    'kkkkkkkk'
+  var BOOKS = [
+    'rrrrrrrrr.',
+    'rwwwwwwwr.',
+    'rrrrrrrrr.',
+    '.bbbbbbbbb',
+    '.bwwwwwwwb',
+    '.bbbbbbbbb',
+    'gggggggg..',
+    'gwwwwwwg..',
+    'gggggggg..'
   ];
-  var PAGE = [
-    'dddddd....',
-    'dffffdd...',
-    'dffffdfd..',
-    'dffffddddd',
-    'dffffffffd',
-    'dffddffffd',
-    'dfdffdfffd',
-    'dffffdfffd',
-    'dfffdffffd',
-    'dfffdffffd',
-    'dffffffffd',
-    'dfffdffffd',
-    'dddddddddd'
+  var ALARM = [
+    '.kk....kk.',
+    'kkk....kkk',
+    '..kkkkkk..',
+    '.kwwwwwwk.',
+    'kwwwkwwwwk',
+    'kwwwkwwwwk',
+    'kwwwkkkwwk',
+    'kwwwwwwwwk',
+    '.kwwwwwwk.',
+    '..kkkkkk..',
+    '.k......k.'
   ];
-  // colors: hex code, or a theme word: 'ink', 'paper', 'accent' (orange), 'soft' (grey)
+  var COFFEE = [
+    '.s..s....',
+    '..s..s...',
+    'kkkkkkk..',
+    'kwwwwwkkk',
+    'kwwwwwk.k',
+    'kwwwwwk.k',
+    'kwwwwwkkk',
+    'kwwwwwk..',
+    '.kkkkk...'
+  ];
+  var EMAIL = [
+    'kkkkkkkkkkkk',
+    'kkwwwwwwwwkk',
+    'kwkwwwwwwkwk',
+    'kwwkwwwwkwwk',
+    'kwwwkkkkwwwk',
+    'kwwwwwwwwwwk',
+    'kkkkkkkkkkkk'
+  ];
+  var BATTERY = [
+    'kkkkkkkkk.',
+    'kaawwwwwkk',
+    'kaawwwwwkk',
+    'kaawwwwwkk',
+    'kkkkkkkkk.'
+  ];
+  var GRADCAP = [
+    '.....kk.....',
+    '...kkkkkk...',
+    '.kkkkkkkkkk.',
+    'kkkkkkkkkkkk',
+    '..kkkkkkkk.a',
+    '...kkkkkk..a',
+    '...........a'
+  ];
+  // colors: hex code, or a theme word: 'ink', 'paper', 'accent' (yellow), 'soft' (grey)
   // often: how often it shows up. repeat / stack / lift / fromScore are optional.
+  var BK = { r: 'accent', b: '#3b6fd8', g: '#3a9a5b', w: 'paper' };
   var OBSTACLES = [
-    { name: 'cone',           pixels: CONE, colors: { o: 'accent', w: 'paper', k: 'ink' }, often: 4 },
-    { name: 'two cones',      pixels: CONE, colors: { o: 'accent', w: 'paper', k: 'ink' }, often: 2.5, repeat: 2 },
-    { name: 'broken page',    pixels: PAGE, colors: { d: 'ink', f: 'paper' },              often: 3 },
-    { name: 'stack of pages', pixels: PAGE, colors: { d: 'ink', f: 'paper' },              often: 1, stack: 2, fromScore: 150 }
+    { name: 'books',          pixels: BOOKS,   colors: BK, often: 3 },
+    { name: 'alarm clock',    pixels: ALARM,   colors: { k: 'ink', w: 'paper' }, often: 3 },
+    { name: 'coffee',         pixels: COFFEE,  colors: { k: 'ink', w: 'paper', s: 'soft' }, often: 2 },
+    { name: 'low battery',    pixels: BATTERY, colors: { k: 'ink', w: 'paper', a: '#d83b3b' }, often: 2 },
+    { name: 'two books',      pixels: BOOKS,   colors: BK, often: 1.5, repeat: 2, fromScore: 50 },
+    { name: 'two batteries',  pixels: BATTERY, colors: { k: 'ink', w: 'paper', a: '#d83b3b' }, often: 1.2, repeat: 2, fromScore: 60 },
+    { name: 'drained',        pixels: BATTERY, colors: { k: 'ink', w: 'paper', a: '#d83b3b' }, often: 1.2, stack: 3, fromScore: 80 },
+    { name: 'two coffees',    pixels: COFFEE,  colors: { k: 'ink', w: 'paper', s: 'soft' }, often: 1, repeat: 2, fromScore: 100 },
+    { name: 'book tower',     pixels: BOOKS,   colors: BK, often: 1.2, stack: 2, fromScore: 100 },
+    { name: 'two alarms',     pixels: ALARM,   colors: { k: 'ink', w: 'paper' }, often: 1.2, repeat: 2, fromScore: 120 },
+    { name: 'inbox pile',     pixels: EMAIL,   colors: { k: 'ink', w: 'paper' }, often: 1.5, stack: 2, fromScore: 150 },
+    { name: 'three coffees',  pixels: COFFEE,  colors: { k: 'ink', w: 'paper', s: 'soft' }, often: 0.8, repeat: 3, fromScore: 250 },
+    { name: 'grad cap',       pixels: GRADCAP, colors: { k: 'ink', a: 'accent' }, often: 1, fromScore: 300 },
+    { name: 'inbox flood',    pixels: EMAIL,   colors: { k: 'ink', w: 'paper' }, often: 0.8, repeat: 2, stack: 2, fromScore: 350 }
   ];
   // ========================================================================
 
@@ -225,7 +270,7 @@ kbd{font:600 12px ui-monospace,Menlo,monospace;border:1px solid var(--line);bord
     return { h: c.hair, c: lighten(c.hair, 0.2), s: c.skin, e: T.fg, t: c.dress, k: c.shoes };
   }
   function colorOf(v) {
-    var words = { ink: T.fg, paper: T.paper, accent: T.cone, soft: T.muted };
+    var words = { ink: T.fg, paper: T.paper, accent: T.yellow, soft: T.muted };
     return words[v] || v;
   }
   function obstaclePalette(def) {

@@ -110,12 +110,14 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .stops b{display:block;font-size:18px}
 .stops span{color:var(--muted)}
 
+.about a{text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
+.about a:hover{text-decoration-color:var(--ink)}
 /* how I think: three questions (design, technology, business) */
 .dvf{--dk:#0d0d0d;--dcard:#171717;--dcard2:#1f1f1f;--dink:#f5f5f2;--dmut:#a3a29d;--drule:#2c2c2c;--dD:#ffd200;--dT:#1aa7ff;--dB:#ff9f1c;background:var(--dk);color:var(--dink);padding-block:clamp(56px,8vw,104px);color-scheme:dark}
 .dvf .kicker{color:var(--dmut)}
-.dvf-intro{display:grid;gap:28px 56px;grid-template-columns:minmax(0,1fr);align-items:end}
-@media(min-width:900px){.dvf-intro{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
-.dvf h2{font-size:clamp(34px,4.8vw,56px);font-weight:900;letter-spacing:-.04em;line-height:1.02}
+.dvf-intro{display:block}
+.dvf-intro h2{margin-top:14px}
+.dvf h2{max-width:20ch;font-size:clamp(34px,4.8vw,56px);font-weight:900;letter-spacing:-.04em;line-height:1.02}
 .dvf h2 span{color:var(--dD)}
 .dvf-lede{margin:16px 0 0;font-size:clamp(17px,1.7vw,19px);color:#cfcec9;max-width:48ch}
 .dvf-pq{margin:0;padding:22px 24px;border-radius:18px;background:var(--dcard);position:relative}
@@ -123,6 +125,30 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .dvf-pq blockquote{margin:18px 0 0;font-size:clamp(19px,2vw,23px);font-weight:800;letter-spacing:-.02em;line-height:1.3}
 .dvf-pq em{font-style:normal;color:var(--dD)}
 .dvf-pq figcaption{margin-top:10px;font-size:13px;font-weight:600;color:var(--dmut)}
+.qz{margin:clamp(24px,3vw,36px) 0 0;padding:clamp(20px,2.4vw,28px) clamp(20px,2.6vw,32px);border-radius:20px;background:var(--dcard);border:1px solid var(--drule)}
+.qz-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.qz-label{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--dD)}
+.qz-label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--dD)}
+.qz.done .qz-label::before{content:"\2713";width:auto;height:auto;background:none}
+.qz-actions{display:flex;gap:8px}
+.qz-btn{all:unset;box-sizing:border-box;cursor:pointer;min-height:40px;padding:0 16px;border-radius:99px;background:var(--dD);color:#111;font-size:14px;font-weight:800;display:inline-flex;align-items:center}
+.qz-btn[hidden]{display:none}
+.qz-btn.ghost{background:transparent;color:var(--dink);border:2px solid var(--drule)}
+.qz-btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.qz-quote{margin:0;font-size:clamp(20px,2.4vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.7}
+.qz-blank{display:inline-flex;flex-wrap:wrap;gap:0 .45em;vertical-align:baseline}
+.qz-word{display:inline-flex;gap:3px;white-space:nowrap}
+.qz-in{width:1.05em;height:1.3em;padding:0;border:0;border-bottom:3px solid var(--dmut);background:transparent;color:var(--dD);font:inherit;font-weight:900;text-align:center;text-transform:lowercase;caret-color:var(--dD);border-radius:0;outline:none}
+.qz-in:focus{border-bottom-color:var(--dD);background:rgba(255,210,0,.08)}
+.qz-in.given{color:#fff}
+.qz-blank.right .qz-in{border-bottom-color:transparent;color:var(--dD)}
+.qz-blank.wrong .qz-in{animation:qzshake .3s}
+@keyframes qzshake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.qz-solved{color:var(--dD)}
+.qz-clue{margin:8px 0 0;min-height:22px;font-size:14px;color:#cfcec9}
+.qz figcaption{margin-top:6px;font-size:13px;font-weight:600;color:var(--dmut)}
+.qz-again{all:unset;cursor:pointer;font-size:13px;font-weight:700;color:var(--dmut);text-decoration:underline;text-underline-offset:3px}
+@media(prefers-reduced-motion:reduce){.qz-blank.wrong .qz-in{animation:none}}
 .dvf-stage{display:grid;gap:20px;grid-template-columns:minmax(0,1fr);margin-top:clamp(28px,4vw,48px)}
 @media(min-width:900px){.dvf-stage{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:stretch}}
 .dvf-diagram{background:radial-gradient(ellipse at 50% 45%,#1a1a1a 0%,var(--dk) 70%);border:1px solid var(--drule);border-radius:24px;padding:clamp(10px,2vw,24px);display:flex;flex-direction:column;justify-content:center}
@@ -202,6 +228,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
+      <a href="play.html">Play</a>
     </nav>
   </div>
 </header>
@@ -257,7 +284,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
           <span class="wcover"><img src="work/img/bart-v4-final-day.jpg" alt="" loading="lazy"><span class="wres">Live · 27 iterations in 5 days</span></span>
           <span class="wbody">
             <span class="wname">Karl's Friend Bart</span>
-            <b>What if the BART map knew it was after 9pm?</b>
+            <b>I got off at the wrong station. So I rebuilt the map.</b>
             <span class="wlabels"><span>Solo designer and developer</span><span>Web</span><span>5 days</span><span>Personal project</span></span>
             <span class="wgo">Read the case study</span>
           </span>
@@ -289,11 +316,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       <div>
         <div class="kicker"><i></i>About</div>
         <h2>Builder first, with a soft spot for people.</h2>
-        <p>I have a software background, but what I love most is making things people actually use and feel. I'm finishing a bachelor's and master's at USC in Arts, Technology and the Business of Innovation, where I get to design, prototype, code and pitch in the same week.</p>
+        <p>I have a software background, but what I love most is making things people actually use and feel. At USC I'm finishing a <a href="https://iovine-young.usc.edu/learn/undergraduate/bs-arts-technology-and-the-business-of-innovation" target="_blank" rel="noopener">B.S. in Arts, Technology and the Business of Innovation</a> at the Iovine and Young Academy and an <a href="https://viterbigradadmission.usc.edu/programs/masters/msprograms/aerospace-mechanical-engineering/ms-product-development/" target="_blank" rel="noopener">M.S. in Product Development Engineering</a> at Viterbi, so I get to design, prototype, code and pitch in the same week.</p>
       </div>
       <ol class="stops">
         <li><b>Bay Area</b><span>Where it started</span></li>
-        <li><b>USC</b><span>Bachelor's and master's, Arts, Technology and the Business of Innovation</span></li>
+        <li><b><a href="https://iovine-young.usc.edu/learn/undergraduate/bs-arts-technology-and-the-business-of-innovation" target="_blank" rel="noopener">USC Iovine and Young Academy</a></b><span>B.S., Arts, Technology and the Business of Innovation</span></li>
+        <li><b><a href="https://viterbigradadmission.usc.edu/programs/masters/msprograms/aerospace-mechanical-engineering/ms-product-development/" target="_blank" rel="noopener">USC Viterbi School of Engineering</a></b><span>M.S., Product Development Engineering</span></li>
         <li><b>Salesforce</b><span>Built Branch Out, connecting college students to open source</span></li>
         <li><b>Astera Labs</b><span>Industry experience in hardware tech</span></li>
         <li><b>Community</b><span>Alpha Kappa Alpha, BBSA and nonprofit work</span></li>
@@ -304,16 +332,23 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   <section class="dvf" id="how">
     <div class="wrap">
   <div class="dvf-intro">
-    <div>
-      <div class="kicker"><i></i>How I think about products</div>
-      <h2>Every product answers three questions. <span>I work where they meet.</span></h2>
-      <p class="dvf-lede">Do people want it? Can it be built? Will it last? That's design, technology and business, the three parts of my major. Tap a project to see how it connects.</p>
-    </div>
-    <figure class="dvf-pq">
-      <blockquote>A good product designer considers both how to <em>do things right</em> and how to <em>do the right thing</em>.</blockquote>
-      <figcaption>From ISE 545 at USC</figcaption>
-    </figure>
+    <div class="kicker"><i></i>How I think about products</div>
+    <h2>Every product answers three questions. <span>I work where they meet.</span></h2>
+    <p class="dvf-lede">Do people want it? Can it be built? Will it last? That's design, technology and business, the three parts of my major.</p>
   </div>
+
+  <figure class="qz" id="qz">
+    <div class="qz-top">
+      <span class="qz-label" id="qz-label">Fill in the blanks</span>
+      <span class="qz-actions">
+        <button type="button" class="qz-btn" id="qz-hint">Hint</button>
+        <button type="button" class="qz-btn ghost" id="qz-show" hidden>Show me</button>
+      </span>
+    </div>
+    <blockquote class="qz-quote" id="qz-quote">A good product designer considers both how to <span class="qz-blank" data-answer="do things right" data-clue="How well it gets built (3 words)"></span> and how to <span class="qz-blank" data-answer="do the right thing" data-clue="Whether it's worth building at all (4 words)"></span>.</blockquote>
+    <p class="qz-clue" id="qz-clue" aria-live="polite"></p>
+    <figcaption>From ISE 545 at USC</figcaption>
+  </figure>
 
   <div class="dvf-stage">
     <div class="dvf-diagram">
@@ -368,7 +403,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 <footer>
   <div class="wrap">
     <span>taliyahharvey.com</span>
-    <span>Designed and hand-coded by Taliyah · <a href="404.html">Feeling lost?</a></span>
+    <span>Made by Taliyah Harvey</span>
   </div>
 </footer>
 
@@ -508,6 +543,79 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       <div class="dvf-rows">${on.map(p => `<button type="button" class="dvf-row" data-id="${p.id}"><i style="background:#fff"></i><div><b>${esc(p.status)}</b><span>${esc(p.name)}</span></div></button>`).join('')}</div>`);
   }
   showMe();
+}
+</script>
+<script>
+// ===== Quote puzzle: fill in the blanks, remembered once solved =====
+{
+  const KEY = 'tj-quote-solved';
+  const store = { get: () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } }, set: v => { try { v ? localStorage.setItem(KEY, '1') : localStorage.removeItem(KEY); } catch (e) {} } };
+  const box = document.getElementById('qz'), label = document.getElementById('qz-label'), clue = document.getElementById('qz-clue');
+  const hintBtn = document.getElementById('qz-hint'), showBtn = document.getElementById('qz-show');
+  const blanks = [...box.querySelectorAll('.qz-blank')];
+  let hints = 0;
+
+  function build() {
+    blanks.forEach((b, bi) => {
+      b.className = 'qz-blank';
+      b.innerHTML = b.dataset.answer.split(' ').map((w, wi) =>
+        `<span class="qz-word">${[...w].map((c, ci) => `<input class="qz-in" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Blank ${bi + 1}, word ${wi + 1}, letter ${ci + 1}" data-c="${c}">`).join('')}</span>`).join('');
+    });
+    box.classList.remove('done');
+    label.textContent = 'Fill in the blanks';
+    hintBtn.hidden = false; showBtn.hidden = true; hints = 0; clue.textContent = '';
+  }
+  function solvedView() {
+    blanks.forEach(b => { b.className = 'qz-blank right'; b.innerHTML = `<span class="qz-solved">${b.dataset.answer}</span>`; });
+    box.classList.add('done');
+    label.textContent = 'Solved';
+    hintBtn.hidden = true; showBtn.hidden = true;
+    clue.innerHTML = '<button type="button" class="qz-again" id="qz-again">Play again</button>';
+    document.getElementById('qz-again').addEventListener('click', () => { store.set(false); build(); box.querySelector('.qz-in').focus(); });
+  }
+  const inputs = () => [...box.querySelectorAll('.qz-in')];
+  function check(b) {
+    const ins = [...b.querySelectorAll('.qz-in')];
+    if (ins.some(i => !i.value)) return;
+    const ok = ins.every(i => i.value.toLowerCase() === i.dataset.c);
+    if (ok) { b.classList.add('right'); ins.forEach(i => i.readOnly = true); }
+    else { b.classList.remove('wrong'); void b.offsetWidth; b.classList.add('wrong'); }
+    if (blanks.every(x => x.classList.contains('right'))) { store.set(true); setTimeout(solvedView, 500); }
+  }
+  box.addEventListener('input', e => {
+    const i = e.target.closest('.qz-in'); if (!i) return;
+    i.value = i.value.replace(/[^a-z]/gi, '').slice(-1).toLowerCase();
+    if (i.value) { const all = inputs(), n = all.indexOf(i); const next = all.slice(n + 1).find(x => !x.readOnly); if (next && next.closest('.qz-blank') === i.closest('.qz-blank')) next.focus(); }
+    check(i.closest('.qz-blank'));
+  });
+  box.addEventListener('keydown', e => {
+    const i = e.target.closest('.qz-in'); if (!i) return;
+    const all = inputs(), n = all.indexOf(i);
+    if (e.key === 'Backspace' && !i.value && n > 0) { e.preventDefault(); const p = all[n - 1]; if (!p.readOnly) { p.value = ''; p.focus(); } }
+    if (e.key === 'ArrowLeft' && n > 0) all[n - 1].focus();
+    if (e.key === 'ArrowRight' && n < all.length - 1) all[n + 1].focus();
+  });
+  hintBtn.addEventListener('click', () => {
+    hints++;
+    const open = blanks.filter(b => !b.classList.contains('right'));
+    if (hints === 1) clue.innerHTML = open.map(b => `<span style="display:block">Blank ${blanks.indexOf(b) + 1}: ${b.dataset.clue}</span>`).join('');
+    else if (hints === 2) {
+      open.forEach(b => { b.querySelectorAll('.qz-word').forEach(w => { const i = w.querySelector('.qz-in'); i.value = i.dataset.c; i.classList.add('given'); }); check(b); });
+    } else {
+      // reveal one more letter in each unsolved blank, starting with first letters of words
+      open.forEach(b => {
+        const ins = [...b.querySelectorAll('.qz-in')].filter(i => i.value.toLowerCase() !== i.dataset.c);
+        const firsts = [...b.querySelectorAll('.qz-word')].map(w => w.querySelector('.qz-in')).filter(i => ins.includes(i));
+        const pick = firsts[0] || ins[0];
+        if (pick) { pick.value = pick.dataset.c; pick.classList.add('given'); }
+        check(b);
+      });
+    }
+    if (hints >= 2) showBtn.hidden = false;
+  });
+  showBtn.addEventListener('click', () => { store.set(true); solvedView(); });
+
+  if (store.get()) solvedView(); else build();
 }
 </script>
 </body>
