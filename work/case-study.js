@@ -5,6 +5,8 @@
 // - Click-to-load live embed, so the page stays fast
 {
   const body = document.body;
+  // Add ?draft to the address to see the yellow "To add" boxes
+  if (new URLSearchParams(location.search).has('draft')) body.classList.add('draft');
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
