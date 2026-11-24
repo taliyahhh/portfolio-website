@@ -80,6 +80,25 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 @keyframes slide{to{transform:translateX(-50%)}}
 .banner:hover .logos{animation-play-state:paused}
 
+/* selected work */
+.works{display:grid;gap:20px;grid-template-columns:minmax(0,1fr);margin-top:28px}
+@media(min-width:900px){.works{grid-template-columns:repeat(2,minmax(0,1fr))}.wcard.big{grid-column:1/-1;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);display:grid}}
+.wcard{display:flex;flex-direction:column;border:1px solid var(--rule);border-radius:20px;overflow:hidden;text-decoration:none;background:var(--bg);transition:transform .2s,border-color .2s}
+a.wcard:hover{transform:translateY(-3px);border-color:var(--ink)}
+.wcover{position:relative;display:block;background:var(--panel);aspect-ratio:16/10;overflow:hidden}
+.wcover img{width:100%;height:100%;object-fit:cover;object-position:top}
+.wcover.alt{background:#111}.wcover.alt2{background:var(--blue)}
+.wph{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-.04em;color:#fff}
+.wres{position:absolute;left:14px;bottom:14px;padding:6px 12px;border-radius:99px;background:var(--yellow);color:#111;font-size:13px;font-weight:800}
+.wbody{display:flex;flex-direction:column;gap:10px;padding:22px 24px 24px}
+.wcard.big .wbody{justify-content:center;padding:clamp(24px,3vw,40px)}
+.wname{font-size:13px;font-weight:800;color:var(--muted)}
+.wbody b{font-size:clamp(22px,2.4vw,30px);font-weight:900;letter-spacing:-.03em;line-height:1.12}
+.wlabels{display:flex;flex-wrap:wrap;gap:6px}
+.wlabels span{font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--panel)}
+.wgo{margin-top:6px;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.wgo.muted{color:var(--muted);text-decoration:none}
+
 /* about */
 section.band{padding-block:clamp(56px,8vw,104px)}
 .about{display:grid;gap:clamp(28px,5vw,72px);grid-template-columns:minmax(0,1fr)}
@@ -175,8 +194,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   <div class="wrap">
     <a class="mark" href="#home" aria-label="Taliyah Harvey, home"><b>tj</b> <span>Taliyah Harvey</span></a>
     <nav aria-label="Sections">
+      <a href="#work">Work</a>
       <a href="#about">About</a>
-      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -191,7 +210,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <h1><span>Taliyah</span><span>Harvey</span></h1>
         <p class="lede">I build <strong>human-centered products</strong> that actually make a difference for people, mixing design, technology and business.</p>
         <div class="btns">
-          <a class="btn fill" href="#projects"><i></i>See the projects</a>
+          <a class="btn fill" href="#work"><i></i>See the work</a>
           <a class="btn" href="#contact">Say hi</a>
         </div>
       </div>
@@ -223,6 +242,43 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     </div>
   </div>
 
+  <!-- Selected work: the three strongest case studies, each one click from the homepage -->
+  <section class="band" id="work">
+    <div class="wrap">
+      <div class="kicker"><i></i>Selected work</div>
+      <h2>Three projects, start to finish</h2>
+      <div class="works">
+        <a class="wcard big" href="work/karls-friend-bart.html">
+          <span class="wcover"><img src="work/img/bart-v4-final-day.jpg" alt="" loading="lazy"><span class="wres">Live · 27 iterations in 5 days</span></span>
+          <span class="wbody">
+            <span class="wname">Karl's Friend Bart</span>
+            <b>Why is the BART map so hard to read one route at a time?</b>
+            <span class="wlabels"><span>Solo designer and developer</span><span>Web</span><span>5 days</span><span>Personal project</span></span>
+            <span class="wgo">Read the case study</span>
+          </span>
+        </a>
+        <div class="wcard soon">
+          <span class="wcover alt"><span class="wph">In Hindsight</span><span class="wres">In progress</span></span>
+          <span class="wbody">
+            <span class="wname">In Hindsight</span>
+            <b>What if your saved videos weren't stuck in folders?</b>
+            <span class="wlabels"><span>Product design and development</span><span>Web</span><span>Personal project</span></span>
+            <span class="wgo muted">Case study coming soon</span>
+          </span>
+        </div>
+        <div class="wcard soon">
+          <span class="wcover alt2"><span class="wph">Branch Out</span><span class="wres">Shipped at Salesforce</span></span>
+          <span class="wbody">
+            <span class="wname">Branch Out</span>
+            <b>How do college students find their first open source project?</b>
+            <span class="wlabels"><span>Salesforce</span><span>Web</span><span>Team project</span></span>
+            <span class="wgo muted">Case study coming soon</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="about">
     <div class="wrap about">
       <div>
@@ -244,7 +300,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     <div class="wrap">
       <div class="maphead">
         <div>
-          <div class="kicker"><i></i>Projects</div>
+          <div class="kicker"><i></i>How it connects</div>
           <h2>Three lines, one interchange.</h2>
         </div>
         <p>Arts, Technology and the Business of Innovation, drawn as a map. Each project is a train riding the lines it draws on. Tap a train to see how it connects, or tap a line to see everything on it.</p>
