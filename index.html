@@ -115,6 +115,37 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 #play.solved .bgdot{opacity:.15}
 @media(prefers-reduced-motion:reduce){.flow .cellfill,.flow .pipe,.flow .dot{transition:none}}
 
+/* ask tj */
+.ask{background:var(--panel)}
+.ask-in{display:grid;gap:clamp(24px,4vw,56px);grid-template-columns:minmax(0,1fr);align-items:start}
+@media(min-width:900px){.ask-in{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
+.ask-copy p{font-size:18px;color:var(--muted);max-width:40ch;margin:16px 0 0}
+.ask-copy .ask-note{font-size:14px}
+.ask-box{background:var(--bg);border:1px solid var(--rule);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.ask-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--rule)}
+.ask-who{display:flex;align-items:center;gap:10px;font-weight:800}
+.ask-who b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--yellow);color:#111;font-size:14px}
+.ask-tone{display:flex;padding:3px;border-radius:99px;background:var(--panel);border:1px solid var(--rule)}
+.ask-tone button{all:unset;cursor:pointer;padding:8px 14px;border-radius:99px;font-size:14px;font-weight:700;color:var(--muted)}
+.ask-tone button[aria-checked=true]{background:var(--ink);color:var(--bg)}
+.ask-tone button:focus-visible{outline:3px solid var(--yellow)}
+.ask-log{height:340px;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+.msg{max-width:85%;padding:11px 15px;border-radius:18px;font-size:16px;line-height:1.5}
+.msg.me{align-self:flex-end;background:var(--ink);color:var(--bg);border-bottom-right-radius:6px}
+.msg.tj{align-self:flex-start;background:var(--panel);border:1px solid var(--rule);border-bottom-left-radius:6px}
+.msg.tj a{display:inline-block;margin-top:6px;font-weight:800;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
+.msg.typing{color:var(--muted);letter-spacing:.2em}
+.ask-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
+.ask-chips button{all:unset;cursor:pointer;padding:8px 13px;border-radius:99px;border:1.5px solid var(--rule);font-size:14px;font-weight:700}
+.ask-chips button:hover{border-color:var(--ink)}
+.ask-chips button:focus-visible{outline:3px solid var(--yellow)}
+.ask-form{display:flex;gap:8px;padding:12px 16px 16px;border-top:1px solid var(--rule)}
+.ask-form input{flex:1;min-height:46px;padding:0 16px;border-radius:99px;border:1.5px solid var(--rule);background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
+.ask-form input:focus{outline:none;border-color:var(--ink)}
+.ask-form button{all:unset;cursor:pointer;min-height:46px;padding:0 20px;border-radius:99px;background:var(--yellow);color:#111;font-weight:800}
+.ask-form button:focus-visible{outline:3px solid var(--ink)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
 /* selected work */
 .works{display:grid;gap:20px;grid-template-columns:minmax(0,1fr);margin-top:28px}
 @media(min-width:900px){.works{grid-template-columns:repeat(2,minmax(0,1fr))}.wcard.big{grid-column:1/-1;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);display:grid}}
@@ -473,6 +504,34 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     <article class="dvf-card" id="dvf-card" aria-live="polite"></article>
   </div>
 
+    </div>
+  </section>
+
+  <!-- Ask tj: pre-written answers in two tones, drawn only from this site and my repos -->
+  <section class="band ask" id="ask" aria-labelledby="ask-title">
+    <div class="wrap ask-in">
+      <div class="ask-copy">
+        <div class="kicker"><i></i>Ask tj</div>
+        <h2 id="ask-title">Questions? Ask the mini me.</h2>
+        <p>Pick a question or type your own. Choose how you want me to answer: the interview version or the coffee chat version.</p>
+        <p class="ask-note">Answers are written by me and only use what's on this site and my GitHub. It isn't a live AI, so for anything it can't answer, just email me.</p>
+      </div>
+      <div class="ask-box">
+        <div class="ask-top">
+          <span class="ask-who"><b>tj</b> Mini Taliyah</span>
+          <div class="ask-tone" role="radiogroup" aria-label="Answer style">
+            <button type="button" role="radio" data-tone="P" aria-checked="true">Professional</button>
+            <button type="button" role="radio" data-tone="C" aria-checked="false">Casual</button>
+          </div>
+        </div>
+        <div class="ask-log" id="ask-log" aria-live="polite"></div>
+        <div class="ask-chips" id="ask-chips"></div>
+        <form class="ask-form" id="ask-form" autocomplete="off">
+          <label class="sr" for="ask-in">Ask a question</label>
+          <input id="ask-in" type="text" placeholder="Ask about my work, school, hobbies..." maxlength="160">
+          <button type="submit" aria-label="Send">Ask</button>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -849,6 +908,67 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   const first = PUZZLES.findIndex((p, k) => k >= state.cur && !state.solved.includes(p.id));
   const any = PUZZLES.findIndex(p => !state.solved.includes(p.id));
   load(first >= 0 ? first : any >= 0 ? any : state.cur);
+}
+</script>
+<script>
+{
+  const BANK = {"topics":[{"id":"hello","keys":["hi","hello","hey","yo","sup"],"weak":true,"P":"Hi, thanks for stopping by. Ask me about my work, my projects, school or what I'm looking for next.","C":"Hey! Ask me anything: projects, school, what I'm looking for, what I do for fun."},{"id":"intro","keys":["who","about you","yourself","introduce","tell me about you","who are you","taliyah","tj"],"P":"I'm Taliyah Harvey, a product-minded builder from the Bay Area. I have a software background, but what I love most is making human-centered products that people actually use and feel. I'm finishing a B.S. in Arts, Technology and the Business of Innovation and an M.S. in Product Development Engineering at USC.","C":"I'm Taliyah, or tj! Bay Area native, USC student, and someone who'd rather build the thing than just talk about it. I came up through software, but my favorite part is making stuff people actually enjoy using."},{"id":"roles","keys":["looking for","role","roles","job","hire","hiring","open to","opportunity","opportunities","position","internship","full time","career","want to do"],"P":"I'm open to product, design and innovation roles, as well as collaborations. I do my best work where design, technology and business overlap, which is exactly what I've trained for.","C":"Product, design and innovation roles are my sweet spot. Basically anywhere I get to figure out what to build and then actually help build it. Collabs and good conversations are always welcome too."},{"id":"school","keys":["usc","school","study","studying","major","degree","degrees","master","masters","bachelor","education","college","iovine","viterbi","class","classes"],"P":"At USC I'm completing a B.S. in Arts, Technology and the Business of Innovation at the Iovine and Young Academy and an M.S. in Product Development Engineering at Viterbi. In a single week I get to design, prototype, code and pitch.","C":"I'm doing a bachelor's and a master's at USC at the same time: Arts, Technology and the Business of Innovation at Iovine and Young, plus Product Development Engineering at Viterbi. So my week is design, prototype, code, pitch, repeat."},{"id":"experience","keys":["experience","worked","work history","salesforce","astera","intern","company","companies","jobs"],"P":"I've worked at Salesforce, where I built Branch Out, a platform that connects college students to open source projects, and at Astera Labs, where I gained industry experience in hardware tech.","C":"Salesforce and Astera Labs! At Salesforce I built Branch Out, which helps college students find open source projects to jump into. Astera Labs gave me a look at the hardware side of tech."},{"id":"bart","keys":["bart","map","train","transit","wrong station","favorite project","proud","best project","case study","karls friend"],"P":"Karl's Friend Bart started when I got off at the wrong station. BART's official map is static, so I rebuilt it as an interactive map in the official style: you can spotlight a line, see live trains and departures, and the whole site switches to evening service after 9pm. I designed and built it solo in five days, across 27 iterations.","C":"Honestly, it started because I got off at the wrong BART stop. The official map just sits there, so I rebuilt it to actually do things: spotlight your line, watch live trains, and see the whole site go dark for evening service. Five days, 27 iterations, all me.","link":["/work/karls-friend-bart.html","Read the case study"]},{"id":"karl","keys":["karl","fog","why karl","name"],"P":"Karl is the unofficial name locals gave San Francisco's famous fog. Every good train needs a friend, so Bart got Karl.","C":"Karl is what locals call the SF fog! Every good train needs a friend, and Bart's has been rolling over the bay forever."},{"id":"process","keys":["process","approach","framework","philosophy","how do you work","how you work","design process","think about","desirability","feasibility","viability","quote","ise 545","product sense"],"P":"I look at every product through three questions: do people want it, can it be built, and will it last? That's design, technology and business, the three parts of my major. A line from ISE 545 sums it up: a good product designer considers both how to do things right and how to do the right thing.","C":"I run everything through three questions: do people want it, can we build it, will it last? Design, tech, business. My ISE 545 class put it perfectly: do things right, and do the right thing."},{"id":"hindsight","keys":["hindsight","tiktok","saved videos","archive","favorites"],"P":"In Hindsight is a product I'm designing and developing to help people explore their saved TikTok videos (favorites, saves and reposts) in new ways instead of leaving them stuck in folders. The case study is coming soon.","C":"In Hindsight is my in-progress app for your TikTok saves, favorites and reposts, because they deserve better than a pile of folders. Case study coming soon!"},{"id":"branchout","keys":["branch out","branchout","open source"],"P":"Branch Out was a team project I built at Salesforce. It helps college students find their first open source project, matched to their skill level, languages and interests.","C":"Branch Out came out of my time at Salesforce: a site that helps college students find an open source project that fits their skills and interests. Way less scary than digging through GitHub alone."},{"id":"feefifo","keys":["fee fi","fee fi fo","fund","tax","taxes","svsd","civic","government"],"P":"Fee Fi Fo Fund shows you where your tax dollars went: type in a zip code and see what your federal, state and city governments spent money on. I designed and built it for the SVSD design competition, and a teammate created the video and mood board for our submission.","C":"Fee Fi Fo Fund! Type in a zip code and get a collage of what your governments spent your tax dollars on. I designed and coded it for the SVSD design competition, and my teammate made our video and a very fun mood board.","link":["https://feefifo.fund","Visit feefifo.fund"]},{"id":"hack","keys":["hack","hacksc","hackathon","memory mind","award","awards","won","win","accessibility"],"P":"At HackSC 2024 my team built Memory Mind, which turns study material into mnemonics set to songs for learners with cognitive disabilities. It won Most Creative Project in the Accessibility vertical.","C":"At HackSC my team made Memory Mind, which turns study notes into songs so learners with cognitive disabilities can remember them more easily. We won Most Creative Project in Accessibility!"},{"id":"fun","keys":["fun","hobby","hobbies","free time","outside of work","golf","puzzle","puzzles","sudoku","flow free","game","games","weekend","enjoy","dots"],"P":"Outside of work I love puzzles, especially Sudoku, Flow Free and word games, which is why there's a connect-the-dots board on this site. I'm also always down for a round of golf.","C":"Puzzles, all day: Sudoku, Flow Free, word games. (Did you try the dots up top?) And I'm always down for a round of golf."},{"id":"community","keys":["aka","alpha kappa alpha","bbsa","mlt","community","involved","involvement","leadership","club","clubs","organization","organizations","nonprofit","volunteer","sorority","girl gains","youth advocates"],"P":"I'm involved with Alpha Kappa Alpha, USC BBSA, MLT, Youth Advocates for Change and Girl Gains Lifting Club, along with nonprofit work. Community is a big part of why I care about building for people.","C":"Alpha Kappa Alpha, BBSA, MLT, Youth Advocates for Change, Girl Gains Lifting Club... I love being around people who build things and lift each other up."},{"id":"bay","keys":["bay area","from","hometown","home","grow up","grew up","san francisco","sf","where are you"],"P":"I'm a Bay Area native. BART is how I've always gotten around home, which is how Karl's Friend Bart came to be.","C":"Bay Area, born and raised! BART was how I got around home, hence the whole map project."},{"id":"skills","keys":["skill","skills","tools","code","coding","languages","tech stack","stack","technical","developer","engineer","javascript","build"],"P":"I have a software background and build my own projects end to end. Karl's Friend Bart, for example, is a live site built without a framework that pulls real-time data from BART's public API. What I care about most is pairing that technical side with strong design and clear product thinking.","C":"I can design it and build it. My BART map is plain web code, no framework, pulling live data from BART's API. But the fun part for me is the product thinking that decides what's worth building."},{"id":"contact","keys":["contact","email","reach","linkedin","resume","cv","connect","get in touch","github","talk"],"P":"The best way to reach me is email at tjharvey@usc.edu. You can also find me on LinkedIn at /in/taliyah-harvey, see my code on GitHub at @taliyahhh, or open my resume in the Contact section below.","C":"Email me at tjharvey@usc.edu! I'm also on LinkedIn (/in/taliyah-harvey) and GitHub (@taliyahhh), and my resume is right below in Contact.","link":["mailto:tjharvey@usc.edu","Email me"]}],"fallback":{"P":"That one isn't covered on my site yet. Email me at tjharvey@usc.edu and I'll answer it directly.","C":"Ooh, my site doesn't cover that one. Shoot me an email at tjharvey@usc.edu and ask me for real!"}};
+  const CHIPS = [['Who are you?','intro'],['What roles are you looking for?','roles'],['Tell me about the BART map','bart'],['How do you approach products?','process'],["What's your experience?",'experience'],['What do you do for fun?','fun'],['Any awards?','hack'],['How can I reach you?','contact']];
+  const $ = x => document.getElementById(x);
+  const log = $('ask-log'), chips = $('ask-chips'), form = $('ask-form'), input = $('ask-in');
+  const byId = Object.fromEntries(BANK.topics.map(t => [t.id, t]));
+  let tone = 'P'; try { tone = localStorage.getItem('tj-ask-tone') || 'P'; } catch (e) {}
+  const history = [];
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function norm(s) { return ' ' + s.toLowerCase().replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim() + ' '; }
+  function match(q) {
+    const n = norm(q); let best = null, score = 0;
+    for (const t of BANK.topics) {
+      let sc = 0;
+      for (const k of t.keys) if (n.includes(' ' + k + ' ') || (k.length > 4 && n.includes(' ' + k))) sc += k.includes(' ') ? 3 : (t.weak ? 0.5 : 2);
+      if (sc > score) { score = sc; best = t.id; }
+    }
+    return score > 0 ? best : null;
+  }
+  function answerEl(id) {
+    const d = document.createElement('div'); d.className = 'msg tj';
+    const t = id ? byId[id] : null;
+    d.append(document.createTextNode(t ? t[tone] : BANK.fallback[tone]));
+    const link = t ? t.link : ['mailto:tjharvey@usc.edu', 'Email me'];
+    if (link) {
+      const a = document.createElement('a'); a.href = link[0]; a.textContent = link[1];
+      if (/^https?:/.test(link[0])) { a.target = '_blank'; a.rel = 'noopener'; }
+      d.append(document.createElement('br'), a);
+    }
+    return d;
+  }
+  function bubble(cls, text) { const d = document.createElement('div'); d.className = 'msg ' + cls; d.textContent = text; return d; }
+  function scroll() { log.scrollTop = log.scrollHeight; }
+  function ask(q, id) {
+    const topic = id || match(q);
+    history.push({ q, topic });
+    log.append(bubble('me', q)); scroll();
+    const dots = bubble('tj typing', '...'); log.append(dots); scroll();
+    setTimeout(() => { dots.replaceWith(answerEl(topic)); scroll(); }, calm ? 0 : 450);
+  }
+  function rerender() {
+    log.textContent = '';
+    log.append(answerEl('hello'));
+    for (const h of history) { log.append(bubble('me', h.q), answerEl(h.topic)); }
+    scroll();
+  }
+  document.querySelectorAll('.ask-tone button').forEach(b => {
+    b.setAttribute('aria-checked', b.dataset.tone === tone);
+    b.addEventListener('click', () => {
+      tone = b.dataset.tone; try { localStorage.setItem('tj-ask-tone', tone); } catch (e) {}
+      document.querySelectorAll('.ask-tone button').forEach(x => x.setAttribute('aria-checked', x === b));
+      rerender();   // same questions, answered in the new style
+    });
+  });
+  CHIPS.forEach(([q, id]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = q; b.addEventListener('click', () => ask(q, id)); chips.append(b); });
+  form.addEventListener('submit', e => { e.preventDefault(); const q = input.value.trim(); if (!q) return; input.value = ''; ask(q); });
+  rerender();
 }
 </script>
 </body>
