@@ -146,6 +146,41 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 .ask-form button:focus-visible{outline:3px solid var(--ink)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
+/* beyond the job */
+.beyond{padding-block:clamp(48px,7vw,96px);border-top:1px solid var(--rule);overflow:hidden}
+.by-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px}
+.by-head h2{margin:12px 0 0}
+.by-ctrl{display:flex;align-items:center;gap:10px}
+.by-count{font-weight:700;color:var(--muted);margin-right:6px;font-variant-numeric:tabular-nums}
+.by-count b{color:var(--ink)}
+.by-arrow{all:unset;cursor:pointer;width:48px;height:48px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-size:20px;font-weight:800}
+.by-arrow:hover{background:var(--ink);color:var(--bg)}
+.by-arrow:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.by-arrow[disabled]{opacity:.3;cursor:default;background:none;color:var(--ink)}
+.by-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;margin-top:32px;padding:4px max(4vw,16px) 12px;scroll-padding-inline:max(4vw,16px);scrollbar-width:none}
+@media(min-width:1180px){.by-track{padding-inline:calc((100vw - 1100px)/2 + max(4vw,16px) - 4vw);scroll-padding-inline:calc((100vw - 1100px)/2)}}
+.by-track::-webkit-scrollbar{display:none}
+.by-track:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
+.by-card{flex:0 0 clamp(250px,28vw,320px);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;border:1px solid var(--rule);background:var(--bg);transition:transform .25s}
+.by-card:hover{transform:translateY(-4px)}
+.by-art{position:relative;aspect-ratio:1/1;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
+.by-art img{position:absolute;top:18px;left:18px;width:52px;height:52px;object-fit:contain;border-radius:12px;background:#fff;padding:6px}
+.by-art strong{font-size:clamp(48px,5.4vw,68px);font-weight:900;letter-spacing:-.05em;line-height:.95}
+.by-art small{font-size:15px;font-weight:600;max-width:24ch;opacity:.85}
+.t-y .by-art{background:#ffd200;color:#111}
+.t-k .by-art{background:#111;color:#f5f5f2}
+.t-b .by-art{background:#1aa7ff;color:#08131c}
+.t-o .by-art{background:#ff9f1c;color:#1d1204}
+.t-w .by-art{background:#f1efe8;color:#111}
+.t-p .by-art{background:#f7b6c9;color:#123d20}
+.by-meta{padding:18px 20px 22px;display:flex;flex-direction:column;gap:4px}
+.by-meta h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.01em}
+.by-meta p{margin:0;color:var(--muted);font-size:15px}
+.by-meta em{font-style:normal;font-weight:700;font-size:14px;margin-top:6px}
+.by-bar{height:3px;background:var(--rule);border-radius:3px;margin-top:22px;overflow:hidden}
+.by-bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .2s}
+@media(prefers-reduced-motion:reduce){.by-track{scroll-behavior:auto}.by-card{transition:none}.by-card:hover{transform:none}}
+
 /* selected work */
 .works{display:grid;gap:20px;grid-template-columns:minmax(0,1fr);margin-top:28px}
 @media(min-width:900px){.works{grid-template-columns:repeat(2,minmax(0,1fr))}.wcard.big{grid-column:1/-1;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);display:grid}}
@@ -175,8 +210,8 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .stops li:last-child{border-bottom:0}
 .stops b{display:block;font-size:18px}
 .stops span{color:var(--muted)}
-.stops .role{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;font-style:normal;font-weight:600;font-size:15px;margin:2px 0 4px}
-.stops .role em{font-style:normal;font-weight:600;color:var(--muted);white-space:nowrap}
+.stops .role{display:block;font-style:normal;font-weight:600;font-size:15px;margin:2px 0 0}
+.stops .role em{display:block;font-style:normal;font-weight:600;color:var(--muted);margin-top:2px}
 .grp .tags{border-top:0;padding-top:4px;margin-top:4px}
 .full-resume{display:inline-block;margin-top:18px;font-weight:800}
 
@@ -358,7 +393,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       <div class="fl-copy">
         <div class="kicker"><i></i>Before you scroll</div>
         <h2 id="fl-title">Connect the dots.</h2>
-        <p>It's how I like to work and live: linking design, tech and business, people and ideas, until the bigger picture shows up. It's also why I love Sudoku, Flow Free and word games.</p>
+        <p>It's how I work: design, tech, business, people. Puzzles are how I unwind.</p>
         <ol class="fl-how">
           <li>Drag from a dot to its matching color.</li>
           <li>Lines can't cross or share a square.</li>
@@ -442,28 +477,65 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <div class="grp">
           <h3>Professional experience</h3>
           <ul class="stops">
-            <li><b>Salesforce</b><i class="role">Software Engineering Intern, Anypoint Code Builder (MuleSoft)<em>May–Aug 2026</em></i><span>Solo engineer on an API management feature for a VS Code extension used by 64,000+ developers, plus a conversational “Vibes Skill” for its AI agent. Top 4 of 36 intern teams at the Futureforce hackathon.</span></li>
-            <li><b>Salesforce</b><i class="role">Software Engineering Pre-Intern, Futureforce Tech Launchpad<em>Jun–Aug 2025</em></i><span>1 of 30 students picked from 3,000+ applicants. Built Branch Out on a team of 3, connecting college students to open source.</span></li>
-            <li><b>Astera Labs</b><i class="role">High School Intern, Tech Track<em>Jun–Jul 2022</em></i><span>Rotated through hardware, software, marketing and sales.</span></li>
+            <li><b>Salesforce</b><i class="role">Software Engineering Intern, Anypoint Code Builder (MuleSoft)<em>May–Aug 2026</em></i></li>
+            <li><b>Salesforce</b><i class="role">Software Engineering Pre-Intern, Futureforce Tech Launchpad<em>Jun–Aug 2025</em></i></li>
+            <li><b>Astera Labs</b><i class="role">High School Intern, Tech Track<em>Jun–Jul 2022</em></i></li>
           </ul>
         </div>
-        <div class="grp">
-          <h3>Projects, leadership and community</h3>
-          <ul class="stops">
-            <li><b>HackSC SoCal Tech Week</b><i class="role">Team Lead and Pitch Presenter, Memory Mind<em>Nov 2024</em></i><span>My pitch led the judges to create a new “Most Creative” award in the accessibility track.</span></li>
-            <li><b>Black Business Student Association</b><i class="role">Vice President<em>2025–present</em></i><span>Events, sponsorships and board operations.</span></li>
-            <li><b>Management Leadership for Tomorrow</b><i class="role">Career Prep Fellow<em>2025–present</em></i><span>Selected from 3,000+ applicants for an 18+ month leadership program.</span></li>
-            <li><b>Spark SC Activist Incubator</b><i class="role">Project Lead, Hygiene Kit Assembly<em>Fall 2024</em></i><span>Secured a grant and hosted an event that donated 200 hygiene kits to Midnight Mission.</span></li>
-            <li><b>Looking Glass, USC New Venture Seed</b><i class="role">Chief Technical Officer<em>Jan–Feb 2025</em></i><span>Set the product design vision for a B2B social platform; reached the quarterfinals.</span></li>
-          </ul>
-          <ul class="tags">
-            <li>Alpha Kappa Alpha Sorority, Inc.</li><li>Youth Advocates for Change</li><li>Princess Polly Campus Ambassador</li>
-          </ul>
           <a class="full-resume" href="https://drive.google.com/file/d/1bd_ZmiNHnVtcSxHFkS7MbYG4A5ucGU3_/view?usp=sharing" target="_blank" rel="noopener">See my full resume</a>
-        </div>
       </div>
       </div>
     </div>
+  </section>
+
+  <!-- Beyond the job: a full-width, swipeable gallery of projects, leadership and community -->
+  <section class="beyond" id="beyond" aria-labelledby="by-title">
+    <div class="wrap by-head">
+      <div>
+        <div class="kicker"><i></i>Beyond the job</div>
+        <h2 id="by-title">Projects, leadership and community.</h2>
+      </div>
+      <div class="by-ctrl">
+        <span class="by-count" aria-live="polite"><b id="by-now">01</b> / <span id="by-total">08</span></span>
+        <button type="button" class="by-arrow" id="by-prev" aria-label="Previous">&larr;</button>
+        <button type="button" class="by-arrow" id="by-next" aria-label="Next">&rarr;</button>
+      </div>
+    </div>
+    <div class="by-track" id="by-track" tabindex="0" aria-label="Projects, leadership and community, scroll sideways">
+      <article class="by-card t-y">
+        <div class="by-art"><strong>New award</strong><small>My pitch led the judges to create “Most Creative” in accessibility</small></div>
+        <div class="by-meta"><h3>Memory Mind</h3><p>Team Lead and Pitch Presenter · HackSC SoCal Tech Week</p><em>Nov 2024</em></div>
+      </article>
+      <article class="by-card t-k">
+        <div class="by-art"><strong>200</strong><small>hygiene kits donated to Midnight Mission</small></div>
+        <div class="by-meta"><h3>Hygiene Kit Assembly</h3><p>Project Lead · Spark SC Activist Incubator</p><em>Fall 2024</em></div>
+      </article>
+      <article class="by-card t-b">
+        <div class="by-art"><img src="assets/logos/bbsa.png" alt="" loading="lazy"><strong>VP</strong><small>events, sponsors and board operations</small></div>
+        <div class="by-meta"><h3>USC BBSA</h3><p>Vice President · Black Business Student Association</p><em>2025–present</em></div>
+      </article>
+      <article class="by-card t-o">
+        <div class="by-art"><img src="assets/logos/mlt.png" alt="" loading="lazy"><strong>3,000+</strong><small>applicants for an 18+ month fellowship</small></div>
+        <div class="by-meta"><h3>MLT</h3><p>Career Prep Fellow · Management Leadership for Tomorrow</p><em>2025–present</em></div>
+      </article>
+      <article class="by-card t-w">
+        <div class="by-art"><strong>CTO</strong><small>product vision for a B2B social platform, quarterfinalist</small></div>
+        <div class="by-meta"><h3>Looking Glass</h3><p>Chief Technical Officer · USC New Venture Seed</p><em>Jan–Feb 2025</em></div>
+      </article>
+      <article class="by-card t-p">
+        <div class="by-art"><img src="assets/logos/aka.png" alt="" loading="lazy"><strong>Ivy</strong><small>sisterhood, scholarship and service</small></div>
+        <div class="by-meta"><h3>AKA</h3><p>Member · Alpha Kappa Alpha Sorority, Inc.</p></div>
+      </article>
+      <article class="by-card t-k">
+        <div class="by-art"><img src="assets/logos/ya4c.webp" alt="" loading="lazy"><strong>Advocacy</strong><small>youth-led change</small></div>
+        <div class="by-meta"><h3>YA4C</h3><p>Member · Youth Advocates for Change</p></div>
+      </article>
+      <article class="by-card t-y">
+        <div class="by-art"><strong>Campus</strong><small>ambassador for the fashion brand</small></div>
+        <div class="by-meta"><h3>Princess Polly</h3><p>Campus Ambassador</p></div>
+      </article>
+    </div>
+    <div class="wrap"><div class="by-bar"><i id="by-fill"></i></div></div>
   </section>
 
   <section class="dvf" id="how">
@@ -983,6 +1055,26 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   CHIPS.forEach(([q, id]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = q; b.addEventListener('click', () => ask(q, id)); chips.append(b); });
   form.addEventListener('submit', e => { e.preventDefault(); const q = input.value.trim(); if (!q) return; input.value = ''; ask(q); });
   rerender();
+}
+</script>
+<script>
+{
+  const track = document.getElementById('by-track'), cards = [...track.children];
+  const now = document.getElementById('by-now'), fill = document.getElementById('by-fill');
+  const prev = document.getElementById('by-prev'), next = document.getElementById('by-next');
+  document.getElementById('by-total').textContent = String(cards.length).padStart(2, '0');
+  const step = () => cards[1].offsetLeft - cards[0].offsetLeft;
+  function update() {
+    const max = track.scrollWidth - track.clientWidth;
+    const i = Math.min(cards.length - 1, Math.round(track.scrollLeft / step()));
+    now.textContent = String(max - track.scrollLeft < 4 ? cards.length : i + 1).padStart(2, '0');
+    fill.style.width = (max > 0 ? Math.max(8, track.scrollLeft / max * 100) : 100) + '%';
+    prev.disabled = track.scrollLeft < 4; next.disabled = max - track.scrollLeft < 4;
+  }
+  prev.addEventListener('click', () => track.scrollBy({ left: -step() }));
+  next.addEventListener('click', () => track.scrollBy({ left: step() }));
+  track.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); } });
+  track.addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); update();
 }
 </script>
 </body>
