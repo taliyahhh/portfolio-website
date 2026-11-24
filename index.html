@@ -51,7 +51,6 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 .top nav a{text-decoration:none;font-weight:600;font-size:15px;padding:10px 12px;border-radius:99px}
 .top nav a:hover{background:var(--panel)}
 @media(max-width:600px){.mark span{display:none}.top nav{flex-wrap:nowrap;gap:0}.top nav a{padding:10px 7px;font-size:14px}}
-@media(max-width:480px){.top nav a[href="play.html"]{display:none}}
 
 /* hero */
 .hero{padding-block:clamp(36px,6vw,84px) clamp(28px,4vw,56px)}
@@ -80,6 +79,30 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 .logos .wide{height:46px}
 @keyframes slide{to{transform:translateX(-50%)}}
 .banner:hover .logos{animation-play-state:paused}
+
+/* puzzle */
+.flow{background:#0d0d0d;color:#f5f5f2;color-scheme:dark;padding-block:clamp(44px,6vw,80px)}
+.fl-in{display:grid;gap:clamp(24px,4vw,56px);align-items:center;grid-template-columns:minmax(0,1fr)}
+@media(min-width:900px){.fl-in{grid-template-columns:minmax(0,1fr) minmax(0,460px)}}
+.fl-copy p{color:#cfcec9;font-size:18px;max-width:44ch;margin:16px 0 0}
+.fl-status{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:22px;font-size:14px;font-weight:700;color:#a3a29d}
+.fl-status b{color:#f5f5f2}
+.fl-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.fl-btn{all:unset;box-sizing:border-box;cursor:pointer;min-height:44px;padding:0 20px;border-radius:99px;font-weight:800;font-size:15px;display:inline-flex;align-items:center;border:2px solid #2c2c2c;color:#f5f5f2}
+.fl-btn.fill{background:#ffd200;color:#111;border-color:#ffd200}
+.fl-btn:focus-visible{outline:3px solid #ffd200;outline-offset:3px}
+.fl-done{display:none;margin-top:22px;padding:18px 20px;border-radius:16px;background:#171717;border:1px solid #2c2c2c}
+.fl-done h3{margin:0;font-size:24px;font-weight:900;letter-spacing:-.02em}
+.fl-done p{margin:6px 0 14px;font-size:16px}
+#play.solved .fl-done{display:block}
+#play.solved .fl-btns,#play.solved .fl-status{display:none}
+.fl-board{width:100%;max-width:460px;justify-self:center;border-radius:18px;background:#171717;border:1px solid #2c2c2c;padding:10px;touch-action:none;user-select:none;-webkit-user-select:none}
+.fl-board svg{display:block;width:100%;height:auto;cursor:pointer}
+.flow .cellfill,.flow .pipe,.flow .dot{transition:opacity .6s,fill .6s}
+#play.solved .bgpipe{opacity:.12}
+#play.solved .bgfill{opacity:0}
+#play.solved .bgdot{opacity:.15}
+@media(prefers-reduced-motion:reduce){.flow .cellfill,.flow .pipe,.flow .dot{transition:none}}
 
 /* selected work */
 .works{display:grid;gap:20px;grid-template-columns:minmax(0,1fr);margin-top:28px}
@@ -111,6 +134,12 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .stops b{display:block;font-size:18px}
 .stops span{color:var(--muted)}
 
+.groups{display:flex;flex-direction:column;gap:30px}
+.grp h3{margin:0 0 10px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tags{list-style:none;margin:0;padding:14px 0 0;border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:8px}
+.tags li{padding:7px 14px;border-radius:99px;background:var(--panel);border:1px solid var(--rule);font-weight:700;font-size:15px}
+.about p.offclock{display:inline-flex;align-items:center;gap:10px;margin-top:28px;padding:12px 18px;border-radius:14px;background:var(--panel);font-size:17px;font-weight:600}
+.about .offclock span{font-size:22px}
 .about a{text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
 .about a:hover{text-decoration-color:var(--ink)}
 /* how I think: three questions (design, technology, business) */
@@ -214,6 +243,8 @@ button.dvf-row:focus-visible{outline:3px solid var(--dD)}
 .links a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 4px;border-bottom:1px solid var(--rule);text-decoration:none;font-size:22px;font-weight:800;letter-spacing:-.02em}
 .links a:hover{padding-left:12px}
 .links a span{font-size:15px;font-weight:500;color:var(--muted)}
+.links a u{text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:5px}
+.links a:hover u{text-decoration-color:var(--ink)}
 footer{border-top:1px solid var(--rule)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:26px;font-size:14px;color:var(--muted)}
 
@@ -224,12 +255,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 
 <header class="top">
   <div class="wrap">
-    <a class="mark" href="#home" aria-label="Taliyah Harvey, home"><b>tj</b> <span>Taliyah Harvey</span></a>
+    <a class="mark" href="/" aria-label="Taliyah Harvey, home"><b>tj</b> <span>Taliyah Harvey</span></a>
     <nav aria-label="Sections">
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="play.html">Play</a>
       <a href="https://drive.google.com/file/d/1bd_ZmiNHnVtcSxHFkS7MbYG4A5ucGU3_/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
     </nav>
   </div>
@@ -276,6 +306,30 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     </div>
   </div>
 
+  <!-- Puzzle: a Flow-style board where every solution spells "tj" -->
+  <section class="flow" id="play" aria-labelledby="fl-title">
+    <div class="wrap fl-in">
+      <div class="fl-copy">
+        <div class="kicker"><i></i>Before you scroll</div>
+        <h2 id="fl-title">Connect the dots.</h2>
+        <p>I love Sudoku, Flow Free and word games, so here's a small one. Drag to join each pair of matching dots. Lines can't cross, and every square needs filling. Finish it and see what appears.</p>
+        <div class="fl-status" aria-live="polite"><span>Pairs <b id="fl-pairs">0</b> of <b id="fl-total">0</b></span><span>Board <b id="fl-fill">0%</b> filled</span></div>
+        <div class="fl-btns">
+          <button type="button" class="fl-btn" id="fl-reset">Start over</button>
+          <button type="button" class="fl-btn" id="fl-solve">Show me the answer</button>
+        </div>
+        <div class="fl-done">
+          <h3>That's me: tj.</h3>
+          <p>Every way to solve this board spells my initials. Thanks for playing.</p>
+          <button type="button" class="fl-btn fill" id="fl-again">Play again</button>
+        </div>
+      </div>
+      <div class="fl-board">
+        <svg id="fl-svg" viewBox="0 0 1000 1000" role="img" aria-label="Puzzle board, 10 by 10 squares with 20 pairs of colored dots"></svg>
+      </div>
+    </div>
+  </section>
+
   <!-- Selected work: the three strongest case studies, each one click from the homepage -->
   <section class="band" id="work">
     <div class="wrap">
@@ -319,15 +373,30 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <div class="kicker"><i></i>About</div>
         <h2>Builder first, with a soft spot for people.</h2>
         <p>I have a software background, but what I love most is making things people actually use and feel. At USC I'm finishing a <a href="https://iovine-young.usc.edu/learn/undergraduate/bs-arts-technology-and-the-business-of-innovation" target="_blank" rel="noopener">B.S. in Arts, Technology and the Business of Innovation</a> at the Iovine and Young Academy and an <a href="https://viterbigradadmission.usc.edu/programs/masters/msprograms/aerospace-mechanical-engineering/ms-product-development/" target="_blank" rel="noopener">M.S. in Product Development Engineering</a> at Viterbi, so I get to design, prototype, code and pitch in the same week.</p>
+        <p class="offclock"><span aria-hidden="true">⛳</span> Off the clock: Bay Area native, and always down for a round of golf.</p>
       </div>
-      <ol class="stops">
-        <li><b>Bay Area</b><span>Where it started</span></li>
-        <li><b><a href="https://iovine-young.usc.edu/learn/undergraduate/bs-arts-technology-and-the-business-of-innovation" target="_blank" rel="noopener">USC Iovine and Young Academy</a></b><span>B.S., Arts, Technology and the Business of Innovation</span></li>
-        <li><b><a href="https://viterbigradadmission.usc.edu/programs/masters/msprograms/aerospace-mechanical-engineering/ms-product-development/" target="_blank" rel="noopener">USC Viterbi School of Engineering</a></b><span>M.S., Product Development Engineering</span></li>
-        <li><b>Salesforce</b><span>Built Branch Out, connecting college students to open source</span></li>
-        <li><b>Astera Labs</b><span>Industry experience in hardware tech</span></li>
-        <li><b>Community</b><span>Alpha Kappa Alpha, BBSA and nonprofit work</span></li>
-      </ol>
+      <div class="groups">
+        <div class="grp">
+          <h3>Education</h3>
+          <ul class="stops">
+            <li><b><a href="https://iovine-young.usc.edu/learn/undergraduate/bs-arts-technology-and-the-business-of-innovation" target="_blank" rel="noopener">USC Iovine and Young Academy</a></b><span>B.S., Arts, Technology and the Business of Innovation</span></li>
+            <li><b><a href="https://viterbigradadmission.usc.edu/programs/masters/msprograms/aerospace-mechanical-engineering/ms-product-development/" target="_blank" rel="noopener">USC Viterbi School of Engineering</a></b><span>M.S., Product Development Engineering</span></li>
+          </ul>
+        </div>
+        <div class="grp">
+          <h3>Experience</h3>
+          <ul class="stops">
+            <li><b>Salesforce</b><span>Built Branch Out, connecting college students to open source</span></li>
+            <li><b>Astera Labs</b><span>Industry experience in hardware tech</span></li>
+          </ul>
+        </div>
+        <div class="grp">
+          <h3>Leadership and community</h3>
+          <ul class="tags">
+            <li>Alpha Kappa Alpha</li><li>USC BBSA</li><li>MLT</li><li>Youth Advocates for Change</li><li>Girl Gains Lifting Club</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -394,10 +463,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <p>Open to product, design and innovation roles, collaborations and good conversations.</p>
       </div>
       <ul class="links">
-        <li><a href="mailto:tjharvey@usc.edu">Email <span>tjharvey@usc.edu</span></a></li>
-        <li><a href="https://www.linkedin.com/in/taliyah-harvey" target="_blank" rel="noopener">LinkedIn <span>/in/taliyah-harvey</span></a></li>
-        <li><a href="https://github.com/taliyahhh" target="_blank" rel="noopener">GitHub <span>@taliyahhh</span></a></li>
-        <li><a href="https://drive.google.com/file/d/1bd_ZmiNHnVtcSxHFkS7MbYG4A5ucGU3_/view?usp=sharing" target="_blank" rel="noopener">Resume <span>PDF on Google Drive</span></a></li>
+        <li><a href="mailto:tjharvey@usc.edu"><u>Email</u> <span>tjharvey@usc.edu</span></a></li>
+        <li><a href="https://www.linkedin.com/in/taliyah-harvey" target="_blank" rel="noopener"><u>LinkedIn</u> <span>/in/taliyah-harvey</span></a></li>
+        <li><a href="https://github.com/taliyahhh" target="_blank" rel="noopener"><u>GitHub</u> <span>@taliyahhh</span></a></li>
+        <li><a href="https://drive.google.com/file/d/1bd_ZmiNHnVtcSxHFkS7MbYG4A5ucGU3_/view?usp=sharing" target="_blank" rel="noopener"><u>Resume</u> <span>PDF on Google Drive</span></a></li>
       </ul>
     </div>
   </section>
@@ -406,7 +475,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 <footer>
   <div class="wrap">
     <span>taliyahharvey.com</span>
-    <a href="play.html">Play a puzzle</a>
     <span>Made by Taliyah Harvey</span>
   </div>
 </footer>
@@ -620,6 +688,121 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   showBtn.addEventListener('click', () => { store.set(true); solvedView(); });
 
   if (store.get()) solvedView(); else build();
+}
+</script>
+<script>
+{
+  // Each path is one solution line; its first and last cells are the dots.
+  // The first six are the letters (t in yellows, j in blues). The solver checked that
+  // every valid solution colors the letter cells exactly this way.
+  const SOL = [[[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2],[8,3],[8,4]],[[0,2],[1,2]],[[2,0],[2,1]],[[2,3],[2,4]],[[3,8],[4,8],[5,8],[6,8],[7,8],[8,8],[9,8],[9,7],[9,6],[9,5],[8,5]],[[0,8],[1,8]],[[1,1],[1,0],[0,0],[0,1]],[[2,5],[2,6],[3,6],[3,5],[3,4],[3,3]],[[0,4],[0,5],[0,6],[0,7],[1,7],[2,7],[2,8]],[[3,9],[2,9],[1,9],[0,9]],[[0,3],[1,3],[1,4],[1,5],[1,6]],[[8,0],[9,0],[9,1],[9,2],[9,3],[9,4]],[[4,9],[5,9],[6,9],[7,9],[8,9],[9,9]],[[7,5],[7,4],[7,3]],[[6,3],[6,4],[5,4]],[[7,0],[6,0],[5,0],[4,0],[3,0]],[[8,1],[7,1],[6,1],[5,1],[4,1],[3,1]],[[5,3],[4,3],[4,4],[4,5]],[[4,6],[5,6],[5,5],[6,5],[6,6]],[[8,7],[8,6],[7,6],[7,7],[6,7],[5,7],[4,7],[3,7]]];
+  const LETTERS = 6;
+  const COLORS = ['#ffd200', '#fff07a', '#ffb000', '#ffe14d', '#1aa7ff', '#8fdcff',
+    '#e0607e', '#43b581', '#b07ee8', '#ff7b54', '#6c8cff', '#c9a26b', '#3fc5b8', '#e88fd0', '#9ccc65', '#d9534f', '#8d99ae', '#f08a24', '#5ab0a0', '#b5838d'];
+  const N = 10, S = 100, KEY = 'tj-flow-solved';
+  const svg = document.getElementById('fl-svg'), main = document.getElementById('play');
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (t, a, p) => { const n = document.createElementNS(NS, t); for (const k in a) n.setAttribute(k, a[k]); if (p) p.appendChild(n); return n; };
+  const id = (r, c) => r * N + c, rc = i => [Math.floor(i / N), i % N];
+  const ends = SOL.map(p => [id(...p[0]), id(...p[p.length - 1])]);
+  const endOf = {}; ends.forEach((e, k) => { endOf[e[0]] = k; endOf[e[1]] = k; });
+  document.getElementById('fl-total').textContent = SOL.length;
+
+  // layers
+  const gFill = el('g', {}, svg), gGrid = el('g', {}, svg), gPipe = el('g', {}, svg), gDot = el('g', {}, svg);
+  for (let i = 0; i <= N; i++) {
+    el('line', { x1: i * S, y1: 0, x2: i * S, y2: N * S, stroke: '#2a2a2a', 'stroke-width': 2 }, gGrid);
+    el('line', { x1: 0, y1: i * S, x2: N * S, y2: i * S, stroke: '#2a2a2a', 'stroke-width': 2 }, gGrid);
+  }
+  const fills = [];
+  for (let i = 0; i < N * N; i++) { const [r, c] = rc(i); fills.push(el('rect', { x: c * S + 2, y: r * S + 2, width: S - 4, height: S - 4, rx: 10, fill: 'transparent', class: 'cellfill' }, gFill)); }
+  const pipes = SOL.map((_, k) => el('polyline', { fill: 'none', stroke: COLORS[k], 'stroke-width': 34, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', class: 'pipe ' + (k < LETTERS ? 'lpipe' : 'bgpipe') }, gPipe));
+  ends.forEach((e, k) => e.forEach(i => { const [r, c] = rc(i); el('circle', { cx: c * S + S / 2, cy: r * S + S / 2, r: 34, fill: COLORS[k], class: 'dot ' + (k < LETTERS ? 'ldot' : 'bgdot') }, gDot); }));
+
+  let paths = SOL.map(() => []);        // cell ids, starting at one dot
+  let owner = new Array(N * N).fill(-1);
+  let drawing = -1, solved = false;
+
+  const connected = k => { const p = paths[k]; if (p.length < 2) return false; const a = p[0], b = p[p.length - 1]; return (a === ends[k][0] && b === ends[k][1]) || (a === ends[k][1] && b === ends[k][0]); };
+  function rebuildOwner() { owner.fill(-1); paths.forEach((p, k) => p.forEach(i => owner[i] = k)); }
+  function render() {
+    paths.forEach((p, k) => pipes[k].setAttribute('points', p.map(i => { const [r, c] = rc(i); return `${c * S + S / 2},${r * S + S / 2}`; }).join(' ')));
+    fills.forEach((f, i) => {
+      const k = owner[i];
+      f.setAttribute('fill', k < 0 ? 'transparent' : COLORS[k]);
+      f.setAttribute('opacity', k < 0 ? 0 : (solved && k < LETTERS ? .9 : .22));
+      f.setAttribute('class', 'cellfill ' + (k < 0 ? '' : k < LETTERS ? 'lfill' : 'bgfill'));
+    });
+    const done = paths.filter((_, k) => connected(k)).length;
+    const filled = owner.filter(x => x >= 0).length;
+    document.getElementById('fl-pairs').textContent = done;
+    document.getElementById('fl-fill').textContent = Math.round(filled / (N * N) * 100) + '%';
+    if (!solved && done === SOL.length && filled === N * N) win();
+  }
+  function win() {
+    solved = true; main.classList.add('solved');
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    render();
+  }
+
+  function cellAt(evt) {
+    const pt = svg.createSVGPoint(); pt.x = evt.clientX; pt.y = evt.clientY;
+    const q = pt.matrixTransform(svg.getScreenCTM().inverse());
+    const c = Math.floor(q.x / S), r = Math.floor(q.y / S);
+    return r >= 0 && r < N && c >= 0 && c < N ? id(r, c) : -1;
+  }
+  const adj = (a, b) => { const [r1, c1] = rc(a), [r2, c2] = rc(b); return Math.abs(r1 - r2) + Math.abs(c1 - c2) === 1; };
+
+  function start(i) {
+    if (solved || i < 0) return;
+    if (endOf[i] !== undefined) { const k = endOf[i]; clearPath(k); paths[k] = [i]; drawing = k; }
+    else if (owner[i] >= 0) { const k = owner[i]; paths[k] = paths[k].slice(0, paths[k].indexOf(i) + 1); drawing = k; }
+    else return;
+    rebuildOwner(); render();
+  }
+  function clearPath(k) { paths[k] = []; }
+  function step(i) {
+    const k = drawing, p = paths[k];
+    if (i === p[p.length - 1]) return true;
+    if (!adj(p[p.length - 1], i)) return false;
+    const at = p.indexOf(i);
+    if (at >= 0) { paths[k] = p.slice(0, at + 1); return true; }            // backtrack
+    if (connected(k)) return false;                                          // already joined
+    if (endOf[i] !== undefined && endOf[i] !== k) return false;              // someone else's dot
+    if (endOf[i] === k && i === p[0]) return false;
+    const o = owner[i];
+    if (o >= 0 && o !== k) { const q = paths[o]; paths[o] = q.slice(0, q.indexOf(i)); }  // cut the other line
+    p.push(i);
+    return true;
+  }
+  function move(i) {
+    if (drawing < 0 || i < 0) return;
+    let last = paths[drawing][paths[drawing].length - 1];
+    let guard = 0;
+    while (last !== i && guard++ < 20) {                                     // walk one square at a time on fast drags
+      const [r1, c1] = rc(last), [r2, c2] = rc(i);
+      const nxt = r1 !== r2 && Math.abs(r2 - r1) >= Math.abs(c2 - c1) ? id(r1 + Math.sign(r2 - r1), c1) : id(r1, c1 + Math.sign(c2 - c1));
+      if (!step(nxt)) break;
+      last = paths[drawing][paths[drawing].length - 1];
+    }
+    rebuildOwner(); render();
+  }
+  svg.addEventListener('pointerdown', e => { e.preventDefault(); svg.setPointerCapture(e.pointerId); start(cellAt(e)); });
+  svg.addEventListener('pointermove', e => { if (drawing >= 0) move(cellAt(e)); });
+  const stop = () => { drawing = -1; };
+  svg.addEventListener('pointerup', stop); svg.addEventListener('pointercancel', stop);
+
+  function reset() {
+    solved = false; main.classList.remove('solved');
+    paths = SOL.map(() => []); rebuildOwner(); render();
+  }
+  function showAnswer() { paths = SOL.map(p => p.map(([r, c]) => id(r, c))); rebuildOwner(); render(); }
+  document.getElementById('fl-reset').addEventListener('click', reset);
+  document.getElementById('fl-again').addEventListener('click', () => { try { localStorage.removeItem(KEY); } catch (e) {} reset(); });
+  document.getElementById('fl-solve').addEventListener('click', showAnswer);
+
+  let was = null; try { was = localStorage.getItem(KEY); } catch (e) {}
+  if (was) showAnswer(); else render();
 }
 </script>
 </body>
