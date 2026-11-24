@@ -103,19 +103,42 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 @media(min-width:900px){.below{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 .sys{width:100%;height:auto;background:var(--bg);border-radius:18px;border:1px solid var(--rule)}
 .sys .l{fill:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
-.sys .s{cursor:pointer}
-.sys .s rect,.sys .s circle{fill:var(--dot);stroke:var(--ink);stroke-width:4;transition:fill .15s}
-.sys .s:hover rect,.sys .s:hover circle,.sys .s.on rect,.sys .s.on circle{fill:var(--yellow)}
-.sys .s:focus{outline:none}
-.sys .s:focus-visible rect,.sys .s:focus-visible circle{stroke:var(--blue)}
 .sys text{fill:var(--ink);font-family:var(--font);font-size:17px;font-weight:700;letter-spacing:-.01em}
 .sys .hub{font-size:20px;font-weight:900}
 .sys .small{font-size:13px;font-weight:600;fill:var(--muted)}
 .sys .hubst,.sys .nextst{fill:var(--dot);stroke:var(--ink);stroke-width:6}
 .sys .nextst{stroke-width:5;stroke-dasharray:6 4}
 .sys .here{fill:var(--ink)}
-.sys .heretx{fill:var(--bg);font-size:12px;font-weight:800}
-@media(max-width:700px){.sys text{display:none}}
+.sys .l{transition:opacity .4s}
+.sys .l.dim,.sys .badge.dim{opacity:.22}
+.sys .hitl{fill:none;stroke:transparent;stroke-width:34;cursor:pointer;pointer-events:stroke}
+.sys .badge{cursor:pointer;transition:opacity .4s}
+.sys .badge text{font-size:14px;font-weight:800}
+.sys .badge:focus{outline:none}.sys .badge:focus-visible rect{stroke:var(--ink);stroke-width:3}
+.sys .train{cursor:pointer;transition:opacity .4s}
+.sys .train .hit{fill:transparent}
+.sys .train .body{fill:var(--ink);stroke:var(--bg);stroke-width:2}
+.sys .train.dim{opacity:.3}
+.sys .train:focus{outline:none}.sys .train:focus-visible .body{stroke:var(--blue);stroke-width:3}
+.sys .tag{pointer-events:none;opacity:0;transition:opacity .3s}
+.sys .tag.show,.sys .tag.peek{opacity:1}
+.sys .tag rect{fill:var(--ink)}
+.sys .tag text{fill:var(--bg);font-size:14px;font-weight:800}
+.tourbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.tourbar button{all:unset;box-sizing:border-box;cursor:pointer;min-height:44px;padding:0 18px;border-radius:99px;border:2px solid var(--ink);font-weight:700;font-size:14px;display:inline-flex;align-items:center}
+.tourbar button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.tourbar span{font-size:14px;font-weight:600;color:var(--muted)}
+.tourbar .prog{flex:1 1 120px;height:4px;border-radius:4px;background:var(--rule);overflow:hidden}
+.tourbar .prog i{display:block;height:100%;width:0;background:var(--ink)}
+.how{display:flex;flex-direction:column;gap:10px;padding-top:4px}
+.howh{font-size:13px;font-weight:800}
+.hrow{display:flex;gap:12px;align-items:flex-start}
+.hrow i{flex:none;width:8px;align-self:stretch;min-height:36px;border-radius:8px}
+.hrow b{display:block;font-size:15px}
+.hrow span{display:block;font-size:15px;color:var(--muted)}
+.hbtn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:12px;padding:8px;margin:-8px;border-radius:10px}
+.hbtn:hover{background:var(--panel)}.hbtn:focus-visible{outline:3px solid var(--blue)}
+@media(max-width:700px){.sys text{display:none}.sys .badge text,.sys .tag text{display:block}}
 .card{background:var(--bg);border:1px solid var(--rule);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:14px}
 .card h3{font-size:28px;font-weight:900}
 .card p{margin:0}
@@ -224,30 +247,35 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
           <div class="kicker"><i></i>Projects</div>
           <h2>Three lines, one interchange.</h2>
         </div>
-        <p>Arts, Technology and the Business of Innovation, drawn as a map. Every project rides the lines it draws on, and they all pass through the same place. Tap a stop to see more.</p>
+        <p>Arts, Technology and the Business of Innovation, drawn as a map. Each project is a train riding the lines it draws on. Tap a train to see how it connects, or tap a line to see everything on it.</p>
       </div>
-      <ul class="legend">
-        <li><i style="background:var(--yellow)"></i>Design</li>
-        <li><i style="background:var(--blue)"></i>Technology</li>
-        <li><i style="background:var(--orange)"></i>Business</li>
-      </ul>
       <div class="sysgrid" style="margin-top:20px">
-        <svg class="sys" id="sys" viewBox="0 0 1104 520" role="group" aria-label="Project map: design, technology and business lines meeting at human-centered products">
-          <path class="l" stroke="var(--yellow)" d="M30 80 H280 L440 240 H660 L740 160 H1074"/>
-          <path class="l" stroke="var(--orange)" d="M30 260 H660 L760 360 H1074"/>
-          <path class="l" stroke="var(--blue)" d="M30 460 H260 L440 280 H660 L760 180 H1074"/>
+        <svg class="sys" id="sys" viewBox="0 0 1104 520" role="group" aria-label="Project map: design, technology and business lines meeting at human-centered products. Projects ride the lines as trains.">
+          <path class="l" id="l-design" data-line="design" stroke="var(--yellow)" d="M30 80 H280 L440 240 H660 L740 160 H1074"/>
+          <path class="l" id="l-business" data-line="business" stroke="var(--orange)" d="M30 260 H660 L760 360 H1074"/>
+          <path class="l" id="l-tech" data-line="tech" stroke="var(--blue)" d="M30 460 H260 L440 280 H660 L760 180 H1074"/>
+          <path class="hitl" id="hit-design" d="M30 80 H280 L440 240 H660 L740 160 H1074"/>
+          <path class="hitl" id="hit-business" d="M30 260 H660 L760 360 H1074"/>
+          <path class="hitl" id="hit-tech" d="M30 460 H260 L440 280 H660 L760 180 H1074"/>
+          <g class="badge" id="badge-design" data-line="design" tabindex="0" role="button" aria-label="Show the Design line"><rect x="30" y="34" width="92" height="28" rx="14" fill="var(--yellow)"/><text x="76" y="53" text-anchor="middle" fill="#111">Design</text></g>
+          <g class="badge" id="badge-business" data-line="business" tabindex="0" role="button" aria-label="Show the Business line"><rect x="30" y="214" width="104" height="28" rx="14" fill="var(--orange)"/><text x="82" y="233" text-anchor="middle" fill="#111">Business</text></g>
+          <g class="badge" id="badge-tech" data-line="tech" tabindex="0" role="button" aria-label="Show the Technology line"><rect x="30" y="414" width="124" height="28" rx="14" fill="var(--blue)"/><text x="92" y="433" text-anchor="middle" fill="#fff">Technology</text></g>
           <rect class="hubst" x="530" y="220" width="44" height="80" rx="22"/>
           <text class="small" x="552" y="166" text-anchor="middle">Where it all meets</text>
           <text class="hub" x="552" y="190" text-anchor="middle">Human-centered products</text>
-          <rect class="here" x="500" y="316" width="104" height="26" rx="13"/>
-          <text class="heretx" x="552" y="334" text-anchor="middle">You are here</text>
           <rect class="nextst" x="1046" y="347" width="28" height="26" rx="13"/>
           <text x="1060" y="408" text-anchor="end">Next venture</text>
-          <g id="stations"></g>
+          <g id="trains"></g>
         </svg>
+        <div class="tourbar">
+          <button type="button" id="tour-btn" aria-pressed="true">Pause tour</button>
+          <span id="tour-txt" aria-live="polite"></span>
+          <span class="prog" aria-hidden="true"><i id="tour-prog"></i></span>
+        </div>
         <div class="below">
           <article class="card" id="card" aria-live="polite"></article>
           <ul class="plist" id="plist"></ul>
+        </div>
         </div>
       </div>
     </div>
@@ -280,80 +308,187 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 <script>
 {
   // ===== Projects: edit this list to add, remove or change projects =====
-  // lines: which colored lines the project sits on (first one = main line)
-  // x, y: where the station sits on the map (viewBox is 1104 x 520)
+  // lines: which colored lines the project uses. Its train rides the first one.
+  // how:   one line per colored line, explaining how the project uses it.
   const LINES = {
-    design: { name: 'Design', color: 'var(--yellow)' },
-    tech: { name: 'Technology', color: 'var(--blue)' },
-    business: { name: 'Business', color: 'var(--orange)' }
+    design: { name: 'Design', color: 'var(--yellow)', path: 'l-design',
+      text: 'How it looks, feels and works for people: research, prototyping and interface design.' },
+    tech: { name: 'Technology', color: 'var(--blue)', path: 'l-tech',
+      text: 'The code and hardware that make an idea real.' },
+    business: { name: 'Business', color: 'var(--orange)', path: 'l-business',
+      text: 'Turning ideas into ventures people can back.' }
   };
   const PROJECTS = [
-    { id: 'bart', name: "Karl's Friend Bart", lines: ['design', 'tech'], x: 840, y: 170, label: 'T',
-      text: 'An interactive take on the BART system map that keeps the official look and makes it easier to read one route at a time, with live departures, alerts and an evening dark mode.',
+    { id: 'bart', name: "Karl's Friend Bart", lines: ['design', 'tech'],
+      text: 'An interactive take on the BART system map that keeps the official look and makes it easier to read one route at a time.',
+      how: { design: "Keeps BART's official map look, but lets you read one route at a time, with an evening dark mode.",
+             tech: 'Pulls live departures and service alerts from BART’s real-time data.' },
       status: 'Shipped', link: 'https://github.com/taliyahhh/bart-revamp', linkText: 'View the code' },
-    { id: 'hindsight', name: 'In Hindsight', lines: ['design', 'tech'], x: 990, y: 170, label: 'B',
-      text: 'A web app that turns your TikTok archive (favorites, saved, reposts) into something you can actually explore, instead of endless folders.',
+    { id: 'hindsight', name: 'In Hindsight', lines: ['design', 'tech'],
+      text: 'A web app that turns your TikTok archive into something you can actually explore.',
+      how: { design: 'Rethinks how you browse saved videos, beyond endless folders.',
+             tech: 'Reads your TikTok data export to rebuild your favorites, saves and reposts.' },
       status: 'In progress' },
-    { id: 'shoe', name: 'Convertible Shoe', lines: ['design'], x: 190, y: 80, label: 'T',
+    { id: 'shoe', name: 'Convertible Shoe', lines: ['design'],
       text: 'A mid-fidelity prototype of a convertible shoe, built for a product design class.',
+      how: { design: 'From concept sketches to a physical, mid-fidelity prototype.' },
       status: 'Prototype' },
-    { id: 'headphones', name: 'Now Playing Headphones', lines: ['tech'], x: 220, y: 460, label: 'B',
-      text: 'Headphones that show the album cover of whatever song is playing, built on a Particle Photon 2.',
-      status: 'In progress' },
-    { id: 'branchout', name: 'Branch Out', lines: ['tech'], x: 100, y: 460, label: 'T',
+    { id: 'branchout', name: 'Branch Out', lines: ['tech'],
       text: 'Built at Salesforce: a site that helps college students find open source projects to contribute to.',
+      how: { tech: 'A web app that matches college students with open source projects.' },
       status: 'Shipped' },
-    { id: 'biteback', name: 'Bite Back', lines: ['business'], x: 190, y: 260, label: 'T',
-      text: 'A small-plates dinner built around invasive species, mixing good food with education and community. A team venture.',
+    { id: 'headphones', name: 'Now Playing Headphones', lines: ['tech'],
+      text: 'Headphones that show the album cover of whatever song is playing.',
+      how: { tech: 'A Particle Photon 2 grabs the album art for the current song and shows it on the headphones.' },
+      status: 'In progress' },
+    { id: 'biteback', name: 'Bite Back', lines: ['business'],
+      text: 'A small-plates dinner built around invasive species, mixing good food with education and community.',
+      how: { business: 'Run as a team venture, with a grant application in the works.' },
       status: 'In progress' }
   ];
+  const TOUR_MS = 6000;      // how long each project stays in the spotlight
+  const SPEED = 46;          // train speed, in map pixels per second
   // =======================================================================
 
   const NS = 'http://www.w3.org/2000/svg';
-  const g = document.getElementById('stations');
+  const svg = document.getElementById('sys');
+  const layer = document.getElementById('trains');
   const card = document.getElementById('card');
   const plist = document.getElementById('plist');
+  const tourBtn = document.getElementById('tour-btn');
+  const tourTxt = document.getElementById('tour-txt');
+  const prog = document.getElementById('tour-prog');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const el = (tag, attrs) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); return n; };
 
-  PROJECTS.forEach(p => {
-    const s = document.createElementNS(NS, 'g');
-    s.setAttribute('class', 's');
-    s.setAttribute('tabindex', '0');
-    s.setAttribute('role', 'button');
-    s.setAttribute('aria-label', p.name);
-    s.dataset.id = p.id;
-    const transfer = p.lines.length > 1;
-    s.innerHTML = transfer
-      ? `<rect x="${p.x - 14}" y="${p.y - 22}" width="28" height="44" rx="14"/>`
-      : `<circle cx="${p.x}" cy="${p.y}" r="14"/>`;
-    const t = document.createElementNS(NS, 'text');
-    t.textContent = p.name;
-    t.setAttribute('x', p.x);
-    t.setAttribute('text-anchor', 'middle');
-    t.setAttribute('y', p.label === 'T' ? p.y - (transfer ? 34 : 26) : p.y + (transfer ? 46 : 38));
-    s.appendChild(t);
-    g.appendChild(s);
-    s.addEventListener('click', () => pick(p.id));
-    s.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p.id); } });
+  // ---- build trains: trains on the same line are spaced evenly ----
+  const perLine = {};
+  PROJECTS.forEach(p => { (perLine[p.lines[0]] = perLine[p.lines[0]] || []).push(p); });
+  const trains = PROJECTS.map(p => {
+    const path = document.getElementById(LINES[p.lines[0]].path);
+    const mates = perLine[p.lines[0]];
+    const g = el('g', { class: 'train', tabindex: '0', role: 'button', 'aria-label': p.name + ', show details' });
+    g.appendChild(el('rect', { class: 'hit', x: -30, y: -22, width: 60, height: 44, rx: 10 }));
+    g.appendChild(el('rect', { class: 'body', x: -24, y: -10, width: 48, height: 20, rx: 8 }));
+    const w = 34 / p.lines.length;
+    p.lines.forEach((l, i) => g.appendChild(el('rect', { x: -17 + i * w, y: -5, width: w - (p.lines.length > 1 ? 2 : 0), height: 7, rx: 2, fill: LINES[l].color })));
+    const tag = el('g', { class: 'tag' });
+    const tr = el('rect', { height: 28, rx: 14, y: -50 });
+    const tt = el('text', { y: -31, 'text-anchor': 'middle' });
+    tt.textContent = p.name;
+    tag.appendChild(tr); tag.appendChild(tt);
+    layer.appendChild(g); layer.appendChild(tag);
+    g.addEventListener('click', () => feature(p.id, true));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); feature(p.id, true); } });
+    g.addEventListener('mouseenter', () => tag.classList.add('peek'));
+    g.addEventListener('mouseleave', () => tag.classList.remove('peek'));
+    return { p, g, tag, tr, tt, path, len: path.getTotalLength(), pos: (mates.indexOf(p) + 0.5) / mates.length };
+  });
+
+  // ---- line filters: click a line or its badge ----
+  Object.keys(LINES).forEach(k => {
+    const go = () => showLine(k);
+    document.getElementById('hit-' + k).addEventListener('click', go);
+    const b = document.getElementById('badge-' + k);
+    b.addEventListener('click', go);
+    b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
   });
 
   plist.innerHTML = PROJECTS.map(p => `<li><button type="button" data-id="${p.id}" aria-pressed="false"><span class="bars">${p.lines.map(l => `<i style="background:${LINES[l].color}"></i>`).join('')}</span>${esc(p.name)}</button></li>`).join('');
-  plist.addEventListener('click', e => { const b = e.target.closest('button'); if (b) pick(b.dataset.id); });
+  plist.addEventListener('click', e => { const b = e.target.closest('button'); if (b) feature(b.dataset.id, true); });
+  card.addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) feature(b.dataset.id, true); });
 
-  function pick(id) {
-    const p = PROJECTS.find(x => x.id === id);
-    if (!p) return;
-    g.querySelectorAll('.s').forEach(s => s.classList.toggle('on', s.dataset.id === id));
+  // ---- state ----
+  let touring = !reduce, featuredAt = performance.now(), current = 0, mode = 'project', visible = true;
+
+  function highlight(onLines, onIds) {
+    Object.keys(LINES).forEach(k => svg.querySelectorAll('[data-line="' + k + '"]').forEach(n => n.classList.toggle('dim', !onLines.includes(k))));
+    trains.forEach(t => {
+      t.g.classList.toggle('dim', !onIds.includes(t.p.id));
+      t.g.classList.toggle('on', mode === 'project' && onIds[0] === t.p.id);
+      t.tag.classList.toggle('show', mode === 'project' && onIds[0] === t.p.id);
+    });
+  }
+
+  function feature(id, byUser) {
+    const i = PROJECTS.findIndex(x => x.id === id);
+    if (i < 0) return;
+    const p = PROJECTS[i];
+    current = i; mode = 'project'; featuredAt = performance.now();
+    if (byUser) setTour(false);
+    highlight(p.lines, [p.id]);
     plist.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === id)));
     card.innerHTML = `
       <div class="chips">${p.lines.map(l => `<span class="chip"><i style="background:${LINES[l].color}"></i>${LINES[l].name}</span>`).join('')}</div>
       <h3>${esc(p.name)}</h3>
       <p>${esc(p.text)}</p>
+      <div class="how"><span class="howh">How it connects</span>${p.lines.map(l => `<div class="hrow"><i style="background:${LINES[l].color}"></i><div><b>${LINES[l].name}</b><span>${esc(p.how[l] || '')}</span></div></div>`).join('')}</div>
       <span class="status">${esc(p.status)}</span>
       ${p.link ? `<a class="more" href="${esc(p.link)}">${esc(p.linkText || 'Learn more')}</a>` : ''}`;
+    tourTxt.textContent = (touring ? 'Now featuring ' : 'Showing ') + (i + 1) + ' of ' + PROJECTS.length;
   }
-  pick('bart');
 
+  function showLine(k) {
+    const L = LINES[k];
+    const on = PROJECTS.filter(p => p.lines.includes(k));
+    mode = 'line';
+    setTour(false);
+    highlight([k], on.map(p => p.id));
+    plist.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', 'false'));
+    card.innerHTML = `
+      <div class="chips"><span class="chip"><i style="background:${L.color}"></i>${L.name} line</span></div>
+      <h3>${L.name}</h3>
+      <p>${esc(L.text)}</p>
+      <div class="how"><span class="howh">Projects on this line</span>${on.map(p => `<button type="button" class="hrow hbtn" data-id="${p.id}"><i style="background:${L.color}"></i><div><b>${esc(p.name)}</b><span>${esc(p.how[k] || '')}</span></div></button>`).join('')}</div>`;
+    tourTxt.textContent = 'Showing the ' + L.name + ' line';
+  }
+
+  function setTour(on) {
+    touring = on;
+    tourBtn.textContent = on ? 'Pause tour' : 'Resume tour';
+    tourBtn.setAttribute('aria-pressed', String(on));
+    if (on) featuredAt = performance.now();
+  }
+  tourBtn.addEventListener('click', () => {
+    if (touring) { setTour(false); feature(PROJECTS[current].id, false); }
+    else { setTour(true); feature(PROJECTS[mode === 'line' ? current : (current + 1) % PROJECTS.length].id, false); }
+  });
+
+  // ---- animation ----
+  function place(t) {
+    const d = t.pos * t.len;
+    const a = t.path.getPointAtLength(d), b = t.path.getPointAtLength(Math.min(t.len, d + 2));
+    const ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+    const base = svg.clientWidth < 600 ? 1.7 : 1;
+    const s = base * (t.g.classList.contains('on') ? 1.3 : 1);
+    t.g.setAttribute('transform', `translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(1)}) scale(${s})`);
+    const edge = Math.min(t.pos, 1 - t.pos);
+    t.g.style.opacity = edge < 0.03 ? edge / 0.03 : '';
+    if (!t.tw) { t.tw = t.tt.getComputedTextLength ? t.tt.getComputedTextLength() + 26 : 160; t.tr.setAttribute('width', t.tw); t.tr.setAttribute('x', -t.tw / 2); }
+    const x = Math.max(t.tw / 2 + 6, Math.min(1104 - t.tw / 2 - 6, a.x));
+    t.tag.setAttribute('transform', `translate(${x.toFixed(1)} ${a.y.toFixed(1)})`);
+  }
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (visible && !document.hidden) {
+      if (!reduce) trains.forEach(t => { t.pos = (t.pos + SPEED * dt / t.len) % 1; });
+      trains.forEach(place);
+      if (touring && mode === 'project') {
+        const k = (now - featuredAt) / TOUR_MS;
+        prog.style.width = Math.min(100, k * 100) + '%';
+        if (k >= 1) feature(PROJECTS[(current + 1) % PROJECTS.length].id, false);
+      } else prog.style.width = '0%';
+    }
+    requestAnimationFrame(frame);
+  }
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(svg);
+
+  setTour(touring);
+  feature('bart', false);
+  if (reduce) trains.forEach(place);
+  requestAnimationFrame(frame);
 }
 </script>
 </body>
