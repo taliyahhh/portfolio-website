@@ -174,3 +174,9 @@ details.more summary::-webkit-details-marker{display:none}
 footer{border-top:1px solid var(--rule)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:24px;font-size:14px;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* lens tags: Design (desirability) yellow, Tech (feasibility) blue, Business (viability) orange */
+.stop-tag .lens{font-style:normal;font-size:12px;font-weight:800;padding:3px 10px;border-radius:99px;border:1.5px solid var(--ink);color:var(--ink)}
+.stop-tag .lens.d{background:#ffd200;border-color:#ffd200;color:#111}
+.stop-tag .lens.t{background:#1aa7ff;border-color:#1aa7ff;color:#08131c}
+.stop-tag .lens.b{background:#ff9f1c;border-color:#ff9f1c;color:#1d1204}

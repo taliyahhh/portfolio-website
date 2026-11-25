@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Karl's Friend Bart · Taliyah Harvey</title>
-<meta name="description" content="Case study: an interactive BART map that keeps the official look and makes it easy to read one route at a time.">
+<meta name="description" content="Product process case study: an interactive BART map that keeps the official look and makes it easy to read one route at a time.">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,20 +29,20 @@
   <!-- ===== Hero: question title, labels, results up front ===== -->
   <section class="cs-hero">
     <div class="wrap">
-      <div class="cs-kicker"><i></i>Case study · Karl's Friend Bart</div>
+      <div class="cs-kicker"><i></i>Product process · Karl's Friend Bart</div>
       <h1>I got off at the wrong station. So I rebuilt the map.</h1>
-      <p class="sub">I'm a Bay Area native, and BART is how I've always gotten around home. But the official map is a still picture: it can't show you where your train is going or what changes at night. After getting off at the wrong station, I recreated it as a map you can actually interact with. Spotlight a single line, see live trains and switch to evening service, all in the look riders already know.</p>
-      <p class="sub why-name"><b>Why "Karl"?</b> Karl is the unofficial name locals gave San Francisco's famous fog. Every good train needs a friend, and Bart's has been rolling in over the bay for as long as I can remember.</p>
+      <p class="sub">BART's official map is a still picture. After getting off at the wrong station, I rebuilt it as a map you can interact with: spotlight your line, see live trains, and switch to evening service.</p>
+      <p class="sub why-name"><b>Why "Karl"?</b> It's what locals call San Francisco's fog. Every train needs a friend.</p>
       <ul class="labels">
-        <li><span>Role</span>Solo designer and developer</li>
-        <li><span>Platform</span>Web, desktop and phone</li>
-        <li><span>Timeline</span>5 days, October 2026</li>
-        <li><span>Type</span>Personal project</li>
+        <li><span>Role</span>Solo: design and front-end</li>
+        <li><span>Platform</span>Web, desktop and mobile</li>
+        <li><span>Timeline</span>5 days, Oct 2026</li>
+        <li><span>Type</span>Personal</li>
       </ul>
       <div class="outcomes">
         <div><b>Live</b><span>Shipped and running on GitHub Pages</span></div>
-        <div><b>27 iterations</b><span>Commits in 5 days, from first sketch to live data</span></div>
-        <div><b>Real-time</b><span>Live departures and alerts from BART's public API</span></div>
+        <div><b>27 iterations</b><span>From first sketch to live data in 5 days</span></div>
+        <div><b>Real-time</b><span>Live departures from BART's public API</span></div>
       </div>
     </div>
   </section>
@@ -71,9 +71,9 @@
   <section class="cs-sec express-only">
     <div class="wrap">
       <div class="express-card">
-        <div><h3>The problem</h3><p>The official map is static. It shows every line at once and never changes, so following your route, or knowing what runs after 9pm, is on you. I got off at the wrong station because of it.</p></div>
-        <div><h3>What I made</h3><p>A map in the official style where you spotlight one line, tap a station for live departures, and the whole site changes for evening service.</p></div>
-        <div><h3>Biggest decision</h3><p>Matching the official map instead of inventing my own layout, so riders don't have to relearn anything.</p></div>
+        <div><h3>The problem</h3><p>The official map shows every line at once and never changes. Following your route, or knowing what runs after 9pm, is on you.</p></div>
+        <div><h3>What I made</h3><p>The official map, made interactive: spotlight a line, tap a station for live departures, and watch the site switch to evening service.</p></div>
+        <div><h3>Biggest decision</h3><p>Keep the official layout instead of inventing my own. Zero learning curve.</p></div>
       </div>
       <div class="tryit">
         <div class="bar"><span><b>Try it:</b> tap a line at the bottom to spotlight it, or tap a station for live departures.</span><a href="https://taliyahhh.github.io/bart-revamp/" target="_blank" rel="noopener">Open full site</a></div>
@@ -91,12 +91,11 @@
   <!-- ===== Local: Problem ===== -->
   <section class="cs-sec local-only" id="problem">
     <div class="wrap narrow">
-      <div class="stop-tag"><i></i>Stop 1 · Problem</div>
+      <div class="stop-tag"><i></i>Stop 1 · Problem <em class="lens d">Desirability</em></div>
       <h2>A map that just sits there</h2>
-      <p class="lead">BART's official map is iconic, but it's a still image. It draws every line at once and looks the same at 8am and at midnight. If you only care about your train, you have to trace one color through a tangle of others.</p>
-      <p>I learned that the hard way when I got off at the wrong station. A map you can only look at couldn't help me check where my train was actually going.</p>
-      <p>Service also changes at night. After 9pm the Red and Green lines stop running and transfers change, but a printed map can't tell you that. Riders find out on the platform.</p>
-      <p><b>The goal:</b> keep the map people already trust, and make it something you can interact with, so it answers the question riders actually have: where does my train go, right now?</p>
+      <p class="lead">The official map draws every line at once and looks the same at 8am and midnight. To follow your train, you trace one color through a tangle of others.</p>
+      <p>After 9pm, Red and Green stop running and transfers change. A static map can't tell you that, so riders find out on the platform. I found out by getting off at the wrong stop.</p>
+      <p><b>Goal:</b> keep the map riders trust, and make it answer one question: where does my train go, right now?</p>
     </div>
   </section>
 
@@ -104,14 +103,14 @@
   <section class="cs-sec local-only" id="research">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 2 · Research</div>
+        <div class="stop-tag"><i></i>Stop 2 · Research <em class="lens d">User needs</em></div>
         <h2>What I looked at</h2>
-        <p class="lead">I studied the official system map and BART's service rules closely enough to rebuild them, including the August 2026 schedule, which lines run after 9pm, and where timed transfers happen.</p>
+        <p class="lead">I studied the official map and service rules closely enough to rebuild them: the August 2026 schedule, evening lines and timed transfers.</p>
       </div>
       <div class="evidence">
-        <div class="ev"><b>Source</b>The official BART system map: its layout, line colors, station order and labeling style.</div>
-        <div class="ev"><b>Source</b>BART's public API for live departures and service advisories.</div>
-        <div class="ev"><b>Finding</b>Evening service is a different network: Red and Green don't run after 9pm, so riders need different transfers.</div>
+        <div class="ev"><b>Mental model</b>Riders already know the official map: its layout, colors and station order.</div>
+        <div class="ev"><b>Tech</b>BART's public API covers live departures and advisories, so real-time was feasible.</div>
+        <div class="ev"><b>Gap</b>Evening service is a different network, and nothing visual shows it.</div>
         <div class="ev todo"><b>Riders</b>Add who you talked to or watched (for example, "asked 6 friends to find their route home") and one real quote.</div>
       </div>
       <details class="more draft-only">
@@ -127,8 +126,8 @@
   <!-- ===== Local: Insight ===== -->
   <section class="cs-sec local-only" id="insight">
     <div class="wrap narrow">
-      <div class="stop-tag"><i></i>Stop 3 · Insight</div>
-      <h2>What the research pointed to</h2>
+      <div class="stop-tag"><i></i>Stop 3 · Insight <em class="lens d">Opportunity</em></div>
+      <h2>The opportunity</h2>
       <p class="insight">Riders don't need a new map. They need the map they know, filtered to their line and their time of day.</p>
     </div>
   </section>
@@ -137,9 +136,9 @@
   <section class="cs-sec local-only" id="iterations">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 4 · Iterations</div>
+        <div class="stop-tag"><i></i>Stop 4 · Iterations <em class="lens d">Design</em></div>
         <h2>Four versions in five days</h2>
-        <p class="lead">Drag through the real versions from the project's history. Each one fixed something the last one got wrong.</p>
+        <p class="lead">Drag through the real versions. Each one fixed what the last got wrong.</p>
       </div>
       <div class="iter">
         <figure><img src="img/bart-v1-fogline.jpg" alt="" width="1280" height="800"></figure>
@@ -184,36 +183,36 @@
   <section class="cs-sec local-only" id="decisions">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 5 · Decisions</div>
+        <div class="stop-tag"><i></i>Stop 5 · Decisions <em class="lens">Trade-offs</em></div>
         <h2>Why this, not that</h2>
-        <p class="lead">The three choices that shaped the project, with what I gave up for each.</p>
+        <p class="lead">One call each for design, product strategy and tech.</p>
       </div>
 
       <article class="decision">
-        <header><h3>Match the official map, don't reinvent it</h3><p>Layout</p></header>
+        <header><h3>Match the official map, don't reinvent it</h3><p>Design</p></header>
         <div class="pair">
-          <figure><span class="verdict no">Not this</span><img src="img/bart-v1-fogline.jpg" alt="Fogline's custom dark layout" loading="lazy"><figcaption>A custom layout gave me full creative control, but it was a new map to learn.</figcaption></figure>
-          <figure><span class="verdict yes">This</span><img src="img/bart-v2-official.jpg" alt="The rebuilt official-style layout" loading="lazy"><figcaption>Rebuilding the official layout meant riders recognize it in a second.</figcaption></figure>
+          <figure><span class="verdict no">Not this</span><img src="img/bart-v1-fogline.jpg" alt="Fogline's custom dark layout" loading="lazy"><figcaption>Full creative control, but a new map to learn.</figcaption></figure>
+          <figure><span class="verdict yes">This</span><img src="img/bart-v2-official.jpg" alt="The rebuilt official-style layout" loading="lazy"><figcaption>Recognizable in a second.</figcaption></figure>
         </div>
-        <p class="because"><b>Because:</b> the official map is already in riders' heads. My job was to make it more useful, not more mine.</p>
+        <p class="because"><b>Because:</b> familiarity is the feature. Make it more useful, not more mine.</p>
       </article>
 
       <article class="decision">
-        <header><h3>Spotlight a line, drop trip planning</h3><p>Features</p></header>
+        <header><h3>Spotlight a line, drop trip planning</h3><p>Product strategy</p></header>
         <div class="pair">
-          <figure><span class="verdict no">Not this</span><img src="img/bart-v2-official.jpg" alt="Version with a Plan a Trip box in the corner" loading="lazy"><figcaption>A Plan a Trip box, like every transit app has.</figcaption></figure>
-          <figure><span class="verdict yes">This</span><img src="img/bart-v3-bottombar.jpg" alt="Version with line chips in a bottom bar" loading="lazy"><figcaption>Line chips that spotlight one route, with live departures a tap away.</figcaption></figure>
+          <figure><span class="verdict no">Not this</span><img src="img/bart-v2-official.jpg" alt="Version with a Plan a Trip box in the corner" loading="lazy"><figcaption>Trip planning, like every transit app.</figcaption></figure>
+          <figure><span class="verdict yes">This</span><img src="img/bart-v3-bottombar.jpg" alt="Version with line chips in a bottom bar" loading="lazy"><figcaption>Line spotlight, live departures a tap away.</figcaption></figure>
         </div>
-        <p class="because"><b>Because:</b> trip planning already exists in other apps. Seeing your whole line at a glance didn't.</p>
+        <p class="because"><b>Because:</b> other apps already handle trip planning. Seeing your line at a glance was the gap, so I scoped to that.</p>
       </article>
 
       <article class="decision">
-        <header><h3>The whole site changes at night</h3><p>Evening service</p></header>
+        <header><h3>The whole site changes at night</h3><p>Tech</p></header>
         <div class="pair">
-          <figure><span class="verdict no">Daytime</span><img src="img/bart-v4-final-day.jpg" alt="Final version in daytime mode, all lines running" loading="lazy"><figcaption>All five lines running, light theme.</figcaption></figure>
-          <figure><span class="verdict yes">After 9pm</span><img src="img/bart-v4-final-evening.jpg" alt="Final version in evening mode, dark theme with Red and Green off" loading="lazy"><figcaption>Dark theme, Red and Green marked "off tonight," evening transfers shown.</figcaption></figure>
+          <figure><span class="verdict no">Daytime</span><img src="img/bart-v4-final-day.jpg" alt="Final version in daytime mode, all lines running" loading="lazy"><figcaption>All five lines, light theme.</figcaption></figure>
+          <figure><span class="verdict yes">After 9pm</span><img src="img/bart-v4-final-evening.jpg" alt="Final version in evening mode, dark theme with Red and Green off" loading="lazy"><figcaption>Dark theme, Red and Green off, evening transfers.</figcaption></figure>
         </div>
-        <p class="because"><b>Because:</b> evening service is a different network. A small label is easy to miss; a whole site going dark isn't.</p>
+        <p class="because"><b>Because:</b> a label is easy to miss. The site reads the clock and swaps networks, so nobody has to remember.</p>
       </article>
     </div>
   </section>
@@ -222,17 +221,15 @@
   <section class="cs-sec local-only" id="outcome">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 6 · Outcome</div>
+        <div class="stop-tag"><i></i>Stop 6 · Outcome <em class="lens t">Feasibility</em></div>
         <h2>What shipped</h2>
-        <p class="lead">A live site that works on desktop, tablet and phone, built without a framework or build step.</p>
+        <p class="lead">Live on desktop and mobile. No framework, no build step.</p>
       </div>
       <ul class="feature-list">
-        <li>Map in the official style, with pan, pinch zoom and labels that stay readable as you zoom</li>
-        <li>Line spotlight from a bottom bar, with Red and Green shown as off tonight after 9pm</li>
-        <li>Mini trains placed from live departure data, with an estimated fallback if the feed is down</li>
-        <li>Station panel with live departures, connections and nearby spots</li>
-        <li>Alerts tab for delays and elevator outages</li>
-        <li>A fog intro starring Karl, the Bay's most famous weather</li>
+        <li>Official-style map with pan, pinch zoom and readable labels</li>
+        <li>Line spotlight from a thumb-friendly bottom bar</li>
+        <li>Live mini trains, with an estimated fallback if the feed drops</li>
+        <li>Station panel with departures, connections and alerts</li>
       </ul>
       <div class="tryit">
         <div class="bar"><span><b>Try it:</b> tap a line at the bottom to spotlight it, or tap a station for live departures.</span><a href="https://taliyahhh.github.io/bart-revamp/" target="_blank" rel="noopener">Open full site</a></div>
@@ -251,14 +248,14 @@
   <section class="cs-sec local-only" id="next">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 7 · What I learned and what's next</div>
-        <h2>If I kept going</h2>
+        <div class="stop-tag"><i></i>Stop 7 · Learnings and next <em class="lens b">Viability</em></div>
+        <h2>What I'd take forward</h2>
       </div>
       <div class="learn">
-        <div><h3>Familiar beats clever</h3><p>My first, custom version had the most personality. Rebuilding the official layout made it something riders could read in a second.</p></div>
-        <div><h3>Cutting is a feature</h3><p>Removing trip planning made the map clearer than any feature I added.</p></div>
-        <div class="todo"><h3>Next: test with riders</h3><p>Watch 5 riders find their route home on the official map and on this one, and time both.</p></div>
-        <div><h3>Next: a Bay Area layer</h3><p>Food, murals, parks and game days near each station, plus station pages with neighborhood history.</p></div>
+        <div><h3>Familiar beats clever</h3><p>My custom version had the most personality. The official layout was the one people could read.</p></div>
+        <div><h3>Cutting is a feature</h3><p>Dropping trip planning did more for clarity than anything I added.</p></div>
+        <div><h3>Next: test with riders</h3><p>Time riders finding their route home on the official map versus this one.</p></div>
+        <div><h3>Next: bring it to agencies</h3><p>Pitch it to transit agencies and rider groups as a model for clearer maps.</p></div>
       </div>
     </div>
   </section>
