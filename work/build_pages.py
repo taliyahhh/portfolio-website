@@ -187,7 +187,7 @@ def page(p):
       </div>
       <ul class="feature-list">
 {feats}      </ul>
-{tryit(p)}{''.join(f'      <div class="evidence"><div class="ev todo"><b>{b}</b>{x}</div></div>{chr(10)}' for b, x in p.get("outcome_todo", []))}    </div>
+{tryit(p)}{('      <div class="evidence"><div class="ev"><b>' + p['result'][0] + '</b>' + p['result'][1] + '</div></div>' + chr(10)) if p.get('result') else ''}{''.join(f'      <div class="evidence"><div class="ev todo"><b>{b}</b>{x}</div></div>{chr(10)}' for b, x in p.get("outcome_todo", []))}    </div>
   </section>
 
   <section class="cs-sec local-only" id="next">
@@ -230,16 +230,17 @@ FEE = dict(
     desc="type a zip code and see what your city, state and the federal government spent your tax dollars on.",
     h1="Where did your tax dollars actually go?",
     sub="Taxes come out of every paycheck, but where the money goes is buried in budget PDFs. I designed and built a site where you type your zip code and see what your city, your state and the federal government spent it on, told like a fairy tale.",
-    labels=[("Role", "Design and development"), ("Team", "Me, plus a teammate on video and mood board"), ("Timeline", "Oct 2026"), ("Type", "SVSD design competition")],
+    labels=[("Role", "Design and development"), ("Team", "Me, plus a teammate on video and mood board"), ("Timeline", "Oct 2026"), ("Type", "SVSD design challenge")],
     outcomes=[("41,000+", "Zip codes on the map, every one in the US"), ("3 levels", "Federal, state and city spending side by side"), ("Self-updating", "City data rebuilds monthly from public sources")],
     x_problem="Spending data is public but unreadable: billions of dollars in PDFs, split across three levels of government nobody can keep straight.",
     x_made="Type a zip code and get a collage of where your money went, as dollars out of every $100, across nation, state and city.",
-    x_decision="Show every number out of $100 instead of in billions. A scale people can actually feel.",
+    x_decision="Tell it as a story with you as the main character, and show every number out of $100 instead of in billions.",
     live="https://feefifo.fund", try_="", tryimg="img/fee-v4-land.jpg", tryalt="Fee Fi Fo Fund's landing page: a hand-lettered logo over a colorful dot map of every US zip code",
     problem_h="Public, but not readable",
     problem_lead="Budgets live in PDFs and spreadsheets. Most people pay taxes every paycheck and never see where it goes, or which level of government is spending it.",
-    problem_more=["Even when you find the numbers, they're in billions. Nobody can picture $1.6 trillion, so the data might as well be hidden."],
-    goal="make your tax dollars feel personal in under a minute: one zip code, one picture.",
+    problem_more=["Even when you find the numbers, they're in billions. Nobody can picture $1.6 trillion, so the data might as well be hidden.",
+                  "<b>The brief:</b> SVSD's design challenge asked for a product built for a specific group of people, centered on storytelling, judged on product thinking, depth of reasoning and craft. So the question became: what if your taxes came with a story?"],
+    goal="make your tax dollars feel personal in under a minute: one zip code, one picture, one tale.",
     research_lens="Data", research_h="Where the numbers come from",
     research_lead="Before designing anything, I had to find spending data that covered every town, not just big cities.",
     research_img=None,
@@ -280,7 +281,8 @@ FEE = dict(
               "The tale: a scroll story with Read it to me narration",
               "A Sources page listing every dataset, year and category mapping",
               "Shareable links for any zip, like feefifo.fund/?zip=95050"],
-    outcome_todo=[("Result", "Add how the SVSD design competition went, and any reactions from people who tried it.")],
+    outcome_todo=[],
+    result=("Submitted", "to SVSD's storytelling design challenge, presented as a video walkthrough. It didn't make the finalist round, and the site kept going after the deadline."),
     learn=[("Restraint is a design skill", "The psychedelic version was the most fun to build and the first thing I deleted."),
            ("Scale is the story", "Changing billions to dollars out of $100 did more than any visual I added."),
            ("Next: every state", "State budgets are typed in by hand, so only California and New York are done. More states are next."),
