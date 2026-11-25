@@ -115,13 +115,24 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 #play.solved .bgdot{opacity:.15}
 @media(prefers-reduced-motion:reduce){.flow .cellfill,.flow .pipe,.flow .dot{transition:none}}
 
-/* ask tj */
-.ask{background:var(--panel)}
-.ask-in{display:grid;gap:clamp(24px,4vw,56px);grid-template-columns:minmax(0,1fr);align-items:start}
-@media(min-width:900px){.ask-in{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
-.ask-copy p{font-size:18px;color:var(--muted);max-width:40ch;margin:16px 0 0}
-.ask-copy .ask-note{font-size:14px}
-.ask-box{background:var(--bg);border:1px solid var(--rule);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+/* ask tj: floating */
+.ask-dock{position:fixed;right:max(16px,2vw);bottom:max(16px,2vw);z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.ask-fab{all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;padding:8px 18px 8px 8px;border-radius:99px;background:var(--ink);color:var(--bg);font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .2s}
+.ask-fab:hover{transform:translateY(-2px)}
+.ask-fab b{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--yellow);color:#111}
+.ask-fab:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.ask-fab[aria-expanded=true]{display:none}
+.ask-box{width:min(400px,calc(100vw - 32px));height:min(620px,calc(100dvh - 32px));box-shadow:0 20px 60px rgba(0,0,0,.3);background:var(--bg);border:1px solid var(--rule);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.ask-box[hidden]{display:none}
+.ask-who>span{display:flex;flex-direction:column;line-height:1.2}
+.ask-who small{font-size:12px;font-weight:500;color:var(--muted)}
+.ask-x{all:unset;cursor:pointer;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font-size:24px;line-height:1}
+.ask-x:hover{background:var(--panel)}
+.ask-x:focus-visible{outline:3px solid var(--yellow)}
+.ask-tone{order:1;flex-basis:100%}
+.ask-tone button{flex:1;text-align:center}
+@media(max-width:600px){.ask-dock{right:12px;bottom:12px}.ask-box{width:calc(100vw - 24px);height:calc(100dvh - 24px)}}
+@media(prefers-reduced-motion:reduce){.ask-fab{transition:none}}
 .ask-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--rule)}
 .ask-who{display:flex;align-items:center;gap:10px;font-weight:800}
 .ask-who b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--yellow);color:#111;font-size:14px}
@@ -129,14 +140,15 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 .ask-tone button{all:unset;cursor:pointer;padding:8px 14px;border-radius:99px;font-size:14px;font-weight:700;color:var(--muted)}
 .ask-tone button[aria-checked=true]{background:var(--ink);color:var(--bg)}
 .ask-tone button:focus-visible{outline:3px solid var(--yellow)}
-.ask-log{height:340px;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+.ask-log{flex:1;min-height:0;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
 .msg{max-width:85%;padding:11px 15px;border-radius:18px;font-size:16px;line-height:1.5}
 .msg.me{align-self:flex-end;background:var(--ink);color:var(--bg);border-bottom-right-radius:6px}
 .msg.tj{align-self:flex-start;background:var(--panel);border:1px solid var(--rule);border-bottom-left-radius:6px}
 .msg.tj a{display:inline-block;margin-top:6px;font-weight:800;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
 .msg.typing{color:var(--muted);letter-spacing:.2em}
-.ask-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
-.ask-chips button{all:unset;cursor:pointer;padding:8px 13px;border-radius:99px;border:1.5px solid var(--rule);font-size:14px;font-weight:700}
+.ask-chips{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none}
+.ask-chips::-webkit-scrollbar{display:none}
+.ask-chips button{all:unset;white-space:nowrap;flex:none;cursor:pointer;padding:8px 13px;border-radius:99px;border:1.5px solid var(--rule);font-size:14px;font-weight:700}
 .ask-chips button:hover{border-color:var(--ink)}
 .ask-chips button:focus-visible{outline:3px solid var(--yellow)}
 .ask-form{display:flex;gap:8px;padding:12px 16px 16px;border-top:1px solid var(--rule)}
@@ -177,6 +189,18 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 .by-meta h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.01em}
 .by-meta p{margin:0;color:var(--muted);font-size:15px}
 .by-meta em{font-style:normal;font-weight:700;font-size:14px;margin-top:6px}
+a.by-card{color:inherit;text-decoration:none}
+a.by-card .by-meta h3::after{content:" →"}
+.by-also{margin-top:36px}
+.by-also h3{margin:0 0 12px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.by-also ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.by-also li{display:flex;align-items:center;gap:8px;padding:8px 14px 8px 8px;border-radius:99px;border:1px solid var(--rule);background:var(--panel);font-weight:700;font-size:14px}
+.by-also li:not(:has(img)){padding-left:14px}
+.by-also img{width:26px;height:26px;object-fit:contain;border-radius:50%;background:#fff;padding:2px}
+.by-also p{margin:0;display:flex;flex-wrap:wrap;column-gap:8px;line-height:1.3}
+.by-also span{font-weight:500;color:var(--muted)}
+@media(max-width:600px){.by-also li{border-radius:16px}.by-also p{flex-direction:column}}
+.by-art strong{font-variant-numeric:tabular-nums}
 .by-bar{height:3px;background:var(--rule);border-radius:3px;margin-top:22px;overflow:hidden}
 .by-bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .2s}
 @media(prefers-reduced-motion:reduce){.by-track{scroll-behavior:auto}.by-card{transition:none}.by-card:hover{transform:none}}
@@ -493,7 +517,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     <div class="wrap by-head">
       <div>
         <div class="kicker"><i></i>Beyond the job</div>
-        <h2 id="by-title">Projects, leadership and community.</h2>
+        <h2 id="by-title">By the numbers.</h2>
       </div>
       <div class="by-ctrl">
         <span class="by-count" aria-live="polite"><b id="by-now">01</b> / <span id="by-total">08</span></span>
@@ -501,41 +525,44 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <button type="button" class="by-arrow" id="by-next" aria-label="Next">&rarr;</button>
       </div>
     </div>
-    <div class="by-track" id="by-track" tabindex="0" aria-label="Projects, leadership and community, scroll sideways">
-      <article class="by-card t-y">
-        <div class="by-art"><strong>New award</strong><small>My pitch led the judges to create “Most Creative” in accessibility</small></div>
-        <div class="by-meta"><h3>Memory Mind</h3><p>Team Lead and Pitch Presenter · HackSC SoCal Tech Week</p><em>Nov 2024</em></div>
-      </article>
+    <div class="by-track" id="by-track" tabindex="0" aria-label="Highlights by the numbers, scroll sideways">
+      <a class="by-card t-y" href="/work/karls-friend-bart.html">
+        <div class="by-art"><strong data-count="27">27</strong><small>iterations in 5 days to rebuild the BART map</small></div>
+        <div class="by-meta"><h3>Karl's Friend Bart</h3><p>Solo design and build</p><em>2026</em></div>
+      </a>
       <article class="by-card t-k">
-        <div class="by-art"><strong>200</strong><small>hygiene kits donated to Midnight Mission</small></div>
-        <div class="by-meta"><h3>Hygiene Kit Assembly</h3><p>Project Lead · Spark SC Activist Incubator</p><em>Fall 2024</em></div>
+        <div class="by-art"><strong>Top 4</strong><small>of 36 intern teams at Salesforce</small></div>
+        <div class="by-meta"><h3>Futureforce Hackathon</h3><p>Product vision, AI onboarding agent</p><em>2026</em></div>
       </article>
       <article class="by-card t-b">
-        <div class="by-art"><img src="assets/logos/bbsa.png" alt="" loading="lazy"><strong>VP</strong><small>events, sponsors and board operations</small></div>
-        <div class="by-meta"><h3>USC BBSA</h3><p>Vice President · Black Business Student Association</p><em>2025–present</em></div>
+        <div class="by-art"><strong>1</strong><small>new award the judges created for our pitch: “Most Creative” in accessibility</small></div>
+        <div class="by-meta"><h3>Memory Mind</h3><p>Team Lead and Pitch Presenter, HackSC</p><em>Nov 2024</em></div>
       </article>
       <article class="by-card t-o">
-        <div class="by-art"><img src="assets/logos/mlt.png" alt="" loading="lazy"><strong>3,000+</strong><small>applicants for an 18+ month fellowship</small></div>
-        <div class="by-meta"><h3>MLT</h3><p>Career Prep Fellow · Management Leadership for Tomorrow</p><em>2025–present</em></div>
+        <div class="by-art"><strong data-count="200">200</strong><small>hygiene kits donated to Midnight Mission</small></div>
+        <div class="by-meta"><h3>Hygiene Kit Assembly</h3><p>Project Lead, Spark SC</p><em>Fall 2024</em></div>
       </article>
       <article class="by-card t-w">
-        <div class="by-art"><strong>CTO</strong><small>product vision for a B2B social platform, quarterfinalist</small></div>
-        <div class="by-meta"><h3>Looking Glass</h3><p>Chief Technical Officer · USC New Venture Seed</p><em>Jan–Feb 2025</em></div>
+        <div class="by-art"><strong data-count="6">6</strong><small>semesters in a row</small></div>
+        <div class="by-meta"><h3>USC Dean's List</h3><p>Honors</p><em>2023–2026</em></div>
       </article>
       <article class="by-card t-p">
-        <div class="by-art"><img src="assets/logos/aka.png" alt="" loading="lazy"><strong>Ivy</strong><small>sisterhood, scholarship and service</small></div>
-        <div class="by-meta"><h3>AKA</h3><p>Member · Alpha Kappa Alpha Sorority, Inc.</p></div>
-      </article>
-      <article class="by-card t-k">
-        <div class="by-art"><img src="assets/logos/ya4c.webp" alt="" loading="lazy"><strong>Advocacy</strong><small>youth-led change</small></div>
-        <div class="by-meta"><h3>YA4C</h3><p>Member · Youth Advocates for Change</p></div>
-      </article>
-      <article class="by-card t-y">
-        <div class="by-art"><strong>Campus</strong><small>ambassador for the fashion brand</small></div>
-        <div class="by-meta"><h3>Princess Polly</h3><p>Campus Ambassador</p></div>
+        <div class="by-art"><strong>3×</strong><small>scholarship recipient</small></div>
+        <div class="by-meta"><h3>USC APAA Scholarship</h3><p>Honors</p><em>2024–2026</em></div>
       </article>
     </div>
     <div class="wrap"><div class="by-bar"><i id="by-fill"></i></div></div>
+    <div class="wrap by-also">
+      <h3>Also part of</h3>
+      <ul>
+        <li><img src="assets/logos/bbsa.png" alt=""><p><b>Black Business Student Association</b><span>Vice President</span></p></li>
+        <li><img src="assets/logos/mlt.png" alt=""><p><b>Management Leadership for Tomorrow</b><span>Career Prep Fellow</span></p></li>
+        <li><img src="assets/logos/aka.png" alt=""><p><b>Alpha Kappa Alpha Sorority, Inc.</b></p></li>
+        <li><img src="assets/logos/ya4c.webp" alt=""><p><b>Youth Advocates for Change</b></p></li>
+        <li><p><b>Looking Glass, USC New Venture Seed</b><span>CTO</span></p></li>
+        <li><p><b>Princess Polly</b><span>Campus Ambassador</span></p></li>
+      </ul>
+    </div>
   </section>
 
   <section class="dvf" id="how">
@@ -593,34 +620,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     </div>
   </section>
 
-  <!-- Ask tj: pre-written answers in two tones, drawn only from this site and my repos -->
-  <section class="band ask" id="ask" aria-labelledby="ask-title">
-    <div class="wrap ask-in">
-      <div class="ask-copy">
-        <div class="kicker"><i></i>Ask tj</div>
-        <h2 id="ask-title">Questions? Ask the mini me.</h2>
-        <p>Pick a question or type your own. Choose how you want me to answer: the interview version or the coffee chat version.</p>
-        <p class="ask-note">Answers are written by me and only use what's on this site and my GitHub. It isn't a live AI, so for anything it can't answer, just email me.</p>
-      </div>
-      <div class="ask-box">
-        <div class="ask-top">
-          <span class="ask-who"><b>tj</b> Mini Taliyah</span>
-          <div class="ask-tone" role="radiogroup" aria-label="Answer style">
-            <button type="button" role="radio" data-tone="P" aria-checked="true">Professional</button>
-            <button type="button" role="radio" data-tone="C" aria-checked="false">Casual</button>
-          </div>
-        </div>
-        <div class="ask-log" id="ask-log" aria-live="polite"></div>
-        <div class="ask-chips" id="ask-chips"></div>
-        <form class="ask-form" id="ask-form" autocomplete="off">
-          <label class="sr" for="ask-in">Ask a question</label>
-          <input id="ask-in" type="text" placeholder="Ask about my work, school, hobbies..." maxlength="160">
-          <button type="submit" aria-label="Send">Ask</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
   <section class="band" id="contact">
     <div class="wrap last">
       <div>
@@ -637,6 +636,28 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     </div>
   </section>
 </main>
+
+<!-- Ask tj: floating launcher + chat panel. Pre-written answers in two tones, drawn only from this site and my repos -->
+<div class="ask-dock">
+  <div class="ask-box" id="ask-panel" role="dialog" aria-modal="false" aria-labelledby="ask-name" hidden>
+    <div class="ask-top">
+      <span class="ask-who" id="ask-name"><b>tj</b><span>Ask tj<small>Pre-written answers from my site</small></span></span>
+      <div class="ask-tone" role="radiogroup" aria-label="Answer style">
+        <button type="button" role="radio" data-tone="P" aria-checked="true">Professional</button>
+        <button type="button" role="radio" data-tone="C" aria-checked="false">Casual</button>
+      </div>
+      <button type="button" class="ask-x" id="ask-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="ask-log" id="ask-log" aria-live="polite"></div>
+    <div class="ask-chips" id="ask-chips"></div>
+    <form class="ask-form" id="ask-form" autocomplete="off">
+      <label class="sr" for="ask-in">Ask a question</label>
+      <input id="ask-in" type="text" placeholder="Ask about my work, school, hobbies..." maxlength="160">
+      <button type="submit" aria-label="Send">Ask</button>
+    </form>
+  </div>
+  <button type="button" class="ask-fab" id="ask-open" aria-expanded="false" aria-controls="ask-panel"><b>tj</b><span>Ask me</span></button>
+</div>
 
 <footer>
   <div class="wrap">
@@ -1054,6 +1075,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   });
   CHIPS.forEach(([q, id]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = q; b.addEventListener('click', () => ask(q, id)); chips.append(b); });
   form.addEventListener('submit', e => { e.preventDefault(); const q = input.value.trim(); if (!q) return; input.value = ''; ask(q); });
+  const panel = $('ask-panel'), openB = $('ask-open');
+  function setOpen(on) {
+    panel.hidden = !on; openB.setAttribute('aria-expanded', on);
+    if (on) { input.focus({ preventScroll: true }); scroll(); } else openB.focus();
+  }
+  openB.addEventListener('click', () => setOpen(true));
+  $('ask-close').addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) setOpen(false); });
   rerender();
 }
 </script>
@@ -1074,6 +1103,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   prev.addEventListener('click', () => track.scrollBy({ left: -step() }));
   next.addEventListener('click', () => track.scrollBy({ left: step() }));
   track.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); } });
+  // count the big numbers up the first time the row comes into view
+  const nums = track.querySelectorAll('[data-count]');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    nums.forEach(n => n.textContent = '0');
+    const run = el => { const end = +el.dataset.count, t0 = performance.now();
+      const tick = t => { const k = Math.min(1, (t - t0) / 900); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick); };
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); nums.forEach(run); } }, { threshold: .25 });
+    io.observe(track);
+  }
   track.addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); update();
 }
 </script>
