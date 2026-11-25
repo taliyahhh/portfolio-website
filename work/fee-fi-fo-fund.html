@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fee Fi Fo Fund · Taliyah Harvey</title>
+<meta name="description" content="Product process case study: type a zip code and see what your city, state and the federal government spent your tax dollars on.">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="case-study.css">
+</head>
+<body class="express">
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="/" aria-label="Taliyah Harvey, home"><b>tj</b> <span>Taliyah Harvey</span></a>
+    <nav aria-label="Site">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://drive.google.com/file/d/1bd_ZmiNHnVtcSxHFkS7MbYG4A5ucGU3_/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="cs-kicker"><i></i>Product process · Fee Fi Fo Fund</div>
+      <h1>Where did your tax dollars actually go?</h1>
+      <p class="sub">Taxes come out of every paycheck, but where the money goes is buried in budget PDFs. I designed and built a site where you type your zip code and see what your city, your state and the federal government spent it on, told like a fairy tale.</p>
+      <ul class="labels"><li><span>Role</span>Design and development</li><li><span>Team</span>Me, plus a teammate on video and mood board</li><li><span>Timeline</span>Oct 2026</li><li><span>Type</span>SVSD design competition</li></ul>
+      <div class="outcomes"><div><b>41,000+</b><span>Zip codes on the map, every one in the US</span></div><div><b>3 levels</b><span>Federal, state and city spending side by side</span></div><div><b>Self-updating</b><span>City data rebuilds monthly from public sources</span></div></div>
+    </div>
+  </section>
+
+  <div class="modebar" id="mode-start">
+    <div class="wrap">
+      <div class="seg" role="group" aria-label="How much detail">
+        <button type="button" data-mode="express" aria-pressed="true">Express <small>1 min</small></button>
+        <button type="button" data-mode="local" aria-pressed="false">Local <small>full process</small></button>
+      </div>
+      <nav class="trip" aria-label="Case study stops">
+        <span class="fill"></span>
+        <a href="#problem"><i></i><span>Problem</span></a>
+        <a href="#research"><i></i><span>Research</span></a>
+        <a href="#insight"><i></i><span>Insight</span></a>
+        <a href="#iterations"><i></i><span>Iterations</span></a>
+        <a href="#decisions"><i></i><span>Decisions</span></a>
+        <a href="#outcome"><i></i><span>Outcome</span></a>
+        <a href="#next"><i></i><span>What's next</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="cs-sec express-only">
+    <div class="wrap">
+      <div class="express-card">
+        <div><h3>The problem</h3><p>Spending data is public but unreadable: billions of dollars in PDFs, split across three levels of government nobody can keep straight.</p></div>
+        <div><h3>What I made</h3><p>Type a zip code and get a collage of where your money went, as dollars out of every $100, across nation, state and city.</p></div>
+        <div><h3>Biggest decision</h3><p>Show every number out of $100 instead of in billions. A scale people can actually feel.</p></div>
+      </div>
+      <div class="tryit">
+        <div class="bar"><span><b>Try it:</b> type your zip code, or tap anywhere on the map.</span><a href="https://feefifo.fund" target="_blank" rel="noopener">Open full site</a></div>
+        <button type="button" class="start" data-src="https://feefifo.fund" data-title="Fee Fi Fo Fund, live">
+          <img src="img/fee-v4-land.jpg" alt="Fee Fi Fo Fund&#x27;s landing page: a hand-lettered logo over a colorful dot map of every US zip code">
+          <span><i></i>Start the live site</span>
+        </button>
+      </div>
+      <div class="next-row">
+        <button type="button" class="btn fill" data-mode="local" data-scroll><i></i>See the full process</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec local-only" id="problem">
+    <div class="wrap narrow">
+      <div class="stop-tag"><i></i>Stop 1 · Problem <em class="lens d">Desirability</em></div>
+      <h2>Public, but not readable</h2>
+      <p class="lead">Budgets live in PDFs and spreadsheets. Most people pay taxes every paycheck and never see where it goes, or which level of government is spending it.</p>
+      <p>Even when you find the numbers, they're in billions. Nobody can picture $1.6 trillion, so the data might as well be hidden.</p>
+      <p><b>Goal:</b> make your tax dollars feel personal in under a minute: one zip code, one picture.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec local-only" id="research">
+    <div class="wrap">
+      <div class="narrow">
+        <div class="stop-tag"><i></i>Stop 2 · Research <em class="lens d">Data</em></div>
+        <h2>Where the numbers come from</h2>
+        <p class="lead">Before designing anything, I had to find spending data that covered every town, not just big cities.</p>
+      </div>
+      <div class="evidence">
+        <div class="ev"><b>Every city</b>The 2022 Census of Governments covers every local government in the US. California's State Controller API adds all 482 California cities.</div>
+        <div class="ev"><b>Hard truth</b>Social Security alone is about $22 of every $100 the federal government spends. Leaving it out would make the picture prettier and wrong.</div>
+        <div class="ev"><b>Surprise</b>Some things barely show up where you'd expect. California's General Fund spends almost nothing on transit, because that money comes from gas taxes and fees.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec local-only" id="insight">
+    <div class="wrap narrow">
+      <div class="stop-tag"><i></i>Stop 3 · Insight <em class="lens d">Opportunity</em></div>
+      <h2>The opportunity</h2>
+      <p class="insight">People don't think in billions. They think in their own town, and in a single dollar.</p>
+    </div>
+  </section>
+
+  <section class="cs-sec local-only" id="iterations">
+    <div class="wrap">
+      <div class="narrow">
+        <div class="stop-tag"><i></i>Stop 4 · Iterations <em class="lens d">Design</em></div>
+        <h2>Four versions in four days</h2>
+        <p class="lead">Drag through the real versions. Each one fixed what the last got wrong.</p>
+      </div>
+      <div class="iter">
+        <figure><img src="img/fee-v1-res.jpg" alt="" width="1280" height="800"></figure>
+        <div class="controls">
+          <span class="ver" data-out="ver"></span>
+          <h3 data-out="title"></h3>
+          <p class="what" data-out="what"></p>
+          <p class="why" data-out="why"></p>
+          <input type="range" min="0" max="3" step="1" value="0" aria-label="Choose a version">
+          <div class="ticks"></div>
+          <div class="nav"><button type="button" data-step="-1">Previous</button><button type="button" data-step="1">Next version</button></div>
+        </div>
+      </div>
+      <script type="application/json" id="iterations-data">
+      [{"short": "Taxonomy", "date": "Oct 18", "img": "img/fee-v1-res.jpg", "alt": "First version, called Taxonomy: spending shown as a grid of boxed cards with big dollar amounts", "title": "Taxonomy: every category in a box", "what": "A dark dot map of zip codes, then a grid of boxes, one per spending category.", "why": "Readable, but it looked like a spreadsheet with pictures. Nothing made you want to keep looking."}, {"short": "Floating", "date": "Oct 18", "img": "img/fee-v2-res.jpg", "alt": "Second version: spending categories as floating 3D objects sized by how much money they get", "title": "Floating objects, sized by money", "what": "Renamed Fee Fi Fo Fund. Categories became loose objects scattered across the page, bigger for more money.", "why": "More alive. I also tried psychedelic animations and removed them the same day: fun, but they fought the numbers."}, {"short": "Folders", "date": "Oct 19", "img": "img/fee-v3-res.jpg", "alt": "Third version: hand-lettered results inside a paper file folder with Nation, State and City tabs", "title": "Real file folders", "what": "A hand-lettered brand, paper texture and file folders with Nation, State and City tabs.", "why": "Three levels of government finally felt like three separate documents you can pull out and compare."}, {"short": "The tale", "date": "Oct 21", "img": "img/fee-v4-res.jpg", "alt": "Final version: Santa Clara results with a $100 strip across the top and photo stickers for each category", "title": "The tale", "what": "A scroll story on the dot map with you as the main character, read aloud on request, plus a $100 strip that shows the whole split at a glance.", "why": "It turned a lookup into something people actually read to the end."}]
+      </script>
+    </div>
+  </section>
+
+  <section class="cs-sec local-only" id="decisions">
+    <div class="wrap">
+      <div class="narrow">
+        <div class="stop-tag"><i></i>Stop 5 · Decisions <em class="lens">Trade-offs</em></div>
+        <h2>Why this, not that</h2>
+        <p class="lead">One call each for design, product strategy and tech.</p>
+      </div>
+      <article class="decision">
+        <header><h3>Dollars out of $100, not billions</h3><p>Design</p></header>
+        <div class="pair">
+          <figure><span class="verdict no">Not this</span><img src="img/fee-v1-res.jpg" alt="Early results with totals in billions" loading="lazy"><figcaption>Accurate, but too big to picture.</figcaption></figure>
+          <figure><span class="verdict yes">This</span><img src="img/fee-v4-res.jpg" alt="Final results with a $100 strip" loading="lazy"><figcaption>Out of every $100, here's where yours went.</figcaption></figure>
+        </div>
+        <p class="because"><b>Because:</b> $22 out of every $100 is a number you can feel. $1.6 trillion isn't.</p>
+      </article>
+      <article class="decision">
+        <header><h3>Show the uncomfortable buckets</h3><p>Product strategy</p></header>
+        <p class="because"><b>Because:</b> Social Security, paying off debt and the safety net don't fit a tidy list of 12 categories, but together they're a huge share of federal spending. Hiding them would have made the site cleaner and misleading, so they got their own buckets, and barely-funded categories got a gray "barely any money here" strip.</p>
+      </article>
+      <article class="decision">
+        <header><h3>Data that updates itself</h3><p>Tech</p></header>
+        <p class="because"><b>Because:</b> City budgets change every year. A GitHub Action rebuilds the data for every city each month from the Census and California's Controller, so the site stays plain HTML, CSS and JavaScript with no server to babysit.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cs-sec local-only" id="outcome">
+    <div class="wrap">
+      <div class="narrow">
+        <div class="stop-tag"><i></i>Stop 6 · Outcome <em class="lens t">Feasibility</em></div>
+        <h2>What shipped</h2>
+        <p class="lead">Live at feefifo.fund. No framework, no build step.</p>
+      </div>
+      <ul class="feature-list">
+        <li>A dot map of every US zip code you can type into, drag and pinch</li>
+        <li>Nation, State and City folders with every category out of $100</li>
+        <li>The tale: a scroll story with Read it to me narration</li>
+        <li>A Sources page listing every dataset, year and category mapping</li>
+        <li>Shareable links for any zip, like feefifo.fund/?zip=95050</li>
+      </ul>
+      <div class="tryit">
+        <div class="bar"><span><b>Try it:</b> type your zip code, or tap anywhere on the map.</span><a href="https://feefifo.fund" target="_blank" rel="noopener">Open full site</a></div>
+        <button type="button" class="start" data-src="https://feefifo.fund" data-title="Fee Fi Fo Fund, live">
+          <img src="img/fee-v4-land.jpg" alt="Fee Fi Fo Fund&#x27;s landing page: a hand-lettered logo over a colorful dot map of every US zip code" loading="lazy">
+          <span><i></i>Start the live site</span>
+        </button>
+      </div>
+      <div class="evidence"><div class="ev todo"><b>Result</b>Add how the SVSD design competition went, and any reactions from people who tried it.</div></div>
+    </div>
+  </section>
+
+  <section class="cs-sec local-only" id="next">
+    <div class="wrap">
+      <div class="narrow">
+        <div class="stop-tag"><i></i>Stop 7 · Learnings and next <em class="lens b">Viability</em></div>
+        <h2>What I'd take forward</h2>
+      </div>
+      <div class="learn">
+        <div><h3>Restraint is a design skill</h3><p>The psychedelic version was the most fun to build and the first thing I deleted.</p></div>
+        <div><h3>Scale is the story</h3><p>Changing billions to dollars out of $100 did more than any visual I added.</p></div>
+        <div><h3>Next: every state</h3><p>State budgets are typed in by hand, so only California and New York are done. More states are next.</p></div>
+        <div><h3>Next: from knowing to doing</h3><p>The Leave a footprint folder starts here: turning "where did it go" into "what can I do about it."</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="next">
+    <div class="wrap">
+      <a class="next-card" href="branch-out.html">
+        <span><small>Next stop</small><b>Branch Out: how do college students find their first open source project?</b></span>
+        <span class="go" aria-hidden="true">&rarr;</span>
+      </a>
+      <div class="next-row">
+        <a class="btn" href="/#contact">Get in touch</a>
+        <a class="btn" href="https://github.com/taliyahhh/tax-site" target="_blank" rel="noopener">View the code</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap"><span>Taliyah Harvey</span><span>Data: U.S. Census Bureau, California State Controller and state budget reports</span></div>
+</footer>
+<script src="case-study.js"></script>
+</body>
+</html>

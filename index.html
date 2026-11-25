@@ -213,7 +213,15 @@ a.by-card .by-meta h3::after{content:" →"}
 a.wcard:hover{transform:translateY(-3px);border-color:var(--ink)}
 .wcover{position:relative;display:block;background:var(--panel);aspect-ratio:16/10;overflow:hidden}
 .wcover img{width:100%;height:100%;object-fit:cover;object-position:top}
-.wcover.alt{background:#111}.wcover.alt2{background:var(--blue)}.wcover.alt3{background:#ff9f1c}
+.wcover.alt{background:#111}.wcover.alt2{background:var(--blue)}.wcard{position:relative}
+.wcard .wlink{color:inherit;text-decoration:none}
+.wcard .wlink::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.wgos{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:auto;padding-top:6px}
+.wgos .wgo{position:relative;z-index:1;margin-top:0}
+.wgos .wgo.ext{color:var(--muted);text-decoration-color:var(--rule)}
+.wgos .wgo.ext:hover{color:var(--ink);text-decoration-color:var(--yellow)}
+.wcard:hover .wlink{text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:4px}
+.wcover.alt3{background:#ff9f1c}
 .wcard.big .wcover.feat{aspect-ratio:auto;min-height:320px}
 .wcard.big .wcover.feat .wph{font-size:clamp(40px,6vw,76px)}
 .wname i{font-style:normal;font-weight:600;opacity:.8}
@@ -465,42 +473,42 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       <div class="kicker"><i></i>Projects</div>
       <h2>Selected work.</h2>
       <div class="works">
-        <a class="wcard big" href="work/karls-friend-bart.html">
+        <article class="wcard big">
           <span class="wcover"><img src="work/img/bart-v4-final-day.jpg" alt="" loading="lazy"><span class="wres">Live · real-time BART data</span></span>
           <span class="wbody">
             <span class="wname">Karl's Friend Bart <i>· Oct 2026</i></span>
-            <b>I got off at the wrong station. So I rebuilt the map.</b>
+            <b><a class="wlink" href="work/karls-friend-bart.html">I got off at the wrong station. So I rebuilt the map.</a></b>
             <span class="wlabels"><span class="l-d">Design</span><span class="l-t">Tech</span><span>Personal</span></span>
-            <span class="wgo">See the process</span>
+            <span class="wgos"><a class="wgo" href="work/karls-friend-bart.html">See the process &rarr;</a><a class="wgo ext" href="https://taliyahhh.github.io/bart-revamp/" target="_blank" rel="noopener">Visit the live map &nearr;</a></span>
           </span>
-        </a>
-        <a class="wcard" href="https://feefifo.fund" target="_blank" rel="noopener">
-          <span class="wcover alt3"><span class="wph">Fee Fi Fo Fund</span><span class="wres">Design competition</span></span>
+        </article>
+        <article class="wcard">
+          <span class="wcover"><img src="assets/cover-fee.jpg" alt="" loading="lazy"><span class="wres">Design competition</span></span>
           <span class="wbody">
             <span class="wname">Fee Fi Fo Fund <i>· Nov 2026</i></span>
-            <b>Where did your tax dollars actually go?</b>
+            <b><a class="wlink" href="work/fee-fi-fo-fund.html">Where did your tax dollars actually go?</a></b>
             <span class="wlabels"><span class="l-d">Design</span><span class="l-t">Tech</span><span>Competition</span></span>
-            <span class="wgo">Visit feefifo.fund &nearr;</span>
+            <span class="wgos"><a class="wgo" href="work/fee-fi-fo-fund.html">See the process &rarr;</a><a class="wgo ext" href="https://feefifo.fund" target="_blank" rel="noopener">Visit feefifo.fund &nearr;</a></span>
           </span>
-        </a>
-        <a class="wcard" href="https://branchout.tech" target="_blank" rel="noopener">
-          <span class="wcover alt2"><span class="wph">Branch Out</span><span class="wres">Shipped at Salesforce</span></span>
+        </article>
+        <article class="wcard">
+          <span class="wcover"><img src="assets/cover-branchout.jpg" alt="" loading="lazy"><span class="wres">Shipped at Salesforce</span></span>
           <span class="wbody">
             <span class="wname">Branch Out <i>· Summer 2025</i></span>
-            <b>How do college students find their first open source project?</b>
+            <b><a class="wlink" href="work/branch-out.html">How do college students find their first open source project?</a></b>
             <span class="wlabels"><span class="l-t">Tech</span><span class="l-b">Business</span><span>Salesforce</span></span>
-            <span class="wgo">Visit branchout.tech &nearr;</span>
+            <span class="wgos"><a class="wgo" href="work/branch-out.html">See the process &rarr;</a><a class="wgo ext" href="https://branchout.tech" target="_blank" rel="noopener">Visit branchout.tech &nearr;</a></span>
           </span>
-        </a>
-        <a class="wcard" href="https://inhindsight.net" target="_blank" rel="noopener">
-          <span class="wcover alt"><span class="wph">In Hindsight</span><span class="wres">In progress</span></span>
+        </article>
+        <article class="wcard">
+          <span class="wcover"><img src="assets/cover-hindsight.jpg" alt="" loading="lazy"><span class="wres">In progress</span></span>
           <span class="wbody">
             <span class="wname">In Hindsight <i>· Now</i></span>
-            <b>What if your saved videos weren't stuck in folders?</b>
+            <b><a class="wlink" href="work/in-hindsight.html">What if your saved videos weren't stuck in folders?</a></b>
             <span class="wlabels"><span class="l-d">Design</span><span class="l-t">Tech</span><span>Personal</span></span>
-            <span class="wgo">Visit inhindsight.net &nearr;</span>
+            <span class="wgos"><a class="wgo" href="work/in-hindsight.html">See the process &rarr;</a><a class="wgo ext" href="https://inhindsight.net" target="_blank" rel="noopener">Visit inhindsight.net &nearr;</a></span>
           </span>
-        </a>
+        </article>
       </div>
     </div>
   </section>

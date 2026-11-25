@@ -180,3 +180,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 .stop-tag .lens.d{background:#ffd200;border-color:#ffd200;color:#111}
 .stop-tag .lens.t{background:#1aa7ff;border-color:#1aa7ff;color:#08131c}
 .stop-tag .lens.b{background:#ff9f1c;border-color:#ff9f1c;color:#1d1204}
+
+/* single research photo */
+.cs-fig{margin:24px 0 0;border-radius:18px;overflow:hidden;border:1px solid var(--rule)}
+.cs-fig img{display:block;width:100%;max-height:460px;object-fit:cover}
+.cs-fig figcaption{padding:10px 16px;font-size:14px;color:var(--muted);background:var(--panel)}
