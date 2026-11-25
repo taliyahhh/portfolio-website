@@ -360,6 +360,10 @@ button.dvf-row:focus-visible{outline:3px solid var(--dD)}
 .links a u{text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:5px}
 .links a:hover u{text-decoration-color:var(--ink)}
 footer{border-top:1px solid var(--rule)}
+@media(max-width:600px){footer{padding-bottom:84px}}
+footer .kpi small{font-size:12px}
+.ask-dock.away .ask-fab{opacity:0;pointer-events:none;transform:translateY(12px)}
+.ask-fab{transition:transform .2s,opacity .2s}
 footer .kpi small{opacity:.7}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:26px;font-size:14px;color:var(--muted)}
 
@@ -458,8 +462,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   <!-- Selected work: the three strongest case studies, each one click from the homepage -->
   <section class="band" id="work">
     <div class="wrap">
-      <div class="kicker"><i></i>Projects</div>
-      <h2>Things I've designed and built</h2>
+      <div class="kicker"><i></i>Work</div>
+      <h2>Projects.</h2>
       <div class="works">
         <a class="wcard big" href="work/karls-friend-bart.html">
           <span class="wcover"><img src="work/img/bart-v4-final-day.jpg" alt="" loading="lazy"><span class="wres">Live · real-time BART data</span></span>
@@ -623,7 +627,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <circle class="ring" id="dvf-r-B" cx="360" cy="365" r="165" stroke="#ff9f1c"/>
         <rect class="hit" id="dvf-hit" x="-10" y="64" width="780" height="534"/>
         <g class="lab"><text class="t" x="108" y="196" text-anchor="end" fill="#ffd200">Design</text><text class="q" x="108" y="218" text-anchor="end">Do people</text><text class="q" x="108" y="236" text-anchor="end">want it?</text></g>
-        <g class="lab"><text class="t" x="612" y="196" fill="#1aa7ff">Technology</text><text class="q" x="612" y="218">Can it be</text><text class="q" x="612" y="236">built?</text></g>
+        <g class="lab"><text class="t" x="612" y="196" fill="#1aa7ff">Tech</text><text class="q" x="612" y="218">Can it be</text><text class="q" x="612" y="236">built?</text></g>
         <g class="lab"><text class="t" x="360" y="562" text-anchor="middle" fill="#ff9f1c">Business</text><text class="q" x="360" y="584" text-anchor="middle">Will it last?</text></g>
         <g id="dvf-dots"></g>
         <g class="me" id="dvf-me" tabindex="0" role="button" aria-label="Me: where I want my work to come together">
@@ -1106,6 +1110,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   openB.addEventListener('click', () => setOpen(true));
   $('ask-close').addEventListener('click', () => setOpen(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) setOpen(false); });
+  // on phones, tuck the chat button away while the puzzle board is on screen so it never covers a dot
+  const dock = document.querySelector('.ask-dock'), board = document.querySelector('.fl-board');
+  if (board && 'IntersectionObserver' in window) {
+    new IntersectionObserver(es => es.forEach(e => dock.classList.toggle('away', e.isIntersecting && innerWidth < 900 && panel.hidden)), { threshold: .15 }).observe(board);
+  }
   rerender();
 }
 </script>
