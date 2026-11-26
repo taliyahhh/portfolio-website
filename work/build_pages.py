@@ -1,19 +1,50 @@
-"""Builds the process pages for Fee Fi Fo Fund, In Hindsight and Branch Out
-from one template so they match Karl's Friend Bart. Run: python3 build_pages.py"""
-import json, html
+"""Builds all four process pages from one template.
+Run from this folder: python3 build_pages.py
+Voice: short, direct, first person. No "this, not that" labels, no "Because:" lines."""
+import html
 
 RESUME = "https://drive.google.com/file/d/1bd_ZmiNHnVtcSxHFkS7MbYG4A5ucGU3_/view?usp=sharing"
 e = html.escape
+STOPS = [("problem", "Problem"), ("research", "Research"), ("iterations", "Iterations"),
+         ("decisions", "Decisions"), ("outcome", "Outcome"), ("next", "What's next")]
+LENS_CLASS = {"Design": "d", "Tech": "t", "Business": "b", "Product strategy": "b"}
 
 
-def head(title, desc):
-    return f'''<!DOCTYPE html>
+def fig(src, alt, cap, cls="dfig"):
+    capt = f'<figcaption>{cap}</figcaption>' if cap else ''
+    return f'<figure class="{cls}"><img src="{src}" alt="{e(alt)}" loading="lazy">{capt}</figure>'
+
+
+def tryit(p, lazy=True):
+    if not p.get("live"):
+        return ""
+    return f'''      <div class="tryit">
+        <div class="bar"><span><b>Try it:</b> {p["try"]}</span><a href="{p["live"]}" target="_blank" rel="noopener">Open full site</a></div>
+        <button type="button" class="start" data-src="{p["live"]}" data-title="{e(p["name"])}, live">
+          <img src="{p["tryimg"]}" alt="{e(p["tryalt"])}"{' loading="lazy"' if lazy else ''}>
+          <span><i></i>Start the live site</span>
+        </button>
+      </div>
+'''
+
+
+def page(p):
+    labels = "".join(f'<li><span>{k}</span>{v}</li>' for k, v in p["labels"])
+    stats = "".join(f'<div><b>{b}</b><span>{s}</span></div>' for b, s in p["stats"])
+    trip = "".join(f'<a href="#{i}"><i></i><span>{t}</span></a>' for i, t in STOPS)
+    n = len(p["iters"])
+    tabs = "".join(f'          <button type="button" role="tab" aria-selected="{str(k == n - 1).lower()}" data-i="{k}"><small>v{k + 1} · {it["date"]}</small>{it["short"]}</button>\n' for k, it in enumerate(p["iters"]))
+    panels = "".join(f'        <figure class="steps-panel"{"" if k == n - 1 else " hidden"} data-panel="{k}"><img src="{it["img"]}" alt="{e(it["alt"])}" loading="lazy"><figcaption>{it["cap"]}</figcaption></figure>\n' for k, it in enumerate(p["iters"]))
+    prob = "".join(f'      <p>{x}</p>\n' for x in p["problem"][2:])
+    evid = "".join(f'        <div class="ev"><b>{b}</b>{x}</div>\n' for b, x in p["evidence"])
+    rfig = ('      ' + fig(*p["research_fig"], cls="cs-fig") + '\n') if p.get("research_fig") else ''
+    o = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(title)} · Taliyah Harvey</title>
-<meta name="description" content="Product process case study: {e(desc)}">
+<title>{e(p["name"])} · Taliyah Harvey</title>
+<meta name="description" content="Product process case study: {e(p["desc"])}">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,187 +66,136 @@ def head(title, desc):
 </header>
 
 <main>
-'''
-
-
-def tryit(p, lazy=True):
-    if not p.get("live"):
-        return ""
-    return f'''      <div class="tryit">
-        <div class="bar"><span><b>Try it:</b> {p["try"]}</span><a href="{p["live"]}" target="_blank" rel="noopener">Open full site</a></div>
-        <button type="button" class="start" data-src="{p["live"]}" data-title="{e(p["name"])}, live">
-          <img src="{p["tryimg"]}" alt="{e(p["tryalt"])}"{' loading="lazy"' if lazy else ''}>
-          <span><i></i>Start the live site</span>
-        </button>
-      </div>
-'''
-
-
-def page(p):
-    out = head(p["name"], p["desc"])
-    labels = "".join(f'<li><span>{k}</span>{v}</li>' for k, v in p["labels"])
-    outs = "".join(f'<div><b>{b}</b><span>{s}</span></div>' for b, s in p["outcomes"])
-    out += f'''  <section class="cs-hero">
+  <section class="cs-hero">
     <div class="wrap">
-      <div class="cs-kicker"><i></i>Product process · {e(p["name"])}</div>
+      <div class="cs-kicker"><i></i>Process · {e(p["name"])}</div>
       <h1>{p["h1"]}</h1>
       <p class="sub">{p["sub"]}</p>
       <ul class="labels">{labels}</ul>
-      <div class="outcomes">{outs}</div>
+      <div class="outcomes">{stats}</div>
     </div>
   </section>
 
   <div class="modebar" id="mode-start">
     <div class="wrap">
       <div class="seg" role="group" aria-label="How much detail">
-        <button type="button" data-mode="express" aria-pressed="true">Express <small>1 min</small></button>
-        <button type="button" data-mode="local" aria-pressed="false">Local <small>full process</small></button>
+        <button type="button" data-mode="express" aria-pressed="true">Short <small>1 min</small></button>
+        <button type="button" data-mode="local" aria-pressed="false">Full <small>whole process</small></button>
       </div>
-      <nav class="trip" aria-label="Case study stops">
-        <span class="fill"></span>
-        <a href="#problem"><i></i><span>Problem</span></a>
-        <a href="#research"><i></i><span>Research</span></a>
-        <a href="#insight"><i></i><span>Insight</span></a>
-        <a href="#iterations"><i></i><span>Iterations</span></a>
-        <a href="#decisions"><i></i><span>Decisions</span></a>
-        <a href="#outcome"><i></i><span>Outcome</span></a>
-        <a href="#next"><i></i><span>What's next</span></a>
-      </nav>
+      <nav class="trip" aria-label="Sections"><span class="fill"></span>{trip}</nav>
     </div>
   </div>
 
   <section class="cs-sec express-only">
     <div class="wrap">
       <div class="express-card">
-        <div><h3>The problem</h3><p>{p["x_problem"]}</p></div>
-        <div><h3>What I made</h3><p>{p["x_made"]}</p></div>
-        <div><h3>Biggest decision</h3><p>{p["x_decision"]}</p></div>
+        <div><h3>The problem</h3><p>{p["x"][0]}</p></div>
+        <div><h3>What I made</h3><p>{p["x"][1]}</p></div>
+        <div><h3>The big call</h3><p>{p["x"][2]}</p></div>
       </div>
 {tryit(p, lazy=False)}      <div class="next-row">
-        <button type="button" class="btn fill" data-mode="local" data-scroll><i></i>See the full process</button>
+        <button type="button" class="btn fill" data-mode="local" data-scroll><i></i>See the whole process</button>
       </div>
     </div>
   </section>
 
   <section class="cs-sec local-only" id="problem">
     <div class="wrap narrow">
-      <div class="stop-tag"><i></i>Stop 1 · Problem <em class="lens d">Desirability</em></div>
-      <h2>{p["problem_h"]}</h2>
-      <p class="lead">{p["problem_lead"]}</p>
-{''.join(f'      <p>{x}</p>{chr(10)}' for x in p["problem_more"])}      <p><b>Goal:</b> {p["goal"]}</p>
-    </div>
+      <div class="stop-tag"><i></i>Problem <em class="lens d">Desirability</em></div>
+      <h2>{p["problem"][0]}</h2>
+      <p class="lead">{p["problem"][1]}</p>
+{prob}    </div>
   </section>
 
   <section class="cs-sec local-only" id="research">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 2 · Research <em class="lens d">{p["research_lens"]}</em></div>
-        <h2>{p["research_h"]}</h2>
-        <p class="lead">{p["research_lead"]}</p>
+        <div class="stop-tag"><i></i>Research <em class="lens d">Users</em></div>
+        <h2>{p["research"][0]}</h2>
+        <p class="lead">{p["research"][1]}</p>
       </div>
-{('      <figure class="cs-fig"><img src="' + p["research_img"][0] + '" alt="' + e(p["research_img"][1]) + '" loading="lazy"><figcaption>' + p["research_img"][2] + '</figcaption></figure>' + chr(10)) if p.get("research_img") else ''}      <div class="evidence">
-{''.join(f'        <div class="ev{" todo" if t else ""}"><b>{b}</b>{x}</div>{chr(10)}' for b, x, t in p["evidence"])}      </div>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="insight">
-    <div class="wrap narrow">
-      <div class="stop-tag"><i></i>Stop 3 · Insight <em class="lens d">Opportunity</em></div>
-      <h2>The opportunity</h2>
-      <p class="insight">{p["insight"]}</p>
+      <div class="evidence">
+{evid}      </div>
+{rfig}      <p class="insight">{p["insight"]}</p>
     </div>
   </section>
 
   <section class="cs-sec local-only" id="iterations">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 4 · Iterations <em class="lens d">Design</em></div>
+        <div class="stop-tag"><i></i>Iterations <em class="lens d">Design</em></div>
         <h2>{p["iter_h"]}</h2>
-        <p class="lead">Drag through the real versions. Each one fixed what the last got wrong.</p>
       </div>
-      <div class="iter">
-        <figure><img src="{p["iters"][0]["img"]}" alt="" width="1280" height="800"></figure>
-        <div class="controls">
-          <span class="ver" data-out="ver"></span>
-          <h3 data-out="title"></h3>
-          <p class="what" data-out="what"></p>
-          <p class="why" data-out="why"></p>
-          <input type="range" min="0" max="{len(p["iters"]) - 1}" step="1" value="0" aria-label="Choose a version">
-          <div class="ticks"></div>
-          <div class="nav"><button type="button" data-step="-1">Previous</button><button type="button" data-step="1">Next version</button></div>
-        </div>
-      </div>
-      <script type="application/json" id="iterations-data">
-      {json.dumps(p["iters"], ensure_ascii=False)}
-      </script>
+      <div class="steps" data-steps>
+        <div class="steps-tabs" role="tablist" aria-label="Versions">
+{tabs}        </div>
+{panels}      </div>
     </div>
   </section>
 
   <section class="cs-sec local-only" id="decisions">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 5 · Decisions <em class="lens">Trade-offs</em></div>
-        <h2>Why this, not that</h2>
-        <p class="lead">One call each for design, product strategy and tech.</p>
+        <div class="stop-tag"><i></i>Decisions <em class="lens">Trade-offs</em></div>
+        <h2>The calls I made</h2>
       </div>
 '''
     for d in p["decisions"]:
-        pair = ""
         if d.get("pair"):
-            (na, nalt, ncap), (ya, yalt, ycap) = d["pair"]
-            nl, yl = d.get("labels", ("Not this", "This"))
-            pair = f'''        <div class="pair">
-          <figure><span class="verdict no">{nl}</span><img src="{na}" alt="{e(nalt)}" loading="lazy"><figcaption>{ncap}</figcaption></figure>
-          <figure><span class="verdict yes">{yl}</span><img src="{ya}" alt="{e(yalt)}" loading="lazy"><figcaption>{ycap}</figcaption></figure>
-        </div>
-'''
-        if d.get("fig"):
-            src, alt, cap = d["fig"]
-            pair = f'        <figure class="dfig"><img src="{src}" alt="{e(alt)}" loading="lazy"><figcaption>{cap}</figcaption></figure>\n'
-        if d.get("diagram"):
-            steps = "".join(f'<li class="{c}"><b>{t}</b><span>{x}</span></li>' for c, t, x in d["diagram"]["steps"])
-            pair = f'        <figure class="dfig flowd"><ol>{steps}</ol><figcaption>{d["diagram"]["cap"]}</figcaption></figure>\n'
-        out += f'''      <article class="decision">
-        <header><h3>{d["h"]}</h3><p>{d["lens"]}</p></header>
-{pair}        <p class="because"><b>Because:</b> {d["because"]}</p>
+            vis = '<div class="pair">' + "".join(f'<figure><img src="{s}" alt="{e(a)}" loading="lazy"><figcaption>{c}</figcaption></figure>' for s, a, c in d["pair"]) + '</div>'
+        elif d.get("fig"):
+            vis = fig(*d["fig"])
+        else:
+            steps = "".join(f'<li class="{c}"><b>{t}</b><span>{x}</span></li>' for c, t, x in d["diagram"])
+            vis = f'<figure class="dfig flowd"><ol>{steps}</ol></figure>'
+        o += f'''      <article class="decision">
+        <header><em class="lens {LENS_CLASS[d["lens"]]}">{d["lens"]}</em><h3>{d["h"]}</h3></header>
+        {vis}
+        <p class="because">{d["why"]}</p>
       </article>
 '''
     feats = "".join(f'        <li>{x}</li>\n' for x in p["features"])
-    out += f'''    </div>
+    extra = "".join(f'      {fig(*f, cls="cs-fig")}\n' for f in p.get("outcome_figs", []))
+    result = (f'      <div class="evidence one"><div class="ev"><b>{p["result"][0]}</b>{p["result"][1]}</div></div>\n'
+              if p.get("result") else "")
+    learn = "".join(f'        <div><h3>{h}</h3><p>{x}</p></div>\n' for h, x in p["learn"])
+    code = (f'        <a class="btn" href="{p["code"]}" target="_blank" rel="noopener">View the code</a>\n'
+            if p.get("code") else "")
+    o += f'''    </div>
   </section>
 
   <section class="cs-sec local-only" id="outcome">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 6 · Outcome <em class="lens t">Feasibility</em></div>
-        <h2>{p["outcome_h"]}</h2>
-        <p class="lead">{p["outcome_lead"]}</p>
+        <div class="stop-tag"><i></i>Outcome <em class="lens t">Feasibility</em></div>
+        <h2>{p["outcome"][0]}</h2>
+        <p class="lead">{p["outcome"][1]}</p>
       </div>
       <ul class="feature-list">
 {feats}      </ul>
-{tryit(p)}{('      <div class="evidence"><div class="ev"><b>' + p['result'][0] + '</b>' + p['result'][1] + '</div></div>' + chr(10)) if p.get('result') else ''}{''.join(f'      <div class="evidence"><div class="ev todo"><b>{b}</b>{x}</div></div>{chr(10)}' for b, x in p.get("outcome_todo", []))}    </div>
+{result}{extra}{tryit(p)}    </div>
   </section>
 
   <section class="cs-sec local-only" id="next">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 7 · Learnings and next <em class="lens b">Viability</em></div>
-        <h2>What I'd take forward</h2>
+        <div class="stop-tag"><i></i>What's next <em class="lens b">Viability</em></div>
+        <h2>What I'm taking with me</h2>
       </div>
       <div class="learn">
-{''.join(f'        <div><h3>{h}</h3><p>{x}</p></div>{chr(10)}' for h, x in p["learn"])}      </div>
+{learn}      </div>
     </div>
   </section>
 
   <section class="next">
     <div class="wrap">
       <a class="next-card" href="{p["next"][0]}">
-        <span><small>Next stop</small><b>{p["next"][1]}</b></span>
+        <span><small>Next project</small><b>{p["next"][1]}</b></span>
         <span class="go" aria-hidden="true">&rarr;</span>
       </a>
       <div class="next-row">
         <a class="btn" href="/#contact">Get in touch</a>
-{('        <a class="btn" href="' + p["code"] + '" target="_blank" rel="noopener">View the code</a>' + chr(10)) if p.get("code") else ''}      </div>
+{code}      </div>
     </div>
   </section>
 </main>
@@ -223,228 +203,255 @@ def page(p):
   <div class="wrap"><span>Taliyah Harvey</span><span>{p["foot"]}</span></div>
 </footer>
 <script src="case-study.js"></script>
+<script>
+// version tabs: click or use arrow keys to step through the real versions
+document.querySelectorAll('[data-steps]').forEach(box => {{
+  const tabs = [...box.querySelectorAll('[role=tab]')], panels = [...box.querySelectorAll('[data-panel]')];
+  const show = i => {{ tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i)); panels.forEach((q, k) => q.hidden = k !== i); }};
+  tabs.forEach((t, i) => {{
+    t.addEventListener('click', () => show(i));
+    t.addEventListener('keydown', ev => {{
+      const j = ev.key === 'ArrowRight' ? i + 1 : ev.key === 'ArrowLeft' ? i - 1 : null;
+      if (j !== null && tabs[j]) {{ ev.preventDefault(); tabs[j].focus(); show(j); }}
+    }});
+  }});
+}});
+</script>
 </body>
 </html>
 '''
-    assert "—" not in out, p["slug"]
-    open(p["slug"] + ".html", "w").write(out)
+    assert "—" not in o, p["slug"]
+    open(p["slug"] + ".html", "w").write(o)
     print("wrote", p["slug"] + ".html")
 
+
+BART = dict(
+    slug="karls-friend-bart", name="Karl's Friend Bart",
+    desc="an interactive BART map that keeps the official look and shows what's running right now.",
+    h1="I got off at the wrong station. So I rebuilt the map.",
+    sub="BART's map is a still picture. It can't tell you where your train is going or what changes at night. So I made one that can.",
+    labels=[("Role", "Solo: design and front-end"), ("Platform", "Web and mobile"), ("Timeline", "5 days, Oct 2026"), ("Type", "Personal")],
+    stats=[("5 days", "from idea to live site"), ("Live", "trains and departures from BART's API"), ("0", "new maps for riders to learn")],
+    x=["The official map shows every line at once and never changes. I got off at the wrong stop because of it.",
+       "The same map, but it moves. Spotlight your line, tap a station, see what's running tonight.",
+       "Keep the official look. Nobody wants to learn a new map."],
+    live="https://taliyahhh.github.io/bart-revamp/", tryimg="img/bart-v4-final-day.jpg",
+    tryalt="Karl's Friend Bart: the official-style BART map with a station panel", try_="tap a line or a station.",
+    problem=["A map that just sits there.",
+             "Every line, all at once, looking the same at 8am and midnight.",
+             "After 9pm, Red and Green stop running and transfers change. The map doesn't say so. You find out on the platform. I found out at the wrong stop.",
+             "<b>The question:</b> where does my train go, right now?"],
+    research=["Learning the map inside out.", "I studied the official map and BART's service rules until I could rebuild both."],
+    evidence=[("Riders know it", "The official map is already in everyone's head. That's worth keeping."),
+              ("Live data exists", "BART's public API has real-time departures and alerts, so a live map was possible."),
+              ("Nights are different", "Evening service is basically a different network, and nothing shows it.")],
+    insight="Keep the map. Make it move.",
+    iter_h="Four versions to get it right",
+    iters=[
+        {"short": "Fogline", "date": "Oct 24", "img": "img/bart-v1-fogline.jpg", "alt": "First version: a dark custom map with a line list and trip planner", "cap": "My own dark map. It looked cool, but it didn't look like BART."},
+        {"short": "Official", "date": "Oct 24", "img": "img/bart-v2-official.jpg", "alt": "Second version: the official layout with a Plan a Trip box", "cap": "Rebuilt the real map. Familiar, but the trip planner crowded it."},
+        {"short": "Bottom bar", "date": "Oct 24", "img": "img/bart-v3-bottombar.jpg", "alt": "Third version: controls in a bottom bar and a station panel", "cap": "Cut trip planning. The controls moved to a bottom bar your thumb can reach."},
+        {"short": "Karl's Friend Bart", "date": "Oct 28", "img": "img/bart-v4-final-evening.jpg", "alt": "Final version in evening mode with live mini trains", "cap": "Live mini trains, a name, and a night mode that flips on at 9pm."},
+    ],
+    decisions=[
+        dict(lens="Design", h="Keep the official map",
+             pair=[("img/bart-v1-fogline.jpg", "My custom dark map", "Mine: a new map to learn."),
+                   ("img/bart-v4-final-day.jpg", "The official-style map", "BART's: readable in a second.")],
+             why="Familiarity is the feature. My job was to make it more useful, not more mine."),
+        dict(lens="Product strategy", h="Cut trip planning",
+             pair=[("img/bart-v2-official.jpg", "Version with a Plan a Trip box", "A trip planner, like every transit app."),
+                   ("img/bart-v3-bottombar.jpg", "Version with line chips in a bottom bar", "Just your line, one tap away.")],
+             why="Other apps already plan trips. Seeing your whole line at a glance didn't exist, so that's all I built."),
+        dict(lens="Tech", h="Night mode runs itself",
+             pair=[("img/bart-v4-final-day.jpg", "Day service, light theme", "Day: all five lines."),
+                   ("img/bart-v4-final-evening.jpg", "Evening service, dark theme", "After 9pm: dark, with Red and Green off.")],
+             why="A label is easy to miss. The site checks the time and switches to the evening network on its own."),
+    ],
+    outcome=["What shipped", "Live on desktop and phone. No framework, no build step."],
+    features=["Official-style map with pan, pinch zoom and readable labels",
+              "Line spotlight from a thumb-friendly bottom bar",
+              "Live mini trains, with an estimate if the feed drops",
+              "Station panel with departures, connections and alerts"],
+    learn=[("Familiar beats clever", "My custom map had the most personality. The official one was the one people could read."),
+           ("Cutting is a feature", "Dropping trip planning did more than anything I added."),
+           ("Next: test with riders", "Time people finding their route home on both maps."),
+           ("Next: pitch it", "Bring it to BART and rider groups as a model for clearer maps.")],
+    next=("fee-fi-fo-fund.html", "Fee Fi Fo Fund: where did your tax dollars actually go?"),
+    code="https://github.com/taliyahhh/bart-revamp",
+    foot="Karl is what locals call SF's fog. A fan project, not affiliated with BART.",
+)
 
 FEE = dict(
     slug="fee-fi-fo-fund", name="Fee Fi Fo Fund",
     desc="a storytelling site that shows teens and young adults where their tax dollars go, by zip code.",
     h1="Where did your tax dollars actually go?",
-    sub="Crossing the Bay Bridge, a friend asked me why we still pay a toll if our taxes are supposed to cover roads. I didn't have a good answer, and neither did any government site. So I designed and built one for teens and young adults: type your zip code and see where your tax dollars went, told like a fairy tale.",
-    labels=[("Role", "Design and development"), ("Team", "Me, plus a teammate on video and mood board"), ("Timeline", "Oct 2026"), ("Type", "SVSD design challenge")],
-    outcomes=[("41,000+", "Zip codes on the map, every one in the US"), ("3 levels", "Federal, state and city spending side by side"), ("Self-updating", "City data rebuilds monthly from public sources")],
-    x_problem="Teens and young adults pay taxes without knowing where the money goes, and the government and finance sites that explain it aren't fun and don't tell a story.",
-    x_made="Type a zip code and get a collage of where your money went, as dollars out of every $100, across nation, state and city.",
-    x_decision="Tell it as a story with you as the main character, and show every number out of $100 instead of in billions.",
-    live="https://feefifo.fund", try_="", tryimg="img/fee-v4-land.jpg", tryalt="Fee Fi Fo Fund's landing page: a hand-lettered logo over a colorful dot map of every US zip code",
-    problem_h="Public, but not readable",
-    problem_lead="It started on the Bay Bridge. My friend asked a genuine question: why do tolls exist, how long does it take to pay off a bridge, and what good is paying taxes if we still pay the toll?",
-    problem_more=["The answers exist, but they live in budget PDFs and government and finance sites that aren't fun and don't tell a story. They're written in billions, and nobody can picture $1.6 trillion.",
-                  "<b>Who it's for:</b> teens and young adults who are starting to get paychecks, see taxes come out, and wonder where the money goes.",
-                  "<b>The brief:</b> SVSD's design challenge asked for a product built for a specific group of people, centered on storytelling, judged on product thinking, depth of reasoning and craft. So the question became: what if learning where your taxes go actually felt like a story?"],
-    goal="answer \"where did my money go?\" for a teen or young adult in under a minute: one zip code, one picture, one tale.",
-    research_lens="Data", research_h="Where the numbers come from",
-    research_lead="Before designing anything, I had to find spending data that covered every town, not just big cities.",
-    research_img=None,
-    evidence=[
-        ("Every city", "The 2022 Census of Governments covers every local government in the US. California's State Controller API adds all 482 California cities.", False),
-        ("Hard truth", "Social Security alone is about $22 of every $100 the federal government spends. Leaving it out would make the picture prettier and wrong.", False),
-        ("Surprise", "Some things barely show up where you'd expect. California's General Fund spends almost nothing on transit, because that money comes from gas taxes and fees.", False),
-    ],
-    insight="People don't think in billions. They think in their own town, and in a single dollar.",
+    sub="Crossing the Bay Bridge, my friend asked why we still pay a toll if our taxes cover roads. I didn't know, and no government site made it easy to find out. So I built one for teens and young adults.",
+    labels=[("Role", "Design and development"), ("Team", "Me + a teammate on video and mood board"), ("Timeline", "Oct 2026"), ("Type", "SVSD design challenge")],
+    stats=[("41,000+", "zip codes, every one in the US"), ("3", "levels of government, side by side"), ("$100", "how every number is shown")],
+    x=["Teens and young adults pay taxes and have no idea where the money goes. The sites that explain it are boring and don't tell a story.",
+       "Type your zip code. See where every $100 went, told like a fairy tale.",
+       "Dollars out of $100, not billions. Nobody can picture $1.6 trillion."],
+    live="https://feefifo.fund", tryimg="img/fee-v4-land.jpg",
+    tryalt="Fee Fi Fo Fund's landing page: a hand-lettered logo over a colorful dot map of every US zip code",
+    try_="type your zip code, or tap anywhere on the map.",
+    problem=["Public, but impossible to read.",
+             "It started on the Bay Bridge. My friend asked: why do tolls exist, how long does a bridge take to pay off, and what's the point of taxes if we still pay the toll?",
+             "The answers are out there, in budget PDFs, in billions, with zero story.",
+             "<b>Who it's for:</b> teens and young adults getting their first paychecks and wondering where the money goes.",
+             "<b>The brief:</b> SVSD asked for a product built for a specific group of people, centered on storytelling."],
+    research=["Finding data for every town.", "Big cities publish budgets. Small towns don't make it easy. I needed both."],
+    evidence=[("Every city", "The Census of Governments covers every local government in the US, and California's Controller adds all 482 California cities."),
+              ("$22 of every $100", "federal dollars go to Social Security. Leaving it out would make the picture prettier and wrong."),
+              ("Almost $0", "of California's General Fund goes to transit. That money comes from gas taxes and fees instead.")],
+    insight="Nobody thinks in billions. Everyone gets $100.",
     iter_h="Four versions in four days",
     iters=[
-        {"short": "Taxonomy", "date": "Oct 18", "img": "img/fee-v1-res.jpg", "alt": "First version, called Taxonomy: spending shown as a grid of boxed cards with big dollar amounts",
-         "title": "Taxonomy: every category in a box", "what": "A dark dot map of zip codes, then a grid of boxes, one per spending category.",
-         "why": "Readable, but it looked like a spreadsheet with pictures. Nothing made you want to keep looking."},
-        {"short": "Floating", "date": "Oct 18", "img": "img/fee-v2-res.jpg", "alt": "Second version: spending categories as floating 3D objects sized by how much money they get",
-         "title": "Floating objects, sized by money", "what": "Renamed Fee Fi Fo Fund. Categories became loose objects scattered across the page, bigger for more money.",
-         "why": "More alive. I also tried psychedelic animations and removed them the same day: fun, but they fought the numbers."},
-        {"short": "Folders", "date": "Oct 19", "img": "img/fee-v3-res.jpg", "alt": "Third version: hand-lettered results inside a paper file folder with Nation, State and City tabs",
-         "title": "Real file folders", "what": "A hand-lettered brand, paper texture and file folders with Nation, State and City tabs.",
-         "why": "Three levels of government finally felt like three separate documents you can pull out and compare."},
-        {"short": "The tale", "date": "Oct 21", "img": "img/fee-v4-res.jpg", "alt": "Final version: Santa Clara results with a $100 strip across the top and photo stickers for each category",
-         "title": "The tale", "what": "A scroll story on the dot map with you as the main character, read aloud on request, plus a $100 strip that shows the whole split at a glance.",
-         "why": "It turned a lookup into something people actually read to the end."},
+        {"short": "Taxonomy", "date": "Oct 18", "img": "img/fee-v1-res.jpg", "alt": "First version: spending shown as a grid of boxed cards", "cap": "Every category in a box. Readable, but it felt like a spreadsheet."},
+        {"short": "Floating", "date": "Oct 18", "img": "img/fee-v2-res.jpg", "alt": "Second version: floating objects sized by spending", "cap": "Objects sized by money. I tried psychedelic animations and deleted them the same day."},
+        {"short": "Folders", "date": "Oct 19", "img": "img/fee-v3-res.jpg", "alt": "Third version: hand-lettered results in Nation, State and City file folders", "cap": "Hand-lettered, with real file folders for Nation, State and City."},
+        {"short": "The tale", "date": "Oct 21", "img": "img/fee-v4-res.jpg", "alt": "Final version: results with a $100 strip and photo stickers", "cap": "A story where you're the main character, read aloud if you want, plus a $100 strip."},
     ],
     decisions=[
-        dict(h="Dollars out of $100, not billions", lens="Design",
-             pair=(("img/fee-v1-res.jpg", "Early results with totals in billions", "Accurate, but too big to picture."),
-                   ("img/fee-v4-res.jpg", "Final results with a $100 strip", "Out of every $100, here's where yours went.")),
-             because="$22 out of every $100 is a number you can feel. $1.6 trillion isn't."),
-        dict(h="Show the uncomfortable buckets", lens="Product strategy",
-             fig=("img/fee-buckets.jpg", "Santa Clara's Nation folder: Social Security, paying off debt and the safety net shown as full-size stickers next to defense and public health", "Social Security ($22.54), paying off debt ($14.22) and the safety net ($8.46), shown at full size."),
-             because="Social Security, paying off debt and the safety net don't fit a tidy list of 12 categories, but together they're a huge share of federal spending. Hiding them would have made the site cleaner and misleading, so they got their own buckets, and barely-funded categories got a gray \"barely any money here\" strip."),
-        dict(h="Data that updates itself", lens="Tech",
-             diagram=dict(steps=[("src", "Public data", "Census of Governments and California's State Controller"),
-                                 ("job", "Monthly GitHub Action", "Downloads, cleans and maps every city to 12 categories"),
-                                 ("out", "One data file", "Committed back to the repo, so every change is reviewable"),
-                                 ("site", "feefifo.fund", "Plain HTML, CSS and JavaScript reads it. No server.")],
-                          cap="How city budgets stay current without anyone typing them in."),
-             because="City budgets change every year. A GitHub Action rebuilds the data for every city each month from the Census and California's Controller, so the site stays plain HTML, CSS and JavaScript with no server to babysit."),
+        dict(lens="Design", h="$100, not billions",
+             pair=[("img/fee-v1-res.jpg", "Early results in billions", "Billions: too big to picture."),
+                   ("img/fee-v4-res.jpg", "Final results out of $100", "Out of every $100: you get it instantly.")],
+             why="$22 out of $100 you can feel. $1.6 trillion you can't."),
+        dict(lens="Product strategy", h="Show the uncomfortable stuff",
+             fig=("img/fee-buckets.jpg", "Santa Clara's federal breakdown with Social Security, debt and the safety net at full size", ""),
+             why="Together they're a huge share of federal spending. Hiding them would look cleaner and be wrong."),
+        dict(lens="Tech", h="Data that updates itself",
+             diagram=[("src", "Public data", "Census and California's Controller"),
+                      ("job", "Monthly GitHub Action", "Downloads and sorts every city into 12 categories"),
+                      ("out", "One data file", "Saved to the repo, so every change is visible"),
+                      ("site", "feefifo.fund", "Plain HTML reads it. No server.")],
+             why="City budgets change every year. Nobody should have to retype them."),
     ],
-    outcome_h="What shipped", outcome_lead="Live at feefifo.fund. No framework, no build step.",
+    outcome=["What shipped", "Live at feefifo.fund. No framework, no build step."],
     features=["A dot map of every US zip code you can type into, drag and pinch",
-              "Nation, State and City folders with every category out of $100",
-              "The tale: a scroll story with Read it to me narration",
-              "A Sources page listing every dataset, year and category mapping",
+              "Nation, State and City folders, everything out of $100",
+              "The tale: a scroll story with a Read it to me button",
+              "A Sources page with every dataset and how it's sorted",
               "Shareable links for any zip, like feefifo.fund/?zip=95050"],
-    outcome_todo=[],
-    result=("Submitted", "to SVSD's storytelling design challenge, presented as a video walkthrough. It didn't make the finalist round, and the site kept going after the deadline."),
-    learn=[("Restraint is a design skill", "The psychedelic version was the most fun to build and the first thing I deleted."),
-           ("Scale is the story", "Changing billions to dollars out of $100 did more than any visual I added."),
-           ("Next: every state", "State budgets are typed in by hand, so only California and New York are done. More states are next."),
-           ("Next: from knowing to doing", "The Leave a footprint folder starts here: turning \"where did it go\" into \"what can I do about it.\"")],
-    next=("branch-out.html", "Branch Out: how do college students find their first open source project?"),
+    result=("Didn't make finals.", " Kept building it anyway."),
+    learn=[("Restraint is a skill", "The psychedelic version was the most fun to make and the first thing I cut."),
+           ("Scale is the story", "Switching to $100 did more than any visual I added."),
+           ("Next: more states", "Only California and New York state budgets are in so far."),
+           ("Next: so what can I do?", "The Leave a footprint folder is the start: from where did it go to what can I do about it.")],
+    next=("branch-out.html", "Branch Out: finding your first open source project shouldn't be this hard."),
     code="https://github.com/taliyahhh/tax-site",
     foot="Data: U.S. Census Bureau, California State Controller and state budget reports",
 )
-FEE["try"] = "type your zip code, or tap anywhere on the map."
-
-HIND = dict(
-    slug="in-hindsight", name="In Hindsight",
-    desc="a dashboard for your TikTok archive, and Peep, a doomscrolling buddy that turns saves into plans.",
-    h1="What if your saved videos weren't stuck in folders?",
-    sub="Every save is a promise to come back later, and later rarely comes. In Hindsight turns your TikTok export into a picture of how you scroll, and Peep, a doomscrolling buddy, helps turn saves into plans you actually use.",
-    labels=[("Role", "Product, design and development"), ("Platform", "Web, runs in your browser"), ("Timeline", "Oct 2026 to now"), ("Type", "Personal, in beta")],
-    outcomes=[("35", "Young adults surveyed to shape the direction"), ("94%", "Have given up looking for a saved TikTok"), ("Private", "Your export is read on your device, never uploaded")],
-    x_problem="People save videos to come back to, then never do. 94% of people I surveyed have given up looking for one.",
-    x_made="A dashboard of your TikTok history, an Act tab that sends saves to lists, maps and calendars, and Peep, a buddy that keeps you company while you scroll.",
-    x_decision="Be a buddy, not a blocker. No screen-time guilt, just help getting something out of the time.",
-    live="https://inhindsight.net", tryimg="img/ih-v3-peep.jpg", tryalt="In Hindsight's landing page: 'You're not doomed. You're just scrolling.' next to a phone and Peep, an orange buddy",
-    problem_h="Saved for later. Later never came.",
-    problem_lead="Every save is a little promise to come back. Then the feed keeps moving, and the saves pile up in folders nobody opens.",
-    problem_more=["TikTok lets you download all of it, your likes, favorites, reposts and watch history, but the export is a wall of JSON."],
-    goal="give people their scrolling back in a form they can actually look at, and use.",
-    research_lens="User needs", research_h="What 35 people told me",
-    research_lead="I surveyed 35 young adults in November 2026 about how they save and scroll.",
-    research_img=("img/ih-saves-graveyard.jpg", "A pile of printed saved videos, some paperclipped and a few circled in red", "Saved for later. Later never came."),
-    evidence=[
-        ("94%", "have tried to find a saved TikTok and given up.", False),
-        ("69%", "often scroll longer than they meant to.", False),
-        ("54%", "rarely or never go back to what they save.", False),
-    ],
-    insight="People don't need more ways to save. They need their saves to turn into something.",
-    iter_h="From archive to buddy",
-    iters=[
-        {"short": "Upload", "date": "Oct 7", "img": "img/ih-v1-land.jpg", "alt": "First version: a plain page asking you to drop your TikTok export file",
-         "title": "Drop in your export", "what": "A plain page: drop your TikTok export file, or try demo data.",
-         "why": "It worked, but it asked a lot up front without showing why it was worth it."},
-        {"short": "Dashboard", "date": "Oct 7", "img": "img/ih-v1-dash.jpg", "alt": "First dashboard: a timeline of activity and tabs for Mind, Overview, Rhythm, Timeline, Gallery and Rediscover",
-         "title": "A dashboard of your scrolling", "what": "A timeline you can drag to filter, and views for your rhythm, your topics and a Second thought prompt on old saves.",
-         "why": "Interesting to look at once. But seeing your habits didn't change what happened to your saves."},
-        {"short": "Act", "date": "Nov 9", "img": "img/ih-v2-act.jpg", "alt": "The Act tab: saved videos sorted into Lists, Maps and Plans",
-         "title": "Saves into action", "what": "An Act tab that sorts saves into things you can do: recipes to a grocery list, places to a map, plans to a calendar.",
-         "why": "This is where the survey pointed: 54% never go back, so the value is in doing, not storing."},
-        {"short": "Peep", "date": "Nov 10", "img": "img/ih-v3-peep.jpg", "alt": "The current landing page with Peep: 'You're not doomed. You're just scrolling.'",
-         "title": "Meet Peep", "what": "A doomscrolling buddy that keeps you company, nudges you when it's been a while, and turns what you save into plans.",
-         "why": "It gave the product a personality and a reason to come back, plus a beta waitlist to test demand."},
-    ],
-    decisions=[
-        dict(h="A buddy, not a blocker", lens="Design",
-             pair=(("img/ih-v1-dash.jpg", "The analytics dashboard", "A report card on your habits."),
-                   ("img/ih-v3-peep.jpg", "Peep on the landing page", "A companion for what you do next.")),
-             labels=("Before", "After"),
-             because="69% already scroll longer than they meant to. They don't need another guilt trip. They need help getting something out of it."),
-        dict(h="Turn saves into plans", lens="Product strategy",
-             pair=(("img/ih-v3-rediscover.jpg", "Rediscover view showing one old save", "Rediscover: look back at saves."),
-                   ("img/ih-v2-act.jpg", "Act tab sorting saves into lists, maps and plans", "Act: send saves somewhere useful.")),
-             because="Looking back is nice. Doing something is the reason to come back. The Act tab is what makes it a product and not a novelty."),
-        dict(h="Everything runs in the browser", lens="Tech",
-             diagram=dict(steps=[("src", "Your TikTok export", "The file you download from TikTok's settings"),
-                                 ("job", "Your browser", "Reads and organizes it on your device"),
-                                 ("out", "Your dashboard", "Every view is built locally, in memory"),
-                                 ("no", "No server", "Nothing gets uploaded. Only public video previews load from TikTok.")],
-                          cap="Your scrolling history never leaves your device."),
-             because="People are handing over their entire scrolling history, so trust is the feature. The export is read on your device and never uploaded, and video details load lazily from TikTok's public embeds, four at a time."),
-    ],
-    outcome_h="Where it is now", outcome_lead="Live at inhindsight.net with a working demo and a beta waitlist.",
-    features=["Upload your TikTok export, or try it with 5,000 demo entries",
-              "Seven views: Mind, Act, Overview, Rhythm, Timeline, Gallery, Rediscover",
-              "A draggable timeline that filters every view at once",
-              "A clickable Peep prototype and an on-site beta waitlist"],
-    outcome_todo=[],
-    result=("11 people", "have joined the beta waitlist so far."),
-    learn=[("Ask before you build more", "The survey changed the direction more than any feature did."),
-           ("Privacy is a design choice", "Keeping everything in the browser shaped the whole architecture, and it's a selling point."),
-           ("Next: grow the beta", "Get Peep in front of the people on the waitlist and see which saves actually turn into plans."),
-           ("Next: Peep in real life", "Exploring a physical Peep on a Particle Photon 2 that syncs with your In Hindsight data.")],
-    next=("karls-friend-bart.html", "Karl's Friend Bart: I got off at the wrong station, so I rebuilt the map."),
-    code=None,
-    foot="Not affiliated with TikTok",
-)
-HIND["try"] = "click Try the demo to explore with sample data."
 
 BRANCH = dict(
     slug="branch-out", name="Branch Out",
     desc="a swipe-based way for college students to find open source projects matched to their year, languages and interests.",
-    h1="How do college students find their first open source project?",
-    sub="GitHub has millions of repositories and no obvious place for a student to start. During the Salesforce Futureforce Tech Launchpad, our team of three built Branch Out: tell it your year, languages and interests, then swipe through matched repos with AI summaries.",
+    h1="Finding your first open source project shouldn't be this hard.",
+    sub="GitHub has millions of repos and no starting point for students. In Salesforce's Futureforce Tech Launchpad, our team of three built Branch Out: pick your year, languages and interests, then swipe.",
     labels=[("Role", "Full-stack engineer, team of 3"), ("Stack", "React, Node, PostgreSQL, Gemini"), ("Timeline", "Jun to Aug 2025"), ("Type", "Salesforce Futureforce Tech Launchpad")],
-    outcomes=[("1 of 30", "Students picked from 3,000+ applicants for the program"), ("192", "Commits across the team, shipped through pull requests"), ("AI summaries", "Every repo explained in plain language")],
-    x_problem="Open source is the most open door into real engineering work, but search results favor huge, popular repos that aren't built for beginners.",
-    x_made="Pick your year, languages and interests, then swipe through repos matched to you, each with a short AI summary.",
-    x_decision="Swipe through one repo at a time instead of scrolling a list of hundreds.",
-    live="https://branchout.tech", tryimg="img/bo-swipe.jpg", tryalt="Branch Out's swipe screen: one repository card with tags, an AI summary, and accept and reject buttons",
-    problem_h="Where do I even start?",
-    problem_lead="Students hear that contributing to open source is the best way to get real experience. Then they open GitHub and face millions of repositories with no way to tell which ones welcome beginners.",
-    problem_more=["Search rewards stars, so the top results are the biggest, most intimidating projects."],
-    goal="get a student from \"I want to contribute\" to a repo that fits them in a few minutes.",
-    research_lens="User needs", research_h="Who we built for",
-    research_lead="We interviewed a few students from our Futureforce Tech Launchpad cohort, first through fourth year, about trying to make their first open source contribution.",
-    research_img=None,
-    evidence=[
-        ("Skill level", "Students described their experience by year in school, not as \"beginner\" or \"advanced,\" so year became the skill scale.", False),
-        ("Languages", "Most knew one or two languages well and wanted to start there, so matching on language cuts the field fast.", False),
-        ("What we heard", "Students wanted to contribute but didn't know where to start, and the big, popular repos felt too intimidating to touch.", False),
-    ],
-    insight="Finding a first project should feel like browsing, not searching.",
-    iter_h="From preferences to a swipe",
+    stats=[("1 of 30", "picked from 3,000+ applicants"), ("192", "commits, all through pull requests"), ("3", "people, one product")],
+    x=["Students want open source experience, but search shows the biggest, scariest repos first.",
+       "Pick your year, languages and interests, then swipe through repos matched to you, each with an AI summary.",
+       "Swipe, not a list. One repo, one decision."],
+    live="https://branchout.tech", tryimg="img/bo-swipe.jpg",
+    tryalt="Branch Out's swipe screen: one repository card with tags and an AI summary", try_="set your preferences, then swipe.",
+    problem=["Where do I even start?",
+             "Everyone says contribute to open source. Then you open GitHub and see millions of repos with no idea which ones want beginners.",
+             "Search sorts by stars, so the top results are the most intimidating ones."],
+    research=["Asking students in our cohort.", "We interviewed a few students in our Futureforce cohort about trying to make a first contribution."],
+    evidence=[("Stuck at step one", "They wanted to contribute but didn't know where to start."),
+              ("Year, not level", "They described themselves by year in school, not as beginner or advanced."),
+              ("1 or 2 languages", "Most wanted to start with what they already knew.")],
+    insight="Finding a project should feel like browsing, not searching.",
+    iter_h="Three screens, one flow",
     iters=[
-        {"short": "Preferences", "date": "Jul 2025", "img": "img/bo-prefs.jpg", "alt": "Preferences page with skill level, languages and topic tags",
-         "title": "Start with you", "what": "Pick your year, languages and topics. Everything after this is matched to it.",
-         "why": "Asking three quick questions up front beats making students filter hundreds of results later."},
-        {"short": "Swipe", "date": "Jul 2025", "img": "img/bo-swipe.jpg", "alt": "Swipe card showing one repository with tags and an AI summary",
-         "title": "One repo at a time", "what": "Swipe cards with the repo's tags, languages and an AI summary. Keyboard shortcuts (A and D, or arrow keys) for speed.",
-         "why": "One card at a time keeps it light, and the summary answers \"what is this?\" before you open GitHub."},
-        {"short": "Search", "date": "Aug 2025", "img": "img/bo-search.jpg", "alt": "Search page with language, topic and skill level filters",
-         "title": "Search when you know what you want", "what": "A full filter view for languages, topics and skill level, alongside the swipe.",
-         "why": "Swiping is great for discovery. Some students already know what they want, so they needed a direct path too."},
+        {"short": "Preferences", "date": "Jul 2025", "img": "img/bo-prefs.jpg", "alt": "Preferences page with skill level, languages and topics", "cap": "Three quick questions: your year, your languages, your interests."},
+        {"short": "Swipe", "date": "Jul 2025", "img": "img/bo-swipe.jpg", "alt": "Swipe card with tags and an AI summary", "cap": "One repo at a time, with tags and an AI summary. Keyboard shortcuts too."},
+        {"short": "Search", "date": "Aug 2025", "img": "img/bo-search.jpg", "alt": "Search page with filters", "cap": "For when you already know what you want."},
     ],
     decisions=[
-        dict(h="Swipe, not a list", lens="Design",
-             pair=(("img/bo-search.jpg", "Filter-heavy search view", "A wall of filters and results."),
-                   ("img/bo-swipe.jpg", "Single swipe card", "One repo, one decision.")),
-             because="A list of 200 repos is where students give up. One card asks for one small decision, and saving the good ones is a swipe."),
-        dict(h="Year in school as skill level", lens="Product strategy",
-             fig=("img/bo-skill.jpg", "Branch Out preferences: skill level shown as 1st, 2nd, 3rd and 4th year, above language choices", "Skill level is just your year: 1st through 4th."),
-             because="\"Intermediate\" means something different to everyone. Every student knows their year, so the onboarding question takes one second to answer honestly."),
-        dict(h="AI summaries on every card", lens="Tech",
-             fig=("img/bo-summary.jpg", "A Branch Out card for a repository, with tags and a plain-language AI summary of what the project does", "Every card explains the repo in plain language before you ever open GitHub."),
-             because="READMEs are written for maintainers, not newcomers. I built the Gemini client that writes a short, plain-language summary for each repo, so students can judge fit without leaving the app."),
+        dict(lens="Design", h="Swipe, not a list",
+             pair=[("img/bo-search.jpg", "A filter-heavy search view", "A wall of filters and results."),
+                   ("img/bo-swipe.jpg", "A single swipe card", "One card, one decision.")],
+             why="A wall of results is where people give up. One card is one small decision."),
+        dict(lens="Product strategy", h="Your year is your level",
+             fig=("img/bo-skill.jpg", "Preferences with skill level as 1st to 4th year", ""),
+             why="\"Intermediate\" means something different to everyone. Everyone knows their year."),
+        dict(lens="Tech", h="AI summaries on every card",
+             fig=("img/bo-summary.jpg", "A repo card with a plain-language AI summary", ""),
+             why="READMEs are written for maintainers. I built the Gemini client that explains each repo in plain language."),
     ],
-    outcome_h="What I built", outcome_lead="My part of the app, from my own commits and pull requests.",
+    outcome=["What I built", "My part, straight from my commits."],
     features=["User accounts: API endpoints, login and signup pages",
               "Saving each student's preferences to the database",
               "The Gemini client behind the AI summaries",
-              "Swipe controls with keyboard shortcuts and clear accept and reject icons",
+              "Swipe controls with keyboard shortcuts",
               "The discovery carousel, mobile layouts and light and dark mode",
               "Sidebar, about page and in-app feedback messages"],
-    outcome_todo=[("Result", "Add how the final demo went at Salesforce, and any feedback from students who tried it.")],
-    learn=[("Ship in small pieces", "Working through pull requests on a team of three taught me to keep changes small enough to review."),
-           ("Design from the wireframe", "Matching the wireframe closely kept three people's work feeling like one product."),
-           ("Next: real usage data", "Track which matches students actually save, and tune the recommendations from that."),
-           ("Next: first contribution", "Go one step further than discovery: point students to a good first issue in each repo.")],
-    next=("in-hindsight.html", "In Hindsight: what if your saved videos weren't stuck in folders?"),
+    learn=[("Small PRs win", "Working through pull requests on a team of three taught me to keep changes easy to review."),
+           ("Stick to the wireframe", "It kept three people's work feeling like one product."),
+           ("Next: learn from saves", "Use which repos students save to tune the matches."),
+           ("Next: first issue", "Point students to a good first issue, not just a repo.")],
+    next=("in-hindsight.html", "In Hindsight: you saved it. Now use it."),
     code="https://github.com/Team-10-FTL/branch-out",
     foot="Built with Nathan Kenmognie and Jackie Jurado",
 )
-BRANCH["try"] = "set your preferences, then swipe through matched repos."
 
-for p in (FEE, HIND, BRANCH):
+HIND = dict(
+    slug="in-hindsight", name="In Hindsight",
+    desc="Peep, an AI doomscrolling buddy that turns your TikTok saves into plans.",
+    h1="You saved it. Now use it.",
+    sub="We save everything, then forget it all. In Hindsight reads your TikTok data, and Peep, your doomscrolling buddy, turns your saves into plans.",
+    labels=[("Role", "Founder: product, design and development"), ("Platform", "Web now, iOS next"), ("Timeline", "Oct 2026 to now"), ("Type", "Startup, in beta")],
+    stats=[("94%", "gave up finding a saved video"), ("66%", "have 200+ saves"), ("11", "waitlist signups in one day")],
+    x=["We save everything, then forget it all. 94% of people I surveyed have given up finding a saved video.",
+       "Peep: an AI buddy that scrolls with you and sends your saves to Maps, Calendar and Reminders.",
+       "A buddy, not a blocker. No guilt, just help getting something out of it."],
+    live="https://inhindsight.net", tryimg="img/ih-v3-peep.jpg",
+    tryalt="In Hindsight's landing page: You're not doomed. You're just scrolling.", try_="hit Try the demo to explore with sample data.",
+    problem=["Saves pile up. Nothing happens.",
+             "Every save is a promise to come back. Then the feed moves on and the saves pile up.",
+             "Screen time apps track your time. Collections store your saves. Nothing actually does anything with them."],
+    research=["35 surveys, 5 interviews.", "Young adults, mostly USC students, reached through SideChat, Snapchat, Reddit and iMessage."],
+    evidence=[("94%", "have given up finding a saved video."),
+              ("69%", "scroll longer than they meant to."),
+              ("54%", "never rewatch what they save."),
+              ("66%", "have 200+ saves.")],
+    research_fig=("img/ih-competition.jpg", "Competitive map: time-focused apps like Opal and Screen Time versus content-focused tools like TikTok Collections, with In Hindsight proactive and content-focused", "Everyone else tracks your time or stores your saves. Peep understands what you saved and acts on it."),
+    insight="Your data already exists. Peep just makes it useful.",
+    iter_h="From a dashboard to a buddy",
+    iters=[
+        {"short": "Dashboard", "date": "Oct 2026", "img": "img/ih-dash.jpg", "alt": "In Hindsight dashboard with a timeline and tabs", "cap": "Know your scroll: your history as a timeline, your topics and your rhythm."},
+        {"short": "Act", "date": "Nov 2026", "img": "img/ih-v2-act.jpg", "alt": "The Act tab sorting saves into lists, maps and plans", "cap": "Saves to action: recipes, places and plans sorted into things you can actually do."},
+        {"short": "Features", "date": "Nov 2026", "img": "img/ih-features.jpg", "alt": "Scrolling Score, Attention Map and Saves to Action cards", "cap": "Scrolling Score, Attention Map and Saves to Action."},
+        {"short": "Peep", "date": "Nov 2026", "img": "img/ih-peep-flow.jpg", "alt": "Five phone screens showing Peep before, during and after scrolling", "cap": "Peep asks what you're on TikTok for, gets sleepy when you scroll too long, and files what you find."},
+    ],
+    decisions=[
+        dict(lens="Design", h="A buddy, not a blocker",
+             fig=("img/ih-peep-sleepy.jpg", "Peep asking what you are on TikTok for, then getting sleepy on the lock screen as you keep scrolling", ""),
+             why="69% already scroll longer than they meant to. They don't need guilt. They need help getting something out of it."),
+        dict(lens="Business", h="Free, then $4 a month",
+             fig=("img/ih-business.jpg", "Business model: Free, Plus at $4 a month, and a sharing growth loop", ""),
+             why="Upload and explore for free. Plus adds AI on every save and lets Peep act on its own. 63% of people I surveyed would pay or consider it."),
+        dict(lens="Tech", h="Private by default",
+             fig=("img/ih-how.jpg", "How it works: your TikTok data, AI reads the content, Peep picks the action, sent to your apps", ""),
+             why="People are handing over their whole scrolling history. It's read in your browser and never sold."),
+    ],
+    outcome=["Where it's at", "MVP live at inhindsight.net, built in 2 months."],
+    features=["Upload your TikTok export, or try the demo",
+              "Scrolling Score, Attention Map and Saves to Action",
+              "A clickable Peep prototype at inhindsight.net/peep",
+              "A beta waitlist, live on the site"],
+    result=("11 signups", " on the waitlist in one day."),
+    outcome_figs=[("img/ih-milestones.jpg", "Roadmap: MVP now, private beta of 100 users in January 2027, Peep on iOS in spring 2027, 1,000 users by summer 2027", "Next up: a 100-user private beta, then Peep on iOS.")],
+    learn=[("Talk to people first", "The survey changed the product more than any feature did."),
+           ("Privacy sells", "Keeping data on your device shaped everything, and it's a reason to trust it."),
+           ("Next: private beta", "100 users in January 2027."),
+           ("Next: Peep on iOS", "TestFlight in spring 2027, 1,000 users by summer.")],
+    next=("karls-friend-bart.html", "Karl's Friend Bart: I got off at the wrong station. So I rebuilt the map."),
+    code=None,
+    foot="Not affiliated with TikTok",
+)
+
+for p in (BART, FEE, BRANCH, HIND):
+    p["try"] = p.pop("try_")
     page(p)

@@ -202,3 +202,33 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 .flowd li.no{border-style:dashed}
 @media(min-width:760px){.flowd li:not(:last-child)::after{content:"→";position:absolute;left:calc(100% + 12px);top:50%;transform:translate(-50%,-50%);font-weight:800;color:var(--muted)}}
 @media(max-width:759px){.flowd li:not(:last-child)::after{content:"↓";position:absolute;left:50%;top:calc(100% + 12px);transform:translate(-50%,-50%);font-weight:800;color:var(--muted)}}
+
+/* ===== v2: bigger stats, version tabs, simpler decisions ===== */
+.outcomes{gap:20px;margin-top:36px}
+.outcomes b{font-size:clamp(40px,5.5vw,64px);line-height:1;letter-spacing:-.04em;margin-bottom:8px}
+.outcomes span{font-size:16px}
+.ev b{font-size:clamp(28px,3.2vw,40px);font-weight:900;letter-spacing:-.03em;line-height:1.05;color:var(--ink);margin-bottom:8px}
+.ev{font-size:16px}
+.evidence.one{grid-template-columns:minmax(0,1fr);margin-top:22px}
+.evidence.one .ev{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.evidence.one .ev b{margin:0}
+.insight{margin-top:32px}
+.steps{margin-top:24px}
+.steps-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.steps-tabs::-webkit-scrollbar{display:none}
+.steps-tabs button{all:unset;cursor:pointer;flex:none;display:flex;flex-direction:column;gap:2px;padding:10px 16px;border-radius:14px;border:1.5px solid var(--rule);font-weight:800;font-size:15px}
+.steps-tabs button small{font-size:12px;font-weight:700;color:var(--muted)}
+.steps-tabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.steps-tabs button[aria-selected=true] small{color:inherit;opacity:.7}
+.steps-tabs button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.steps-panel{margin:14px 0 0;border:1px solid var(--rule);border-radius:18px;overflow:hidden;background:var(--panel)}
+.steps-panel[hidden]{display:none}
+.steps-panel img{display:block;width:100%;max-height:640px;object-fit:contain;background:var(--panel)}
+.steps-panel figcaption{padding:14px 20px;font-size:17px;font-weight:600}
+.decision header{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.decision header .lens,.stop-tag .lens{font-style:normal;font-size:12px;font-weight:800;padding:3px 10px;border-radius:99px;border:1.5px solid var(--ink);color:var(--ink)}
+.decision header .lens.d{background:#ffd200;border-color:#ffd200;color:#111}
+.decision header .lens.t{background:#1aa7ff;border-color:#1aa7ff;color:#08131c}
+.decision header .lens.b{background:#ff9f1c;border-color:#ff9f1c;color:#1d1204}
+.decision .because{font-size:17px}
+.verdict{display:none}

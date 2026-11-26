@@ -28,135 +28,108 @@
 <main>
   <section class="cs-hero">
     <div class="wrap">
-      <div class="cs-kicker"><i></i>Product process · Branch Out</div>
-      <h1>How do college students find their first open source project?</h1>
-      <p class="sub">GitHub has millions of repositories and no obvious place for a student to start. During the Salesforce Futureforce Tech Launchpad, our team of three built Branch Out: tell it your year, languages and interests, then swipe through matched repos with AI summaries.</p>
+      <div class="cs-kicker"><i></i>Process · Branch Out</div>
+      <h1>Finding your first open source project shouldn't be this hard.</h1>
+      <p class="sub">GitHub has millions of repos and no starting point for students. In Salesforce's Futureforce Tech Launchpad, our team of three built Branch Out: pick your year, languages and interests, then swipe.</p>
       <ul class="labels"><li><span>Role</span>Full-stack engineer, team of 3</li><li><span>Stack</span>React, Node, PostgreSQL, Gemini</li><li><span>Timeline</span>Jun to Aug 2025</li><li><span>Type</span>Salesforce Futureforce Tech Launchpad</li></ul>
-      <div class="outcomes"><div><b>1 of 30</b><span>Students picked from 3,000+ applicants for the program</span></div><div><b>192</b><span>Commits across the team, shipped through pull requests</span></div><div><b>AI summaries</b><span>Every repo explained in plain language</span></div></div>
+      <div class="outcomes"><div><b>1 of 30</b><span>picked from 3,000+ applicants</span></div><div><b>192</b><span>commits, all through pull requests</span></div><div><b>3</b><span>people, one product</span></div></div>
     </div>
   </section>
 
   <div class="modebar" id="mode-start">
     <div class="wrap">
       <div class="seg" role="group" aria-label="How much detail">
-        <button type="button" data-mode="express" aria-pressed="true">Express <small>1 min</small></button>
-        <button type="button" data-mode="local" aria-pressed="false">Local <small>full process</small></button>
+        <button type="button" data-mode="express" aria-pressed="true">Short <small>1 min</small></button>
+        <button type="button" data-mode="local" aria-pressed="false">Full <small>whole process</small></button>
       </div>
-      <nav class="trip" aria-label="Case study stops">
-        <span class="fill"></span>
-        <a href="#problem"><i></i><span>Problem</span></a>
-        <a href="#research"><i></i><span>Research</span></a>
-        <a href="#insight"><i></i><span>Insight</span></a>
-        <a href="#iterations"><i></i><span>Iterations</span></a>
-        <a href="#decisions"><i></i><span>Decisions</span></a>
-        <a href="#outcome"><i></i><span>Outcome</span></a>
-        <a href="#next"><i></i><span>What's next</span></a>
-      </nav>
+      <nav class="trip" aria-label="Sections"><span class="fill"></span><a href="#problem"><i></i><span>Problem</span></a><a href="#research"><i></i><span>Research</span></a><a href="#iterations"><i></i><span>Iterations</span></a><a href="#decisions"><i></i><span>Decisions</span></a><a href="#outcome"><i></i><span>Outcome</span></a><a href="#next"><i></i><span>What's next</span></a></nav>
     </div>
   </div>
 
   <section class="cs-sec express-only">
     <div class="wrap">
       <div class="express-card">
-        <div><h3>The problem</h3><p>Open source is the most open door into real engineering work, but search results favor huge, popular repos that aren't built for beginners.</p></div>
-        <div><h3>What I made</h3><p>Pick your year, languages and interests, then swipe through repos matched to you, each with a short AI summary.</p></div>
-        <div><h3>Biggest decision</h3><p>Swipe through one repo at a time instead of scrolling a list of hundreds.</p></div>
+        <div><h3>The problem</h3><p>Students want open source experience, but search shows the biggest, scariest repos first.</p></div>
+        <div><h3>What I made</h3><p>Pick your year, languages and interests, then swipe through repos matched to you, each with an AI summary.</p></div>
+        <div><h3>The big call</h3><p>Swipe, not a list. One repo, one decision.</p></div>
       </div>
       <div class="tryit">
-        <div class="bar"><span><b>Try it:</b> set your preferences, then swipe through matched repos.</span><a href="https://branchout.tech" target="_blank" rel="noopener">Open full site</a></div>
+        <div class="bar"><span><b>Try it:</b> set your preferences, then swipe.</span><a href="https://branchout.tech" target="_blank" rel="noopener">Open full site</a></div>
         <button type="button" class="start" data-src="https://branchout.tech" data-title="Branch Out, live">
-          <img src="img/bo-swipe.jpg" alt="Branch Out&#x27;s swipe screen: one repository card with tags, an AI summary, and accept and reject buttons">
+          <img src="img/bo-swipe.jpg" alt="Branch Out&#x27;s swipe screen: one repository card with tags and an AI summary">
           <span><i></i>Start the live site</span>
         </button>
       </div>
       <div class="next-row">
-        <button type="button" class="btn fill" data-mode="local" data-scroll><i></i>See the full process</button>
+        <button type="button" class="btn fill" data-mode="local" data-scroll><i></i>See the whole process</button>
       </div>
     </div>
   </section>
 
   <section class="cs-sec local-only" id="problem">
     <div class="wrap narrow">
-      <div class="stop-tag"><i></i>Stop 1 · Problem <em class="lens d">Desirability</em></div>
+      <div class="stop-tag"><i></i>Problem <em class="lens d">Desirability</em></div>
       <h2>Where do I even start?</h2>
-      <p class="lead">Students hear that contributing to open source is the best way to get real experience. Then they open GitHub and face millions of repositories with no way to tell which ones welcome beginners.</p>
-      <p>Search rewards stars, so the top results are the biggest, most intimidating projects.</p>
-      <p><b>Goal:</b> get a student from "I want to contribute" to a repo that fits them in a few minutes.</p>
+      <p class="lead">Everyone says contribute to open source. Then you open GitHub and see millions of repos with no idea which ones want beginners.</p>
+      <p>Search sorts by stars, so the top results are the most intimidating ones.</p>
     </div>
   </section>
 
   <section class="cs-sec local-only" id="research">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 2 · Research <em class="lens d">User needs</em></div>
-        <h2>Who we built for</h2>
-        <p class="lead">We interviewed a few students from our Futureforce Tech Launchpad cohort, first through fourth year, about trying to make their first open source contribution.</p>
+        <div class="stop-tag"><i></i>Research <em class="lens d">Users</em></div>
+        <h2>Asking students in our cohort.</h2>
+        <p class="lead">We interviewed a few students in our Futureforce cohort about trying to make a first contribution.</p>
       </div>
       <div class="evidence">
-        <div class="ev"><b>Skill level</b>Students described their experience by year in school, not as "beginner" or "advanced," so year became the skill scale.</div>
-        <div class="ev"><b>Languages</b>Most knew one or two languages well and wanted to start there, so matching on language cuts the field fast.</div>
-        <div class="ev"><b>What we heard</b>Students wanted to contribute but didn't know where to start, and the big, popular repos felt too intimidating to touch.</div>
+        <div class="ev"><b>Stuck at step one</b>They wanted to contribute but didn't know where to start.</div>
+        <div class="ev"><b>Year, not level</b>They described themselves by year in school, not as beginner or advanced.</div>
+        <div class="ev"><b>1 or 2 languages</b>Most wanted to start with what they already knew.</div>
       </div>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="insight">
-    <div class="wrap narrow">
-      <div class="stop-tag"><i></i>Stop 3 · Insight <em class="lens d">Opportunity</em></div>
-      <h2>The opportunity</h2>
-      <p class="insight">Finding a first project should feel like browsing, not searching.</p>
+      <p class="insight">Finding a project should feel like browsing, not searching.</p>
     </div>
   </section>
 
   <section class="cs-sec local-only" id="iterations">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 4 · Iterations <em class="lens d">Design</em></div>
-        <h2>From preferences to a swipe</h2>
-        <p class="lead">Drag through the real versions. Each one fixed what the last got wrong.</p>
+        <div class="stop-tag"><i></i>Iterations <em class="lens d">Design</em></div>
+        <h2>Three screens, one flow</h2>
       </div>
-      <div class="iter">
-        <figure><img src="img/bo-prefs.jpg" alt="" width="1280" height="800"></figure>
-        <div class="controls">
-          <span class="ver" data-out="ver"></span>
-          <h3 data-out="title"></h3>
-          <p class="what" data-out="what"></p>
-          <p class="why" data-out="why"></p>
-          <input type="range" min="0" max="2" step="1" value="0" aria-label="Choose a version">
-          <div class="ticks"></div>
-          <div class="nav"><button type="button" data-step="-1">Previous</button><button type="button" data-step="1">Next version</button></div>
+      <div class="steps" data-steps>
+        <div class="steps-tabs" role="tablist" aria-label="Versions">
+          <button type="button" role="tab" aria-selected="false" data-i="0"><small>v1 · Jul 2025</small>Preferences</button>
+          <button type="button" role="tab" aria-selected="false" data-i="1"><small>v2 · Jul 2025</small>Swipe</button>
+          <button type="button" role="tab" aria-selected="true" data-i="2"><small>v3 · Aug 2025</small>Search</button>
         </div>
+        <figure class="steps-panel" hidden data-panel="0"><img src="img/bo-prefs.jpg" alt="Preferences page with skill level, languages and topics" loading="lazy"><figcaption>Three quick questions: your year, your languages, your interests.</figcaption></figure>
+        <figure class="steps-panel" hidden data-panel="1"><img src="img/bo-swipe.jpg" alt="Swipe card with tags and an AI summary" loading="lazy"><figcaption>One repo at a time, with tags and an AI summary. Keyboard shortcuts too.</figcaption></figure>
+        <figure class="steps-panel" data-panel="2"><img src="img/bo-search.jpg" alt="Search page with filters" loading="lazy"><figcaption>For when you already know what you want.</figcaption></figure>
       </div>
-      <script type="application/json" id="iterations-data">
-      [{"short": "Preferences", "date": "Jul 2025", "img": "img/bo-prefs.jpg", "alt": "Preferences page with skill level, languages and topic tags", "title": "Start with you", "what": "Pick your year, languages and topics. Everything after this is matched to it.", "why": "Asking three quick questions up front beats making students filter hundreds of results later."}, {"short": "Swipe", "date": "Jul 2025", "img": "img/bo-swipe.jpg", "alt": "Swipe card showing one repository with tags and an AI summary", "title": "One repo at a time", "what": "Swipe cards with the repo's tags, languages and an AI summary. Keyboard shortcuts (A and D, or arrow keys) for speed.", "why": "One card at a time keeps it light, and the summary answers \"what is this?\" before you open GitHub."}, {"short": "Search", "date": "Aug 2025", "img": "img/bo-search.jpg", "alt": "Search page with language, topic and skill level filters", "title": "Search when you know what you want", "what": "A full filter view for languages, topics and skill level, alongside the swipe.", "why": "Swiping is great for discovery. Some students already know what they want, so they needed a direct path too."}]
-      </script>
     </div>
   </section>
 
   <section class="cs-sec local-only" id="decisions">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 5 · Decisions <em class="lens">Trade-offs</em></div>
-        <h2>Why this, not that</h2>
-        <p class="lead">One call each for design, product strategy and tech.</p>
+        <div class="stop-tag"><i></i>Decisions <em class="lens">Trade-offs</em></div>
+        <h2>The calls I made</h2>
       </div>
       <article class="decision">
-        <header><h3>Swipe, not a list</h3><p>Design</p></header>
-        <div class="pair">
-          <figure><span class="verdict no">Not this</span><img src="img/bo-search.jpg" alt="Filter-heavy search view" loading="lazy"><figcaption>A wall of filters and results.</figcaption></figure>
-          <figure><span class="verdict yes">This</span><img src="img/bo-swipe.jpg" alt="Single swipe card" loading="lazy"><figcaption>One repo, one decision.</figcaption></figure>
-        </div>
-        <p class="because"><b>Because:</b> A list of 200 repos is where students give up. One card asks for one small decision, and saving the good ones is a swipe.</p>
+        <header><em class="lens d">Design</em><h3>Swipe, not a list</h3></header>
+        <div class="pair"><figure><img src="img/bo-search.jpg" alt="A filter-heavy search view" loading="lazy"><figcaption>A wall of filters and results.</figcaption></figure><figure><img src="img/bo-swipe.jpg" alt="A single swipe card" loading="lazy"><figcaption>One card, one decision.</figcaption></figure></div>
+        <p class="because">A wall of results is where people give up. One card is one small decision.</p>
       </article>
       <article class="decision">
-        <header><h3>Year in school as skill level</h3><p>Product strategy</p></header>
-        <figure class="dfig"><img src="img/bo-skill.jpg" alt="Branch Out preferences: skill level shown as 1st, 2nd, 3rd and 4th year, above language choices" loading="lazy"><figcaption>Skill level is just your year: 1st through 4th.</figcaption></figure>
-        <p class="because"><b>Because:</b> "Intermediate" means something different to everyone. Every student knows their year, so the onboarding question takes one second to answer honestly.</p>
+        <header><em class="lens b">Product strategy</em><h3>Your year is your level</h3></header>
+        <figure class="dfig"><img src="img/bo-skill.jpg" alt="Preferences with skill level as 1st to 4th year" loading="lazy"></figure>
+        <p class="because">"Intermediate" means something different to everyone. Everyone knows their year.</p>
       </article>
       <article class="decision">
-        <header><h3>AI summaries on every card</h3><p>Tech</p></header>
-        <figure class="dfig"><img src="img/bo-summary.jpg" alt="A Branch Out card for a repository, with tags and a plain-language AI summary of what the project does" loading="lazy"><figcaption>Every card explains the repo in plain language before you ever open GitHub.</figcaption></figure>
-        <p class="because"><b>Because:</b> READMEs are written for maintainers, not newcomers. I built the Gemini client that writes a short, plain-language summary for each repo, so students can judge fit without leaving the app.</p>
+        <header><em class="lens t">Tech</em><h3>AI summaries on every card</h3></header>
+        <figure class="dfig"><img src="img/bo-summary.jpg" alt="A repo card with a plain-language AI summary" loading="lazy"></figure>
+        <p class="because">READMEs are written for maintainers. I built the Gemini client that explains each repo in plain language.</p>
       </article>
     </div>
   </section>
@@ -164,40 +137,39 @@
   <section class="cs-sec local-only" id="outcome">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 6 · Outcome <em class="lens t">Feasibility</em></div>
+        <div class="stop-tag"><i></i>Outcome <em class="lens t">Feasibility</em></div>
         <h2>What I built</h2>
-        <p class="lead">My part of the app, from my own commits and pull requests.</p>
+        <p class="lead">My part, straight from my commits.</p>
       </div>
       <ul class="feature-list">
         <li>User accounts: API endpoints, login and signup pages</li>
         <li>Saving each student's preferences to the database</li>
         <li>The Gemini client behind the AI summaries</li>
-        <li>Swipe controls with keyboard shortcuts and clear accept and reject icons</li>
+        <li>Swipe controls with keyboard shortcuts</li>
         <li>The discovery carousel, mobile layouts and light and dark mode</li>
         <li>Sidebar, about page and in-app feedback messages</li>
       </ul>
       <div class="tryit">
-        <div class="bar"><span><b>Try it:</b> set your preferences, then swipe through matched repos.</span><a href="https://branchout.tech" target="_blank" rel="noopener">Open full site</a></div>
+        <div class="bar"><span><b>Try it:</b> set your preferences, then swipe.</span><a href="https://branchout.tech" target="_blank" rel="noopener">Open full site</a></div>
         <button type="button" class="start" data-src="https://branchout.tech" data-title="Branch Out, live">
-          <img src="img/bo-swipe.jpg" alt="Branch Out&#x27;s swipe screen: one repository card with tags, an AI summary, and accept and reject buttons" loading="lazy">
+          <img src="img/bo-swipe.jpg" alt="Branch Out&#x27;s swipe screen: one repository card with tags and an AI summary" loading="lazy">
           <span><i></i>Start the live site</span>
         </button>
       </div>
-      <div class="evidence"><div class="ev todo"><b>Result</b>Add how the final demo went at Salesforce, and any feedback from students who tried it.</div></div>
     </div>
   </section>
 
   <section class="cs-sec local-only" id="next">
     <div class="wrap">
       <div class="narrow">
-        <div class="stop-tag"><i></i>Stop 7 · Learnings and next <em class="lens b">Viability</em></div>
-        <h2>What I'd take forward</h2>
+        <div class="stop-tag"><i></i>What's next <em class="lens b">Viability</em></div>
+        <h2>What I'm taking with me</h2>
       </div>
       <div class="learn">
-        <div><h3>Ship in small pieces</h3><p>Working through pull requests on a team of three taught me to keep changes small enough to review.</p></div>
-        <div><h3>Design from the wireframe</h3><p>Matching the wireframe closely kept three people's work feeling like one product.</p></div>
-        <div><h3>Next: real usage data</h3><p>Track which matches students actually save, and tune the recommendations from that.</p></div>
-        <div><h3>Next: first contribution</h3><p>Go one step further than discovery: point students to a good first issue in each repo.</p></div>
+        <div><h3>Small PRs win</h3><p>Working through pull requests on a team of three taught me to keep changes easy to review.</p></div>
+        <div><h3>Stick to the wireframe</h3><p>It kept three people's work feeling like one product.</p></div>
+        <div><h3>Next: learn from saves</h3><p>Use which repos students save to tune the matches.</p></div>
+        <div><h3>Next: first issue</h3><p>Point students to a good first issue, not just a repo.</p></div>
       </div>
     </div>
   </section>
@@ -205,7 +177,7 @@
   <section class="next">
     <div class="wrap">
       <a class="next-card" href="in-hindsight.html">
-        <span><small>Next stop</small><b>In Hindsight: what if your saved videos weren't stuck in folders?</b></span>
+        <span><small>Next project</small><b>In Hindsight: you saved it. Now use it.</b></span>
         <span class="go" aria-hidden="true">&rarr;</span>
       </a>
       <div class="next-row">
@@ -219,5 +191,19 @@
   <div class="wrap"><span>Taliyah Harvey</span><span>Built with Nathan Kenmognie and Jackie Jurado</span></div>
 </footer>
 <script src="case-study.js"></script>
+<script>
+// version tabs: click or use arrow keys to step through the real versions
+document.querySelectorAll('[data-steps]').forEach(box => {
+  const tabs = [...box.querySelectorAll('[role=tab]')], panels = [...box.querySelectorAll('[data-panel]')];
+  const show = i => { tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i)); panels.forEach((q, k) => q.hidden = k !== i); };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(i));
+    t.addEventListener('keydown', ev => {
+      const j = ev.key === 'ArrowRight' ? i + 1 : ev.key === 'ArrowLeft' ? i - 1 : null;
+      if (j !== null && tabs[j]) { ev.preventDefault(); tabs[j].focus(); show(j); }
+    });
+  });
+});
+</script>
 </body>
 </html>
