@@ -113,7 +113,7 @@ BART = dict(
     slug="karls-friend-bart", name="Karl's Friend Bart", when="Oct 2026",
     desc="an interactive BART map that keeps the official look and shows what's running right now.",
     h1="I got off at the wrong station. So I rebuilt the map.",
-    sub="A BART rider who feels lost about getting home at night needs to know which trains are still running, but the official map looks the same at 8am and midnight.",
+    sub="A BART rider who feels confused by the map needs to see where their train is actually going, but the official map is a still picture of every line at once.",
     meta=[("Role", "Solo: design and front-end"), ("Time", "5 days"), ("Type", "Personal")],
     links=[("Try the live map", "https://taliyahhh.github.io/bart-revamp/"), ("Code", "https://github.com/taliyahhh/bart-revamp")],
     nums=[("5 days", "from idea to live site"), ("Live", "trains from BART's API")],
