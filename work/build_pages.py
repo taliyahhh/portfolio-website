@@ -112,7 +112,7 @@ def page(p):
 BART = dict(
     slug="karls-friend-bart", name="Karl's Friend Bart", when="Oct 2026",
     desc="an interactive BART map that keeps the official look and shows what's running right now.",
-    h1="I got off at the wrong station. So I rebuilt the map.",
+    h1="Mind the Map",
     sub="A BART rider who feels confused by the map needs to see where their train is actually going, but the official map is a still picture of every line at once.",
     meta=[("Role", "Solo: design and front-end"), ("Time", "5 days"), ("Type", "Personal")],
     links=[("Try the live map", "https://taliyahhh.github.io/bart-revamp/"), ("Code", "https://github.com/taliyahhh/bart-revamp")],
@@ -143,7 +143,7 @@ BART = dict(
 FEE = dict(
     slug="fee-fi-fo-fund", name="Fee Fi Fo Fund", when="Oct 2026 · SVSD design challenge",
     desc="a storytelling site that shows teens and young adults where their tax dollars go, by zip code.",
-    h1="Where did your tax dollars actually go?",
+    h1="Once Upon a Paycheck",
     sub="A teen who feels confused about where their paycheck goes needs to see how their taxes are spent, but the answers are buried in budget PDFs written in billions.",
     meta=[("Role", "Design and development"), ("Team", "Me and Christine Lai"), ("Time", "Oct 2026")],
     links=[("Try it", "https://feefifo.fund"), ("Watch the video", "https://youtu.be/RaYq0kSAdkA"), ("Code", "https://github.com/taliyahhh/tax-site")],
@@ -177,7 +177,7 @@ FEE = dict(
 BRANCH = dict(
     slug="branch-out", name="Branch Out", when="Summer 2025 · Salesforce",
     desc="a swipe-based way for college students to find open source projects matched to their year, languages and interests.",
-    h1="Finding your first open source project shouldn't be this hard.",
+    h1="Swipe Right on Open Source",
     sub="A college student who feels intimidated about contributing to open source needs to find a project that fits their level, but GitHub shows the biggest, scariest repos first.",
     meta=[("Role", "Full-stack engineer"), ("Team", "Me, Nathan Kenmognie and Jackie Jurado"), ("Program", "Futureforce Tech Launchpad")],
     links=[("Try it", "https://branchout.tech"), ("Code", "https://github.com/Team-10-FTL/branch-out")],
