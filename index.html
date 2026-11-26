@@ -81,7 +81,7 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 .banner:hover .logos{animation-play-state:paused}
 
 /* puzzle */
-.flow{background:#0d0d0d;color:#f5f5f2;color-scheme:dark;padding-block:clamp(44px,6vw,80px)}
+.flow{border-top:1px solid #2a2a2a;background:#0d0d0d;color:#f5f5f2;color-scheme:dark;padding-block:clamp(44px,6vw,80px)}
 .fl-in{display:grid;gap:clamp(24px,4vw,56px);align-items:center;grid-template-columns:minmax(0,1fr)}
 @media(min-width:900px){.fl-in{grid-template-columns:minmax(0,1fr) minmax(0,460px)}}
 .fl-copy p{color:#cfcec9;font-size:18px;max-width:44ch;margin:16px 0 0}
@@ -483,40 +483,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     </div>
   </section>
 
-  <!-- Puzzle: a Flow-style board where every solution spells "tj" -->
-  <section class="flow" id="play" aria-labelledby="fl-title">
-    <div class="wrap fl-in">
-      <div class="fl-copy">
-        <div class="kicker"><i></i>Take a break</div>
-        <h2 id="fl-title">Connect the Dots</h2>
-        <p>It's how I work: design, tech, business, people. Puzzles are how I unwind.</p>
-        <ol class="fl-how">
-          <li>Drag from a dot to its matching color.</li>
-          <li>Lines can't cross or share a square.</li>
-          <li>Fill every square to see the picture.</li>
-        </ol>
-        <div class="fl-bar">
-          <span class="fl-which">Puzzle <b id="fl-num">1</b></span>
-          <div class="fl-pick" id="fl-pick" role="group" aria-label="Choose a puzzle"></div>
-          <span class="fl-solvedc"><b id="fl-count">0</b> of 3 solved</span>
-        </div>
-        <div class="fl-status" aria-live="polite"><span>Pairs <b id="fl-pairs">0</b> of <b id="fl-total">0</b></span><span>Board <b id="fl-fill">0%</b> filled</span></div>
-        <div class="fl-btns">
-          <button type="button" class="fl-btn" id="fl-reset">Start over</button>
-          <button type="button" class="fl-btn" id="fl-solve">Show me the answer</button>
-        </div>
-        <div class="fl-done" aria-live="polite">
-          <h3 id="fl-done-title">That's Me: tj</h3>
-          <p id="fl-done-text"></p>
-          <div class="fl-btns"><button type="button" class="fl-btn fill" id="fl-next">Next puzzle</button><button type="button" class="fl-btn" id="fl-again">Play this one again</button></div>
-        </div>
-      </div>
-      <div class="fl-board">
-        <svg id="fl-svg" viewBox="0 0 1000 1000" role="img" aria-label="Puzzle board, 10 by 10 squares with pairs of colored dots"></svg>
-      </div>
-    </div>
-  </section>
-
   <section class="band" id="about">
     <div class="wrap about">
       <div>
@@ -656,6 +622,40 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     <article class="dvf-card" id="dvf-card" aria-live="polite"></article>
   </div>
 
+    </div>
+  </section>
+
+  <!-- Puzzle: a Flow-style board where every solution spells "tj" -->
+  <section class="flow" id="play" aria-labelledby="fl-title">
+    <div class="wrap fl-in">
+      <div class="fl-copy">
+        <div class="kicker"><i></i>Take a break</div>
+        <h2 id="fl-title">Connect the Dots</h2>
+        <p>It's how I work: design, tech, business, people. Puzzles are how I unwind.</p>
+        <ol class="fl-how">
+          <li>Drag from a dot to its matching color.</li>
+          <li>Lines can't cross or share a square.</li>
+          <li>Fill every square to see the picture.</li>
+        </ol>
+        <div class="fl-bar">
+          <span class="fl-which">Puzzle <b id="fl-num">1</b></span>
+          <div class="fl-pick" id="fl-pick" role="group" aria-label="Choose a puzzle"></div>
+          <span class="fl-solvedc"><b id="fl-count">0</b> of 3 solved</span>
+        </div>
+        <div class="fl-status" aria-live="polite"><span>Pairs <b id="fl-pairs">0</b> of <b id="fl-total">0</b></span><span>Board <b id="fl-fill">0%</b> filled</span></div>
+        <div class="fl-btns">
+          <button type="button" class="fl-btn" id="fl-reset">Start over</button>
+          <button type="button" class="fl-btn" id="fl-solve">Show me the answer</button>
+        </div>
+        <div class="fl-done" aria-live="polite">
+          <h3 id="fl-done-title">That's Me: tj</h3>
+          <p id="fl-done-text"></p>
+          <div class="fl-btns"><button type="button" class="fl-btn fill" id="fl-next">Next puzzle</button><button type="button" class="fl-btn" id="fl-again">Play this one again</button></div>
+        </div>
+      </div>
+      <div class="fl-board">
+        <svg id="fl-svg" viewBox="0 0 1000 1000" role="img" aria-label="Puzzle board, 10 by 10 squares with pairs of colored dots"></svg>
+      </div>
     </div>
   </section>
 
