@@ -169,6 +169,12 @@ def page(p):
           <figure><span class="verdict yes">{yl}</span><img src="{ya}" alt="{e(yalt)}" loading="lazy"><figcaption>{ycap}</figcaption></figure>
         </div>
 '''
+        if d.get("fig"):
+            src, alt, cap = d["fig"]
+            pair = f'        <figure class="dfig"><img src="{src}" alt="{e(alt)}" loading="lazy"><figcaption>{cap}</figcaption></figure>\n'
+        if d.get("diagram"):
+            steps = "".join(f'<li class="{c}"><b>{t}</b><span>{x}</span></li>' for c, t, x in d["diagram"]["steps"])
+            pair = f'        <figure class="dfig flowd"><ol>{steps}</ol><figcaption>{d["diagram"]["cap"]}</figcaption></figure>\n'
         out += f'''      <article class="decision">
         <header><h3>{d["h"]}</h3><p>{d["lens"]}</p></header>
 {pair}        <p class="because"><b>Because:</b> {d["because"]}</p>
@@ -271,8 +277,14 @@ FEE = dict(
                    ("img/fee-v4-res.jpg", "Final results with a $100 strip", "Out of every $100, here's where yours went.")),
              because="$22 out of every $100 is a number you can feel. $1.6 trillion isn't."),
         dict(h="Show the uncomfortable buckets", lens="Product strategy",
+             fig=("img/fee-buckets.jpg", "Santa Clara's Nation folder: Social Security, paying off debt and the safety net shown as full-size stickers next to defense and public health", "Social Security ($22.54), paying off debt ($14.22) and the safety net ($8.46), shown at full size."),
              because="Social Security, paying off debt and the safety net don't fit a tidy list of 12 categories, but together they're a huge share of federal spending. Hiding them would have made the site cleaner and misleading, so they got their own buckets, and barely-funded categories got a gray \"barely any money here\" strip."),
         dict(h="Data that updates itself", lens="Tech",
+             diagram=dict(steps=[("src", "Public data", "Census of Governments and California's State Controller"),
+                                 ("job", "Monthly GitHub Action", "Downloads, cleans and maps every city to 12 categories"),
+                                 ("out", "One data file", "Committed back to the repo, so every change is reviewable"),
+                                 ("site", "feefifo.fund", "Plain HTML, CSS and JavaScript reads it. No server.")],
+                          cap="How city budgets stay current without anyone typing them in."),
              because="City budgets change every year. A GitHub Action rebuilds the data for every city each month from the Census and California's Controller, so the site stays plain HTML, CSS and JavaScript with no server to babysit."),
     ],
     outcome_h="What shipped", outcome_lead="Live at feefifo.fund. No framework, no build step.",
@@ -343,6 +355,11 @@ HIND = dict(
                    ("img/ih-v2-act.jpg", "Act tab sorting saves into lists, maps and plans", "Act: send saves somewhere useful.")),
              because="Looking back is nice. Doing something is the reason to come back. The Act tab is what makes it a product and not a novelty."),
         dict(h="Everything runs in the browser", lens="Tech",
+             diagram=dict(steps=[("src", "Your TikTok export", "The file you download from TikTok's settings"),
+                                 ("job", "Your browser", "Reads and organizes it on your device"),
+                                 ("out", "Your dashboard", "Every view is built locally, in memory"),
+                                 ("no", "No server", "Nothing gets uploaded. Only public video previews load from TikTok.")],
+                          cap="Your scrolling history never leaves your device."),
              because="People are handing over their entire scrolling history, so trust is the feature. The export is read on your device and never uploaded, and video details load lazily from TikTok's public embeds, four at a time."),
     ],
     outcome_h="Where it is now", outcome_lead="Live at inhindsight.net with a working demo and a beta waitlist.",
@@ -403,8 +420,10 @@ BRANCH = dict(
                    ("img/bo-swipe.jpg", "Single swipe card", "One repo, one decision.")),
              because="A list of 200 repos is where students give up. One card asks for one small decision, and saving the good ones is a swipe."),
         dict(h="Year in school as skill level", lens="Product strategy",
+             fig=("img/bo-skill.jpg", "Branch Out preferences: skill level shown as 1st, 2nd, 3rd and 4th year, above language choices", "Skill level is just your year: 1st through 4th."),
              because="\"Intermediate\" means something different to everyone. Every student knows their year, so the onboarding question takes one second to answer honestly."),
         dict(h="AI summaries on every card", lens="Tech",
+             fig=("img/bo-summary.jpg", "A Branch Out card for a repository, with tags and a plain-language AI summary of what the project does", "Every card explains the repo in plain language before you ever open GitHub."),
              because="READMEs are written for maintainers, not newcomers. I built the Gemini client that writes a short, plain-language summary for each repo, so students can judge fit without leaving the app."),
     ],
     outcome_h="What I built", outcome_lead="My part of the app, from my own commits and pull requests.",
