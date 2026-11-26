@@ -452,6 +452,11 @@ HIND = dict(
     foot="Not affiliated with TikTok",
 )
 
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tools"))
+import titles   # Title Case every heading, no trailing periods
+
 for p in (BART, FEE, BRANCH, HIND):
     p["try"] = p.pop("try_")
     page(p)
+    titles.run(p["slug"] + ".html")
