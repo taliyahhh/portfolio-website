@@ -168,8 +168,7 @@ FEE = dict(
              img=("img/fee-v4-res.jpg", "Final version with a $100 strip")),
     ],
     reflect=[("What worked", "Switching from billions to $100. That's when the numbers clicked."),
-             ("What I'd do differently", "We didn't make finals. I'd put it in front of real teens before submitting, not after."),
-             ("What's next", "More states, and a way to act on what you learn.")],
+             ("What I'd do differently", "We didn't make finals. I'd put it in front of real teens before submitting, not after.")],
     next=("branch-out.html", "Branch Out"),
     foot="Data: U.S. Census Bureau, California State Controller and state budget reports",
 )
