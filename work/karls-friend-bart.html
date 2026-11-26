@@ -4,17 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Karl&#x27;s Friend Bart · Taliyah Harvey</title>
-<meta name="description" content="Product process case study: an interactive BART map that keeps the official look and shows what&#x27;s running right now.">
+<meta name="description" content="Process and reflection: an interactive BART map that keeps the official look and shows what&#x27;s running right now.">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
-<link rel="stylesheet" href="case-study.css">
+<link rel="stylesheet" href="process.css">
 </head>
-<body class="express">
-
+<body>
 <header class="top">
-  <div class="wrap">
+  <div class="bar">
     <a class="mark" href="/" aria-label="Taliyah Harvey, home"><b>tj</b> <span>Taliyah Harvey</span></a>
     <nav aria-label="Site">
       <a href="/#work">Work</a>
@@ -25,186 +24,56 @@
   </div>
 </header>
 
-<main>
-  <section class="cs-hero">
-    <div class="wrap">
-      <div class="cs-kicker"><i></i>Process · Karl&#x27;s Friend Bart</div>
-      <h1>I Got Off at the Wrong Station. So I Rebuilt the Map</h1>
-      <p class="sub">BART's map is a still picture. It can't tell you where your train is going or what changes at night. So I made one that can.</p>
-      <ul class="labels"><li><span>Role</span>Solo: design and front-end</li><li><span>Platform</span>Web and mobile</li><li><span>Timeline</span>5 days, Oct 2026</li><li><span>Type</span>Personal</li></ul>
-      <div class="outcomes"><div><b>5 days</b><span>from idea to live site</span></div><div><b>Live</b><span>trains and departures from BART's API</span></div><div><b>0</b><span>new maps for riders to learn</span></div></div>
-    </div>
+<main class="col">
+  <section class="head">
+    <a class="back" href="/#work">&larr; All work</a>
+    <p class="kick"><b>Karl&#x27;s Friend Bart</b> · Oct 2026</p>
+    <h1>I Got Off at the Wrong Station. So I Rebuilt the Map</h1>
+    <p class="sub">BART's map is a still picture. I made one that moves.</p>
+    <ul class="meta"><li><span>Role</span><b>Solo: design and front-end</b></li><li><span>Time</span><b>5 days</b></li><li><span>Type</span><b>Personal</b></li></ul>
+    <div class="links"><a class="main" href="https://taliyahhh.github.io/bart-revamp/" target="_blank" rel="noopener">Try the live map &nearr;</a><a class="" href="https://github.com/taliyahhh/bart-revamp" target="_blank" rel="noopener">Code &nearr;</a></div>
+    <div class="nums"><div><b>5 days</b><span>from idea to live site</span></div><div><b>Live</b><span>trains from BART's API</span></div></div>
   </section>
 
-  <div class="modebar" id="mode-start">
-    <div class="wrap">
-      <div class="seg" role="group" aria-label="How much detail">
-        <button type="button" data-mode="express" aria-pressed="true">Short <small>1 min</small></button>
-        <button type="button" data-mode="local" aria-pressed="false">Full <small>whole process</small></button>
-      </div>
-      <nav class="trip" aria-label="Sections"><span class="fill"></span><a href="#problem"><i></i><span>Problem</span></a><a href="#research"><i></i><span>Research</span></a><a href="#iterations"><i></i><span>Iterations</span></a><a href="#decisions"><i></i><span>Decisions</span></a><a href="#outcome"><i></i><span>Outcome</span></a><a href="#next"><i></i><span>What's next</span></a></nav>
-    </div>
-  </div>
-
-  <section class="cs-sec express-only">
-    <div class="wrap">
-      <div class="express-card">
-        <div><h3>The Problem</h3><p>The official map shows every line at once and never changes. I got off at the wrong stop because of it.</p></div>
-        <div><h3>What I Made</h3><p>The same map, but it moves. Spotlight your line, tap a station, see what's running tonight.</p></div>
-        <div><h3>The Big Call</h3><p>Keep the official look. Nobody wants to learn a new map.</p></div>
-      </div>
-      <div class="tryit">
-        <div class="bar"><span><b>Try it:</b> tap a line or a station.</span><a href="https://taliyahhh.github.io/bart-revamp/" target="_blank" rel="noopener">Open full site</a></div>
-        <button type="button" class="start" data-src="https://taliyahhh.github.io/bart-revamp/" data-title="Karl&#x27;s Friend Bart, live">
-          <img src="img/bart-v4-final-day.jpg" alt="Karl&#x27;s Friend Bart: the official-style BART map with a station panel">
-          <span><i></i>Start the live site</span>
-        </button>
-      </div>
-      <div class="next-row">
-        <button type="button" class="btn fill" data-mode="local" data-scroll><i></i>See the whole process</button>
-      </div>
-    </div>
+  <section class="sect" aria-labelledby="how-h">
+    <h2 id="how-h">How It Went</h2>
+    <ol class="log">
+      <li>
+        <div class="when">Oct 24<span class="tag r">Research</span></div>
+        <h3>The Problem</h3>
+        <p>The official map shows every line at once and never changes. After 9pm, Red and Green stop running and transfers change. Nothing tells you. I found out at the wrong stop.</p>
+      </li>
+      <li>
+        <div class="when">Oct 24<span class="tag d">Design</span></div>
+        <h3>My Own Map First</h3>
+        <p>I started with a dark custom map. It looked cool, but it didn't look like BART, and that was the problem.</p><figure class="shot"><img src="img/bart-v1-fogline.jpg" alt="My first version: a dark custom map" loading="lazy"></figure>
+      </li>
+      <li>
+        <div class="when">Oct 24<span class="tag d">Design</span></div>
+        <h3>Back to the Real Map</h3>
+        <p>Riders already know the official map, so I rebuilt it. Then I added a trip planner, and it got crowded.</p><figure class="shot"><img src="img/bart-v2-official.jpg" alt="The official layout with a Plan a Trip box" loading="lazy"></figure>
+      </li>
+      <li>
+        <div class="when">Oct 24<span class="tag b">Product</span></div>
+        <h3>Cut the Trip Planner</h3>
+        <p>Other apps already plan trips. I cut it and moved the line controls to a bottom bar your thumb can reach.</p><figure class="shot"><img src="img/bart-v3-bottombar.jpg" alt="Line controls in a bottom bar" loading="lazy"></figure>
+      </li>
+      <li>
+        <div class="when">Oct 28<span class="tag t">Tech</span></div>
+        <h3>Live Trains and a Night Mode</h3>
+        <p>Mini trains from BART's live API. At 9pm the site switches to the evening network on its own.</p><div class="shots"><figure class="shot"><img src="img/bart-v4-final-day.jpg" alt="Day service" loading="lazy"><figcaption>Day</figcaption></figure><figure class="shot"><img src="img/bart-v4-final-evening.jpg" alt="Evening service" loading="lazy"><figcaption>After 9pm</figcaption></figure></div>
+      </li>
+    </ol>
   </section>
 
-  <section class="cs-sec local-only" id="problem">
-    <div class="wrap narrow">
-      <div class="stop-tag"><i></i>Problem <em class="lens d">Desirability</em></div>
-      <h2>A Map That Just Sits There</h2>
-      <p class="lead">Every line, all at once, looking the same at 8am and midnight.</p>
-      <p>After 9pm, Red and Green stop running and transfers change. The map doesn't say so. You find out on the platform. I found out at the wrong stop.</p>
-      <p><b>The question:</b> where does my train go, right now?</p>
-    </div>
+  <section class="reflect" aria-labelledby="look-h">
+    <h2 id="look-h">Looking Back</h2>
+    <dl><div><dt>What worked</dt><dd>Keeping the official look. Nobody had to learn anything new.</dd></div><div><dt>What I'd do differently</dt><dd>I built from my own frustration. Next time I'd watch a few riders use it before building.</dd></div><div><dt>What's next</dt><dd>Test it with riders, then pitch it to BART as a clearer map.</dd></div></dl>
   </section>
 
-  <section class="cs-sec local-only" id="research">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Research <em class="lens d">Users</em></div>
-        <h2>Learning the Map Inside Out</h2>
-        <p class="lead">I studied the official map and BART's service rules until I could rebuild both.</p>
-      </div>
-      <div class="evidence">
-        <div class="ev"><b>Riders know it</b>The official map is already in everyone's head. That's worth keeping.</div>
-        <div class="ev"><b>Live data exists</b>BART's public API has real-time departures and alerts, so a live map was possible.</div>
-        <div class="ev"><b>Nights are different</b>Evening service is basically a different network, and nothing shows it.</div>
-      </div>
-      <p class="insight">Keep the map. Make it move.</p>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="iterations">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Iterations <em class="lens d">Design</em></div>
-        <h2>Four Versions to Get It Right</h2>
-      </div>
-      <div class="steps" data-steps>
-        <div class="steps-tabs" role="tablist" aria-label="Versions">
-          <button type="button" role="tab" aria-selected="false" data-i="0"><small>v1 · Oct 24</small>Fogline</button>
-          <button type="button" role="tab" aria-selected="false" data-i="1"><small>v2 · Oct 24</small>Official</button>
-          <button type="button" role="tab" aria-selected="false" data-i="2"><small>v3 · Oct 24</small>Bottom bar</button>
-          <button type="button" role="tab" aria-selected="true" data-i="3"><small>v4 · Oct 28</small>Karl's Friend Bart</button>
-        </div>
-        <figure class="steps-panel" hidden data-panel="0"><img src="img/bart-v1-fogline.jpg" alt="First version: a dark custom map with a line list and trip planner" loading="lazy"><figcaption>My own dark map. It looked cool, but it didn't look like BART.</figcaption></figure>
-        <figure class="steps-panel" hidden data-panel="1"><img src="img/bart-v2-official.jpg" alt="Second version: the official layout with a Plan a Trip box" loading="lazy"><figcaption>Rebuilt the real map. Familiar, but the trip planner crowded it.</figcaption></figure>
-        <figure class="steps-panel" hidden data-panel="2"><img src="img/bart-v3-bottombar.jpg" alt="Third version: controls in a bottom bar and a station panel" loading="lazy"><figcaption>Cut trip planning. The controls moved to a bottom bar your thumb can reach.</figcaption></figure>
-        <figure class="steps-panel" data-panel="3"><img src="img/bart-v4-final-evening.jpg" alt="Final version in evening mode with live mini trains" loading="lazy"><figcaption>Live mini trains, a name, and a night mode that flips on at 9pm.</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="decisions">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Decisions <em class="lens">Trade-offs</em></div>
-        <h2>The Calls I Made</h2>
-      </div>
-      <article class="decision">
-        <header><em class="lens d">Design</em><h3>Keep the Official Map</h3></header>
-        <div class="pair"><figure><img src="img/bart-v1-fogline.jpg" alt="My custom dark map" loading="lazy"><figcaption>Mine: a new map to learn.</figcaption></figure><figure><img src="img/bart-v4-final-day.jpg" alt="The official-style map" loading="lazy"><figcaption>BART's: readable in a second.</figcaption></figure></div>
-        <p class="because">Familiarity is the feature. My job was to make it more useful, not more mine.</p>
-      </article>
-      <article class="decision">
-        <header><em class="lens b">Product strategy</em><h3>Cut Trip Planning</h3></header>
-        <div class="pair"><figure><img src="img/bart-v2-official.jpg" alt="Version with a Plan a Trip box" loading="lazy"><figcaption>A trip planner, like every transit app.</figcaption></figure><figure><img src="img/bart-v3-bottombar.jpg" alt="Version with line chips in a bottom bar" loading="lazy"><figcaption>Just your line, one tap away.</figcaption></figure></div>
-        <p class="because">Other apps already plan trips. Seeing your whole line at a glance didn't exist, so that's all I built.</p>
-      </article>
-      <article class="decision">
-        <header><em class="lens t">Tech</em><h3>Night Mode Runs Itself</h3></header>
-        <div class="pair"><figure><img src="img/bart-v4-final-day.jpg" alt="Day service, light theme" loading="lazy"><figcaption>Day: all five lines.</figcaption></figure><figure><img src="img/bart-v4-final-evening.jpg" alt="Evening service, dark theme" loading="lazy"><figcaption>After 9pm: dark, with Red and Green off.</figcaption></figure></div>
-        <p class="because">A label is easy to miss. The site checks the time and switches to the evening network on its own.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="outcome">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Outcome <em class="lens t">Feasibility</em></div>
-        <h2>What Shipped</h2>
-        <p class="lead">Live on desktop and phone. No framework, no build step.</p>
-      </div>
-      <ul class="feature-list">
-        <li>Official-style map with pan, pinch zoom and readable labels</li>
-        <li>Line spotlight from a thumb-friendly bottom bar</li>
-        <li>Live mini trains, with an estimate if the feed drops</li>
-        <li>Station panel with departures, connections and alerts</li>
-      </ul>
-      <div class="tryit">
-        <div class="bar"><span><b>Try it:</b> tap a line or a station.</span><a href="https://taliyahhh.github.io/bart-revamp/" target="_blank" rel="noopener">Open full site</a></div>
-        <button type="button" class="start" data-src="https://taliyahhh.github.io/bart-revamp/" data-title="Karl&#x27;s Friend Bart, live">
-          <img src="img/bart-v4-final-day.jpg" alt="Karl&#x27;s Friend Bart: the official-style BART map with a station panel" loading="lazy">
-          <span><i></i>Start the live site</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="next">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>What's next <em class="lens b">Viability</em></div>
-        <h2>What I'm Taking with Me</h2>
-      </div>
-      <div class="learn">
-        <div><h3>Familiar Beats Clever</h3><p>My custom map had the most personality. The official one was the one people could read.</p></div>
-        <div><h3>Cutting Is a Feature</h3><p>Dropping trip planning did more than anything I added.</p></div>
-        <div><h3>Next: Test with Riders</h3><p>Time people finding their route home on both maps.</p></div>
-        <div><h3>Next: Pitch It</h3><p>Bring it to BART and rider groups as a model for clearer maps.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="next">
-    <div class="wrap">
-      <a class="next-card" href="fee-fi-fo-fund.html">
-        <span><small>Next project</small><b>Fee Fi Fo Fund: Where Did Your Tax Dollars Actually Go?</b></span>
-        <span class="go" aria-hidden="true">&rarr;</span>
-      </a>
-      <div class="next-row">
-        <a class="btn" href="/#contact">Get in touch</a>
-        <a class="btn" href="https://github.com/taliyahhh/bart-revamp" target="_blank" rel="noopener">View the code</a>
-      </div>
-    </div>
-  </section>
+  <a class="nextp" href="fee-fi-fo-fund.html"><span><small>Next project</small><b>Fee Fi Fo Fund</b></span><span class="go" aria-hidden="true">&rarr;</span></a>
 </main>
-<footer>
-  <div class="wrap"><span>Taliyah Harvey</span><span>Karl is what locals call SF's fog. A fan project, not affiliated with BART.</span></div>
-</footer>
-<script src="case-study.js"></script>
-<script>
-// version tabs: click or use arrow keys to step through the real versions
-document.querySelectorAll('[data-steps]').forEach(box => {
-  const tabs = [...box.querySelectorAll('[role=tab]')], panels = [...box.querySelectorAll('[data-panel]')];
-  const show = i => { tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i)); panels.forEach((q, k) => q.hidden = k !== i); };
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => show(i));
-    t.addEventListener('keydown', ev => {
-      const j = ev.key === 'ArrowRight' ? i + 1 : ev.key === 'ArrowLeft' ? i - 1 : null;
-      if (j !== null && tabs[j]) { ev.preventDefault(); tabs[j].focus(); show(j); }
-    });
-  });
-});
-</script>
+
+<footer><div class="bar"><span>Taliyah Harvey</span><span>Karl is what locals call SF's fog. A fan project, not affiliated with BART.</span></div></footer>
 </body>
 </html>

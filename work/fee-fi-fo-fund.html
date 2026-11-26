@@ -4,17 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fee Fi Fo Fund · Taliyah Harvey</title>
-<meta name="description" content="Product process case study: a storytelling site that shows teens and young adults where their tax dollars go, by zip code.">
+<meta name="description" content="Process and reflection: a storytelling site that shows teens and young adults where their tax dollars go, by zip code.">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
-<link rel="stylesheet" href="case-study.css">
+<link rel="stylesheet" href="process.css">
 </head>
-<body class="express">
-
+<body>
 <header class="top">
-  <div class="wrap">
+  <div class="bar">
     <a class="mark" href="/" aria-label="Taliyah Harvey, home"><b>tj</b> <span>Taliyah Harvey</span></a>
     <nav aria-label="Site">
       <a href="/#work">Work</a>
@@ -25,189 +24,63 @@
   </div>
 </header>
 
-<main>
-  <section class="cs-hero">
-    <div class="wrap">
-      <div class="cs-kicker"><i></i>Process · Fee Fi Fo Fund</div>
-      <h1>Where Did Your Tax Dollars Actually Go?</h1>
-      <p class="sub">Crossing the Bay Bridge, my friend asked why we still pay a toll if our taxes cover roads. I didn't know, and no government site made it easy to find out. So I built one for teens and young adults.</p>
-      <ul class="labels"><li><span>Role</span>Design and development</li><li><span>Team</span>Me + a teammate on video and mood board</li><li><span>Timeline</span>Oct 2026</li><li><span>Type</span>SVSD design challenge</li></ul>
-      <div class="outcomes"><div><b>41,000+</b><span>zip codes, every one in the US</span></div><div><b>3</b><span>levels of government, side by side</span></div><div><b>$100</b><span>how every number is shown</span></div></div>
-    </div>
+<main class="col">
+  <section class="head">
+    <a class="back" href="/#work">&larr; All work</a>
+    <p class="kick"><b>Fee Fi Fo Fund</b> · Oct 2026 · SVSD design challenge</p>
+    <h1>Where Did Your Tax Dollars Actually Go?</h1>
+    <p class="sub">A friend's question on the Bay Bridge turned into a tax site for teens and young adults.</p>
+    <ul class="meta"><li><span>Role</span><b>Design and development</b></li><li><span>Team</span><b>Me and Christine Lai</b></li><li><span>Time</span><b>Oct 2026</b></li></ul>
+    <div class="links"><a class="main" href="https://feefifo.fund" target="_blank" rel="noopener">Try it &nearr;</a><a class="" href="https://youtu.be/RaYq0kSAdkA" target="_blank" rel="noopener">Watch the video &nearr;</a><a class="" href="https://github.com/taliyahhh/tax-site" target="_blank" rel="noopener">Code &nearr;</a></div>
+    
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/RaYq0kSAdkA" title="Our SVSD submission video, made by Christine Lai." loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <p class="video-cap">Our SVSD submission video, made by Christine Lai.</p>
   </section>
 
-  <div class="modebar" id="mode-start">
-    <div class="wrap">
-      <div class="seg" role="group" aria-label="How much detail">
-        <button type="button" data-mode="express" aria-pressed="true">Short <small>1 min</small></button>
-        <button type="button" data-mode="local" aria-pressed="false">Full <small>whole process</small></button>
-      </div>
-      <nav class="trip" aria-label="Sections"><span class="fill"></span><a href="#problem"><i></i><span>Problem</span></a><a href="#research"><i></i><span>Research</span></a><a href="#iterations"><i></i><span>Iterations</span></a><a href="#decisions"><i></i><span>Decisions</span></a><a href="#outcome"><i></i><span>Outcome</span></a><a href="#next"><i></i><span>What's next</span></a></nav>
-    </div>
-  </div>
-
-  <section class="cs-sec express-only">
-    <div class="wrap">
-      <div class="express-card">
-        <div><h3>The Problem</h3><p>Teens and young adults pay taxes and have no idea where the money goes. The sites that explain it are boring and don't tell a story.</p></div>
-        <div><h3>What I Made</h3><p>Type your zip code. See where every $100 went, told like a fairy tale.</p></div>
-        <div><h3>The Big Call</h3><p>Dollars out of $100, not billions. Nobody can picture $1.6 trillion.</p></div>
-      </div>
-      <div class="tryit">
-        <div class="bar"><span><b>Try it:</b> type your zip code, or tap anywhere on the map.</span><a href="https://feefifo.fund" target="_blank" rel="noopener">Open full site</a></div>
-        <button type="button" class="start" data-src="https://feefifo.fund" data-title="Fee Fi Fo Fund, live">
-          <img src="img/fee-v4-land.jpg" alt="Fee Fi Fo Fund&#x27;s landing page: a hand-lettered logo over a colorful dot map of every US zip code">
-          <span><i></i>Start the live site</span>
-        </button>
-      </div>
-      <div class="next-row">
-        <button type="button" class="btn fill" data-mode="local" data-scroll><i></i>See the whole process</button>
-      </div>
-    </div>
+  <section class="sect" aria-labelledby="how-h">
+    <h2 id="how-h">How It Went</h2>
+    <ol class="log">
+      <li>
+        <div class="when">Oct 17<span class="tag r">Research</span></div>
+        <h3>The Question</h3>
+        <p>Crossing the Bay Bridge, my friend asked why we still pay a toll if our taxes cover roads. I didn't know. Government sites didn't help, and they definitely didn't tell a story.</p><p>SVSD's prompt: pick a specific group and build around storytelling. I picked teens and young adults getting their first paychecks.</p>
+      </li>
+      <li>
+        <div class="when">Oct 18<span class="tag t">Tech</span></div>
+        <h3>Finding the Data</h3>
+        <p>The Census covers every local government, and California's Controller has all 482 cities. Social Security alone is $22 of every $100 federal dollars, so it had to be in there.</p>
+      </li>
+      <li>
+        <div class="when">Oct 18<span class="tag d">Design</span></div>
+        <h3>Every Category in a Box</h3>
+        <p>Accurate, but it read like a spreadsheet.</p><figure class="shot"><img src="img/fee-v1-res.jpg" alt="First version: a grid of boxed categories" loading="lazy"></figure>
+      </li>
+      <li>
+        <div class="when">Oct 18<span class="tag d">Design</span></div>
+        <h3>Floating, Sized by Money</h3>
+        <p>More alive. I added psychedelic animations and deleted them the same day.</p><figure class="shot"><img src="img/fee-v2-res.jpg" alt="Second version: floating objects sized by spending" loading="lazy"></figure>
+      </li>
+      <li>
+        <div class="when">Oct 19<span class="tag d">Design</span></div>
+        <h3>File Folders</h3>
+        <p>Hand lettering and real folders for Nation, State and City.</p><figure class="shot"><img src="img/fee-v3-res.jpg" alt="Third version: hand-lettered file folders" loading="lazy"></figure>
+      </li>
+      <li>
+        <div class="when">Oct 21<span class="tag b">Product</span></div>
+        <h3>Everything Out of $100</h3>
+        <p>Nobody can picture $1.6 trillion. Everyone gets $100. I added a $100 strip and a story where you're the main character.</p><figure class="shot"><img src="img/fee-v4-res.jpg" alt="Final version with a $100 strip" loading="lazy"></figure>
+      </li>
+    </ol>
   </section>
 
-  <section class="cs-sec local-only" id="problem">
-    <div class="wrap narrow">
-      <div class="stop-tag"><i></i>Problem <em class="lens d">Desirability</em></div>
-      <h2>Public, but Impossible to Read</h2>
-      <p class="lead">It started on the Bay Bridge. My friend asked: why do tolls exist, how long does a bridge take to pay off, and what's the point of taxes if we still pay the toll?</p>
-      <p>The answers are out there, in budget PDFs, in billions, with zero story.</p>
-      <p><b>Who it's for:</b> teens and young adults getting their first paychecks and wondering where the money goes.</p>
-      <p><b>The brief:</b> SVSD asked for a product built for a specific group of people, centered on storytelling.</p>
-    </div>
+  <section class="reflect" aria-labelledby="look-h">
+    <h2 id="look-h">Looking Back</h2>
+    <dl><div><dt>What worked</dt><dd>Switching from billions to $100. That's when the numbers clicked.</dd></div><div><dt>What I'd do differently</dt><dd>We didn't make finals. I'd put it in front of real teens before submitting, not after.</dd></div><div><dt>What's next</dt><dd>More states, and a way to act on what you learn.</dd></div></dl>
   </section>
 
-  <section class="cs-sec local-only" id="research">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Research <em class="lens d">Users</em></div>
-        <h2>Finding Data for Every Town</h2>
-        <p class="lead">Big cities publish budgets. Small towns don't make it easy. I needed both.</p>
-      </div>
-      <div class="evidence">
-        <div class="ev"><b>Every city</b>The Census of Governments covers every local government in the US, and California's Controller adds all 482 California cities.</div>
-        <div class="ev"><b>$22 of every $100</b>federal dollars go to Social Security. Leaving it out would make the picture prettier and wrong.</div>
-        <div class="ev"><b>Almost $0</b>of California's General Fund goes to transit. That money comes from gas taxes and fees instead.</div>
-      </div>
-      <p class="insight">Nobody thinks in billions. Everyone gets $100.</p>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="iterations">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Iterations <em class="lens d">Design</em></div>
-        <h2>Four Versions in Four Days</h2>
-      </div>
-      <div class="steps" data-steps>
-        <div class="steps-tabs" role="tablist" aria-label="Versions">
-          <button type="button" role="tab" aria-selected="false" data-i="0"><small>v1 · Oct 18</small>Taxonomy</button>
-          <button type="button" role="tab" aria-selected="false" data-i="1"><small>v2 · Oct 18</small>Floating</button>
-          <button type="button" role="tab" aria-selected="false" data-i="2"><small>v3 · Oct 19</small>Folders</button>
-          <button type="button" role="tab" aria-selected="true" data-i="3"><small>v4 · Oct 21</small>The tale</button>
-        </div>
-        <figure class="steps-panel" hidden data-panel="0"><img src="img/fee-v1-res.jpg" alt="First version: spending shown as a grid of boxed cards" loading="lazy"><figcaption>Every category in a box. Readable, but it felt like a spreadsheet.</figcaption></figure>
-        <figure class="steps-panel" hidden data-panel="1"><img src="img/fee-v2-res.jpg" alt="Second version: floating objects sized by spending" loading="lazy"><figcaption>Objects sized by money. I tried psychedelic animations and deleted them the same day.</figcaption></figure>
-        <figure class="steps-panel" hidden data-panel="2"><img src="img/fee-v3-res.jpg" alt="Third version: hand-lettered results in Nation, State and City file folders" loading="lazy"><figcaption>Hand-lettered, with real file folders for Nation, State and City.</figcaption></figure>
-        <figure class="steps-panel" data-panel="3"><img src="img/fee-v4-res.jpg" alt="Final version: results with a $100 strip and photo stickers" loading="lazy"><figcaption>A story where you're the main character, read aloud if you want, plus a $100 strip.</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="decisions">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Decisions <em class="lens">Trade-offs</em></div>
-        <h2>The Calls I Made</h2>
-      </div>
-      <article class="decision">
-        <header><em class="lens d">Design</em><h3>$100, Not Billions</h3></header>
-        <div class="pair"><figure><img src="img/fee-v1-res.jpg" alt="Early results in billions" loading="lazy"><figcaption>Billions: too big to picture.</figcaption></figure><figure><img src="img/fee-v4-res.jpg" alt="Final results out of $100" loading="lazy"><figcaption>Out of every $100: you get it instantly.</figcaption></figure></div>
-        <p class="because">$22 out of $100 you can feel. $1.6 trillion you can't.</p>
-      </article>
-      <article class="decision">
-        <header><em class="lens b">Product strategy</em><h3>Show the Uncomfortable Stuff</h3></header>
-        <figure class="dfig"><img src="img/fee-buckets.jpg" alt="Santa Clara&#x27;s federal breakdown with Social Security, debt and the safety net at full size" loading="lazy"></figure>
-        <p class="because">Together they're a huge share of federal spending. Hiding them would look cleaner and be wrong.</p>
-      </article>
-      <article class="decision">
-        <header><em class="lens t">Tech</em><h3>Data That Updates Itself</h3></header>
-        <figure class="dfig flowd"><ol><li class="src"><b>Public data</b><span>Census and California's Controller</span></li><li class="job"><b>Monthly GitHub Action</b><span>Downloads and sorts every city into 12 categories</span></li><li class="out"><b>One data file</b><span>Saved to the repo, so every change is visible</span></li><li class="site"><b>feefifo.fund</b><span>Plain HTML reads it. No server.</span></li></ol></figure>
-        <p class="because">City budgets change every year. Nobody should have to retype them.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="outcome">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Outcome <em class="lens t">Feasibility</em></div>
-        <h2>What Shipped</h2>
-        <p class="lead">Live at feefifo.fund. No framework, no build step.</p>
-      </div>
-      <ul class="feature-list">
-        <li>A dot map of every US zip code you can type into, drag and pinch</li>
-        <li>Nation, State and City folders, everything out of $100</li>
-        <li>The tale: a scroll story with a Read it to me button</li>
-        <li>A Sources page with every dataset and how it's sorted</li>
-        <li>Shareable links for any zip, like feefifo.fund/?zip=95050</li>
-      </ul>
-      <div class="evidence one"><div class="ev"><b>Didn't make finals.</b> Kept building it anyway.</div></div>
-      <div class="tryit">
-        <div class="bar"><span><b>Try it:</b> type your zip code, or tap anywhere on the map.</span><a href="https://feefifo.fund" target="_blank" rel="noopener">Open full site</a></div>
-        <button type="button" class="start" data-src="https://feefifo.fund" data-title="Fee Fi Fo Fund, live">
-          <img src="img/fee-v4-land.jpg" alt="Fee Fi Fo Fund&#x27;s landing page: a hand-lettered logo over a colorful dot map of every US zip code" loading="lazy">
-          <span><i></i>Start the live site</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="next">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>What's next <em class="lens b">Viability</em></div>
-        <h2>What I'm Taking with Me</h2>
-      </div>
-      <div class="learn">
-        <div><h3>Restraint Is a Skill</h3><p>The psychedelic version was the most fun to make and the first thing I cut.</p></div>
-        <div><h3>Scale Is the Story</h3><p>Switching to $100 did more than any visual I added.</p></div>
-        <div><h3>Next: More States</h3><p>Only California and New York state budgets are in so far.</p></div>
-        <div><h3>Next: So What Can I Do?</h3><p>The Leave a footprint folder is the start: from where did it go to what can I do about it.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="next">
-    <div class="wrap">
-      <a class="next-card" href="branch-out.html">
-        <span><small>Next project</small><b>Branch Out: Finding Your First Open Source Project Shouldn't Be This Hard</b></span>
-        <span class="go" aria-hidden="true">&rarr;</span>
-      </a>
-      <div class="next-row">
-        <a class="btn" href="/#contact">Get in touch</a>
-        <a class="btn" href="https://github.com/taliyahhh/tax-site" target="_blank" rel="noopener">View the code</a>
-      </div>
-    </div>
-  </section>
+  <a class="nextp" href="branch-out.html"><span><small>Next project</small><b>Branch Out</b></span><span class="go" aria-hidden="true">&rarr;</span></a>
 </main>
-<footer>
-  <div class="wrap"><span>Taliyah Harvey</span><span>Data: U.S. Census Bureau, California State Controller and state budget reports</span></div>
-</footer>
-<script src="case-study.js"></script>
-<script>
-// version tabs: click or use arrow keys to step through the real versions
-document.querySelectorAll('[data-steps]').forEach(box => {
-  const tabs = [...box.querySelectorAll('[role=tab]')], panels = [...box.querySelectorAll('[data-panel]')];
-  const show = i => { tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i)); panels.forEach((q, k) => q.hidden = k !== i); };
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => show(i));
-    t.addEventListener('keydown', ev => {
-      const j = ev.key === 'ArrowRight' ? i + 1 : ev.key === 'ArrowLeft' ? i - 1 : null;
-      if (j !== null && tabs[j]) { ev.preventDefault(); tabs[j].focus(); show(j); }
-    });
-  });
-});
-</script>
+
+<footer><div class="bar"><span>Taliyah Harvey</span><span>Data: U.S. Census Bureau, California State Controller and state budget reports</span></div></footer>
 </body>
 </html>

@@ -4,17 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Branch Out · Taliyah Harvey</title>
-<meta name="description" content="Product process case study: a swipe-based way for college students to find open source projects matched to their year, languages and interests.">
+<meta name="description" content="Process and reflection: a swipe-based way for college students to find open source projects matched to their year, languages and interests.">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
-<link rel="stylesheet" href="case-study.css">
+<link rel="stylesheet" href="process.css">
 </head>
-<body class="express">
-
+<body>
 <header class="top">
-  <div class="wrap">
+  <div class="bar">
     <a class="mark" href="/" aria-label="Taliyah Harvey, home"><b>tj</b> <span>Taliyah Harvey</span></a>
     <nav aria-label="Site">
       <a href="/#work">Work</a>
@@ -25,185 +24,56 @@
   </div>
 </header>
 
-<main>
-  <section class="cs-hero">
-    <div class="wrap">
-      <div class="cs-kicker"><i></i>Process · Branch Out</div>
-      <h1>Finding Your First Open Source Project Shouldn't Be This Hard</h1>
-      <p class="sub">GitHub has millions of repos and no starting point for students. In Salesforce's Futureforce Tech Launchpad, our team of three built Branch Out: pick your year, languages and interests, then swipe.</p>
-      <ul class="labels"><li><span>Role</span>Full-stack engineer, team of 3</li><li><span>Stack</span>React, Node, PostgreSQL, Gemini</li><li><span>Timeline</span>Jun to Aug 2025</li><li><span>Type</span>Salesforce Futureforce Tech Launchpad</li></ul>
-      <div class="outcomes"><div><b>1 of 30</b><span>picked from 3,000+ applicants</span></div><div><b>192</b><span>commits, all through pull requests</span></div><div><b>3</b><span>people, one product</span></div></div>
-    </div>
+<main class="col">
+  <section class="head">
+    <a class="back" href="/#work">&larr; All work</a>
+    <p class="kick"><b>Branch Out</b> · Summer 2025 · Salesforce</p>
+    <h1>Finding Your First Open Source Project Shouldn't Be This Hard</h1>
+    <p class="sub">Our team of three built a swipe-based way for students to find their first open source project.</p>
+    <ul class="meta"><li><span>Role</span><b>Full-stack engineer</b></li><li><span>Team</span><b>Me, Nathan Kenmognie and Jackie Jurado</b></li><li><span>Program</span><b>Futureforce Tech Launchpad</b></li></ul>
+    <div class="links"><a class="main" href="https://branchout.tech" target="_blank" rel="noopener">Try it &nearr;</a><a class="" href="https://github.com/Team-10-FTL/branch-out" target="_blank" rel="noopener">Code &nearr;</a></div>
+    <div class="nums"><div><b>1 of 30</b><span>picked from 3,000+ applicants</span></div><div><b>192</b><span>commits as a team</span></div></div>
   </section>
 
-  <div class="modebar" id="mode-start">
-    <div class="wrap">
-      <div class="seg" role="group" aria-label="How much detail">
-        <button type="button" data-mode="express" aria-pressed="true">Short <small>1 min</small></button>
-        <button type="button" data-mode="local" aria-pressed="false">Full <small>whole process</small></button>
-      </div>
-      <nav class="trip" aria-label="Sections"><span class="fill"></span><a href="#problem"><i></i><span>Problem</span></a><a href="#research"><i></i><span>Research</span></a><a href="#iterations"><i></i><span>Iterations</span></a><a href="#decisions"><i></i><span>Decisions</span></a><a href="#outcome"><i></i><span>Outcome</span></a><a href="#next"><i></i><span>What's next</span></a></nav>
-    </div>
-  </div>
-
-  <section class="cs-sec express-only">
-    <div class="wrap">
-      <div class="express-card">
-        <div><h3>The Problem</h3><p>Students want open source experience, but search shows the biggest, scariest repos first.</p></div>
-        <div><h3>What I Made</h3><p>Pick your year, languages and interests, then swipe through repos matched to you, each with an AI summary.</p></div>
-        <div><h3>The Big Call</h3><p>Swipe, not a list. One repo, one decision.</p></div>
-      </div>
-      <div class="tryit">
-        <div class="bar"><span><b>Try it:</b> set your preferences, then swipe.</span><a href="https://branchout.tech" target="_blank" rel="noopener">Open full site</a></div>
-        <button type="button" class="start" data-src="https://branchout.tech" data-title="Branch Out, live">
-          <img src="img/bo-swipe.jpg" alt="Branch Out&#x27;s swipe screen: one repository card with tags and an AI summary">
-          <span><i></i>Start the live site</span>
-        </button>
-      </div>
-      <div class="next-row">
-        <button type="button" class="btn fill" data-mode="local" data-scroll><i></i>See the whole process</button>
-      </div>
-    </div>
+  <section class="sect" aria-labelledby="how-h">
+    <h2 id="how-h">How It Went</h2>
+    <ol class="log">
+      <li>
+        <div class="when">Jun 2025<span class="tag r">Research</span></div>
+        <h3>Talking to Our Cohort</h3>
+        <p>Everyone says contribute to open source. Then you open GitHub and the top results are the biggest, scariest repos.</p><p>We interviewed a few students in our cohort. They wanted to start but didn't know where, and they described themselves by year in school, not skill level.</p>
+      </li>
+      <li>
+        <div class="when">Jul 2025<span class="tag d">Design</span></div>
+        <h3>Three Questions up Front</h3>
+        <p>Your year, your languages, your interests. Everything after is matched to that.</p><figure class="shot"><img src="img/bo-prefs.jpg" alt="Preferences: skill level by year, languages and topics" loading="lazy"></figure>
+      </li>
+      <li>
+        <div class="when">Jul 2025<span class="tag d">Design</span></div>
+        <h3>Swipe, Not a List</h3>
+        <p>One repo at a time instead of a wall of results.</p><figure class="shot"><img src="img/bo-swipe.jpg" alt="A single swipe card for one repo" loading="lazy"></figure>
+      </li>
+      <li>
+        <div class="when">Jul 2025<span class="tag t">Tech</span></div>
+        <h3>AI Summaries</h3>
+        <p>READMEs are written for maintainers. I built the Gemini client that explains each repo in plain language.</p><figure class="shot"><img src="img/bo-summary.jpg" alt="A repo card with an AI summary" loading="lazy"></figure>
+      </li>
+      <li>
+        <div class="when">Aug 2025<span class="tag t">Tech</span></div>
+        <h3>What I Built</h3>
+        <ul><li>Accounts, login and signup</li><li>Saving preferences to the database</li><li>The Gemini client</li><li>Swipe with keyboard shortcuts</li><li>Mobile layouts and dark mode</li></ul>
+      </li>
+    </ol>
   </section>
 
-  <section class="cs-sec local-only" id="problem">
-    <div class="wrap narrow">
-      <div class="stop-tag"><i></i>Problem <em class="lens d">Desirability</em></div>
-      <h2>Where Do I Even Start?</h2>
-      <p class="lead">Everyone says contribute to open source. Then you open GitHub and see millions of repos with no idea which ones want beginners.</p>
-      <p>Search sorts by stars, so the top results are the most intimidating ones.</p>
-    </div>
+  <section class="reflect" aria-labelledby="look-h">
+    <h2 id="look-h">Looking Back</h2>
+    <dl><div><dt>What worked</dt><dd>Small pull requests. Three people, one product, no chaos.</dd></div><div><dt>What I'd do differently</dt><dd>We built a lot before testing the swipe with students. I'd test the core idea first.</dd></div><div><dt>What's next</dt><dd>Point students to a good first issue, not just a repo.</dd></div></dl>
   </section>
 
-  <section class="cs-sec local-only" id="research">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Research <em class="lens d">Users</em></div>
-        <h2>Asking Students in Our Cohort</h2>
-        <p class="lead">We interviewed a few students in our Futureforce cohort about trying to make a first contribution.</p>
-      </div>
-      <div class="evidence">
-        <div class="ev"><b>Stuck at step one</b>They wanted to contribute but didn't know where to start.</div>
-        <div class="ev"><b>Year, not level</b>They described themselves by year in school, not as beginner or advanced.</div>
-        <div class="ev"><b>1 or 2 languages</b>Most wanted to start with what they already knew.</div>
-      </div>
-      <p class="insight">Finding a project should feel like browsing, not searching.</p>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="iterations">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Iterations <em class="lens d">Design</em></div>
-        <h2>Three Screens, One Flow</h2>
-      </div>
-      <div class="steps" data-steps>
-        <div class="steps-tabs" role="tablist" aria-label="Versions">
-          <button type="button" role="tab" aria-selected="false" data-i="0"><small>v1 · Jul 2025</small>Preferences</button>
-          <button type="button" role="tab" aria-selected="false" data-i="1"><small>v2 · Jul 2025</small>Swipe</button>
-          <button type="button" role="tab" aria-selected="true" data-i="2"><small>v3 · Aug 2025</small>Search</button>
-        </div>
-        <figure class="steps-panel" hidden data-panel="0"><img src="img/bo-prefs.jpg" alt="Preferences page with skill level, languages and topics" loading="lazy"><figcaption>Three quick questions: your year, your languages, your interests.</figcaption></figure>
-        <figure class="steps-panel" hidden data-panel="1"><img src="img/bo-swipe.jpg" alt="Swipe card with tags and an AI summary" loading="lazy"><figcaption>One repo at a time, with tags and an AI summary. Keyboard shortcuts too.</figcaption></figure>
-        <figure class="steps-panel" data-panel="2"><img src="img/bo-search.jpg" alt="Search page with filters" loading="lazy"><figcaption>For when you already know what you want.</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="decisions">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Decisions <em class="lens">Trade-offs</em></div>
-        <h2>The Calls I Made</h2>
-      </div>
-      <article class="decision">
-        <header><em class="lens d">Design</em><h3>Swipe, Not a List</h3></header>
-        <div class="pair"><figure><img src="img/bo-search.jpg" alt="A filter-heavy search view" loading="lazy"><figcaption>A wall of filters and results.</figcaption></figure><figure><img src="img/bo-swipe.jpg" alt="A single swipe card" loading="lazy"><figcaption>One card, one decision.</figcaption></figure></div>
-        <p class="because">A wall of results is where people give up. One card is one small decision.</p>
-      </article>
-      <article class="decision">
-        <header><em class="lens b">Product strategy</em><h3>Your Year Is Your Level</h3></header>
-        <figure class="dfig"><img src="img/bo-skill.jpg" alt="Preferences with skill level as 1st to 4th year" loading="lazy"></figure>
-        <p class="because">"Intermediate" means something different to everyone. Everyone knows their year.</p>
-      </article>
-      <article class="decision">
-        <header><em class="lens t">Tech</em><h3>AI Summaries on Every Card</h3></header>
-        <figure class="dfig"><img src="img/bo-summary.jpg" alt="A repo card with a plain-language AI summary" loading="lazy"></figure>
-        <p class="because">READMEs are written for maintainers. I built the Gemini client that explains each repo in plain language.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="outcome">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>Outcome <em class="lens t">Feasibility</em></div>
-        <h2>What I Built</h2>
-        <p class="lead">My part, straight from my commits.</p>
-      </div>
-      <ul class="feature-list">
-        <li>User accounts: API endpoints, login and signup pages</li>
-        <li>Saving each student's preferences to the database</li>
-        <li>The Gemini client behind the AI summaries</li>
-        <li>Swipe controls with keyboard shortcuts</li>
-        <li>The discovery carousel, mobile layouts and light and dark mode</li>
-        <li>Sidebar, about page and in-app feedback messages</li>
-      </ul>
-      <div class="tryit">
-        <div class="bar"><span><b>Try it:</b> set your preferences, then swipe.</span><a href="https://branchout.tech" target="_blank" rel="noopener">Open full site</a></div>
-        <button type="button" class="start" data-src="https://branchout.tech" data-title="Branch Out, live">
-          <img src="img/bo-swipe.jpg" alt="Branch Out&#x27;s swipe screen: one repository card with tags and an AI summary" loading="lazy">
-          <span><i></i>Start the live site</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section class="cs-sec local-only" id="next">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="stop-tag"><i></i>What's next <em class="lens b">Viability</em></div>
-        <h2>What I'm Taking with Me</h2>
-      </div>
-      <div class="learn">
-        <div><h3>Small PRs Win</h3><p>Working through pull requests on a team of three taught me to keep changes easy to review.</p></div>
-        <div><h3>Stick to the Wireframe</h3><p>It kept three people's work feeling like one product.</p></div>
-        <div><h3>Next: Learn from Saves</h3><p>Use which repos students save to tune the matches.</p></div>
-        <div><h3>Next: First Issue</h3><p>Point students to a good first issue, not just a repo.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="next">
-    <div class="wrap">
-      <a class="next-card" href="in-hindsight.html">
-        <span><small>Next project</small><b>In Hindsight: You Saved It. Now Use It</b></span>
-        <span class="go" aria-hidden="true">&rarr;</span>
-      </a>
-      <div class="next-row">
-        <a class="btn" href="/#contact">Get in touch</a>
-        <a class="btn" href="https://github.com/Team-10-FTL/branch-out" target="_blank" rel="noopener">View the code</a>
-      </div>
-    </div>
-  </section>
+  <a class="nextp" href="in-hindsight.html"><span><small>Next project</small><b>In Hindsight</b></span><span class="go" aria-hidden="true">&rarr;</span></a>
 </main>
-<footer>
-  <div class="wrap"><span>Taliyah Harvey</span><span>Built with Nathan Kenmognie and Jackie Jurado</span></div>
-</footer>
-<script src="case-study.js"></script>
-<script>
-// version tabs: click or use arrow keys to step through the real versions
-document.querySelectorAll('[data-steps]').forEach(box => {
-  const tabs = [...box.querySelectorAll('[role=tab]')], panels = [...box.querySelectorAll('[data-panel]')];
-  const show = i => { tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i)); panels.forEach((q, k) => q.hidden = k !== i); };
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => show(i));
-    t.addEventListener('keydown', ev => {
-      const j = ev.key === 'ArrowRight' ? i + 1 : ev.key === 'ArrowLeft' ? i - 1 : null;
-      if (j !== null && tabs[j]) { ev.preventDefault(); tabs[j].focus(); show(j); }
-    });
-  });
-});
-</script>
+
+<footer><div class="bar"><span>Taliyah Harvey</span><span>Built with Nathan Kenmognie and Jackie Jurado</span></div></footer>
 </body>
 </html>
