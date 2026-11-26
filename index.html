@@ -193,15 +193,17 @@ a.by-card{color:inherit;text-decoration:none}
 a.by-card .by-meta h3::after{content:" →"}
 .by-also{margin-top:36px}
 .by-also h3{margin:0 0 12px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.by-also ul{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
-.by-also li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 16px;align-items:start;padding:18px 0;border-bottom:1px solid var(--rule)}
+.by-also > ul{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.by-also > ul > li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 16px;align-items:start;padding:18px 0;border-bottom:1px solid var(--rule)}
 .by-also img{grid-row:span 2;width:36px;height:36px;object-fit:contain;border-radius:50%;background:#fff;padding:3px;border:1px solid var(--rule)}
 .by-also li div{display:contents}
 .by-also .head{display:flex;flex-direction:column;gap:2px}
 .by-also li b{font-weight:800;font-size:17px;letter-spacing:-.01em}
 .by-also .role{font-weight:600;font-size:15px;color:var(--muted)}
-.by-also .did{grid-column:2;font-size:15px;color:var(--muted);max-width:70ch;line-height:1.5}
-@media(min-width:900px){.by-also li{grid-template-columns:36px minmax(0,1fr) minmax(0,1.2fr);gap:0 24px;align-items:center}.by-also img{grid-row:auto}.by-also .did{grid-column:3}}
+.by-also .did{grid-column:2;margin:6px 0 0;padding-left:18px;font-size:15px;color:var(--muted);max-width:70ch;line-height:1.5}
+.by-also .did li{margin:3px 0;padding:0;border:0;display:list-item}
+.by-also .did li::marker{color:var(--ink)}
+@media(min-width:900px){.by-also > ul > li{grid-template-columns:36px minmax(0,1fr) minmax(0,1.4fr);gap:0 24px;align-items:start}.by-also img{grid-row:auto}.by-also .did{grid-column:3;margin:0}}
 .by-art strong{font-variant-numeric:tabular-nums}
 .by-bar{height:3px;background:var(--rule);border-radius:3px;margin-top:22px;overflow:hidden}
 .by-bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .2s}
@@ -595,10 +597,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     <div class="wrap by-also">
       <h3>Leadership and Community</h3>
       <ul>
-        <li><img src="assets/logos/bbsa.png" alt=""><div><span class="head"><b>Black Business Student Association</b><span class="role">Vice President, previously President</span></span><span class="did">Run programming and launched a cohort program: sports business with USC Basketball, entrepreneurship for USC's annual New Venture Seed Competition, and consulting with Jackie Aina's FORVR Mood.</span></div></li>
-        <li><img src="assets/logos/ya4c.webp" alt=""><div><span class="head"><b>Youth Advocates for Change</b><span class="role">Director of Program Development</span></span><span class="did">Grow YA4C's programs, including a partnership I built with BBSA.</span></div></li>
-        <li><img src="assets/logos/aka.png" alt=""><div><span class="head"><b>Alpha Kappa Alpha Sorority, Inc.</b><span class="role">Historian and member</span></span></div></li>
-        <li><img src="assets/logos/mlt.png" alt=""><div><span class="head"><b>Management Leadership for Tomorrow</b><span class="role">Career Prep Fellow</span></span></div></li>
+        <li><img src="assets/logos/bbsa.png" alt=""><div><span class="head"><b>Black Business Student Association</b><span class="role">Vice President, previously President</span></span><ul class="did"><li>Lead programming for general meetings, retreats, office tours and panels</li><li>Launched a cohort program: sports business with USC Basketball, entrepreneurship for USC's New Venture Seed Competition, and consulting with Jackie Aina's FORVR Mood</li><li>Served as President before moving into VP</li></ul></div></li>
+        <li><img src="assets/logos/ya4c.webp" alt=""><div><span class="head"><b>Youth Advocates for Change</b><span class="role">Director of Program Development</span></span><ul class="did"><li>Lead program development for the organization</li><li>Built a partnership between BBSA and YA4C</li></ul></div></li>
+        <li><img src="assets/logos/aka.png" alt=""><div><span class="head"><b>Alpha Kappa Alpha Sorority, Inc.</b><span class="role">Historian and member</span></span><ul class="did"><li>Keep our chapter's history up to date each year</li><li>Document chapter events, programs and milestones</li></ul></div></li>
+        <li><img src="assets/logos/mlt.png" alt=""><div><span class="head"><b>Management Leadership for Tomorrow</b><span class="role">Career Prep Fellow</span></span><ul class="did"><li>Selected from 3,000+ applicants for an 18+ month career program</li><li>Coaching and prep for full-time recruiting</li></ul></div></li>
       </ul>
     </div>
   </section>
