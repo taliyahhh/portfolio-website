@@ -76,8 +76,8 @@ def page(p):
 <main class="col">
   <section class="head">
     <a class="back" href="/#work">&larr; All work</a>
-    <p class="kick"><b>{e(p["name"])}</b> · {p["when"]}</p>
-    <h1>{p["h1"]}</h1>
+    <p class="kick">{p["when"]}</p>
+    <h1>{e(p["name"])}</h1>
     <p class="sub">{p["sub"]}</p>
     <ul class="meta">{meta}</ul>
     <div class="links">{links}</div>
