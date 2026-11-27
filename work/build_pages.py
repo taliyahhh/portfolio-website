@@ -360,12 +360,12 @@ BITE = dict(
 )
 
 HANG = dict(
-    slug="the-hangout", name="The Hangout", when="Class project · IDSN-522, Inclusive Design and Design Allyship",
+    slug="the-hangout", name="The Hangout", when="Spring 2026 · IDSN-522, Inclusive Design and Design Allyship",
     desc="an inclusive design toolkit for low-pressure third spaces where tween girls can connect, create and just be.",
     sub="A tween girl who feels pressure about how she looks online needs to find a low-pressure place to figure out who she is, but third spaces have disappeared and social media fills the gap.",
     meta=[("Team", "Natalie Guldalian, Sierra McRay, Bradli Powell, Maia Weingard and me"), ("Class", "IDSN-522 with Professor Wolter"), ("Deliverable", "Inclusive design toolkit")],
     links=[],
-    back="/#classwork", backlabel="All class projects", nextlabel="Back to",
+    back="/#classwork", backlabel="All class projects", nextlabel="Next class project",
     book=dict(title="The Toolkit", hint="Our final group deliverable. Click a page edge, swipe, or use your arrow keys to flip through.",
               pages=[f"img/hangout/p{n:02d}.jpg" for n in range(1, 21)]),
     log=[
@@ -384,9 +384,50 @@ HANG = dict(
              list=["Recognize exclusion", "Design for a range of needs", "Provide flexibility and choice", "Reduce physical and social barriers", "Prioritize clarity and simplicity", "Support independence and belonging"]),
     ],
     reflect=[],
-    next=("/#work", "Selected Work"),
+    next=("eruca.html", "Eruca"),
     foot="IDSN-522 · Professor Wolter",
 )
 
-for p in (BART, FEE, BRANCH, HIND, BITE, HANG):
+ERUCA = dict(
+    slug="eruca", name="Eruca", when="Fall 2024 · ACAD-324, Practice of Design",
+    desc="a carry-on with caterpillar-inspired wheels for cobblestones, transit and old stairs.",
+    sub="A young traveler who feels frustrated about dragging a suitcase through European cities needs to roll over cobblestones and stairs easily, but standard suitcase wheels get stuck and break.",
+    meta=[("Role", "Product management"), ("Team", "Altamush Merchant, Lauren Budovsky, Cayetana Moncayo, Henry Yin and me"), ("Class", "ACAD-324 with Professor Wolter")],
+    links=[],
+    back="/#classwork", backlabel="All class projects", nextlabel="Back to",
+    log=[
+        dict(when="Analysis", tag="Research", title="Built for Airports",
+             text=["The brief was biomimicry x luggage. Suitcases work fine in an airport. Then you hit cobblestone streets, public transit and stairs in historic buildings, and the wheels give out.",
+                   "How might we redesign luggage for travelers 18 to 35 so it actually works in European cities, beyond the airport?"],
+             img=("img/eruca/problem.jpg", "Travelers dragging suitcases over cobblestones")),
+        dict(when="Definition", tag="Research", title="Rachel",
+             text=["We surveyed and interviewed travelers, then built a persona: Rachel Chen, a 28-year-old UI/UX designer and digital nomad. Carry-on only, hard-shell, efficiency-obsessed, and loyal to her suitcase brand even though it lets her down on the road."]),
+        dict(when="Ideation", tag="Design", title="Wheels, Carrying, Structure",
+             text=["We grouped our brainstorm into wheels, carrying and structure, pinned two standouts from each, and put all six on an impact and feasibility matrix. Filtering by our How Might We first meant nothing landed in the reject corner."],
+             img=("img/eruca/matrix.jpg", "Impact and feasibility matrix")),
+        dict(when="Selection", tag="Design", title="Move Like a Caterpillar",
+             text=["Millipedes, centipedes and caterpillars move in a wave, with each leg handling its own bump. So instead of 2 wheels per side, we designed a train of 6 to 8 small wheels, each with its own suspension. Tank treads were the other reference."],
+             img=("img/eruca/inspiration.jpg", "Caterpillar movement study and tank tread reference")),
+        dict(when="Branding", tag="Business", title="Eruca",
+             text=["Eruca is Latin for caterpillar. The brand pairs Art Nouveau curves with earthy colors and metal accents, so it reads European and a little luxury."],
+             img=("img/eruca/moodboard.jpg", "Art Nouveau mood board")),
+        dict(when="Implementation", tag="Tech", title="Renders and CAD",
+             text=["Sketches became renders, then CAD models of the wheel and rail system."],
+             pair=[("img/eruca/renders.jpg", "Suitcase renders with wheel trains", "Renders, made with Vizcom"), ("img/eruca/cad.jpg", "CAD models of wheels and rails", "CAD")]),
+        dict(when="Evaluation", tag="Research", title="Testing It on Real Ground",
+             text=["We ran usability tests with people in our target age range and scenario tests on different surfaces. Rolling it felt natural. But people wanted 360-degree spin like the suitcases they already own, and to roll it tilted."],
+             pair=[("img/eruca/lofi.jpg", "Lo-fi wheel prototype", "Lo-fi prototype"), ("img/eruca/testing.jpg", "Scenario testing on cobblestone and fabric", "Scenario testing")]),
+        dict(when="Implementation", tag="Product", title="Rebuild",
+             text=["Testing left us with three problems: the mechanism, direction and feasibility. So we ripped the wheels out of a real suitcase, 3D printed new wheels and rails, assembled, cut the rails shorter, reprinted, and spray painted it."],
+             img=("img/eruca/finishing.jpg", "Final build: spray painting and assembly")),
+        dict(when="Final", tag="Product", title="The Eruca Pod",
+             text=["A luxury carry-on with arthropod wheels. If it went to production: a polycarbonate shell, sealed cork wheels for shock absorption, and a polyurethane coating."],
+             img=("img/eruca/final.jpg", "The Eruca Pod")),
+    ],
+    reflect=[],
+    next=("/#work", "Selected Work"),
+    foot="ACAD-324 · Professor Wolter",
+)
+
+for p in (BART, FEE, BRANCH, HIND, BITE, HANG, ERUCA):
     page(p)
