@@ -158,13 +158,13 @@ BART = dict(
 FEE = dict(
     slug="fee-fi-fo-fund", name="Fee Fi Fo Fund", when="Oct 2026 · SVSD design challenge",
     desc="a storytelling site that shows teens and young adults where their tax dollars go, by zip code.",
-    sub="A teen who feels confused about where their paycheck goes needs to see how their taxes are spent, but the answers are buried in budget PDFs written in billions.",
+    sub="A teen who feels confused about where their paycheck goes needs to see how their taxes are spent, but government budgets are bland and hard to navigate.",
     meta=[("Role", "Design and development"), ("Team", "Christine Lai and me")],
     links=[("Try it", "https://feefifo.fund"), ("Watch the video", "https://youtu.be/RaYq0kSAdkA"), ("The challenge", "https://svsdschool.github.io/competition/"), ("Code", "https://github.com/taliyahhh/tax-site")],
     video=("RaYq0kSAdkA", "Our SVSD submission video, made by Christine Lai."),
     log=[
         dict(when="Oct 17", tag="Research", title="Why Do We Pay the Toll?",
-             text=["Crossing the Bay Bridge, my friend asked why we pay a toll if our taxes already cover roads. I didn't know. The government websites didn't really either, at least not in a way a normal person could read.",
+             text=["Crossing the Bay Bridge, my friend asked why we pay a toll if our taxes already cover roads. I didn't know, and the budgets that would tell me were bland and hard to navigate.",
                    "SVSD asked for a storytelling project for a specific group. Ours was teens and young adults getting their first paychecks."]),
         dict(when="Oct 18", tag="Tech", title="Every Zip Code",
              text=["All 50 states and about 41,000 zip codes, at three levels:"],
@@ -202,13 +202,13 @@ FEE = dict(
 BRANCH = dict(
     slug="branch-out", name="Branch Out", when="Summer 2025 · Salesforce",
     desc="a swipe-based way for college students to find open source projects matched to their year, languages and interests.",
-    sub="A college student who feels intimidated about contributing to open source needs to find a project that fits their level, but GitHub shows the biggest, scariest repos first.",
+    sub="A college student who feels intimidated about contributing to open source needs to find a project that fits their level, but it's hard to find a good range of open source projects on GitHub.",
     meta=[("Role", "Front end and design lead"), ("Team", "Nathan, Jackie and me"), ("Program", "Futureforce Tech Launchpad")],
     links=[("Try it", "https://branchout.tech"), ("Code", "https://github.com/Team-10-FTL/branch-out")],
     nums=[("1 of 30", "picked from 3,000+ applicants", "Salesforce Futureforce Tech Launchpad, 2025"), ("3 of 3", "of us got return offers")],
     log=[
         dict(when="Jun 2025", tag="Research", title="Where Do You Even Start?",
-             text=["Everyone tells students to contribute to open source. Then you search GitHub and the top results are huge projects with thousands of contributors.",
+             text=["Everyone tells students to contribute to open source. Then you search GitHub and it's hard to find a good range of projects to start with.",
                    "Our cohort was 30 students trying to get into tech, so we built for people like us."]),
         dict(when="Jul 2025", tag="Design", title="Three Questions",
              text=["Your year in school, your languages, what you're into. Every match after that comes from those three answers."],
