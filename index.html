@@ -258,6 +258,13 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .offduty{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 .offduty p.golf{margin-top:0!important}
 .last p.golf{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:10px 16px;border-radius:14px;background:var(--panel);font-size:16px;font-weight:600;color:var(--ink)}
+.favs{margin-top:clamp(48px,7vw,88px)}
+.favs h3{font-size:clamp(22px,2.4vw,28px);margin:0}
+.favs-lede{max-width:62ch;margin:12px 0 0;color:var(--muted);font-size:17px;line-height:1.55}
+.fav-list{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.fav-list li{background:var(--panel);border-radius:16px;padding:20px 20px 22px;border-top:4px solid var(--yellow)}
+.fav-list b{display:block;font-size:18px}
+.fav-list span{display:block;margin-top:8px;color:var(--muted);font-size:15px;line-height:1.5}
 .about p.offclock{display:inline-flex;align-items:center;gap:10px;margin-top:28px;padding:12px 18px;border-radius:14px;background:var(--panel);font-size:17px;font-weight:600}
 .about .offclock span{font-size:22px}
 .about a{text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
@@ -509,6 +516,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
           <a class="full-resume" href="https://drive.google.com/file/d/1bd_ZmiNHnVtcSxHFkS7MbYG4A5ucGU3_/view?usp=sharing" target="_blank" rel="noopener">See my full resume</a>
       </div>
       </div>
+    </div>
+    <div class="wrap favs">
+      <h3>Products I Love</h3>
+      <p class="favs-lede">The best products feel natural. They borrow nature's colors and work with instincts we already have, which matters more as more of life moves online. I'm in tech, so I'm all for the virtual world. I just think it should live in harmony with the real one, and that comes down to designing it right.</p>
+      <ul class="fav-list">
+        <li><b>Rhode Lip Case</b><span>I have a sensory thing with dry skin. A lip balm that lives on the back of my phone means I never have to think about dry lips, and it's cute.</span></li>
+        <li><b>Pinterest</b><span>Inspiration from other people, saved and sorted by what you're into.</span></li>
+        <li><b>The Paperclip</b><span>My teacher's answer to what good design is: something so simple you never question it.</span></li>
+        <li><b>Velcro</b><span>Burrs already knew how to stick. Someone noticed and turned it into something we use every day.</span></li>
+      </ul>
     </div>
   </section>
 
