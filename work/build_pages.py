@@ -253,7 +253,7 @@ BRANCH = dict(
     ],
     reflect=[("What worked", "Splitting it cleanly. I owned what you see, Nathan and Jackie owned what you don't, and we didn't step on each other."),
              ("What I'd do differently", "Build a much bigger database, and create our own open source challenges by skill and topic. A little like LeetCode, but for contributing to real projects.")],
-    next=("in-hindsight.html", "In Hindsight"),
+    next=("bite-back.html", "Bite Back"),
     foot="Built with Nathan Kenmognie and Jackie Jurado",
 )
 
@@ -303,7 +303,7 @@ HIND = dict(
     reflect=[("What worked", "Asking. The survey is the reason it went from a dashboard to Peep."),
              ("What I'd do differently", "I built the dashboard first and asked people second. It worked out, but I'd flip it."),
              ("What's next", "Get a grant, publish In Hindsight to the public as an app or browser extension, and stay on the timeline: a 100-person beta in January, Peep on iOS in the spring, and 1,000 users by summer.")],
-    next=("bite-back.html", "Bite Back"),
+    next=("karls-friend-bart.html", "Karl's Friend Bart"),
     foot="Not affiliated with TikTok",
 )
 
@@ -354,7 +354,7 @@ BITE = dict(
              img=("img/bb-dinner1.jpg", "Dinner #1 concept")),
     ],
     reflect=[("What's next", "Submit a grant application and get posts out before our first small plates dinner in December. Stay tuned on <a href=\"https://www.instagram.com/biteback.la/\" target=\"_blank\" rel=\"noopener\">our Instagram</a>.")],
-    next=("karls-friend-bart.html", "Karl's Friend Bart"),
+    next=("in-hindsight.html", "In Hindsight"),
     foot="An IYA Garage Experience project",
 )
 
