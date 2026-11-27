@@ -669,7 +669,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       <span class="qz-label" id="qz-label">Fill in the Blanks</span>
       <span class="qz-actions">
         <button type="button" class="qz-btn" id="qz-hint">Hint</button>
-        <button type="button" class="qz-btn ghost" id="qz-show" hidden>Show me</button>
+        <button type="button" class="qz-btn ghost" id="qz-show">Show Me</button>
       </span>
     </div>
     <blockquote class="qz-quote" id="qz-quote">A good product designer considers both how to <span class="qz-blank" data-answer="do things right" data-clue="How well it gets built (3 words)"></span> and how to <span class="qz-blank" data-answer="do the right thing" data-clue="Whether it's worth building at all (4 words)"></span>.</blockquote>
@@ -731,7 +731,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <div class="fl-status" aria-live="polite"><span>Pairs <b id="fl-pairs">0</b> of <b id="fl-total">0</b></span><span>Board <b id="fl-fill">0%</b> filled</span></div>
         <div class="fl-btns">
           <button type="button" class="fl-btn" id="fl-reset">Start over</button>
-          <button type="button" class="fl-btn" id="fl-solve">Show me the answer</button>
+          <button type="button" class="fl-btn" id="fl-solve">Show Me the Answer</button>
         </div>
         <div class="fl-done" aria-live="polite">
           <h3 id="fl-done-title">Fore!</h3>
@@ -874,8 +874,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     render(`
       <span class="dvf-tag">${sw(['D', 'T', 'B'])}Design + Tech + Business</span>
       <h3>${ME.title}</h3>
-      <p>${ME.text}</p>
-      <div class="dvf-rows">${['D', 'T', 'B'].map(l => `<div class="dvf-row"><i style="background:${LENS[l].color}"></i><div><b>${LENS[l].q}</b><span>${ME.a[l]}</span></div></div>`).join('')}</div>`);
+      <p>${ME.text}</p>`);
   }
   function showProject(id) {
     const p = P.find(x => x.id === id);
@@ -921,14 +920,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     });
     box.classList.remove('done');
     label.textContent = 'Fill in the Blanks';
-    hintBtn.hidden = false; showBtn.hidden = true; hints = 0; clue.textContent = '';
+    hintBtn.hidden = false; showBtn.hidden = false; hints = 0; clue.textContent = '';
   }
   function solvedView() {
     blanks.forEach(b => { b.className = 'qz-blank right'; b.innerHTML = `<span class="qz-solved">${b.dataset.answer}</span>`; });
     box.classList.add('done');
     label.textContent = 'Solved';
     hintBtn.hidden = true; showBtn.hidden = true;
-    clue.innerHTML = '<button type="button" class="qz-again" id="qz-again">Play again</button>';
+    clue.innerHTML = '<button type="button" class="qz-again" id="qz-again">Play Again</button>';
     document.getElementById('qz-again').addEventListener('click', () => { store.set(false); build(); box.querySelector('.qz-in').focus(); });
   }
   const inputs = () => [...box.querySelectorAll('.qz-in')];
@@ -969,7 +968,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         check(b);
       });
     }
-    if (hints >= 2) showBtn.hidden = false;
   });
   showBtn.addEventListener('click', () => { store.set(true); solvedView(); });
 
