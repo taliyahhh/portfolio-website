@@ -305,7 +305,7 @@ BITE = dict(
         dict(when="Dec 2026", tag="Product", title="First Small Plates Dinner",
              text=["Our first small plates event is in December."]),
     ],
-    reflect=[("What's next", "Post the first content and host our first small plates dinner in December.")],
+    reflect=[("What's next", "Submit a grant application and get posts out before our first small plates dinner in December. Stay tuned on <a href=\"https://www.instagram.com/biteback.la/\" target=\"_blank\" rel=\"noopener\">our Instagram</a>.")],
     next=("karls-friend-bart.html", "Karl's Friend Bart"),
     foot="An IYA Garage Experience project",
 )

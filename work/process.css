@@ -112,3 +112,4 @@ footer .bar{max-width:720px;margin:0 auto;padding:22px max(5vw,18px);display:fle
 .src{display:block;margin:8px 0 0;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--muted);text-wrap:pretty}
 .nums .src,.inline-nums .src{max-width:24ch}
 .meta b a{color:inherit;text-decoration:underline;text-decoration-color:var(--yellow,#ffd200);text-decoration-thickness:2px;text-underline-offset:3px}
+.reflect dd a{color:inherit;text-decoration:underline;text-decoration-color:var(--yellow,#ffd200);text-decoration-thickness:2px;text-underline-offset:3px}
