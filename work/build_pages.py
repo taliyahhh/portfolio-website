@@ -49,6 +49,27 @@ def fill(t):
     return f"{t.split()[0]} {a} who feels {f} about {k} needs to {st}, but {o}."
 
 
+def book_html(b):
+    pages = b["pages"]
+    thumbs = "".join(f'<button type="button" data-i="{i}" aria-label="Page {i+1}"><img src="{src}" alt="" loading="lazy"></button>' for i, src in enumerate(pages))
+    import json as _json
+    return f'''
+  <section class="sect bookwrap" aria-labelledby="book-h">
+    <h2 id="book-h">{b["title"]}</h2>
+    <p class="book-hint">{b["hint"]}</p>
+    <div class="book" id="book" data-pages='{_json.dumps(pages)}'>
+      <div class="spread"><div class="slot l"><img alt=""></div><div class="slot r"><img alt=""></div></div>
+      <div class="leaf" aria-hidden="true"><img class="f" alt=""><img class="b" alt=""></div>
+      <button type="button" class="edge prev" aria-label="Previous page"></button>
+      <button type="button" class="edge next" aria-label="Next page"></button>
+    </div>
+    <div class="book-ctrl"><button type="button" class="bprev" aria-label="Previous page">&larr;</button><span class="bcount" aria-live="polite"></span><button type="button" class="bnext" aria-label="Next page">&rarr;</button></div>
+    <div class="book-thumbs">{thumbs}</div>
+  </section>
+<script src="book.js" defer></script>
+'''
+
+
 def page(p):
     meta = "".join(f"<li><span>{k}</span><b>{v}</b></li>" for k, v in p["meta"])
     links = "".join(f'<a class="{"main" if i == 0 else ""}" href="{u}" target="_blank" rel="noopener">{t} &nearr;</a>' for i, (t, u) in enumerate(p["links"]))
@@ -60,6 +81,8 @@ def page(p):
     <p class="video-cap">{cap}</p>
 '''
     log = "".join(entry(it) for it in p["log"])
+    book = book_html(p["book"]) if p.get("book") else ""
+    back = p.get("back", "/#work")
     refl = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in p["reflect"])
     o = f'''<!DOCTYPE html>
 <html lang="en">
@@ -89,7 +112,7 @@ def page(p):
 
 <main class="col">
   <section class="head">
-    <a class="back" href="/#work">&larr; All work</a>
+    <a class="back" href="{back}">&larr; {p.get("backlabel", "All work")}</a>
     <p class="kick">{p["when"]}</p>
     <h1>{e(p["name"])}</h1>
     <p class="plabel">Problem statement</p>
@@ -98,19 +121,19 @@ def page(p):
     {f'<div class="links">{links}</div>' if links else ''}
     {nums}
 {video}  </section>
-
+{book}
   <section class="sect" aria-labelledby="how-h">
     <h2 id="how-h">How it went</h2>
     <ol class="log">
 {log}    </ol>
   </section>
 
-  <section class="reflect" aria-labelledby="look-h">
+{f'''  <section class="reflect" aria-labelledby="look-h">
     <h2 id="look-h">Looking back</h2>
     <dl>{refl}</dl>
   </section>
-
-  <a class="nextp" href="{p["next"][0]}"><span><small>Next project</small><b>{p["next"][1]}</b></span><span class="go" aria-hidden="true">&rarr;</span></a>
+''' if refl else ""}
+  <a class="nextp" href="{p["next"][0]}"><span><small>{p.get("nextlabel", "Next project")}</small><b>{p["next"][1]}</b></span><span class="go" aria-hidden="true">&rarr;</span></a>
 </main>
 
 <footer><div class="bar"><span>Taliyah Harvey</span><span>{p["foot"]}</span></div></footer>
@@ -336,5 +359,34 @@ BITE = dict(
     foot="An IYA Garage Experience project",
 )
 
-for p in (BART, FEE, BRANCH, HIND, BITE):
+HANG = dict(
+    slug="the-hangout", name="The Hangout", when="Class project · IDSN-522, Inclusive Design and Design Allyship",
+    desc="an inclusive design toolkit for low-pressure third spaces where tween girls can connect, create and just be.",
+    sub="A tween girl who feels pressure about how she looks online needs to find a low-pressure place to figure out who she is, but third spaces have disappeared and social media fills the gap.",
+    meta=[("Team", "Natalie Guldalian, Sierra McRay, Bradli Powell, Maia Weingard and me"), ("Class", "IDSN-522 with Professor Wolter"), ("Deliverable", "Inclusive design toolkit")],
+    links=[],
+    back="/#classwork", backlabel="All class projects", nextlabel="Back to",
+    book=dict(title="The Toolkit", hint="Our final group deliverable. Click a page edge, swipe, or use your arrow keys to flip through.",
+              pages=[f"img/hangout/p{n:02d}.jpg" for n in range(1, 21)]),
+    log=[
+        dict(when="Research", tag="Research", title="The In-Between Is Collapsing",
+             text=["\u201cTween\u201d started in the 1980s as a marketing term. Now the stage itself is shrinking. Girls 10 to 13 have adult beauty routines, and in 2023 tweens 8 to 12 drove 49% of U.S. skincare sales growth."],
+             src="Figures as cited in our toolkit"),
+        dict(when="Research", tag="Research", title="Third Spaces",
+             text=["Third spaces are Ray Oldenburg's term for places outside home and school: parks, libraries, diners. Most of them are gone or cost money. When there's nowhere to go, identity gets built online, out of whatever the algorithm surfaces."]),
+        dict(when="Solution", tag="Design", title="The Hangout",
+             text=["Free pop-ups in libraries, parks and community centers, built around four kinds of activities: creative expression, social connection, physical play and STEAM. Brands can bring materials or expertise, but nothing gets sold."],
+             list=["No likes, followers or public metrics", "Drop in, drop out, nothing graded", "Walk-ins always welcome, so no phone is required"]),
+        dict(when="Solution", tag="Product", title="A Companion App",
+             text=["The app tracks events, badges and photo booth pictures. There's no messaging. Parents approve every event and get a pickup code at check-in."]),
+        dict(when="Guidelines", tag="Design", title="Design Guidelines",
+             text=["Six inclusive design principles for anyone building a space like this:"],
+             list=["Recognize exclusion", "Design for a range of needs", "Provide flexibility and choice", "Reduce physical and social barriers", "Prioritize clarity and simplicity", "Support independence and belonging"]),
+    ],
+    reflect=[],
+    next=("/#work", "Selected Work"),
+    foot="IDSN-522 · Professor Wolter",
+)
+
+for p in (BART, FEE, BRANCH, HIND, BITE, HANG):
     page(p)
