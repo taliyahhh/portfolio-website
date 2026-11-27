@@ -660,13 +660,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   <section class="dvf" id="how">
     <div class="wrap">
   <div class="dvf-intro">
-    <div class="kicker"><i></i>Why I build</div>
+    <div class="kicker"><i></i>Why I Build</div>
     <h2>Curious About Systems, <span>Considerate of People</span></h2>
   </div>
 
   <figure class="qz" id="qz">
     <div class="qz-top">
-      <span class="qz-label" id="qz-label">Fill in the blanks</span>
+      <span class="qz-label" id="qz-label">Fill in the Blanks</span>
       <span class="qz-actions">
         <button type="button" class="qz-btn" id="qz-hint">Hint</button>
         <button type="button" class="qz-btn ghost" id="qz-show" hidden>Show me</button>
@@ -815,7 +815,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     B: { title: 'Business', line: 'Plans that help an idea grow and last.' }
   };
   const ME = {
-    title: 'Where I want my work to live',
+    title: 'Where I Want My Work to Live',
     text: 'The middle is me. I want a career building products that people actually want, that are built well, and that last.',
     a: { D: 'Start with people and what they need.', T: 'Build it for real, and build it well.', B: 'Make it something that can grow and last.' }
   };
@@ -920,7 +920,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         `<span class="qz-word">${[...w].map((c, ci) => `<input class="qz-in" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Blank ${bi + 1}, word ${wi + 1}, letter ${ci + 1}" data-c="${c}">`).join('')}</span>`).join('');
     });
     box.classList.remove('done');
-    label.textContent = 'Fill in the blanks';
+    label.textContent = 'Fill in the Blanks';
     hintBtn.hidden = false; showBtn.hidden = true; hints = 0; clue.textContent = '';
   }
   function solvedView() {
