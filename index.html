@@ -196,6 +196,7 @@ a.by-card .by-meta h3::after{content:" →"}
 .by-also .did{grid-column:2;margin:6px 0 0;padding-left:18px;font-size:15px;color:var(--muted);max-width:70ch;line-height:1.5}
 .by-also .did li{margin:3px 0;padding:0;border:0;display:list-item}
 .by-also .did li::marker{color:var(--ink)}
+.by-also .did .sub{margin:4px 0 2px;padding-left:20px;list-style:square}.by-also .did .sub li{margin:2px 0;color:var(--muted)}
 @media(min-width:900px){.by-also > ul > li{grid-template-columns:36px minmax(0,1fr) minmax(0,1.4fr);gap:0 24px;align-items:start}.by-also img{grid-row:auto}.by-also .did{grid-column:3;margin:0}}
 .by-art strong{font-variant-numeric:tabular-nums}
 .by-bar{height:3px;background:var(--rule);border-radius:3px;margin-top:22px;overflow:hidden}
@@ -501,7 +502,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <div class="grp">
           <h3>Education</h3>
           <ul class="stops">
-            <li><b><a href="https://iovine-young.usc.edu/learn/undergraduate/bs-arts-technology-and-the-business-of-innovation" target="_blank" rel="noopener">USC Iovine and Young Academy</a></b><span>B.S., Arts, Technology and the Business of Innovation</span></li>
+            <li><b><a href="https://iovine-young.usc.edu/learn/undergraduate/bs-arts-technology-and-the-business-of-innovation" target="_blank" rel="noopener">USC Iovine and Young Academy</a></b><span>B.S., Arts, Technology and the Business of Innovation · 3.80 GPA</span></li>
             <li><b><a href="https://viterbigradadmission.usc.edu/programs/masters/msprograms/aerospace-mechanical-engineering/ms-product-development/" target="_blank" rel="noopener">USC Viterbi School of Engineering</a></b><span>M.S., Product Development Engineering</span></li>
           </ul>
         </div>
@@ -549,13 +550,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <div class="by-art"><strong>2/2</strong><small>hackathons placed in</small></div>
         <div class="by-meta"><h3>Hackathons</h3><p>HackSC “Most Creative” award · Top 4 of 36 at Salesforce</p><em>2024–2026</em></div>
       </article>
+      <article class="by-card t-w">
+        <div class="by-art"><strong data-count="6">6</strong><small>semesters in a row</small></div>
+        <div class="by-meta"><h3>USC Dean's List</h3><p>Honors</p><em>2023–2026</em></div>
+      </article>
       <article class="by-card t-b">
         <div class="by-art"><strong>#1</strong><small>of 300+ Salesforce interns</small></div>
         <div class="by-meta"><h3>Futureforce Games</h3><p>Social media contest, Salesforce internship</p><em>Summer 2026</em></div>
-      </article>
-      <article class="by-card t-p">
-        <div class="by-art"><strong>2</strong><small>brand partnerships for social media content</small></div>
-        <div class="by-meta"><h3>Content Creator</h3><p>Savage X Fenty · Princess Polly</p><em>Now</em></div>
       </article>
       <article class="by-card t-k">
         <div class="by-art"><strong data-count="3">3</strong><small>new cohorts I launched at BBSA</small></div>
@@ -565,24 +566,24 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <div class="by-art"><strong data-count="200">200</strong><small>hygiene kits donated to Midnight Mission</small></div>
         <div class="by-meta"><h3>Hygiene Kit Assembly</h3><p>Project Lead, Spark SC</p><em>Fall 2024</em></div>
       </article>
-      <article class="by-card t-k">
-        <div class="by-art"><strong>21.5</strong><small>service hours completed</small></div>
-        <div class="by-meta"><h3>Community Service</h3><p>This year</p><em>2026</em></div>
-      </article>
-      <article class="by-card t-w">
-        <div class="by-art"><strong data-count="6">6</strong><small>semesters in a row</small></div>
-        <div class="by-meta"><h3>USC Dean's List</h3><p>Honors</p><em>2023–2026</em></div>
-      </article>
       <article class="by-card t-y">
         <div class="by-art"><strong>3×</strong><small>scholarship recipient</small></div>
         <div class="by-meta"><h3>USC APAA Scholarship</h3><p>Honors</p><em>2024–2026</em></div>
+      </article>
+      <article class="by-card t-p">
+        <div class="by-art"><strong>2</strong><small>brand partnerships for social media content</small></div>
+        <div class="by-meta"><h3>Content Creator</h3><p>Savage X Fenty · Princess Polly</p><em>Now</em></div>
+      </article>
+      <article class="by-card t-k">
+        <div class="by-art"><strong>21.5</strong><small>service hours completed</small></div>
+        <div class="by-meta"><h3>Community Service</h3><p>This year</p><em>2026</em></div>
       </article>
     </div>
     <div class="wrap"><div class="by-bar"><i id="by-fill"></i></div></div>
     <div class="wrap by-also">
       <h3>Leadership and Community</h3>
       <ul>
-        <li><img src="assets/logos/bbsa.png" alt=""><div><span class="head"><b>Black Business Student Association</b><span class="role">Vice President, previously President</span></span><ul class="did"><li>Lead programming for general meetings, retreats, office tours and panels</li><li>Launched a cohort program: sports business with USC Basketball, entrepreneurship for USC's New Venture Seed Competition, and consulting with Jackie Aina's FORVR Mood</li><li>Served as President before moving into VP</li></ul></div></li>
+        <li><img src="assets/logos/bbsa.png" alt=""><div><span class="head"><b>Black Business Student Association</b><span class="role">Vice President, previously President</span></span><ul class="did"><li>Lead programming for general meetings, retreats, office tours and panels</li><li>Launched a cohort program<ul class="sub"><li>Sports business with USC Basketball</li><li>Entrepreneurship for USC's New Venture Seed Competition</li><li>Consulting with Jackie Aina's FORVR Mood</li></ul></li></ul></div></li>
         <li><img src="assets/logos/ya4c.webp" alt=""><div><span class="head"><b>Youth Advocates for Change</b><span class="role">Director of Program Development</span></span><ul class="did"><li>Lead program development for the organization</li><li>Built a partnership between BBSA and YA4C</li></ul></div></li>
         <li><img src="assets/logos/aka.png" alt=""><div><span class="head"><b>Alpha Kappa Alpha Sorority, Inc.</b><span class="role">Historian and member</span></span><ul class="did"><li>Keep our chapter's history up to date each year</li><li>Document chapter events, programs and milestones</li></ul></div></li>
         <li><img src="assets/logos/mlt.png" alt=""><div><span class="head"><b>Management Leadership for Tomorrow</b><span class="role">Career Prep Fellow</span></span><ul class="did"><li>Selected from 3,000+ applicants for an 18+ month career program</li><li>Coaching and prep for full-time recruiting</li></ul></div></li>
