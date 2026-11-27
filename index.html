@@ -206,6 +206,22 @@ a.by-card .by-meta h3::after{content:" →"}
 .by-also .track{display:block;padding:10px 12px;border-radius:12px;background:var(--panel);border-left:3px solid var(--yellow)}
 .by-also .track b{display:block;font-size:14px!important;color:var(--ink)}
 .by-also .track i{display:block;font-style:normal;font-size:13px;margin-top:2px;line-height:1.35}
+.by-card{border:0!important;background:none!important;overflow:visible!important;perspective:1400px;cursor:pointer;outline:none}
+.by-card .flip{position:relative;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.3,.1,.2,1)}
+.by-card.flipped .flip{transform:rotateY(180deg)}
+.by-card .face{backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;overflow:hidden;border:1px solid var(--rule);background:var(--bg)}
+.by-card .front{position:relative;display:flex;flex-direction:column;height:100%}
+.by-card .back{position:absolute;inset:0;transform:rotateY(180deg);padding:24px 22px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.5;color:var(--muted)}
+.by-card .back p{margin:0}
+.by-card .back b{color:var(--ink)}
+.by-card .bk-t{font-size:22px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.15}
+.by-card .bk-l{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:4px!important}
+.by-card .bk-l a{color:var(--ink);font-weight:700;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
+.by-card .bk-hint{margin-top:auto;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.by-card .fl-hint{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.85);color:#111;font-size:16px;font-weight:800}
+.by-card:focus-visible .face{outline:3px solid var(--yellow);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.by-card .flip{transition:none}}
+.by-tip{margin:6px 0 0;color:var(--muted);font-size:15px}
 .by-art strong{font-variant-numeric:tabular-nums}
 .by-bar{height:3px;background:var(--rule);border-radius:3px;margin-top:22px;overflow:hidden}
 .by-bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .2s}
@@ -607,6 +623,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       <div>
         <div class="kicker"><i></i>Beyond the job</div>
         <h2 id="by-title">By the Numbers</h2>
+        <p class="by-tip">Tap a card to flip it.</p>
       </div>
       <div class="by-ctrl">
         <span class="by-count" aria-live="polite"><b id="by-now">01</b> / <span id="by-total">08</span></span>
@@ -615,37 +632,33 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       </div>
     </div>
     <div class="by-track" id="by-track" tabindex="0" aria-label="Highlights by the numbers, scroll sideways">
-      <article class="by-card t-y">
-        <div class="by-art"><strong>2/2</strong><small>hackathons placed in</small></div>
-        <div class="by-meta"><h3>Hackathons</h3><p>HackSC “Most Creative” award · Top 4 of 36 at Salesforce</p><em>2024–2026</em></div>
+      <article class="by-card t-y" tabindex="0" role="button" aria-pressed="false" aria-label="Hackathons: tap for details">
+        <div class="flip"><div class="face front"><div class="by-art"><strong>2/2</strong><small>hackathons placed in</small></div>
+        <div class="by-meta"><h3>Hackathons</h3><p>HackSC “Most Creative” award · Top 4 of 36 at Salesforce</p><em>2024–2026</em></div><span class="fl-hint" aria-hidden="true">&#8635;</span></div><div class="face back"><p class="bk-t">Two hackathons, two placements.</p><p><b>HackSC 2024:</b> Team lead and pitch for Memory Mind, a web app that turns notes into mnemonic songs. The judges made a new Most Creative award in the accessibility track for it.</p><p><b>Salesforce 2026:</b> Top 4 of 36 intern teams with PILOTforce, an AI onboarding agent. I defined the product vision.</p><p class="bk-l"><a href="https://github.com/AditeeKore/HackSC_24" target="_blank" rel="noopener">Memory Mind code &nearr;</a> <a href="https://github.com/Tofuwang45/PILOTforce" target="_blank" rel="noopener">PILOTforce code &nearr;</a></p><span class="bk-hint">Tap to flip back</span></div></div>
       </article>
-      <article class="by-card t-w">
-        <div class="by-art"><strong data-count="6">6</strong><small>semesters in a row</small></div>
-        <div class="by-meta"><h3>USC Dean's List</h3><p>Honors</p><em>2023–2026</em></div>
+      <article class="by-card t-w" tabindex="0" role="button" aria-pressed="false" aria-label="USC Dean's List: tap for details">
+        <div class="flip"><div class="face front"><div class="by-art"><strong data-count="6">6</strong><small>semesters in a row</small></div>
+        <div class="by-meta"><h3>USC Dean's List</h3><p>Honors</p><em>2023–2026</em></div><span class="fl-hint" aria-hidden="true">&#8635;</span></div><div class="face back"><p class="bk-t">Six semesters in a row.</p><p>While doing a B.S. at Iovine and Young and an M.S. at Viterbi at the same time.</p><span class="bk-hint">Tap to flip back</span></div></div>
       </article>
-      <article class="by-card t-b">
-        <div class="by-art"><strong>#1</strong><small>of 300+ Salesforce interns</small></div>
-        <div class="by-meta"><h3>Futureforce Games</h3><p>Social media contest, Salesforce internship</p><em>Summer 2026</em></div>
+      <article class="by-card t-b" tabindex="0" role="button" aria-pressed="false" aria-label="Futureforce Games: tap for details">
+        <div class="flip"><div class="face front"><div class="by-art"><strong>#1</strong><small>of 300+ Salesforce interns</small></div>
+        <div class="by-meta"><h3>Futureforce Games</h3><p>Social media contest, Salesforce internship</p><em>Summer 2026</em></div><span class="fl-hint" aria-hidden="true">&#8635;</span></div><div class="face back"><p class="bk-t">#1 of 300+ interns.</p><p>Won the Futureforce Games social media contest during my Salesforce internship.</p><span class="bk-hint">Tap to flip back</span></div></div>
       </article>
-      <article class="by-card t-k">
-        <div class="by-art"><strong>21.5</strong><small>service hours completed</small></div>
-        <div class="by-meta"><h3>Community Service</h3><p>This year</p><em>2026</em></div>
+      <article class="by-card t-k" tabindex="0" role="button" aria-pressed="false" aria-label="Community Service: tap for details">
+        <div class="flip"><div class="face front"><div class="by-art"><strong>21.5</strong><small>service hours completed</small></div>
+        <div class="by-meta"><h3>Community Service</h3><p>This year</p><em>2026</em></div><span class="fl-hint" aria-hidden="true">&#8635;</span></div><div class="face back"><p class="bk-t">21.5 hours this year.</p><p>Service hours logged in 2026, on top of the events I've led.</p><span class="bk-hint">Tap to flip back</span></div></div>
       </article>
-      <article class="by-card t-y">
-        <div class="by-art"><strong data-count="3">3</strong><small>community events I've led</small></div>
-        <div class="by-meta"><h3>Community Events</h3><p>Breast cancer fundraiser · Hygiene kits · AI workshop</p><em>2022–2026</em></div>
+      <article class="by-card t-p" tabindex="0" role="button" aria-pressed="false" aria-label="Breast Cancer Awareness Fundraiser: tap for details">
+        <div class="flip"><div class="face front"><div class="by-art"><strong>$2,000</strong><small>raised for breast cancer support</small></div>
+        <div class="by-meta"><h3>Breast Cancer Awareness Fundraiser</h3><p>Pink out, Moreau Catholic High School</p><em>Oct 2022</em></div><span class="fl-hint" aria-hidden="true">&#8635;</span></div><div class="face back"><p class="bk-t">A pink out that stuck.</p><p>I designed pink “HOPE LOVE CURE” shirts and sold them for the student section of an October football game at Moreau Catholic.</p><p>We raised about $2,000 for wigs, compression garments and post-op products, and it became an annual tradition.</p><span class="bk-hint">Tap to flip back</span></div></div>
       </article>
-      <article class="by-card t-p">
-        <div class="by-art"><strong>$2,000</strong><small>raised for breast cancer support</small></div>
-        <div class="by-meta"><h3>Breast Cancer Awareness Fundraiser</h3><p>Pink out, Moreau Catholic High School</p><em>Oct 2022</em></div>
+      <article class="by-card t-o" tabindex="0" role="button" aria-pressed="false" aria-label="Hygiene Kit Assembly: tap for details">
+        <div class="flip"><div class="face front"><div class="by-art"><strong data-count="200">200</strong><small>hygiene kits donated to Midnight Mission</small></div>
+        <div class="by-meta"><h3>Hygiene Kit Assembly</h3><p>Project Lead, Spark SC</p><em>Fall 2024</em></div><span class="fl-hint" aria-hidden="true">&#8635;</span></div><div class="face back"><p class="bk-t">200 kits for Midnight Mission.</p><p>Project lead through Spark SC's Activist Incubator. I took it from idea to event, got funding through the program and a CA Black Women Health Project grant, and we donated the kits in December.</p><span class="bk-hint">Tap to flip back</span></div></div>
       </article>
-      <article class="by-card t-o">
-        <div class="by-art"><strong data-count="200">200</strong><small>hygiene kits donated to Midnight Mission</small></div>
-        <div class="by-meta"><h3>Hygiene Kit Assembly</h3><p>Project Lead, Spark SC</p><em>Fall 2024</em></div>
-      </article>
-      <article class="by-card t-p">
-        <div class="by-art"><strong>2</strong><small>brand partnerships for social media content</small></div>
-        <div class="by-meta"><h3>Content Creator</h3><p>Savage X Fenty · Princess Polly</p><em>Now</em></div>
+      <article class="by-card t-p" tabindex="0" role="button" aria-pressed="false" aria-label="Content Creator: tap for details">
+        <div class="flip"><div class="face front"><div class="by-art"><strong>2</strong><small>brand partnerships for social media content</small></div>
+        <div class="by-meta"><h3>Content Creator</h3><p>Savage X Fenty · Princess Polly</p><em>Now</em></div><span class="fl-hint" aria-hidden="true">&#8635;</span></div><div class="face back"><p class="bk-t">Brand partnerships.</p><p>Social media content for Savage X Fenty and Princess Polly, plus campus ambassador for Princess Polly.</p><span class="bk-hint">Tap to flip back</span></div></div>
       </article>
     </div>
     <div class="wrap"><div class="by-bar"><i id="by-fill"></i></div></div>
@@ -655,7 +668,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
         <li><img src="assets/logos/bbsa.png" alt=""><div><span class="head"><b>Black Business Student Association</b><span class="role">Vice President<small>Previously President</small></span></span><ul class="did"><li>Lead programming for general meetings, retreats, office tours and panels</li><li>Launched a cohort program with three tracks<span class="tracks"><span class="track"><b>Sports Business</b><i>USC Basketball</i></span><span class="track"><b>Entrepreneurship</b><i>USC New Venture Seed Competition</i></span><span class="track"><b>Consulting</b><i>Jackie Aina's FORVR Mood</i></span></span></li></ul></div></li>
         <li><img src="assets/logos/ya4c.webp" alt=""><div><span class="head"><b>Youth Advocates for Change</b><span class="role">Director of Program Development</span></span><ul class="did"><li>Lead program development for the organization</li><li>Built a partnership between BBSA and YA4C</li></ul></div></li>
         <li><img src="assets/logos/aka.png" alt=""><div><span class="head"><b>Alpha Kappa Alpha Sorority, Inc.</b><span class="role">Historian and member</span></span><ul class="did"><li>Keep our chapter's history up to date each year</li><li>Document chapter events, programs and milestones</li></ul></div></li>
-        <li><img src="assets/logos/ai-workshop.svg" alt=""><div><span class="head"><b>Women, Wisdom, and AI</b><span class="role">Workshop host<small>My hometown church's women's ministry, Aug 2026</small></span></span><ul class="did"><li>Taught 20 women how to start using AI tools like Claude and ChatGPT</li><li>Helped most of them create their first account</li><li>Answered questions on skepticism, privacy and everyday use</li></ul></div></li>
         <li><img src="assets/logos/pink-ribbon.svg" alt=""><div><span class="head"><b>Breast Cancer Awareness Fundraiser</b><span class="role">Organizer<small>Moreau Catholic High School</small></span></span><ul class="did"><li>Designed and sold pink &ldquo;HOPE LOVE CURE&rdquo; shirts for a football game pink out</li><li>Raised about $2,000 for wigs, compression garments and post-op products</li><li>Started an annual October pink out tradition at the school</li></ul></div></li>
         <li><img src="assets/logos/mlt.png" alt=""><div><span class="head"><b>Management Leadership for Tomorrow</b><span class="role">Career Prep Fellow</span></span><ul class="did"><li>Selected from 3,000+ applicants for an 18+ month career program</li><li>Coaching and prep for full-time recruiting</li></ul></div></li>
       </ul>
@@ -1244,6 +1256,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); nums.forEach(run); } }, { threshold: .25 });
     io.observe(track);
   }
+  cards.forEach(c => {
+    const flip = () => { const on = c.classList.toggle('flipped'); c.setAttribute('aria-pressed', on); };
+    c.addEventListener('click', e => { if (!e.target.closest('a')) flip(); });
+    c.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === c) { e.preventDefault(); flip(); } });
+  });
   track.addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); update();
 }
 </script>
