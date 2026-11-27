@@ -16,13 +16,19 @@ def shot(src, alt, cap=""):
     return f'<figure class="shot"><img src="{src}" alt="{e(alt)}" loading="lazy">{c}</figure>'
 
 
+def num(b, s, src=""):
+    return f'<div><b>{b}</b><span>{s}</span>' + (f'<small class="src">{src}</small>' if src else "") + "</div>"
+
+
 def entry(it):
     tag = f'<span class="tag {TAG[it["tag"]]}">{it["tag"]}</span>' if it.get("tag") else ""
     body = "".join(f"<p>{x}</p>" for x in it.get("text", []))
     if it.get("nums"):
-        body += '<div class="inline-nums">' + "".join(f"<div><b>{b}</b><span>{s}</span></div>" for b, s in it["nums"]) + "</div>"
+        body += '<div class="inline-nums">' + "".join(num(*n) for n in it["nums"]) + "</div>"
     if it.get("list"):
         body += "<ul>" + "".join(f"<li>{x}</li>" for x in it["list"]) + "</ul>"
+    if it.get("src"):
+        body += f'<p class="src">Source: {it["src"]}</p>'
     if it.get("img"):
         body += shot(*it["img"])
     if it.get("pair"):
@@ -46,7 +52,7 @@ def fill(t):
 def page(p):
     meta = "".join(f"<li><span>{k}</span><b>{v}</b></li>" for k, v in p["meta"])
     links = "".join(f'<a class="{"main" if i == 0 else ""}" href="{u}" target="_blank" rel="noopener">{t} &nearr;</a>' for i, (t, u) in enumerate(p["links"]))
-    nums = ('<div class="nums">' + "".join(f"<div><b>{b}</b><span>{s}</span></div>" for b, s in p["nums"]) + "</div>") if p.get("nums") else ""
+    nums = ('<div class="nums">' + "".join(num(*n) for n in p["nums"]) + "</div>") if p.get("nums") else ""
     video = ""
     if p.get("video"):
         vid, cap = p["video"]
@@ -162,7 +168,8 @@ FEE = dict(
              text=["Crossing the Bay Bridge, my friend asked why we still pay a toll if our taxes cover roads. I didn't know. Government sites didn't help, and they definitely didn't tell a story.",
                    "SVSD's prompt: pick a specific group and build around storytelling. I picked teens and young adults getting their first paychecks."]),
         dict(when="Oct 18", tag="Tech", title="Finding the data",
-             text=["It covers all 50 states. The Census has every local government, and Social Security alone is $22 of every $100 federal dollars, so it had to be in there."]),
+             text=["It covers all 50 states. The Census has every local government, and Social Security alone is $22 of every $100 federal dollars, so it had to be in there."],
+             src="Census Bureau, 2022 Census of Governments; U.S. Treasury, Final Monthly Treasury Statement, FY2026"),
         dict(when="Oct 18", tag="Design", title="Three levels",
              text=["Your money goes to three governments, so the site has three views."],
              list=["America: a national overview, with federal spending clearly marked", "State: your state's spending and projects, plus the federal funding it gets", "City or county: local budgets, services and projects"]),
@@ -179,7 +186,8 @@ FEE = dict(
              text=["Hand lettering and real folders for Nation, State and City."],
              img=("img/fee-v3-res.jpg", "Third version: hand-lettered file folders")),
         dict(when="Oct 21", tag="Product", title="Everything out of $100",
-             text=["Nobody can picture $1.6 trillion. Everyone gets $100. I added a $100 strip and a story where you're the main character."],
+             text=["Nobody can picture $1.7 trillion. Everyone gets $100. I added a $100 strip and a story where you're the main character."],
+             src="$1.7 trillion is Social Security spending. U.S. Treasury, Final Monthly Treasury Statement, FY2026",
              img=("img/fee-v4-res.jpg", "Final version with a $100 strip")),
         dict(when="Oct 21", tag="Product", title="What you can do about it",
              text=["Knowing isn't enough, so the Footprint page shows how to act: find your representatives, register to vote, get free tax help and speak at a budget hearing."]),
@@ -201,7 +209,7 @@ BRANCH = dict(
     sub="A college student who feels intimidated about contributing to open source needs to find a project that fits their level, but GitHub shows the biggest, scariest repos first.",
     meta=[("Role", "Front end and design lead"), ("Team", "Nathan, Jackie and me"), ("Program", "Futureforce Tech Launchpad")],
     links=[("Try it", "https://branchout.tech"), ("Code", "https://github.com/Team-10-FTL/branch-out")],
-    nums=[("1 of 30", "picked from 3,000+ applicants"), ("3 of 3", "of us got return offers")],
+    nums=[("1 of 30", "picked from 3,000+ applicants", "Salesforce Futureforce Tech Launchpad, 2025"), ("3 of 3", "of us got return offers")],
     log=[
         dict(when="Jun 2025", tag="Research", title="The problem",
              text=["Everyone says contribute to open source. Then you open GitHub and the top results are the biggest, scariest repos."]),
@@ -236,7 +244,7 @@ HIND = dict(
     sub="A TikTok user who feels guilty about how long they scroll needs to get something out of what they save, but their saves disappear into folders they never open.",
     meta=[("Role", "Founder"), ("Platform", "Web, iOS next"), ("Stage", "MVP live")],
     links=[("Try it", "https://inhindsight.net"), ("Meet Peep", "https://inhindsight.net/peep")],
-    nums=[("94%", "gave up finding a saved video"), ("11", "waitlist signups in one day")],
+    nums=[("94%", "gave up finding a saved video", "Survey of 35 young adults, Nov 2026"), ("11", "waitlist signups in one day", "In Hindsight waitlist, Nov 2026")],
     log=[
         dict(when="Oct 2026", tag="Research", title="The idea",
              text=["My saves were a graveyard. I wanted to see them as something other than a folder.", "The name is the point: you look back at what you already watched, and actually learn something from it."],
@@ -246,7 +254,8 @@ HIND = dict(
              img=("img/ih-dash.jpg", "The In Hindsight dashboard")),
         dict(when="Nov 2026", tag="Research", title="Asking people",
              text=["35 surveys and 5 interviews, mostly USC students. The surveys showed how often people scroll and what they do. The interviews showed how scrolling actually feels."],
-             nums=[("94%", "gave up finding a save"), ("54%", "never rewatch"), ("66%", "have 200+ saves")]),
+             nums=[("94%", "gave up finding a save"), ("54%", "never rewatch"), ("66%", "have 200+ saves")],
+             src="In Hindsight survey of 35 young adults, mostly USC students, shared on SideChat, Snapchat, Reddit and iMessage, Nov 2026"),
         dict(when="Nov 2026", tag="Design", title="Saves to action",
              text=["Recipes, places and plans sent to Maps, Calendar and Reminders."],
              img=("img/ih-v2-act.jpg", "The Act tab")),
@@ -255,6 +264,7 @@ HIND = dict(
              img=("img/ih-peep-screens.jpg", "Peep concept screens: what you are here for, a sleepy timer, share to Peep, a weekly recap, and keep or let it go")),
         dict(when="Nov 2026", tag="Business", title="Free, then $4 a month",
              text=["63% of people I surveyed would pay or consider it. 11 people joined the waitlist in one day."],
+             src="In Hindsight survey of 35 young adults, mostly USC students, shared on SideChat, Snapchat, Reddit and iMessage, Nov 2026",
              img=("img/ih-business.jpg", "Free, Plus at $4 a month, and sharing")),
         dict(when="2027", tag="Business", title="Where It's Going",
              text=["A 100-person private beta in January, Peep on iOS in the spring, and 1,000 users by summer."],
