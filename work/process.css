@@ -101,3 +101,6 @@ footer .bar{max-width:720px;margin:0 auto;padding:22px max(5vw,18px);display:fle
   .reflect{padding:22px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.links a:hover{transform:none}}
+
+.plabel{margin:22px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.plabel+.sub{margin-top:6px}
