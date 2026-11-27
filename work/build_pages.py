@@ -95,7 +95,7 @@ def page(p):
     <p class="plabel">Problem statement</p>
     <p class="sub">{fill(p["sub"])}</p>
     <ul class="meta">{meta}</ul>
-    <div class="links">{links}</div>
+    {f'<div class="links">{links}</div>' if links else ''}
     {nums}
 {video}  </section>
 
@@ -281,9 +281,34 @@ HIND = dict(
     reflect=[("What worked", "Asking. The survey is the reason it went from a dashboard to Peep."),
              ("What I'd do differently", "I built the dashboard first and asked people second. It worked out, but I'd flip it."),
              ("What's next", "Build Peep and get it to 100 beta users.")],
-    next=("karls-friend-bart.html", "Karl's Friend Bart"),
+    next=("bite-back.html", "Bite Back"),
     foot="Not affiliated with TikTok",
 )
 
-for p in (BART, FEE, BRANCH, HIND):
+BITE = dict(
+    slug="bite-back", name="Bite Back", when="Fall 2026 to now · IYA Garage Experience",
+    desc="a small-plates dinner built around invasive species, with education and community at the table.",
+    sub="A food lover who feels unaware about invasive species needs to see that eating them can help, but they almost never show up on a menu.",
+    meta=[("Program", "IYA Garage Experience (GX)"), ("Team", "Invasiv team"), ("Stage", "Applying for a grant")],
+    links=[],
+    log=[
+        dict(when="Fall 2026", tag="Business", title="What GX Is",
+             text=["GX is the Iovine and Young Academy's senior-year Garage Experience: a student-led research and development project that runs two semesters. You pick the problem, and you have the whole year to build toward it."]),
+        dict(when="Fall 2026", tag="Product", title="Invasiv",
+             text=["It started as Invasiv, a food product made from invasive species. Then we tried invasive food consulting. Then back to products: a brand making different things from invasive species."]),
+        dict(when="Oct 2026", tag="Design", title="Bite Back",
+             text=["Now it's a dinner. Bite Back is small and exclusive, served as small plates, with the education and the community built into the night."]),
+        dict(when="Oct 2026", tag="Research", title="Why Animals",
+             text=["We focus on invasive animals over plants. They're easier to source."]),
+        dict(when="Oct 2026", tag="Tech", title="The Landing Page",
+             text=["A landing page for Invasiv, which I worked on."]),
+        dict(when="Nov 2026", tag="Business", title="Grant Application",
+             text=["We're applying for a grant for Bite Back."]),
+    ],
+    reflect=[("What's next", "Finish the grant application and plan the first dinner.")],
+    next=("karls-friend-bart.html", "Karl's Friend Bart"),
+    foot="An IYA Garage Experience project",
+)
+
+for p in (BART, FEE, BRANCH, HIND, BITE):
     page(p)

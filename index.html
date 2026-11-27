@@ -207,7 +207,7 @@ a.by-card .by-meta h3::after{content:" →"}
 .frame{margin:14px 0 0;max-width:none;color:var(--muted);font-size:16px;line-height:1.55}.frame span{display:block;margin-top:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;color:var(--ink)}.frame b{font-weight:600;background:light-dark(#fff3b0,#3a3200);padding:0 3px;border-radius:3px}
 .works{display:grid;gap:20px;grid-template-columns:minmax(0,1fr);margin-top:28px}
 @media(min-width:900px){.works{grid-template-columns:repeat(2,minmax(0,1fr))}.wcard.big{grid-column:1/-1;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);display:grid}}
-@media(min-width:1100px){.works{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1100px){.works{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .wcard{display:flex;flex-direction:column;border:1px solid var(--rule);border-radius:20px;overflow:hidden;text-decoration:none;background:var(--bg);transition:transform .2s,border-color .2s}
 a.wcard:hover{transform:translateY(-3px);border-color:var(--ink)}
 .wcover{position:relative;display:block;background:var(--panel);aspect-ratio:16/10;overflow:hidden}
@@ -224,6 +224,7 @@ a.wcard:hover{transform:translateY(-3px);border-color:var(--ink)}
 .wcard.big .wcover.feat{aspect-ratio:auto;min-height:320px}
 .wcard.big .wcover.feat .wph{font-size:clamp(40px,6vw,76px)}
 .wname i{font-style:normal;font-weight:600;opacity:.8}
+.wcover.bite{background:#2f4a2a}.wcover.bite .wph{color:#ffd200}
 .wph{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-.04em;color:#fff}
 .wres{position:absolute;left:14px;bottom:14px;padding:6px 12px;border-radius:99px;background:var(--yellow);color:#111;font-size:13px;font-weight:800}
 .wbody{display:flex;flex-direction:column;gap:10px;padding:22px 24px 24px}
@@ -458,6 +459,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
           </span>
         </article>
         <article class="wcard">
+          <span class="wcover bite"><span class="wph">Bite Back</span><span class="wres">Garage Experience</span></span>
+          <span class="wbody">
+            <span class="wname">Fall 2026 to now</span>
+            <b><a class="wlink" href="work/bite-back.html">Bite Back</a></b>
+            <span class="wlabels"><span class="l-d">Design</span><span class="l-t">Tech</span><span class="l-b">Business</span><span>GX</span></span>
+            <span class="wps">A <span class="pb">food lover</span> who feels <span class="pb">unaware</span> about <span class="pb">invasive species</span> needs to <span class="pb">see that eating them can help</span>, but <span class="pb">they almost never show up on a menu</span>.</span>
+            <span class="wgos"><a class="wgo" href="work/bite-back.html">See the process &rarr;</a></span>
+          </span>
+        </article>
+        <article class="wcard">
           <span class="wcover"><img src="work/img/bart-v4-final-day.jpg" alt="" loading="lazy"><span class="wres">Live · Real-Time BART Data</span></span>
           <span class="wbody">
             <span class="wname">Oct 2026</span>
@@ -651,7 +662,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       <div class="fl-copy">
         <div class="kicker"><i></i>Take a break</div>
         <h2 id="fl-title">Connect the Dots</h2>
-        <p>I like connecting dots, in puzzles and in real life. Flow Free is my go-to, so here's my version.</p>
+        <p>I like connecting dots, in puzzles and in real life. Now it's your turn.</p>
         <ol class="fl-how">
           <li>Drag from a dot to its matching color.</li>
           <li>Lines can't cross or share a square.</li>
@@ -752,6 +763,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
       a: { D: '94% of the 35 people I surveyed gave up finding a saved video.',
            T: 'Reads your TikTok export in your browser. Nothing gets uploaded.',
            B: 'Free, then Plus at $4 a month. 11 waitlist signups in one day.' } },
+    { id: 'bite', name: 'Bite Back', lenses: ['D', 'T', 'B'], x: 404, y: 326, anchor: 'start', status: 'Garage Experience', link: 'See the process', href: 'work/bite-back.html',
+      text: 'A small-plates dinner built around invasive species, with education and community at the table. My IYA Garage Experience project.',
+      a: { D: 'Designed as an experience: a small, exclusive dinner people sit down for.',
+           T: 'A landing page for Invasiv, which I worked on.',
+           B: 'Started as a product, then consulting, then a brand. Now a dinner, and we\u2019re applying for a grant.' } },
     { id: 'branch', name: 'Branch Out', lenses: ['T', 'B'], x: 462, y: 352, anchor: 'start', status: 'Shipped at Salesforce', link: 'See the process', href: 'work/branch-out.html',
       text: 'A swipe-based way for college students to find open source projects matched to their year, languages and interests.',
       a: { D: 'Next: test it with students outside our cohort.',
