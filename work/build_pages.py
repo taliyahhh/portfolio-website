@@ -172,8 +172,8 @@ BART = dict(
              pair=[("img/bart-v4-final-day.jpg", "Day service", "Day"), ("img/bart-v4-final-evening.jpg", "Evening service", "After 9pm")]),
     ],
     reflect=[("What worked", "Keeping the official map. The less I changed, the easier it was to read."),
-             ("What I'd do differently", "Nobody but me has really used it yet. I'd put it in front of riders before adding anything else."),
-             ("What's next", "Get it in front of BART riders.")],
+             ("What I'd do differently", "Talk to the people who ride it every day, especially first-timers, older riders and people who don't use much tech, and ask where the map lets them down."),
+             ("What's next", "Get it in front of people at BART, ask what they think is missing, and see if there's room to collaborate, even as a part-time contractor on the site.")],
     next=("fee-fi-fo-fund.html", "Fee Fi Fo Fund"),
     foot="Karl is what locals call SF's fog. A fan project, not affiliated with BART.",
 )
@@ -252,8 +252,7 @@ BRANCH = dict(
              img=("img/bo-demo.jpg", "Presenting at Salesforce: Branch Out next to GitHub, Devpost and LeetCode")),
     ],
     reflect=[("What worked", "Splitting it cleanly. I owned what you see, Nathan and Jackie owned what you don't, and we didn't step on each other."),
-             ("What I'd do differently", "We were our own users. I'd get it in front of students outside our program before calling it done."),
-             ("What's next", "Match people to a good first issue inside the repo.")],
+             ("What I'd do differently", "Build a much bigger database, and create our own open source challenges by skill and topic. A little like LeetCode, but for contributing to real projects.")],
     next=("in-hindsight.html", "In Hindsight"),
     foot="Built with Nathan Kenmognie and Jackie Jurado",
 )
@@ -303,7 +302,7 @@ HIND = dict(
     ],
     reflect=[("What worked", "Asking. The survey is the reason it went from a dashboard to Peep."),
              ("What I'd do differently", "I built the dashboard first and asked people second. It worked out, but I'd flip it."),
-             ("What's next", "Build Peep and get it to 100 beta users.")],
+             ("What's next", "Get a grant, publish In Hindsight to the public as an app or browser extension, and stay on the timeline: a 100-person beta in January, Peep on iOS in the spring, and 1,000 users by summer.")],
     next=("bite-back.html", "Bite Back"),
     foot="Not affiliated with TikTok",
 )
@@ -369,6 +368,8 @@ HANG = dict(
     book=dict(title="The Toolkit", hint="Our final group deliverable. Click a page edge, swipe, or use your arrow keys to flip through.",
               pages=[f"img/hangout/p{n:02d}.jpg" for n in range(1, 21)]),
     log=[
+        dict(when="Start", tag="Research", title="Where It Started",
+             text=["I came in curious about third spaces, and how few of them are left now that so much of life has moved online. One teammate cared about mental health. Another wanted to focus on teen girls. Put together, that was our niche: third spaces where teen girls can actually thrive."]),
         dict(when="Research", tag="Research", title="The In-Between Is Collapsing",
              text=["\u201cTween\u201d started in the 1980s as a marketing term. Now the stage itself is shrinking. Girls 10 to 13 have adult beauty routines, and in 2023 tweens 8 to 12 drove 49% of U.S. skincare sales growth."],
              src="Figures as cited in our toolkit"),
@@ -379,6 +380,9 @@ HANG = dict(
              list=["No likes, followers or public metrics", "Drop in, drop out, nothing graded", "Walk-ins always welcome, so no phone is required"]),
         dict(when="Solution", tag="Product", title="A Companion App",
              text=["The app tracks events, badges and photo booth pictures. There's no messaging. Parents approve every event and get a pickup code at check-in."]),
+        dict(when="My part", tag="Design", title="What I Made",
+             text=["I helped design the toolkit itself, and made the cover, Goals, Third Spaces and Design Guidelines pages."],
+             pair=[("img/hangout/p07.jpg", "Third Spaces page", "Third Spaces"), ("img/hangout/p14.jpg", "Design Guidelines page", "Design Guidelines")]),
         dict(when="Guidelines", tag="Design", title="Design Guidelines",
              text=["Six inclusive design principles for anyone building a space like this:"],
              list=["Recognize exclusion", "Design for a range of needs", "Provide flexibility and choice", "Reduce physical and social barriers", "Prioritize clarity and simplicity", "Support independence and belonging"]),
