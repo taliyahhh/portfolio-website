@@ -158,3 +158,11 @@ footer .bar{max-width:720px;margin:0 auto;padding:22px max(5vw,18px);display:fle
 .book.wide .spread{transition:transform .45s ease}
 .book.wide.closed .spread{transform:translateX(-25%)}
 .book.wide.closed-end .spread{transform:translateX(25%)}
+/* how it changed: versions side by side */
+.evo-row{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));counter-reset:v}
+.evo-row li{counter-increment:v;position:relative}
+.evo-row figure{margin:0}
+.evo-row img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:12px;border:1px solid var(--rule);background:var(--panel)}
+.evo-row figcaption{margin-top:8px;font-size:14px;line-height:1.45;color:var(--muted)}
+.evo-row figcaption b{display:block;color:var(--ink);font-size:15px}
+.evo-row figcaption b::before{content:counter(v) ". ";color:var(--muted);font-weight:700}
