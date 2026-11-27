@@ -394,7 +394,7 @@ ERUCA = dict(
     sub="A young traveler who feels frustrated about dragging a suitcase through European cities needs to roll over cobblestones and stairs easily, but standard suitcase wheels get stuck and break.",
     meta=[("Role", "Product management"), ("Team", "Altamush Merchant, Lauren Budovsky, Cayetana Moncayo, Henry Yin and me"), ("Class", "ACAD-324 with Professor Wolter")],
     links=[],
-    back="/#classwork", backlabel="All class projects", nextlabel="Back to",
+    back="/#classwork", backlabel="All class projects", nextlabel="Next class project",
     log=[
         dict(when="Analysis", tag="Research", title="Built for Airports",
              text=["The brief was biomimicry x luggage. Suitcases work fine in an airport. Then you hit cobblestone streets, public transit and stairs in historic buildings, and the wheels give out.",
@@ -425,9 +425,46 @@ ERUCA = dict(
              img=("img/eruca/final.jpg", "The Eruca Pod")),
     ],
     reflect=[],
-    next=("/#work", "Selected Work"),
+    next=("coffee-table.html", "The Coffee Table"),
     foot="ACAD-324 · Professor Wolter",
 )
 
-for p in (BART, FEE, BRANCH, HIND, BITE, HANG, ERUCA):
+TABLE = dict(
+    slug="coffee-table", name="The Coffee Table", when="ACAD-445, Designing Products for Licensing",
+    desc="a nesting coffee table that triples into a table, side table and ottoman for small first apartments.",
+    sub="A young adult who feels stuck about furnishing a first apartment needs to find one piece that works for work, dining and hosting, but most furniture is cheap, bulky or single-use.",
+    meta=[("Team", "Maya Parthasarathy, Bodie, Jones Mays, David and me"), ("Class", "ACAD-445, Designing Products for Licensing"), ("Deliverable", "Design lock and mini prototype")],
+    links=[],
+    back="/#classwork", backlabel="All class projects", nextlabel="Back to",
+    log=[
+        dict(when="Market", tag="Research", title="First Apartment Problems",
+             text=["Our market was 22 to 24 year olds and grad students furnishing their first place. They need furniture that's affordable on an entry-level budget, flexible enough for work, living and hosting, and small enough for a tiny apartment.",
+                   "Most options make you pick: cheap but temporary, stylish but single-purpose, or functional but huge."]),
+        dict(when="Research", tag="Research", title="The Gap",
+             text=["We interviewed young professionals in small apartments and mapped what's out there. Almost nothing was both simple to use and multi-functional, so that's the corner we aimed for."],
+             img=("img/table/map.jpg", "Competitor map: intuitive versus complex, single-purpose versus multi-functional")),
+        dict(when="Research", tag="Design", title="How Might We",
+             list=["Let one table work for desk, dining and hosting?", "Get more surface without a bigger footprint?", "Make it expand in a way that's obvious without instructions?"],
+             text=["Users should feel capable, settled, effortless, proud and unburdened."]),
+        dict(when="Ideation", tag="Design", title="Idea 1: Rising Top",
+             text=["A two-level top that lifts, so you can stow things and separate your private space from your social space."],
+             img=("img/table/idea1.jpg", "Rising-top coffee table render and sketches")),
+        dict(when="Ideation", tag="Design", title="Idea 2: Tapas Table",
+             text=["A sculptural wood table with ceramic bowls set into the surface, more art piece than furniture."],
+             img=("img/table/idea2.jpg", "Modular tapas table with ceramic inlays")),
+        dict(when="Criteria", tag="Product", title="Five Rules",
+             list=["Intuitively simple: one motion, no tools, no wobble", "Multi-functional: coffee table, desk and dining surface", "Compact: built for apartments", "Modern: clean, neutral, premium", "Durable: no fragile finishes"]),
+        dict(when="Design lock", tag="Design", title="Nested",
+             text=["We locked in a nesting design. Three pieces fit inside each other: an outer frame with a glass top, a mid-size wooden table, and a small table with an ottoman cushion. It triples in size with no moving parts or hardware."],
+             pair=[("img/table/lock.jpg", "Nested concept references and sketch", "References and first sketch"), ("img/table/sketches.jpg", "First iteration sketches", "First iteration")]),
+        dict(when="Final", tag="Product", title="The Coffee Table",
+             text=["Coffee table, side table and ottoman, all at once or tucked into one. We built a mini version for class."],
+             img=("img/table/render.jpg", "Render of the nested coffee table with ottoman")),
+    ],
+    reflect=[],
+    next=("/#work", "Selected Work"),
+    foot="ACAD-445 · Designing Products for Licensing",
+)
+
+for p in (BART, FEE, BRANCH, HIND, BITE, HANG, ERUCA, TABLE):
     page(p)
