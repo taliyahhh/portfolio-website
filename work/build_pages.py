@@ -43,10 +43,10 @@ def entry(it):
 
 import re as _re
 def fill(t):
-    m = _re.match(r"^A (.+?) who feels (.+?) about (.+?) needs to (.+?), but (.+)\.$", t)
+    m = _re.match(r"^An? (.+?) who feels (.+?) about (.+?) needs to (.+?), but (.+)\.$", t)
     assert m, t
     a, f, k, st, o = (f'<span class="blank">{x}</span>' for x in m.groups())
-    return f"A {a} who feels {f} about {k} needs to {st}, but {o}."
+    return f"{t.split()[0]} {a} who feels {f} about {k} needs to {st}, but {o}."
 
 
 def page(p):
@@ -287,23 +287,49 @@ HIND = dict(
 
 BITE = dict(
     slug="bite-back", name="Bite Back", when="Fall 2026 to now · IYA Garage Experience",
-    desc="a small-plates dinner built around invasive species, with education and community at the table.",
-    sub="A food lover who feels unaware about invasive species needs to see that eating them can help, but they almost never show up on a menu.",
-    meta=[("Program", "IYA Garage Experience (GX)"), ("Team", '<a href="https://www.linkedin.com/in/maya-parthasarathy/" target="_blank" rel="noopener">Maya Parthasarathy</a>, <a href="https://www.linkedin.com/in/jones-mays-ii-21a2a6215/" target="_blank" rel="noopener">Jones Mays</a>, <a href="https://www.linkedin.com/in/maxine-ivey-624070268/" target="_blank" rel="noopener">Maxine Ivey</a> and me'), ("Stage", "First dinner in December")],
+    desc="chef-led small plates dinners made from invasive species, with the story behind every bite.",
+    sub="An adventurous eater who feels unsure about eating invasive species needs to taste them and hear why they matter, but they almost never show up on a menu.",
+    meta=[("Role", "Product"), ("Team", '<a href="https://www.linkedin.com/in/maya-parthasarathy/" target="_blank" rel="noopener">Maya Parthasarathy</a>, <a href="https://www.linkedin.com/in/jones-mays-ii-21a2a6215/" target="_blank" rel="noopener">Jones Mays</a>, <a href="https://www.linkedin.com/in/maxine-ivey-624070268/" target="_blank" rel="noopener">Maxine Ivey</a> and me'), ("Program", "IYA Garage Experience (GX)"), ("Stage", "First dinner in December")],
     links=[("Instagram", "https://www.instagram.com/biteback.la/"), ("About GX", "https://iovine-young.usc.edu/careers-learning-outcomes#capstone-experience-fusing-innovation-and-industry")],
+    nums=[("30+", "guests across 3 test dinners", "Bite Back validation data, 2026"), ("$40", "a seat at Dinner #1")],
     log=[
         dict(when="Fall 2026", tag="Business", title="What GX Is",
              text=["GX is the Garage Experience, the Iovine and Young Academy's senior capstone. It's a student-led research and development project that runs two semesters, with mentorship from faculty and people in industry. You pick the problem, and you have the whole year to build toward it."]),
         dict(when="Fall 2026", tag="Product", title="Invasiv",
              text=["It started as Invasiv, a food product made from invasive species. Then we tried invasive food consulting. Then back to products: a brand making different things from invasive species."]),
-        dict(when="Oct 2026", tag="Design", title="Bite Back",
-             text=["Now it's a dinner. Bite Back is small and exclusive, served as small plates, with the education and the community built into the night."]),
+        dict(when="Fall 2026", tag="Research", title="Nobody's Eating Them",
+             text=["Lots of invasive species are edible. People just don't know they're available, what they taste like, or that eating them helps. It's exposure, and it's what we think belongs in our diets."],
+             nums=[("$21B", "a year: what invasive species cost the U.S."), ("6\u20137", "exposures before people start liking a new food")],
+             src="Fantle-Lepczyk et al., Science of the Total Environment (2022); chef Bun Lai via CBC"),
+        dict(when="Oct 2026", tag="Design", title="Pull Up a Chair",
+             text=["So it became a dinner. Chef-led small plates made from edible invasive species, with the story behind each one. Familiar formats make a new ingredient easier to try.",
+                   "It's for adventurous eaters, 21 to 35, who care about the environment and like a curated night out."],
+             list=["Discover: see the menu and the concept", "Book: reserve a seat and share dietary needs", "Arrive and eat: small plates, a story with each", "Take away: recipes and where to find the ingredients locally", "Follow up: a short survey"],
+             img=("img/bb-brand.jpg", "Brand direction from our deck: Pull up a chair. Eat the invasion.")),
+        dict(when="Oct 2026", tag="Design", title="Mood Board",
+             text=["Supper clubs, handwritten menus, ingredients labeled right on the plate, long tables with candles. Warm, a little playful, and close enough to touch."],
+             img=("img/bb-moodboard.jpg", "Our prototype mood board")),
         dict(when="Oct 2026", tag="Research", title="Why Animals",
              text=["We focus on invasive animals over plants. They're easier to source. For plants, our only real option was basically trespassing."]),
-        dict(when="Nov 2026", tag="Business", title="@biteback.la",
-             text=["We set up our socials and we're drafting posts now, so people know what Bite Back is before the first dinner."]),
-        dict(when="Dec 2026", tag="Product", title="First Small Plates Dinner",
-             text=["Our first small plates event is in December."]),
+        dict(when="Oct 2026", tag="Research", title="Three Test Dinners",
+             text=["Before calling it anything, we hosted three test dinners. 30+ people came and we made $300. We also got 10 email signups and 12 QR scans on campus."],
+             img=("img/bb-dinners.jpg", "Three previous dinners: 30+ people, $300")),
+        dict(when="Nov 2026", tag="Design", title="Four Courses",
+             text=["Every dish is built around an invasive species."],
+             list=["Green crab bisque, with seasonal salad and warm bread", "Catfish nuggets", "Asian carp hush puppies", "Ice plant ice cream"],
+             img=("img/bb-menu.jpg", "The four course menu")),
+        dict(when="Nov 2026", tag="Business", title="Does It Make Money?",
+             text=["Dinner #1 is 10 paying guests at $40. That's $400 in, $364 in costs, and $36 left over. Small, but it breaks even, which is the goal.",
+                   "Bigger picture: about $11M a year in LA adults 20 to 34 who'd book a dinner like this, and about $43K we could realistically capture by year two."],
+             src="Market Intelo Supper Club Market Report (2025); U.S. Census ACS, Los Angeles County; Bite Back estimates",
+             img=("img/bb-model.jpg", "Dinner #1 financial model")),
+        dict(when="Nov 2026", tag="Business", title="Who Else Is Doing This",
+             text=["There are one-night invasive dinners in Vancouver and Kaua\u02bbi, invasive restaurants in Connecticut and London, and supper clubs all over LA. Nobody is doing recurring invasive species dinners in LA at $40 a seat."]),
+        dict(when="Nov 2026", tag="Business", title="Every Dinner Becomes Content",
+             text=["10 people at the table, thousands watching online. We host, film, post, grow, then scale. Our socials are set up at @biteback.la and we're drafting posts now. The goal is 50K followers by May 2027."]),
+        dict(when="Dec 2026", tag="Product", title="Dinner #1",
+             text=["A 10-person dinner for IYA's C10 cohort. We want to see who shows up, what they'll pay, and whether it breaks even."],
+             img=("img/bb-dinner1.jpg", "Dinner #1 concept")),
     ],
     reflect=[("What's next", "Submit a grant application and get posts out before our first small plates dinner in December. Stay tuned on <a href=\"https://www.instagram.com/biteback.la/\" target=\"_blank\" rel=\"noopener\">our Instagram</a>.")],
     next=("karls-friend-bart.html", "Karl's Friend Bart"),
