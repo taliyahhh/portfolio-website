@@ -108,47 +108,11 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 #play.solved .bgdot{opacity:.15}
 @media(prefers-reduced-motion:reduce){.flow .cellfill,.flow .pipe,.flow .dot{transition:none}}
 
-/* ask tj: floating */
-.ask-dock{position:fixed;right:max(16px,2vw);bottom:max(16px,2vw);z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
-.ask-fab{all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;padding:8px 18px 8px 8px;border-radius:99px;background:var(--ink);color:var(--bg);font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .2s}
-.ask-fab:hover{transform:translateY(-2px)}
-.ask-fab b{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--yellow);color:#111}
-.ask-fab:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
-.ask-fab[aria-expanded=true]{display:none}
-.ask-box{width:min(400px,calc(100vw - 32px));height:min(620px,calc(100dvh - 32px));box-shadow:0 20px 60px rgba(0,0,0,.3);background:var(--bg);border:1px solid var(--rule);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
-.ask-box[hidden]{display:none}
-.ask-who>span{display:flex;flex-direction:column;line-height:1.2}
-.ask-who small{font-size:12px;font-weight:500;color:var(--muted)}
-.ask-x{all:unset;cursor:pointer;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font-size:24px;line-height:1}
-.ask-x:hover{background:var(--panel)}
-.ask-x:focus-visible{outline:3px solid var(--yellow)}
-.ask-tone{order:1;flex-basis:100%}
-.ask-tone button{flex:1;text-align:center}
-@media(max-width:600px){.ask-dock{right:12px;bottom:12px}.ask-box{width:calc(100vw - 24px);height:calc(100dvh - 24px)}}
-@media(prefers-reduced-motion:reduce){.ask-fab{transition:none}}
-.ask-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--rule)}
-.ask-who{display:flex;align-items:center;gap:10px;font-weight:800}
-.ask-who b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--yellow);color:#111;font-size:14px}
-.ask-tone{display:flex;padding:3px;border-radius:99px;background:var(--panel);border:1px solid var(--rule)}
-.ask-tone button{all:unset;cursor:pointer;padding:8px 14px;border-radius:99px;font-size:14px;font-weight:700;color:var(--muted)}
-.ask-tone button[aria-checked=true]{background:var(--ink);color:var(--bg)}
-.ask-tone button:focus-visible{outline:3px solid var(--yellow)}
-.ask-log{flex:1;min-height:0;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
 .msg{max-width:85%;padding:11px 15px;border-radius:18px;font-size:16px;line-height:1.5}
 .msg.me{align-self:flex-end;background:var(--ink);color:var(--bg);border-bottom-right-radius:6px}
 .msg.tj{align-self:flex-start;background:var(--panel);border:1px solid var(--rule);border-bottom-left-radius:6px}
 .msg.tj a{display:inline-block;margin-top:6px;font-weight:800;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
 .msg.typing{color:var(--muted);letter-spacing:.2em}
-.ask-chips{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none}
-.ask-chips::-webkit-scrollbar{display:none}
-.ask-chips button{all:unset;white-space:nowrap;flex:none;cursor:pointer;padding:8px 13px;border-radius:99px;border:1.5px solid var(--rule);font-size:14px;font-weight:700}
-.ask-chips button:hover{border-color:var(--ink)}
-.ask-chips button:focus-visible{outline:3px solid var(--yellow)}
-.ask-form{display:flex;gap:8px;padding:12px 16px 16px;border-top:1px solid var(--rule)}
-.ask-form input{flex:1;min-height:46px;padding:0 16px;border-radius:99px;border:1.5px solid var(--rule);background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
-.ask-form input:focus{outline:none;border-color:var(--ink)}
-.ask-form button{all:unset;cursor:pointer;min-height:46px;padding:0 20px;border-radius:99px;background:var(--yellow);color:#111;font-weight:800}
-.ask-form button:focus-visible{outline:3px solid var(--ink)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 /* beyond the job */
@@ -305,7 +269,6 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .fav-list li{background:var(--panel);border-radius:16px;padding:20px 20px 22px;border-top:4px solid var(--yellow)}
 .fav-list b{display:block;font-size:18px}
 .fav-list span{display:block;margin-top:8px;color:var(--muted);font-size:15px;line-height:1.5}
-#contact .ask-q{margin-top:18px;font-size:16px;color:var(--muted);max-width:52ch}
 .fl-link[hidden]{display:none!important}.fl-inline{color:inherit;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}.fl-link{display:inline-block;margin:2px 0 16px;color:inherit;font-weight:600;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
 .cw-wrap{margin-top:32px}.cw-h{margin:0 0 10px!important;font-size:13px!important;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .cw{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}
@@ -422,8 +385,6 @@ button.dvf-row:focus-visible{outline:3px solid var(--dD)}
 footer{border-top:1px solid var(--rule)}
 @media(max-width:600px){footer{padding-bottom:84px}}
 footer .kpi small{font-size:12px}
-.ask-dock.away .ask-fab{opacity:0;pointer-events:none;transform:translateY(12px)}
-.ask-fab{transition:transform .2s,opacity .2s}
 footer .kpi small{opacity:.7}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:26px;font-size:14px;color:var(--muted)}
 
@@ -802,28 +763,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   </section>
 </main>
 
-<!-- Ask tj: floating launcher + chat panel. Pre-written answers in two tones, drawn only from this site and my repos -->
-<div class="ask-dock">
-  <div class="ask-box" id="ask-panel" role="dialog" aria-modal="false" aria-labelledby="ask-name" hidden>
-    <div class="ask-top">
-      <span class="ask-who" id="ask-name"><b>tj</b><span>Ask tj<small>Pre-written answers from my site</small></span></span>
-      <div class="ask-tone" role="radiogroup" aria-label="Answer style">
-        <button type="button" role="radio" data-tone="P" aria-checked="true">Professional</button>
-        <button type="button" role="radio" data-tone="C" aria-checked="false">Casual</button>
-      </div>
-      <button type="button" class="ask-x" id="ask-close" aria-label="Close">&times;</button>
-    </div>
-    <div class="ask-log" id="ask-log" aria-live="polite"></div>
-    <div class="ask-chips" id="ask-chips"></div>
-    <form class="ask-form" id="ask-form" autocomplete="off">
-      <label class="sr" for="ask-in">Ask a question</label>
-      <input id="ask-in" type="text" placeholder="Ask about my work, school, hobbies..." maxlength="160">
-      <button type="submit" aria-label="Send">Ask</button>
-    </form>
-  </div>
-  <button type="button" class="ask-fab" id="ask-open" aria-expanded="false" aria-controls="ask-panel"><b>tj</b><span>Ask me</span></button>
-</div>
-
 <footer>
   <div class="wrap">
     <span>taliyahharvey.com</span>
@@ -1175,80 +1114,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   const first = PUZZLES.findIndex((p, k) => k >= state.cur && !state.solved.includes(p.id));
   const any = PUZZLES.findIndex(p => !state.solved.includes(p.id));
   load(first >= 0 ? first : any >= 0 ? any : state.cur);
-}
-</script>
-<script>
-{
-  const BANK = {"topics":[{"id":"hello","keys":["hi","hello","hey","yo","sup"],"weak":true,"P":"Hi, thanks for stopping by. Ask me about my work, my projects, school or what I'm looking for next.","C":"Hey! Ask me anything: projects, school, what I'm looking for, what I do for fun."},{"id":"intro","keys":["who","about you","yourself","introduce","tell me about you","who are you","taliyah","tj"],"P":"I'm Taliyah Harvey, a product-minded builder from the Bay Area. I have a software background, but what I love most is making human-centered products. I'm finishing a B.S. in Arts, Technology and the Business of Innovation and an M.S. in Product Development Engineering at USC.","C":"I'm Taliyah, or tj! Bay Area native, USC student, and someone who'd rather build the thing than just talk about it. I came up through software, but my favorite part is making stuff that feels good to use."},{"id":"roles","keys":["looking for","role","roles","job","hire","hiring","open to","opportunity","opportunities","position","internship","full time","career","want to do"],"P":"I'm open to product, design and innovation roles, as well as collaborations. I do my best work where design, technology and business overlap, which is exactly what I've trained for.","C":"Product, design and innovation roles are my sweet spot. Basically anywhere I get to figure out what to build and then actually help build it. Collabs and good conversations are always welcome too."},{"id":"school","keys":["usc","school","study","studying","major","degree","degrees","master","masters","bachelor","education","college","iovine","viterbi","class","classes"],"P":"At USC I'm completing a B.S. in Arts, Technology and the Business of Innovation at the Iovine and Young Academy and an M.S. in Product Development Engineering at Viterbi. In a single week I get to design, prototype, code and pitch.","C":"I'm doing a bachelor's and a master's at USC at the same time: Arts, Technology and the Business of Innovation at Iovine and Young, plus Product Development Engineering at Viterbi. So my week is design, prototype, code, pitch, repeat."},{"id":"experience","keys":["experience","worked","work history","salesforce","astera","intern","company","companies","jobs"],"P":"I've interned at Salesforce twice. In 2026 I was a Software Engineering Intern on Anypoint Code Builder (MuleSoft), where I was the solo engineer on an API management feature for a VS Code extension used by 64,000+ developers and built a conversational \u201cVibes Skill\u201d for its AI agent. In 2025 I was one of 30 students selected from 3,000+ applicants for the Futureforce Tech Launchpad, where I built Branch Out on a team of three. Before that, I interned at Astera Labs in high school.","C":"Two summers at Salesforce! This year I was the only engineer on an API management feature for a VS Code extension 64,000+ developers use, and I built a \u201cVibes Skill\u201d so you can manage it by just talking to the AI agent. The summer before, I built Branch Out in the Futureforce Tech Launchpad. And way back in high school, Astera Labs.","link":["https://drive.google.com/file/d/1bd_ZmiNHnVtcSxHFkS7MbYG4A5ucGU3_/view?usp=sharing","See my resume"]},{"id":"bart","keys":["bart","map","train","transit","wrong station","favorite project","proud","best project","case study","karls friend"],"P":"Karl's Friend Bart started because BART's map is confusing. It shows every line at once and never changes, so I rebuilt it as an interactive map in the official style: you can spotlight a line, see live trains and departures, and the whole site switches to evening service after 9pm. I designed and built it solo in five days.","C":"Honestly, BART's map is confusing. It just sits there, so I rebuilt it to actually do things: spotlight your line, watch live trains, and see the whole site go dark for evening service. Five days, all me.","link":["/work/karls-friend-bart.html","See the process"]},{"id":"karl","keys":["karl","fog","why karl","name"],"P":"Karl is the unofficial name locals gave San Francisco's famous fog. Every good train needs a friend, so Bart got Karl.","C":"Karl is what locals call the SF fog! Every good train needs a friend, and Bart's has been rolling over the bay forever."},{"id":"process","keys":["process","approach","framework","philosophy","how do you work","how you work","design process","think about","desirability","feasibility","viability","quote","ise 545","product sense"],"P":"I look at every product through three questions: do people want it, can it be built, and will it last? That's design, technology and business, the three parts of my major. A line from ISE-545 sums it up: a good product designer considers both how to do things right and how to do the right thing.","C":"I run everything through three questions: do people want it, can we build it, will it last? Design, tech, business. My ISE-545 class put it perfectly: do things right, and do the right thing."},{"id":"hindsight","keys":["hindsight","tiktok","saved videos","archive","favorites"],"P":"In Hindsight is a product I'm designing and developing to help people explore their saved TikTok videos (favorites, saves and reposts) in new ways instead of leaving them stuck in folders. 11 people joined the waitlist in one day, and you can try it at inhindsight.net.","C":"In Hindsight is my in-progress app for your TikTok saves, favorites and reposts, because they deserve better than a pile of folders. Try it at inhindsight.net!","link":["work/in-hindsight.html","See the process"]},{"id":"branchout","keys":["branch out","branchout","open source"],"P":"Branch Out was a team project I built at Salesforce: a way for college students to swipe through open source repos matched to their year, languages and interests. I led design and the front end and did some of the MCP work, while Nathan and Jackie owned the back end. The demo went well, and all three of us got return offers.","C":"Branch Out came out of my time at Salesforce: a site that helps college students find an open source project that fits their skills and interests. Way less scary than digging through GitHub alone.","link":["work/branch-out.html","See the process"]},{"id":"feefifo","keys":["fee fi","fee fi fo","fund","tax","taxes","svsd","civic","government"],"P":"Fee Fi Fo Fund started on the Bay Bridge, when a friend asked why we still pay a toll if our taxes are supposed to cover roads. It's a storytelling site for teens and young adults: type in a zip code and see what your city, state and federal government spent your tax dollars on, out of every $100. A Footprint page shows how to act on it: find your representatives, register to vote and get free tax help. I designed and built it for the SVSD design challenge, and Christine Lai made our submission video and mood board.","C":"Fee Fi Fo Fund started with my friend asking me why we still pay the Bay Bridge toll if our taxes are supposed to cover it. I didn't have an answer, so I built one: type in a zip code and see where your tax dollars actually went, told like a fairy tale. It's made for teens and young adults, because government sites are not it. My teammate Christine Lai made our video.","link":["work/fee-fi-fo-fund.html","See the process"]},{"id":"hack","keys":["hack","hacksc","hackathon","memory mind","award","awards","won","win","accessibility","hackathons"],"P":"At HackSC's SoCal Tech Week hackathon in 2024, I was team lead and pitch presenter for Memory Mind, a web app that turns text into mnemonic songs. My pitch led the judges to create a new \u201cMost Creative\u201d award in the accessibility track. Our intern team also placed top 4 of 36 at Salesforce's Futureforce hackathon.","C":"At HackSC I led our team and gave the pitch for Memory Mind, which turns study notes into songs. The judges liked it enough to make up a brand new \u201cMost Creative\u201d award for it. Also, top 4 of 36 intern teams at Salesforce's hackathon!"},{"id":"fun","keys":["fun","hobby","hobbies","free time","outside of work","golf","puzzle","puzzles","sudoku","flow free","game","games","weekend","enjoy","dots","tagalog","language","learning","filipino"],"P":"Outside of work I love puzzles, especially Sudoku, Flow Free and word games, which is why there's a connect-the-dots board on this site. I'm also always down for a round of golf. And I'm currently learning Tagalog.","C":"Puzzles, all day: Sudoku, Flow Free, word games. (Did you try the dots?) I'm always down for a round of golf, and I'm learning Tagalog right now."},{"id":"community","keys":["aka","alpha kappa alpha","bbsa","mlt","community","involved","involvement","leadership","club","clubs","organization","organizations","nonprofit","volunteer","sorority","youth advocates","vice president","spark","hygiene","midnight mission","president","historian","director","cohort","cohorts","forvr","basketball"],"P":"I'm Vice President of USC's Black Business Student Association, after serving as President. I run programming there and launched a cohort program: sports business with USC Basketball, entrepreneurship for USC's annual New Venture Seed Competition, and consulting with Jackie Aina's FORVR Mood. I'm also Director of Program Development for Youth Advocates for Change, where I connected BBSA with YA4C, Historian of my Alpha Kappa Alpha chapter, and a Career Prep Fellow with MLT.","C":"BBSA is my baby: I was President, now VP, and I started our cohort program (sports business with USC Basketball, entrepreneurship for New Venture Seed, consulting with Jackie Aina's FORVR Mood). I'm also Director of Program Development at YA4C, Historian for my AKA chapter, and an MLT fellow."},{"id":"bay","keys":["bay area","from","hometown","home","grow up","grew up","san francisco","sf","where are you"],"P":"I'm a Bay Area native. BART is how I've always gotten around home, which is how Karl's Friend Bart came to be.","C":"Bay Area, born and raised! BART was how I got around home, hence the whole map project."},{"id":"skills","keys":["skill","skills","tools","code","coding","languages","tech stack","stack","technical","developer","engineer","javascript","build","figma","python","sql","api","apis"],"P":"I have a software background and build my own projects end to end. I work with Figma, HTML, CSS, JavaScript, Python, SQL, Git, REST APIs, MCP, Agentforce and MuleSoft, along with AI tools. What I care about most is pairing that technical side with strong design and clear product thinking.","C":"I can design it and build it: Figma on one side, JavaScript, Python, SQL and APIs on the other, plus a lot of AI tooling. But the fun part for me is the product thinking that decides what's worth building."},{"id":"contact","keys":["contact","email","reach","linkedin","resume","cv","connect","get in touch","github","talk"],"P":"The best way to reach me is email at tjharvey@usc.edu. You can also find me on LinkedIn at /in/taliyah-harvey, see my code on GitHub at @taliyahhh, or open my resume in the Contact section below.","C":"Email me at tjharvey@usc.edu! I'm also on LinkedIn (/in/taliyah-harvey) and GitHub (@taliyahhh), and my resume is right below in Contact.","link":["mailto:tjharvey@usc.edu","Email me"]}],"fallback":{"P":"That one isn't covered on my site yet. Email me at tjharvey@usc.edu and I'll answer it directly.","C":"Ooh, my site doesn't cover that one. Shoot me an email at tjharvey@usc.edu and ask me for real!"}};
-  const CHIPS = [['Who are you?','intro'],['What roles are you looking for?','roles'],['Tell me about the BART map','bart'],['How do you approach products?','process'],["What's your experience?",'experience'],['What do you do for fun?','fun'],['Any awards?','hack'],['How can I reach you?','contact']];
-  const $ = x => document.getElementById(x);
-  const log = $('ask-log'), chips = $('ask-chips'), form = $('ask-form'), input = $('ask-in');
-  const byId = Object.fromEntries(BANK.topics.map(t => [t.id, t]));
-  let tone = 'P'; try { tone = localStorage.getItem('tj-ask-tone') || 'P'; } catch (e) {}
-  const history = [];
-  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function norm(s) { return ' ' + s.toLowerCase().replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim() + ' '; }
-  function match(q) {
-    const n = norm(q); let best = null, score = 0;
-    for (const t of BANK.topics) {
-      let sc = 0;
-      for (const k of t.keys) if (n.includes(' ' + k + ' ') || (k.length > 4 && n.includes(' ' + k))) sc += k.includes(' ') ? 3 : (t.weak ? 0.5 : 2);
-      if (sc > score) { score = sc; best = t.id; }
-    }
-    return score > 0 ? best : null;
-  }
-  function answerEl(id) {
-    const d = document.createElement('div'); d.className = 'msg tj';
-    const t = id ? byId[id] : null;
-    d.append(document.createTextNode(t ? t[tone] : BANK.fallback[tone]));
-    const link = t ? t.link : ['mailto:tjharvey@usc.edu', 'Email me'];
-    if (link) {
-      const a = document.createElement('a'); a.href = link[0]; a.textContent = link[1];
-      if (/^https?:/.test(link[0])) { a.target = '_blank'; a.rel = 'noopener'; }
-      d.append(document.createElement('br'), a);
-    }
-    return d;
-  }
-  function bubble(cls, text) { const d = document.createElement('div'); d.className = 'msg ' + cls; d.textContent = text; return d; }
-  function scroll() { log.scrollTop = log.scrollHeight; }
-  function ask(q, id) {
-    const topic = id || match(q);
-    history.push({ q, topic });
-    log.append(bubble('me', q)); scroll();
-    const dots = bubble('tj typing', '...'); log.append(dots); scroll();
-    setTimeout(() => { dots.replaceWith(answerEl(topic)); scroll(); }, calm ? 0 : 450);
-  }
-  function rerender() {
-    log.textContent = '';
-    log.append(answerEl('hello'));
-    for (const h of history) { log.append(bubble('me', h.q), answerEl(h.topic)); }
-    scroll();
-  }
-  document.querySelectorAll('.ask-tone button').forEach(b => {
-    b.setAttribute('aria-checked', b.dataset.tone === tone);
-    b.addEventListener('click', () => {
-      tone = b.dataset.tone; try { localStorage.setItem('tj-ask-tone', tone); } catch (e) {}
-      document.querySelectorAll('.ask-tone button').forEach(x => x.setAttribute('aria-checked', x === b));
-      rerender();   // same questions, answered in the new style
-    });
-  });
-  CHIPS.forEach(([q, id]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = q; b.addEventListener('click', () => ask(q, id)); chips.append(b); });
-  form.addEventListener('submit', e => { e.preventDefault(); const q = input.value.trim(); if (!q) return; input.value = ''; ask(q); });
-  const panel = $('ask-panel'), openB = $('ask-open');
-  function setOpen(on) {
-    panel.hidden = !on; openB.setAttribute('aria-expanded', on);
-    if (on) { input.focus({ preventScroll: true }); scroll(); } else openB.focus();
-  }
-  openB.addEventListener('click', () => setOpen(true));
-  $('ask-close').addEventListener('click', () => setOpen(false));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) setOpen(false); });
-  // on phones, tuck the chat button away while the puzzle board is on screen so it never covers a dot
-  const dock = document.querySelector('.ask-dock'), board = document.querySelector('.fl-board');
-  if (board && 'IntersectionObserver' in window) {
-    new IntersectionObserver(es => es.forEach(e => dock.classList.toggle('away', e.isIntersecting && innerWidth < 900 && panel.hidden)), { threshold: .15 }).observe(board);
-  }
-  rerender();
 }
 </script>
 <script>
