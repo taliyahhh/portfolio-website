@@ -299,7 +299,7 @@ BITE = dict(
         dict(when="Oct 2026", tag="Design", title="Bite Back",
              text=["Now it's a dinner. Bite Back is small and exclusive, served as small plates, with the education and the community built into the night."]),
         dict(when="Oct 2026", tag="Research", title="Why Animals",
-             text=["We focus on invasive animals over plants. They're easier to source."]),
+             text=["We focus on invasive animals over plants. They're easier to source. For plants, our only real option was basically trespassing."]),
         dict(when="Oct 2026", tag="Tech", title="The Landing Page",
              text=["A landing page for Invasiv, which I worked on."]),
         dict(when="Nov 2026", tag="Business", title="Grant Application",
