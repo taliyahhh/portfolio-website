@@ -67,9 +67,9 @@ h2{font-size:clamp(32px,5vw,48px);font-weight:900}
 .banner{border-block:1px solid var(--rule);overflow:hidden;padding-block:26px}
 .banner p{margin:0 0 16px;text-align:center;font-size:13px;font-weight:700;color:var(--muted)}
 .logos{display:flex;gap:64px;align-items:center;width:max-content;animation:slide 38s linear infinite}
-.logos img{height:58px;width:auto;object-fit:contain;padding:6px 10px;border-radius:10px;background:light-dark(transparent,#f4f4f2);filter:grayscale(1);opacity:.75;transition:filter .2s,opacity .2s}
-.logos img:hover{filter:none;opacity:1}
-.logos .wide{height:46px}
+.logos img{height:56px;width:auto;object-fit:contain;padding:6px 10px;border-radius:10px;background:light-dark(transparent,#f4f4f2);transition:transform .2s}
+.logos img:hover{transform:scale(1.05)}
+.logos .wide{height:46px}.logos .tall{height:66px}
 @keyframes slide{to{transform:translateX(-50%)}}
 .banner:hover .logos{animation-play-state:paused}
 
@@ -430,19 +430,19 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     <p>Companies and Communities</p>
     <div class="logos">
       <img src="assets/logos/salesforce.png" alt="Salesforce">
-      <img src="assets/logos/aka.png" alt="Alpha Kappa Alpha">
+      <img src="assets/logos/aka.png" alt="Alpha Kappa Alpha" class="tall">
       <img src="assets/logos/mlt.png" alt="MLT">
-      <img src="assets/logos/bbsa.png" alt="BBSA" class="wide">
+      <img src="assets/logos/bbsa.png" alt="BBSA">
       <img src="assets/logos/ya4c.webp" alt="Youth Advocates for Change">
       <img src="assets/logos/astera-labs.png" alt="Astera Labs" class="wide">
-      <img src="assets/logos/girl-gains.webp" alt="Girl Gains Lifting Club">
+      <img src="assets/logos/girl-gains.webp" alt="Girl Gains Lifting Club" class="tall">
       <img class="dup" src="assets/logos/salesforce.png" alt="">
-      <img class="dup" src="assets/logos/aka.png" alt="">
+      <img class="dup tall" src="assets/logos/aka.png" alt="">
       <img class="dup" src="assets/logos/mlt.png" alt="">
-      <img class="dup wide" src="assets/logos/bbsa.png" alt="">
+      <img class="dup" src="assets/logos/bbsa.png" alt="">
       <img class="dup" src="assets/logos/ya4c.webp" alt="">
       <img class="dup wide" src="assets/logos/astera-labs.png" alt="">
-      <img class="dup" src="assets/logos/girl-gains.webp" alt="">
+      <img class="dup tall" src="assets/logos/girl-gains.webp" alt="">
     </div>
   </div>
 
