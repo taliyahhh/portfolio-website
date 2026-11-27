@@ -303,15 +303,15 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .qz-btn.ghost{background:transparent;color:var(--dink);border:2px solid var(--drule)}
 .qz-btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .qz-quote{margin:0;font-size:clamp(20px,2.4vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.7}
-.qz-blank{display:inline-flex;flex-wrap:wrap;gap:0 .35em;vertical-align:baseline}
-.qz-word{display:inline-flex;gap:2px;white-space:nowrap}
-.qz-in{width:.82em;height:1.3em;padding:0;border:0;border-bottom:3px solid var(--dmut);background:transparent;color:var(--dD);font:inherit;font-weight:900;text-align:center;text-transform:lowercase;caret-color:var(--dD);border-radius:0;outline:none}
+.qz-blank{display:inline-flex;flex-wrap:wrap;gap:0 .28em;vertical-align:baseline}
+.qz-word{display:inline-flex;gap:1px;white-space:nowrap}
+.qz-in{width:.58em;height:1.3em;padding:0;border:0;border-bottom:3px solid var(--dmut);background:transparent;color:var(--dD);font:inherit;font-weight:900;text-align:center;text-transform:lowercase;caret-color:var(--dD);border-radius:0;outline:none}
 .qz-in:focus{border-bottom-color:var(--dD);background:rgba(255,210,0,.08)}
 .qz-in.given{color:#fff}
 .qz-blank.right .qz-in{border-bottom-color:transparent;color:var(--dD)}
 .qz-blank.wrong .qz-in{animation:qzshake .3s}
 @keyframes qzshake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
-.qz-solved{color:var(--dD)}
+.qz-solved{color:var(--dD)}.qz-word.qz-solved{justify-content:center;font-weight:900}
 .qz-clue{margin:8px 0 0;min-height:22px;font-size:14px;color:#cfcec9}
 .qz figcaption{margin-top:6px;font-size:13px;font-weight:600;color:var(--dmut)}
 .qz-again{all:unset;cursor:pointer;font-size:13px;font-weight:700;color:var(--dmut);text-decoration:underline;text-underline-offset:3px}
@@ -925,7 +925,25 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
   function solvedView() {
     // fill the same letter boxes instead of swapping in text, so the quote doesn't reflow
     if (!box.querySelector('.qz-in')) build();
-    blanks.forEach(b => { b.className = 'qz-blank right'; b.querySelectorAll('.qz-in').forEach(i => { i.value = i.dataset.c; i.readOnly = true; i.tabIndex = -1; }); });
+    blanks.forEach(b => {
+      b.className = 'qz-blank right';
+      // the answer keeps the space its letter boxes took up, so nothing around it moves
+      const words = [...b.querySelectorAll('.qz-word')];
+      const oneLine = new Set(words.map(w => Math.round(w.getBoundingClientRect().top))).size === 1;
+      if (oneLine) {
+        const width = b.getBoundingClientRect().width;
+        b.innerHTML = `<span class="qz-word qz-solved">${b.dataset.answer}</span>`;
+        const span = b.firstChild, extra = width - span.getBoundingClientRect().width;
+        if (extra > 0) span.style.letterSpacing = Math.min(extra / (b.dataset.answer.length + 4), 1) + 'px';
+        span.style.width = width + 'px';
+      } else {
+        words.forEach(w => {
+          const width = w.getBoundingClientRect().width;
+          w.textContent = [...w.querySelectorAll('.qz-in')].map(i => i.dataset.c).join('');
+          w.classList.add('qz-solved'); w.style.width = width + 'px';
+        });
+      }
+    });
     box.classList.add('done');
     label.textContent = 'Solved';
     hintBtn.hidden = true; showBtn.hidden = true;
