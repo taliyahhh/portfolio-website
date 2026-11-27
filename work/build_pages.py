@@ -289,7 +289,7 @@ BITE = dict(
     slug="bite-back", name="Bite Back", when="Fall 2026 to now · IYA Garage Experience",
     desc="a small-plates dinner built around invasive species, with education and community at the table.",
     sub="A food lover who feels unaware about invasive species needs to see that eating them can help, but they almost never show up on a menu.",
-    meta=[("Program", "IYA Garage Experience (GX)"), ("Team", "Invasiv team"), ("Stage", "Applying for a grant")],
+    meta=[("Program", "IYA Garage Experience (GX)"), ("Team", '<a href="https://www.linkedin.com/in/maya-parthasarathy/" target="_blank" rel="noopener">Maya Parthasarathy</a>, <a href="https://www.linkedin.com/in/jones-mays-ii-21a2a6215/" target="_blank" rel="noopener">Jones Mays</a>, <a href="https://www.linkedin.com/in/maxine-ivey-624070268/" target="_blank" rel="noopener">Maxine Ivey</a> and me'), ("Stage", "Applying for a grant")],
     links=[],
     log=[
         dict(when="Fall 2026", tag="Business", title="What GX Is",
