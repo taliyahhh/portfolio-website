@@ -434,7 +434,7 @@ ERUCA = dict(
 )
 
 TABLE = dict(
-    slug="coffee-table", name="The Coffee Table", when="ACAD-445, Designing Products for Licensing",
+    slug="coffee-table", name="The Coffee Table", when="Spring 2026 · ACAD-445, Designing Products for Licensing",
     desc="a nesting coffee table that triples into a table, side table and ottoman for small first apartments.",
     sub="A young adult who feels stuck about furnishing a first apartment needs to find one piece that works for work, dining and hosting, but most furniture is cheap, bulky or single-use.",
     meta=[("Team", "Maya Parthasarathy, Bodie, Jones Mays, David and me"), ("Class", "ACAD-445, Designing Products for Licensing"), ("Deliverable", "Design lock and mini prototype")],
