@@ -159,7 +159,7 @@ FEE = dict(
     slug="fee-fi-fo-fund", name="Fee Fi Fo Fund", when="Oct 2026 · SVSD design challenge",
     desc="a storytelling site that shows teens and young adults where their tax dollars go, by zip code.",
     sub="A teen who feels confused about where their paycheck goes needs to see how their taxes are spent, but government budgets are bland and hard to navigate.",
-    meta=[("Role", "Design and development"), ("Team", "Christine Lai and me")],
+    meta=[("Role", "Design and development"), ("Team", '<a href="https://www.linkedin.com/in/chrstnlai/" target="_blank" rel="noopener">Christine Lai</a> and me')],
     links=[("Try it", "https://feefifo.fund"), ("Watch the video", "https://youtu.be/RaYq0kSAdkA"), ("The challenge", "https://svsdschool.github.io/competition/"), ("Code", "https://github.com/taliyahhh/tax-site")],
     video=("RaYq0kSAdkA", "Our SVSD submission video, made by Christine Lai."),
     log=[
@@ -290,10 +290,10 @@ BITE = dict(
     desc="a small-plates dinner built around invasive species, with education and community at the table.",
     sub="A food lover who feels unaware about invasive species needs to see that eating them can help, but they almost never show up on a menu.",
     meta=[("Program", "IYA Garage Experience (GX)"), ("Team", '<a href="https://www.linkedin.com/in/maya-parthasarathy/" target="_blank" rel="noopener">Maya Parthasarathy</a>, <a href="https://www.linkedin.com/in/jones-mays-ii-21a2a6215/" target="_blank" rel="noopener">Jones Mays</a>, <a href="https://www.linkedin.com/in/maxine-ivey-624070268/" target="_blank" rel="noopener">Maxine Ivey</a> and me'), ("Stage", "Applying for a grant")],
-    links=[],
+    links=[("About GX", "https://iovine-young.usc.edu/careers-learning-outcomes#capstone-experience-fusing-innovation-and-industry")],
     log=[
         dict(when="Fall 2026", tag="Business", title="What GX Is",
-             text=["GX is the Iovine and Young Academy's senior-year Garage Experience: a student-led research and development project that runs two semesters. You pick the problem, and you have the whole year to build toward it."]),
+             text=["GX is the Garage Experience, the Iovine and Young Academy's senior capstone. It's a student-led research and development project that runs two semesters, with mentorship from faculty and people in industry. You pick the problem, and you have the whole year to build toward it."]),
         dict(when="Fall 2026", tag="Product", title="Invasiv",
              text=["It started as Invasiv, a food product made from invasive species. Then we tried invasive food consulting. Then back to products: a brand making different things from invasive species."]),
         dict(when="Oct 2026", tag="Design", title="Bite Back",
