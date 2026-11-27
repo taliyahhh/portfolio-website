@@ -253,7 +253,7 @@ BRANCH = dict(
     ],
     reflect=[("What worked", "The concept itself. It was also cool trying MCP when it was just getting started."),
              ("What I'd do differently", "Build a much bigger database, and create our own open source challenges by skill and topic. A little like LeetCode, but for contributing to real projects. I'd also use the newer AI tools that are out now.")],
-    next=("bite-back.html", "Bite Back"),
+    next=("in-hindsight.html", "In Hindsight"),
     foot="Built with Nathan Kenmognie and Jackie Jurado",
 )
 
@@ -303,7 +303,7 @@ HIND = dict(
     reflect=[("What worked", "Finding something niche. Not much out there targets this problem, and once In Hindsight is fully built, it does it best."),
              ("What I'd do differently", "I built the dashboard first and asked people second. It worked out, but I'd flip it."),
              ("What's next", "Get a grant, publish In Hindsight to the public as an app or browser extension, and stay on the timeline: a 100-person beta in January, Peep on iOS in the spring, and 1,000 users by summer.")],
-    next=("karls-friend-bart.html", "Karl's Friend Bart"),
+    next=("bite-back.html", "Bite Back"),
     foot="Not affiliated with TikTok",
 )
 
@@ -356,7 +356,7 @@ BITE = dict(
     reflect=[("What worked", "Finding something niche. Eating invasive species is a modern take on environmental activism."),
              ("What I'd do differently", "I was into an animal product we could get into Erewhon, and I still think it could happen. We went with dinners because they were the most doable within the school year."),
              ("What's next", "Getting noticed among everything else in your feed. We're submitting a grant application, posting before our first small plates dinner in December, and aiming for 10K followers over winter break off that first dinner's content. We're also looking at pairing the invasive species with ingredients that are actually good for you, so eating it helps you as well as the planet. Stay tuned on <a href=\"https://www.instagram.com/biteback.la/\" target=\"_blank\" rel=\"noopener\">our Instagram</a>.")],
-    next=("in-hindsight.html", "In Hindsight"),
+    next=("karls-friend-bart.html", "Karl's Friend Bart"),
     foot="An IYA Garage Experience project",
 )
 
