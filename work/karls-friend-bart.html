@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Karl&#x27;s Friend Bart · Taliyah Harvey</title>
-<meta name="description" content="Process and reflection: an interactive BART map that keeps the official look and shows what&#x27;s running right now.">
+<meta name="description" content="Process and reflection: an interactive BART map that keeps the official look and shows what&#x27;s actually running.">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
     <p class="sub">A <span class="blank">BART rider</span> who feels <span class="blank">confused</span> about <span class="blank">the map</span> needs to <span class="blank">see where their train is actually going</span>, but <span class="blank">the official map is a still picture of every line at once</span>.</p>
     <ul class="meta"><li><span>Role</span><b>Design and front end</b></li><li><span>Team</span><b>Solo</b></li></ul>
     <div class="links"><a class="main" href="https://taliyahhh.github.io/bart-revamp/" target="_blank" rel="noopener">Try the live map &nearr;</a><a class="" href="https://github.com/taliyahhh/bart-revamp" target="_blank" rel="noopener">Code &nearr;</a></div>
-    <div class="nums"><div><b>5 days</b><span>from idea to live site</span></div><div><b>Live</b><span>trains from BART's API</span></div></div>
+    <div class="nums"><div><b>5 days</b><span>idea to live site</span></div><div><b>Live</b><span>trains from BART's API</span></div></div>
   </section>
 
   <section class="sect" aria-labelledby="how-h">
@@ -41,35 +41,35 @@
     <ol class="log">
       <li>
         <div class="when">Oct 24<span class="tag r">Research</span></div>
-        <h3>The Problem</h3>
-        <p>The official map shows every line at once and never changes. After 9pm, Red and Green stop running and transfers change. Nothing tells you. I found out at the wrong stop.</p>
+        <h3>Same Map, All Day</h3>
+        <p>BART's map shows every line at once, all day. After 9pm the Red and Green lines stop running, and the map still shows them.</p><p>Even if you grew up on BART, you still have to stop and decode it. The map isn't wrong. It just doesn't move.</p>
       </li>
       <li>
         <div class="when">Oct 24<span class="tag d">Design</span></div>
-        <h3>My Own Map First</h3>
-        <p>I started with a dark custom map. It looked cool, but it didn't look like BART, and that was the problem.</p><figure class="shot"><img src="img/bart-v1-fogline.jpg" alt="My first version: a dark custom map" loading="lazy"></figure>
+        <h3>Fogline</h3>
+        <p>My first version was a dark custom map I called Fogline. It looked good. It also didn't look like BART at all, and BART's map is the one people already know how to read.</p><figure class="shot"><img src="img/bart-v1-fogline.jpg" alt="Fogline, my first version" loading="lazy"></figure>
       </li>
       <li>
         <div class="when">Oct 24<span class="tag d">Design</span></div>
-        <h3>Back to the Real Map</h3>
-        <p>Riders already know the official map, so I rebuilt it. Then I added a trip planner, and it got crowded.</p><figure class="shot"><img src="img/bart-v2-official.jpg" alt="The official layout with a Plan a Trip box" loading="lazy"></figure>
+        <h3>Back to the Official Map</h3>
+        <p>So I rebuilt the official one. Same colors, same layout. Then I added a trip planner and the screen got crowded fast.</p><figure class="shot"><img src="img/bart-v2-official.jpg" alt="The official layout with a Plan a Trip box" loading="lazy"></figure>
       </li>
       <li>
         <div class="when">Oct 24<span class="tag b">Product</span></div>
         <h3>Cut the Trip Planner</h3>
-        <p>Other apps already plan trips. I cut it and moved the line controls to a bottom bar your thumb can reach.</p><figure class="shot"><img src="img/bart-v3-bottombar.jpg" alt="Line controls in a bottom bar" loading="lazy"></figure>
+        <p>Google Maps already plans trips. Mine was just more stuff on the screen, so it went. The line controls moved to a bar at the bottom, where your thumb already is.</p><figure class="shot"><img src="img/bart-v3-bottombar.jpg" alt="Line controls in a bottom bar" loading="lazy"></figure>
       </li>
       <li>
         <div class="when">Oct 28<span class="tag t">Tech</span></div>
-        <h3>Live Trains and a Night Mode</h3>
-        <p>Mini trains from BART's live API. At 9pm the site switches to the evening network on its own.</p><div class="shots"><figure class="shot"><img src="img/bart-v4-final-day.jpg" alt="Day service" loading="lazy"><figcaption>Day</figcaption></figure><figure class="shot"><img src="img/bart-v4-final-evening.jpg" alt="Evening service" loading="lazy"><figcaption>After 9pm</figcaption></figure></div>
+        <h3>Live Trains and Evening Service</h3>
+        <p>Little trains move along the map using BART's live departures. At 9pm the site switches to evening service on its own, goes dark, and marks Red and Green as off tonight.</p><div class="shots"><figure class="shot"><img src="img/bart-v4-final-day.jpg" alt="Day service" loading="lazy"><figcaption>Day</figcaption></figure><figure class="shot"><img src="img/bart-v4-final-evening.jpg" alt="Evening service" loading="lazy"><figcaption>After 9pm</figcaption></figure></div>
       </li>
     </ol>
   </section>
 
   <section class="reflect" aria-labelledby="look-h">
     <h2 id="look-h">Looking Back</h2>
-    <dl><div><dt>What worked</dt><dd>Keeping the official look. Nobody had to learn anything new.</dd></div><div><dt>What I'd do differently</dt><dd>I built from my own frustration. Next time I'd watch a few riders use it before building.</dd></div><div><dt>What's next</dt><dd>Test it with riders, then pitch it to BART as a clearer map.</dd></div></dl>
+    <dl><div><dt>What worked</dt><dd>Keeping the official map. The less I changed, the easier it was to read.</dd></div><div><dt>What I'd do differently</dt><dd>Nobody but me has really used it yet. I'd put it in front of riders before adding anything else.</dd></div><div><dt>What's next</dt><dd>Get it in front of BART riders.</dd></div></dl>
   </section>
 
   <a class="nextp" href="fee-fi-fo-fund.html"><span><small>Next project</small><b>Fee Fi Fo Fund</b></span><span class="go" aria-hidden="true">&rarr;</span></a>
