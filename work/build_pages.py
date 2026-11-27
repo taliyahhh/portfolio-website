@@ -389,7 +389,7 @@ HANG = dict(
              text=["Six inclusive design principles for anyone building a space like this:"],
              list=["Recognize exclusion", "Design for a range of needs", "Provide flexibility and choice", "Reduce physical and social barriers", "Prioritize clarity and simplicity", "Support independence and belonging"]),
     ],
-    reflect=[],
+    reflect=[("What worked", "The idea. I showed it to my tween cousin, who said it was great and that she'd want to share it with her friends or join in. Her friends liked it too.")],
     next=("eruca.html", "Eruca"),
     foot="IDSN-522 · Professor Wolter",
 )
@@ -430,7 +430,9 @@ ERUCA = dict(
              text=["A luxury carry-on with arthropod wheels. If it went to production: a polycarbonate shell, sealed cork wheels for shock absorption, and a polyurethane coating."],
              img=("img/eruca/final.jpg", "The Eruca Pod")),
     ],
-    reflect=[],
+    reflect=[("What worked", "Borrowing from nature. Every final project had to use something from the natural world, and moving like a caterpillar was a cool way to do it."),
+             ("What I'd do differently", "Look for more use cases earlier, from different perspectives around the globe. A product that works doesn't cover every case (ours didn't plan for wobbly stones), and finding the ones you missed is one way to innovate."),
+             ("What's next", "Keep bringing nature into future products. It's right there, and it works beautifully.")],
     next=("alcove.html", "Alcove"),
     foot="ACAD-324 · Professor Wolter",
 )
@@ -477,7 +479,8 @@ TABLE = dict(
         dict(when="Final", tag="Product", title="Alcove at Home",
              img=("img/table/renders2.jpg", "Renderings of Alcove in a living room")),
     ],
-    reflect=[],
+    reflect=[("What worked", "Keeping it simple. I was skeptical because it was so basic, but when a product is straight to the point, it ends up with a lot of use cases."),
+             ("What I'd do differently", "Adjust a few minor details. For the extreme modern look we were going for, the 1/4 scale prototype came out pretty good overall.")],
     next=("/#work", "Selected Work"),
     foot="ACAD-445 · Designing Products for Licensing",
 )
