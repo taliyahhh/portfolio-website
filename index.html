@@ -293,7 +293,7 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .dvf-pq em{font-style:normal;color:var(--dD)}
 .dvf-pq figcaption{margin-top:10px;font-size:13px;font-weight:600;color:var(--dmut)}
 .qz{margin:clamp(24px,3vw,36px) 0 0;padding:clamp(20px,2.4vw,28px) clamp(20px,2.6vw,32px);border-radius:20px;background:var(--dcard);border:1px solid var(--drule)}
-.qz-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.qz-top{min-height:40px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
 .qz-label{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--dD)}
 .qz-label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--dD)}
 .qz.done .qz-label::before{content:"\2713";width:auto;height:auto;background:none}
@@ -303,9 +303,9 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .qz-btn.ghost{background:transparent;color:var(--dink);border:2px solid var(--drule)}
 .qz-btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .qz-quote{margin:0;font-size:clamp(20px,2.4vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.7}
-.qz-blank{display:inline-flex;flex-wrap:wrap;gap:0 .45em;vertical-align:baseline}
-.qz-word{display:inline-flex;gap:3px;white-space:nowrap}
-.qz-in{width:1.05em;height:1.3em;padding:0;border:0;border-bottom:3px solid var(--dmut);background:transparent;color:var(--dD);font:inherit;font-weight:900;text-align:center;text-transform:lowercase;caret-color:var(--dD);border-radius:0;outline:none}
+.qz-blank{display:inline-flex;flex-wrap:wrap;gap:0 .35em;vertical-align:baseline}
+.qz-word{display:inline-flex;gap:2px;white-space:nowrap}
+.qz-in{width:.82em;height:1.3em;padding:0;border:0;border-bottom:3px solid var(--dmut);background:transparent;color:var(--dD);font:inherit;font-weight:900;text-align:center;text-transform:lowercase;caret-color:var(--dD);border-radius:0;outline:none}
 .qz-in:focus{border-bottom-color:var(--dD);background:rgba(255,210,0,.08)}
 .qz-in.given{color:#fff}
 .qz-blank.right .qz-in{border-bottom-color:transparent;color:var(--dD)}
@@ -923,7 +923,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     hintBtn.hidden = false; showBtn.hidden = false; hints = 0; clue.textContent = '';
   }
   function solvedView() {
-    blanks.forEach(b => { b.className = 'qz-blank right'; b.innerHTML = `<span class="qz-solved">${b.dataset.answer}</span>`; });
+    // fill the same letter boxes instead of swapping in text, so the quote doesn't reflow
+    if (!box.querySelector('.qz-in')) build();
+    blanks.forEach(b => { b.className = 'qz-blank right'; b.querySelectorAll('.qz-in').forEach(i => { i.value = i.dataset.c; i.readOnly = true; i.tabIndex = -1; }); });
     box.classList.add('done');
     label.textContent = 'Solved';
     hintBtn.hidden = true; showBtn.hidden = true;
