@@ -272,6 +272,10 @@ section.band{padding-block:clamp(56px,8vw,104px)}
 .stops li{position:relative;padding:14px 0;border-bottom:1px solid var(--rule)}
 .stops li:last-child{border-bottom:0}
 .stops b{display:block;font-size:18px}
+.sketchbg{position:relative;overflow:hidden}
+.sketchbg::before{content:"";position:absolute;right:-40px;bottom:-10px;width:min(900px,90vw);aspect-ratio:974/550;background:url(assets/sketch-birdhouses.png) no-repeat center/contain;opacity:.18;pointer-events:none}
+@media(prefers-color-scheme:dark){.sketchbg::before{filter:invert(1);opacity:.16}}
+.sketchbg > .wrap{position:relative}
 .stops span{color:var(--muted)}
 .stops.edu li > span{display:block}
 .stops.edu .edu-top{display:flex!important;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:4px}
@@ -542,7 +546,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     </div>
   </section>
 
-  <section class="band" id="classwork">
+  <section class="band sketchbg" id="classwork">
     <div class="wrap">
       <div class="kicker"><i></i>Coursework</div>
       <h2>Class Projects</h2>
