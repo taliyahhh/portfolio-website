@@ -35,6 +35,14 @@ def entry(it):
 '''
 
 
+import re as _re
+def fill(t):
+    m = _re.match(r"^A (.+?) who feels (.+?) about (.+?) needs to (.+?), but (.+)\.$", t)
+    assert m, t
+    a, f, k, st, o = (f'<span class="blank">{x}</span>' for x in m.groups())
+    return f"A {a} who feels {f} about {k} needs to {st}, but {o}."
+
+
 def page(p):
     meta = "".join(f"<li><span>{k}</span><b>{v}</b></li>" for k, v in p["meta"])
     links = "".join(f'<a class="{"main" if i == 0 else ""}" href="{u}" target="_blank" rel="noopener">{t} &nearr;</a>' for i, (t, u) in enumerate(p["links"]))
@@ -79,7 +87,7 @@ def page(p):
     <p class="kick">{p["when"]}</p>
     <h1>{e(p["name"])}</h1>
     <p class="plabel">Problem statement</p>
-    <p class="sub">{p["sub"]}</p>
+    <p class="sub">{fill(p["sub"])}</p>
     <ul class="meta">{meta}</ul>
     <div class="links">{links}</div>
     {nums}
@@ -114,8 +122,8 @@ BART = dict(
     slug="karls-friend-bart", name="Karl's Friend Bart", when="Oct 2026",
     desc="an interactive BART map that keeps the official look and shows what's running right now.",
     h1="Mind the Map",
-    sub="A BART rider who feels confused by the map needs to see where their train is actually going, but the official map is a still picture of every line at once.",
-    meta=[("Role", "Solo: design and front-end"), ("Time", "5 days"), ("Type", "Personal")],
+    sub="A BART rider who feels confused about the map needs to see where their train is actually going, but the official map is a still picture of every line at once.",
+    meta=[("Role", "Design and front end"), ("Team", "Solo")],
     links=[("Try the live map", "https://taliyahhh.github.io/bart-revamp/"), ("Code", "https://github.com/taliyahhh/bart-revamp")],
     nums=[("5 days", "from idea to live site"), ("Live", "trains from BART's API")],
     log=[
@@ -146,7 +154,7 @@ FEE = dict(
     desc="a storytelling site that shows teens and young adults where their tax dollars go, by zip code.",
     h1="Once Upon a Paycheck",
     sub="A teen who feels confused about where their paycheck goes needs to see how their taxes are spent, but the answers are buried in budget PDFs written in billions.",
-    meta=[("Role", "Design and development"), ("Team", "Me and Christine Lai"), ("Time", "Oct 2026")],
+    meta=[("Role", "Design and development"), ("Team", "Christine Lai and me")],
     links=[("Try it", "https://feefifo.fund"), ("Watch the video", "https://youtu.be/RaYq0kSAdkA"), ("The challenge", "https://svsdschool.github.io/competition/"), ("Code", "https://github.com/taliyahhh/tax-site")],
     video=("RaYq0kSAdkA", "Our SVSD submission video, made by Christine Lai."),
     log=[
@@ -191,7 +199,7 @@ BRANCH = dict(
     desc="a swipe-based way for college students to find open source projects matched to their year, languages and interests.",
     h1="Swipe Right on Open Source",
     sub="A college student who feels intimidated about contributing to open source needs to find a project that fits their level, but GitHub shows the biggest, scariest repos first.",
-    meta=[("Role", "Front-end and design lead"), ("Team", "Me, Nathan Kenmognie and Jackie Jurado"), ("Program", "Futureforce Tech Launchpad")],
+    meta=[("Role", "Front end and design lead"), ("Team", "Nathan, Jackie and me"), ("Program", "Futureforce Tech Launchpad")],
     links=[("Try it", "https://branchout.tech"), ("Code", "https://github.com/Team-10-FTL/branch-out")],
     nums=[("1 of 30", "picked from 3,000+ applicants"), ("3 of 3", "of us got return offers")],
     log=[
@@ -226,7 +234,7 @@ HIND = dict(
     desc="Peep, an AI doomscrolling buddy that turns your TikTok saves into plans.",
     h1="You saved it. Now use it.",
     sub="A TikTok user who feels guilty about how long they scroll needs to get something out of what they save, but their saves disappear into folders they never open.",
-    meta=[("Role", "Founder: product, design, code"), ("Platform", "Web now, iOS next"), ("Stage", "MVP live")],
+    meta=[("Role", "Founder"), ("Platform", "Web, iOS next"), ("Stage", "MVP live")],
     links=[("Try it", "https://inhindsight.net"), ("Meet Peep", "https://inhindsight.net/peep")],
     nums=[("94%", "gave up finding a saved video"), ("11", "waitlist signups in one day")],
     log=[
